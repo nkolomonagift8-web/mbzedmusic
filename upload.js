@@ -1,326 +1,485 @@
-document.addEventListener("DOMContentLoaded", function () {
+// ============================================================
+// MBZEDMUSIC.COM - UPLOAD SYSTEM
+// ============================================================
 
-    const uploadForm = document.getElementById("musicUploadForm");
+// Supabase CDN
+const SUPABASE_CDN =
+    "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
 
-    const audioFile = document.getElementById("audioFile");
-    const coverImage = document.getElementById("coverImage");
+// Your Supabase project
+const SUPABASE_URL =
+    "https://uutfftxqupzxqfmcryqg.supabase.co";
 
-    const audioFileName = document.getElementById("audioFileName");
-    const coverFileName = document.getElementById("coverFileName");
-
-    const audioFileStatus = document.getElementById("audioFileStatus");
-
-    const coverPreview = document.getElementById("coverPreview");
-    const coverPreviewImage = document.getElementById("coverPreviewImage");
-
-    const uploadMessage = document.getElementById("uploadMessage");
-    const uploadSubmit = document.getElementById("uploadSubmit");
+// Your PUBLIC/PUBLISHABLE key
+const SUPABASE_KEY =
+    "sb_publishable_OkdehmxLBiy8BIn4iuWaQw_OgqwMu7h";
 
 
-    /* =========================================
-       MP3 FILE SELECTION
-    ========================================= */
+// ============================================================
+// LOAD SUPABASE
+// ============================================================
 
-    if (audioFile) {
+const supabaseScript = document.createElement("script");
 
-        audioFile.addEventListener("change", function () {
+supabaseScript.src = SUPABASE_CDN;
 
-            if (!audioFile.files || audioFile.files.length === 0) {
+supabaseScript.onload = function () {
 
-                audioFileName.textContent = "No file selected";
+    window.supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
 
-                if (audioFileStatus) {
-                    audioFileStatus.textContent = "";
-                }
+    console.log("Supabase connected successfully.");
 
-                return;
-            }
+    startUploadSystem();
 
-            const file = audioFile.files[0];
+};
 
-            audioFileName.textContent = file.name;
+supabaseScript.onerror = function () {
 
+    console.error(
+        "Could not load Supabase."
+    );
 
-            /* Check file type */
+};
 
-            const validAudio =
-                file.type === "audio/mpeg" ||
-                file.name.toLowerCase().endsWith(".mp3");
-
-
-            if (!validAudio) {
-
-                audioFileStatus.textContent =
-                    "Please choose an MP3 audio file.";
-
-                audioFileStatus.classList.add("error");
-
-                audioFile.value = "";
-
-                audioFileName.textContent =
-                    "No file selected";
-
-                return;
-            }
+document.head.appendChild(supabaseScript);
 
 
-            /* Check file size */
 
-            const maxAudioSize = 50 * 1024 * 1024;
+// ============================================================
+// UPLOAD SYSTEM
+// ============================================================
+
+function startUploadSystem() {
+
+    const form =
+        document.getElementById("musicUploadForm");
+
+    const audioInput =
+        document.getElementById("audioFile");
+
+    const coverInput =
+        document.getElementById("coverImage");
+
+    const audioName =
+        document.getElementById("audioFileName");
+
+    const coverName =
+        document.getElementById("coverFileName");
+
+    const coverPreview =
+        document.getElementById("coverPreview");
+
+    const coverPreviewImage =
+        document.getElementById("coverPreviewImage");
+
+    const submitButton =
+        document.getElementById("uploadSubmit");
+
+    const message =
+        document.getElementById("uploadMessage");
 
 
-            if (file.size > maxAudioSize) {
+    if (!form) {
 
-                audioFileStatus.textContent =
-                    "MP3 file is too large. Maximum size is 50 MB.";
+        console.error(
+            "Upload form was not found."
+        );
 
-                audioFileStatus.classList.add("error");
-
-                audioFile.value = "";
-
-                audioFileName.textContent =
-                    "No file selected";
-
-                return;
-            }
-
-
-            audioFileStatus.textContent =
-                "MP3 file selected successfully.";
-
-            audioFileStatus.classList.remove("error");
-
-        });
+        return;
 
     }
 
 
+    // ========================================================
+    // SHOW MESSAGE
+    // ========================================================
 
-    /* =========================================
-       COVER IMAGE SELECTION
-    ========================================= */
+    function showMessage(text, type) {
 
-    if (coverImage) {
+        if (!message) return;
 
-        coverImage.addEventListener("change", function () {
+        message.textContent = text;
 
-            if (!coverImage.files || coverImage.files.length === 0) {
-
-                coverFileName.textContent =
-                    "No image selected";
-
-                if (coverPreview) {
-                    coverPreview.classList.remove("show");
-                }
-
-                return;
-            }
-
-            const file = coverImage.files[0];
-
-            coverFileName.textContent =
-                file.name;
-
-
-            /* Check image type */
-
-            const validImageTypes = [
-                "image/jpeg",
-                "image/png",
-                "image/webp"
-            ];
-
-
-            if (!validImageTypes.includes(file.type)) {
-
-                showMessage(
-                    "Please choose a JPG, PNG or WEBP image.",
-                    "error"
-                );
-
-                coverImage.value = "";
-
-                coverFileName.textContent =
-                    "No image selected";
-
-                return;
-            }
-
-
-            /* Check image size */
-
-            const maxImageSize = 10 * 1024 * 1024;
-
-
-            if (file.size > maxImageSize) {
-
-                showMessage(
-                    "Cover image is too large. Maximum size is 10 MB.",
-                    "error"
-                );
-
-                coverImage.value = "";
-
-                coverFileName.textContent =
-                    "No image selected";
-
-                return;
-            }
-
-
-            /* Show preview */
-
-            const reader = new FileReader();
-
-
-            reader.onload = function (event) {
-
-                if (coverPreviewImage) {
-
-                    coverPreviewImage.src =
-                        event.target.result;
-
-                }
-
-
-                if (coverPreview) {
-
-                    coverPreview.classList.add("show");
-
-                }
-
-            };
-
-
-            reader.readAsDataURL(file);
-
-        });
-
-    }
-
-
-
-    /* =========================================
-       MESSAGE FUNCTION
-    ========================================= */
-
-    function showMessage(message, type) {
-
-        if (!uploadMessage) {
-            return;
-        }
-
-        uploadMessage.textContent =
-            message;
-
-        uploadMessage.className =
+        message.className =
             "upload-message " + type;
 
     }
 
 
+    // ========================================================
+    // FORMAT FILE SIZE
+    // ========================================================
 
-    /* =========================================
-       FORM SUBMISSION
-    ========================================= */
+    function formatFileSize(bytes) {
 
-    if (uploadForm) {
+        if (bytes === 0) {
+            return "0 Bytes";
+        }
 
-        uploadForm.addEventListener("submit", function (event) {
+        const sizes = [
+            "Bytes",
+            "KB",
+            "MB",
+            "GB"
+        ];
+
+        const i =
+            Math.floor(
+                Math.log(bytes) /
+                Math.log(1024)
+            );
+
+        return (
+            Math.round(
+                bytes /
+                Math.pow(1024, i) *
+                100
+            ) / 100
+        ) +
+        " " +
+        sizes[i];
+
+    }
+
+
+    // ========================================================
+    // MP3 SELECTION
+    // ========================================================
+
+    if (audioInput) {
+
+        audioInput.addEventListener(
+            "change",
+            function () {
+
+                if (!audioInput.files.length) {
+
+                    audioName.textContent =
+                        "No file selected";
+
+                    return;
+
+                }
+
+                const file =
+                    audioInput.files[0];
+
+
+                if (
+                    !file.name
+                        .toLowerCase()
+                        .endsWith(".mp3")
+                ) {
+
+                    showMessage(
+                        "Please select an MP3 file.",
+                        "error"
+                    );
+
+                    audioInput.value = "";
+
+                    audioName.textContent =
+                        "No file selected";
+
+                    return;
+
+                }
+
+
+                // Maximum 50 MB
+
+                if (
+                    file.size >
+                    50 * 1024 * 1024
+                ) {
+
+                    showMessage(
+                        "Your MP3 is larger than 50 MB.",
+                        "error"
+                    );
+
+                    audioInput.value = "";
+
+                    audioName.textContent =
+                        "No file selected";
+
+                    return;
+
+                }
+
+
+                audioName.textContent =
+                    file.name +
+                    " (" +
+                    formatFileSize(file.size) +
+                    ")";
+
+
+                showMessage(
+                    "MP3 selected successfully.",
+                    "success"
+                );
+
+            }
+        );
+
+    }
+
+
+
+    // ========================================================
+    // COVER IMAGE SELECTION
+    // ========================================================
+
+    if (coverInput) {
+
+        coverInput.addEventListener(
+            "change",
+            function () {
+
+                if (!coverInput.files.length) {
+
+                    coverName.textContent =
+                        "No image selected";
+
+                    return;
+
+                }
+
+                const file =
+                    coverInput.files[0];
+
+
+                const allowedTypes = [
+                    "image/jpeg",
+                    "image/png",
+                    "image/webp"
+                ];
+
+
+                if (
+                    !allowedTypes.includes(
+                        file.type
+                    )
+                ) {
+
+                    showMessage(
+                        "Please select a JPG, PNG or WEBP image.",
+                        "error"
+                    );
+
+                    coverInput.value = "";
+
+                    coverName.textContent =
+                        "No image selected";
+
+                    return;
+
+                }
+
+
+                // Maximum 10 MB
+
+                if (
+                    file.size >
+                    10 * 1024 * 1024
+                ) {
+
+                    showMessage(
+                        "Your cover image is larger than 10 MB.",
+                        "error"
+                    );
+
+                    coverInput.value = "";
+
+                    coverName.textContent =
+                        "No image selected";
+
+                    return;
+
+                }
+
+
+                coverName.textContent =
+                    file.name +
+                    " (" +
+                    formatFileSize(file.size) +
+                    ")";
+
+
+                // Preview
+
+                const reader =
+                    new FileReader();
+
+
+                reader.onload =
+                    function (event) {
+
+                        if (coverPreviewImage) {
+
+                            coverPreviewImage.src =
+                                event.target.result;
+
+                        }
+
+
+                        if (coverPreview) {
+
+                            coverPreview.classList.add(
+                                "show"
+                            );
+
+                        }
+
+                    };
+
+
+                reader.readAsDataURL(file);
+
+
+                showMessage(
+                    "Cover artwork selected successfully.",
+                    "success"
+                );
+
+            }
+        );
+
+    }
+
+
+
+    // ========================================================
+    // FORM SUBMISSION
+    // ========================================================
+
+    form.addEventListener(
+        "submit",
+        async function (event) {
 
             event.preventDefault();
 
 
-            /* Clear previous message */
+            // ------------------------------------------------
+            // GET FORM VALUES
+            // ------------------------------------------------
 
-            showMessage("", "");
+            const title =
+                document
+                    .getElementById("songTitle")
+                    .value
+                    .trim();
 
 
-            /* Get fields */
+            const artist =
+                document
+                    .getElementById("artistName")
+                    .value
+                    .trim();
 
-            const songTitle =
-                document.getElementById("songTitle");
-
-            const artistName =
-                document.getElementById("artistName");
 
             const genre =
-                document.getElementById("genre");
+                document
+                    .getElementById("genre")
+                    .value;
 
-            const copyrightAgreement =
+
+            const releaseYearElement =
+                document.getElementById(
+                    "releaseYear"
+                );
+
+
+            const descriptionElement =
+                document.getElementById(
+                    "songDescription"
+                );
+
+
+            const releaseYear =
+                releaseYearElement
+                    ? releaseYearElement.value
+                    : "";
+
+
+            const description =
+                descriptionElement
+                    ? descriptionElement.value.trim()
+                    : "";
+
+
+            const audioFile =
+                audioInput.files[0];
+
+
+            const coverFile =
+                coverInput.files[0];
+
+
+            const agreement =
                 document.getElementById(
                     "copyrightAgreement"
                 );
 
 
-            /* Check title */
+            // ------------------------------------------------
+            // VALIDATION
+            // ------------------------------------------------
 
-            if (!songTitle ||
-                songTitle.value.trim() === "") {
+            if (!title) {
 
                 showMessage(
                     "Please enter the song title.",
                     "error"
                 );
 
-                songTitle.focus();
-
                 return;
+
             }
 
 
-            /* Check artist */
-
-            if (!artistName ||
-                artistName.value.trim() === "") {
+            if (!artist) {
 
                 showMessage(
                     "Please enter the artist name.",
                     "error"
                 );
 
-                artistName.focus();
-
                 return;
+
             }
 
 
-            /* Check genre */
-
-            if (!genre ||
-                genre.value === "") {
+            if (!genre) {
 
                 showMessage(
                     "Please select a genre.",
                     "error"
                 );
 
-                genre.focus();
-
                 return;
+
             }
 
 
-            /* Check MP3 */
-
-            if (!audioFile ||
-                !audioFile.files ||
-                audioFile.files.length === 0) {
+            if (!audioFile) {
 
                 showMessage(
-                    "Please choose your MP3 file.",
+                    "Please choose an MP3 file.",
                     "error"
                 );
 
                 return;
+
             }
 
 
-            /* Check cover */
-
-            if (!coverImage ||
-                !coverImage.files ||
-                coverImage.files.length === 0) {
+            if (!coverFile) {
 
                 showMessage(
                     "Please choose your cover artwork.",
@@ -328,305 +487,425 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
                 return;
+
             }
 
 
-            /* Check agreement */
-
-            if (!copyrightAgreement ||
-                !copyrightAgreement.checked) {
+            if (!agreement.checked) {
 
                 showMessage(
-                    "Please confirm that you have permission to upload this music and artwork.",
+                    "Please confirm that you have permission to upload this music.",
                     "error"
                 );
 
                 return;
-            }
-
-
-            /*
-             * At this stage we are only preparing
-             * and validating the upload form.
-             *
-             * Supabase upload will be connected
-             * in the next step.
-             */
-
-
-            if (uploadSubmit) {
-
-                uploadSubmit.disabled = true;
-
-                uploadSubmit.innerHTML =
-                    '<i class="fa-solid fa-check"></i> READY TO UPLOAD';
 
             }
+
+
+
+            // ------------------------------------------------
+            // DISABLE BUTTON
+            // ------------------------------------------------
+
+            submitButton.disabled = true;
+
+            submitButton.innerHTML =
+                '<i class="fa-solid fa-spinner fa-spin"></i> UPLOADING...';
 
 
             showMessage(
-                "Your music information and files are ready. Supabase upload will be connected next.",
+                "Uploading your music. Please wait...",
                 "success"
             );
 
 
-            /*
-             * Keep the button disabled briefly so
-             * the user can see the confirmation.
-             */
+            try {
 
-            setTimeout(function () {
 
-                if (uploadSubmit) {
+                // =================================================
+                // CREATE UNIQUE FILE NAMES
+                // =================================================
 
-                    uploadSubmit.disabled = false;
+                const uniqueId =
+                    Date.now() +
+                    "-" +
+                    Math.random()
+                        .toString(36)
+                        .substring(2, 9);
 
-                    uploadSubmit.innerHTML =
-                        '<i class="fa-solid fa-cloud-arrow-up"></i> <span>UPLOAD MUSIC</span>';
+
+                const cleanTitle =
+                    title
+                        .toLowerCase()
+                        .replace(
+                            /[^a-z0-9]+/g,
+                            "-"
+                        )
+                        .replace(
+                            /^-+|-+$/g,
+                            ""
+                        );
+
+
+                const cleanArtist =
+                    artist
+                        .toLowerCase()
+                        .replace(
+                            /[^a-z0-9]+/g,
+                            "-"
+                        )
+                        .replace(
+                            /^-+|-+$/g,
+                            ""
+                        );
+
+
+                // =================================================
+                // FILE EXTENSIONS
+                // =================================================
+
+                const audioPath =
+                    uniqueId +
+                    "-" +
+                    cleanArtist +
+                    "-" +
+                    cleanTitle +
+                    ".mp3";
+
+
+                let extension =
+                    "jpg";
+
+
+                if (
+                    coverFile.type ===
+                    "image/png"
+                ) {
+
+                    extension = "png";
 
                 }
 
-            }, 3000);
 
-        });
+                if (
+                    coverFile.type ===
+                    "image/webp"
+                ) {
 
-    }
-
-
-
-    /* =========================================
-       NEWSLETTER
-    ========================================= */
-
-    const newsletterForm =
-        document.getElementById("newsletterForm");
-
-
-    if (newsletterForm) {
-
-        newsletterForm.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
-
-                const email =
-                    newsletterForm.querySelector(
-                        'input[type="email"]'
-                    );
-
-
-                if (!email ||
-                    email.value.trim() === "") {
-
-                    return;
+                    extension = "webp";
 
                 }
 
 
-                alert(
-                    "Thank you for subscribing to Mbzedmusic.com!"
+                const coverPath =
+                    uniqueId +
+                    "-" +
+                    cleanArtist +
+                    "-" +
+                    cleanTitle +
+                    "." +
+                    extension;
+
+
+
+                // =================================================
+                // UPLOAD MP3
+                // =================================================
+
+                showMessage(
+                    "Uploading MP3...",
+                    "success"
                 );
 
 
-                newsletterForm.reset();
+                const {
+                    error: audioError
+                } =
+                    await window.supabaseClient
+                        .storage
+                        .from("music")
+                        .upload(
+                            audioPath,
+                            audioFile,
+                            {
+                                cacheControl:
+                                    "3600",
 
-            }
-        );
+                                contentType:
+                                    "audio/mpeg",
 
-    }
-
-
-
-    /* =========================================
-       DRAG & DROP FOR MP3
-    ========================================= */
-
-    const audioUploadBox =
-        document.querySelector(
-            'label[for="audioFile"]'
-        );
-
-
-    if (audioUploadBox && audioFile) {
-
-        audioUploadBox.addEventListener(
-            "dragover",
-            function (event) {
-
-                event.preventDefault();
-
-                audioUploadBox.classList.add(
-                    "dragging"
-                );
-
-            }
-        );
+                                upsert:
+                                    false
+                            }
+                        );
 
 
-        audioUploadBox.addEventListener(
-            "dragleave",
-            function () {
+                if (audioError) {
 
-                audioUploadBox.classList.remove(
-                    "dragging"
-                );
-
-            }
-        );
-
-
-        audioUploadBox.addEventListener(
-            "drop",
-            function (event) {
-
-                event.preventDefault();
-
-                audioUploadBox.classList.remove(
-                    "dragging"
-                );
-
-
-                const files =
-                    event.dataTransfer.files;
-
-
-                if (!files || files.length === 0) {
-                    return;
-                }
-
-
-                /*
-                 * Put the dropped file into
-                 * the file input.
-                 */
-
-                try {
-
-                    const dataTransfer =
-                        new DataTransfer();
-
-                    dataTransfer.items.add(
-                        files[0]
-                    );
-
-                    audioFile.files =
-                        dataTransfer.files;
-
-                    audioFile.dispatchEvent(
-                        new Event("change")
-                    );
-
-                } catch (error) {
-
-                    console.log(
-                        "Drag and drop is not supported by this browser."
+                    throw new Error(
+                        "MP3 upload failed: " +
+                        audioError.message
                     );
 
                 }
 
-            }
-        );
-
-    }
 
 
+                // =================================================
+                // UPLOAD COVER
+                // =================================================
 
-    /* =========================================
-       DRAG & DROP FOR COVER
-    ========================================= */
-
-    const coverUploadBox =
-        document.querySelector(
-            'label[for="coverImage"]'
-        );
-
-
-    if (coverUploadBox && coverImage) {
-
-        coverUploadBox.addEventListener(
-            "dragover",
-            function (event) {
-
-                event.preventDefault();
-
-                coverUploadBox.classList.add(
-                    "dragging"
-                );
-
-            }
-        );
-
-
-        coverUploadBox.addEventListener(
-            "dragleave",
-            function () {
-
-                coverUploadBox.classList.remove(
-                    "dragging"
-                );
-
-            }
-        );
-
-
-        coverUploadBox.addEventListener(
-            "drop",
-            function (event) {
-
-                event.preventDefault();
-
-                coverUploadBox.classList.remove(
-                    "dragging"
+                showMessage(
+                    "Uploading cover artwork...",
+                    "success"
                 );
 
 
-                const files =
-                    event.dataTransfer.files;
+                const {
+                    error: coverError
+                } =
+                    await window.supabaseClient
+                        .storage
+                        .from("covers")
+                        .upload(
+                            coverPath,
+                            coverFile,
+                            {
+                                cacheControl:
+                                    "3600",
+
+                                contentType:
+                                    coverFile.type,
+
+                                upsert:
+                                    false
+                            }
+                        );
 
 
-                if (!files || files.length === 0) {
-                    return;
-                }
+                if (coverError) {
+
+                    // Try to remove MP3
+                    // if cover upload fails.
+
+                    await window.supabaseClient
+                        .storage
+                        .from("music")
+                        .remove([
+                            audioPath
+                        ]);
 
 
-                try {
-
-                    const dataTransfer =
-                        new DataTransfer();
-
-                    dataTransfer.items.add(
-                        files[0]
-                    );
-
-                    coverImage.files =
-                        dataTransfer.files;
-
-                    coverImage.dispatchEvent(
-                        new Event("change")
-                    );
-
-                } catch (error) {
-
-                    console.log(
-                        "Drag and drop is not supported by this browser."
+                    throw new Error(
+                        "Cover upload failed: " +
+                        coverError.message
                     );
 
                 }
 
+
+
+                // =================================================
+                // GET PUBLIC URLS
+                // =================================================
+
+                const audioResult =
+                    window.supabaseClient
+                        .storage
+                        .from("music")
+                        .getPublicUrl(
+                            audioPath
+                        );
+
+
+                const coverResult =
+                    window.supabaseClient
+                        .storage
+                        .from("covers")
+                        .getPublicUrl(
+                            coverPath
+                        );
+
+
+                const audioUrl =
+                    audioResult.data.publicUrl;
+
+
+                const coverUrl =
+                    coverResult.data.publicUrl;
+
+
+
+                // =================================================
+                // SAVE SONG INFORMATION
+                // =================================================
+
+                showMessage(
+                    "Saving song information...",
+                    "success"
+                );
+
+
+                const {
+                    data,
+                    error: databaseError
+                } =
+                    await window.supabaseClient
+                        .from("songs")
+                        .insert({
+
+                            title:
+                                title,
+
+                            artist:
+                                artist,
+
+                            genre:
+                                genre,
+
+                            release_year:
+                                releaseYear
+                                    ? Number(
+                                        releaseYear
+                                    )
+                                    : null,
+
+                            description:
+                                description,
+
+                            audio_url:
+                                audioUrl,
+
+                            cover_url:
+                                coverUrl
+
+                        })
+                        .select()
+                        .single();
+
+
+                if (databaseError) {
+
+                    // Remove files if database
+                    // insert fails.
+
+                    await window.supabaseClient
+                        .storage
+                        .from("music")
+                        .remove([
+                            audioPath
+                        ]);
+
+
+                    await window.supabaseClient
+                        .storage
+                        .from("covers")
+                        .remove([
+                            coverPath
+                        ]);
+
+
+                    throw new Error(
+                        "Could not save song information: " +
+                        databaseError.message
+                    );
+
+                }
+
+
+
+                // =================================================
+                // SUCCESS
+                // =================================================
+
+                console.log(
+                    "Song uploaded:",
+                    data
+                );
+
+
+                showMessage(
+                    "🎉 Your music was uploaded successfully!",
+                    "success"
+                );
+
+
+                submitButton.innerHTML =
+                    '<i class="fa-solid fa-check"></i> UPLOADED';
+
+
+                // Reset form
+
+                form.reset();
+
+
+                audioName.textContent =
+                    "No file selected";
+
+
+                coverName.textContent =
+                    "No image selected";
+
+
+                if (coverPreviewImage) {
+
+                    coverPreviewImage.src =
+                        "";
+
+                }
+
+
+                if (coverPreview) {
+
+                    coverPreview.classList.remove(
+                        "show"
+                    );
+
+                }
+
+
+                // Return button after 4 seconds
+
+                setTimeout(
+                    function () {
+
+                        submitButton.disabled =
+                            false;
+
+                        submitButton.innerHTML =
+                            '<i class="fa-solid fa-cloud-arrow-up"></i> <span>UPLOAD MUSIC</span>';
+
+                    },
+                    4000
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Upload error:",
+                    error
+                );
+
+
+                showMessage(
+                    error.message ||
+                    "Something went wrong during the upload.",
+                    "error"
+                );
+
+
+                submitButton.disabled =
+                    false;
+
+
+                submitButton.innerHTML =
+                    '<i class="fa-solid fa-cloud-arrow-up"></i> <span>UPLOAD MUSIC</span>';
+
             }
-        );
 
-    }
-
-
-
-    /* =========================================
-       CONSOLE MESSAGE
-    ========================================= */
-
-    console.log(
-        "Mbzedmusic upload system loaded successfully."
+        }
     );
 
-});
+}
