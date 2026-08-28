@@ -1,0 +1,517 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f5f7;
+    color: #171717;
+    min-height: 100vh;
+}
+
+
+/* ================= HEADER ================= */
+
+.upload-header {
+    background: #111111;
+    min-height: 78px;
+    padding: 0 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: white;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.brand img {
+    width: 52px;
+    height: 52px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.home-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.home-link i {
+    margin-right: 7px;
+}
+
+
+/* ================= PAGE ================= */
+
+.upload-page {
+    padding: 50px 20px 80px;
+}
+
+.upload-container {
+    width: min(100%, 950px);
+    margin: auto;
+}
+
+
+/* ================= HEADING ================= */
+
+.upload-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.heading-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f58220;
+    color: white;
+
+    font-size: 28px;
+}
+
+.upload-heading h1 {
+    font-size: clamp(30px, 5vw, 48px);
+    margin-bottom: 15px;
+}
+
+.upload-heading p {
+    max-width: 680px;
+    margin: auto;
+    color: #666;
+    line-height: 1.7;
+}
+
+
+/* ================= ACCOUNT ================= */
+
+.account-box {
+    background: white;
+    border-radius: 15px;
+    padding: 28px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.07);
+    border-left: 5px solid #f58220;
+}
+
+.account-box h2 {
+    margin-bottom: 8px;
+}
+
+.account-box h2 i {
+    color: #f58220;
+    margin-right: 8px;
+}
+
+.account-box p {
+    color: #666;
+    margin-bottom: 18px;
+}
+
+.account-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.account-fields input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+}
+
+.account-fields input:focus {
+    border-color: #f58220;
+}
+
+.account-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.account-buttons button {
+    border: 0;
+    padding: 13px 22px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+#signUpButton {
+    background: #f58220;
+    color: white;
+}
+
+#loginButton {
+    background: #111;
+    color: white;
+}
+
+.account-message {
+    margin-top: 15px;
+    margin-bottom: 0 !important;
+}
+
+.account-message.success {
+    color: #16833b;
+}
+
+.account-message.error {
+    color: #c62828;
+}
+
+
+/* ================= FORM ================= */
+
+.upload-form {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.07);
+    overflow: hidden;
+}
+
+.upload-form fieldset {
+    border: 0;
+}
+
+.form-section {
+    padding: 32px;
+    border-bottom: 1px solid #eee;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.section-title i {
+    color: #f58220;
+    font-size: 22px;
+}
+
+.section-title h2 {
+    font-size: 21px;
+}
+
+
+/* ================= INPUTS ================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.form-group {
+    margin-bottom: 22px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 700;
+    margin-bottom: 9px;
+}
+
+.form-group label span {
+    color: #e45126;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font: inherit;
+    outline: none;
+    background: white;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #f58220;
+}
+
+textarea {
+    resize: vertical;
+}
+
+
+/* ================= FILE UPLOAD ================= */
+
+.file-upload input,
+.cover-area input {
+    display: none;
+}
+
+.file-box {
+    min-height: 190px;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: .2s;
+    padding: 25px;
+    text-align: center;
+}
+
+.file-box:hover {
+    border-color: #f58220;
+    background: #fff9f3;
+}
+
+.file-box > i {
+    font-size: 42px;
+    color: #f58220;
+}
+
+.file-box small,
+.cover-box small {
+    color: #777;
+}
+
+.file-box span,
+.cover-box span {
+    display: inline-block;
+    background: #111;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    margin-top: 5px;
+}
+
+
+/* ================= COVER ================= */
+
+.cover-box {
+    min-height: 300px;
+    border: 2px dashed #ccc;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    text-align: center;
+    padding: 20px;
+}
+
+.cover-box:hover {
+    border-color: #f58220;
+    background: #fff9f3;
+}
+
+#coverPreview {
+    width: 180px;
+    height: 180px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 45px;
+}
+
+#coverPreview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ================= STATUS ================= */
+
+.upload-status {
+    margin: 25px 32px 0;
+    padding: 15px;
+    border-radius: 8px;
+    display: none;
+}
+
+.upload-status.loading,
+.upload-status.success,
+.upload-status.error {
+    display: block;
+}
+
+.upload-status.loading {
+    background: #fff5e9;
+    color: #b75b00;
+}
+
+.upload-status.success {
+    background: #e9f8ee;
+    color: #16743a;
+}
+
+.upload-status.error {
+    background: #ffeded;
+    color: #b42323;
+}
+
+
+/* ================= BUTTON ================= */
+
+.submit-button {
+    width: calc(100% - 64px);
+    margin: 30px 32px;
+    padding: 18px;
+    border: 0;
+    border-radius: 9px;
+    background: #f58220;
+    color: white;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+}
+
+.submit-button:disabled {
+    opacity: .7;
+    cursor: wait;
+}
+
+
+/* ================= SUCCESS ================= */
+
+.success-box {
+    display: none;
+    background: white;
+    border-radius: 15px;
+    padding: 60px 30px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0,0,0,.07);
+}
+
+.success-box.show {
+    display: block;
+}
+
+.success-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #22a447;
+    color: white;
+    margin: auto auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+}
+
+.success-box h2 {
+    font-size: 30px;
+    margin-bottom: 12px;
+}
+
+.success-box p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.success-box a {
+    display: inline-block;
+    background: #111;
+    color: white;
+    text-decoration: none;
+    padding: 14px 22px;
+    border-radius: 7px;
+}
+
+
+/* ================= FOOTER ================= */
+
+.upload-footer {
+    background: #111;
+    color: #aaa;
+    text-align: center;
+    padding: 25px 15px;
+    font-size: 14px;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 700px) {
+
+    .upload-header {
+        padding: 0 20px;
+    }
+
+    .brand span {
+        font-size: 13px;
+    }
+
+    .brand img {
+        width: 43px;
+        height: 43px;
+    }
+
+    .upload-page {
+        padding: 30px 12px 60px;
+    }
+
+    .account-fields {
+        grid-template-columns: 1fr;
+    }
+
+    .account-buttons {
+        flex-direction: column;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .form-section {
+        padding: 22px;
+    }
+
+    .submit-button {
+        width: calc(100% - 44px);
+        margin: 25px 22px;
+    }
+
+    .upload-status {
+        margin-left: 22px;
+        margin-right: 22px;
+    }
+
+}
