@@ -3,431 +3,768 @@
 <head>
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Upload Music | Mbzedmusic.com</title>
 
-    <meta
-        name="description"
-        content="Upload your music to Mbzedmusic.com and share your sound with African music fans around the world."
-    >
+    <meta name="description"
+          content="Upload your music to Mbzedmusic.com and reach African music fans around the world.">
 
+    <!-- Main website design -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Upload page design -->
     <link rel="stylesheet" href="upload.css">
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
 
-<header class="upload-header">
+<!-- ============================= -->
+<!-- TOP BAR -->
+<!-- ============================= -->
 
-    <a href="index.html" class="brand">
-        <img
-            src="logo.jpeg"
-            alt="Mbzedmusic.com logo"
-        >
+<div class="top-bar">
 
-        <span>MBZEDMUSIC.COM</span>
-    </a>
+    <div class="container top-content">
 
-    <a href="index.html" class="home-link">
-        <i class="fa-solid fa-house"></i>
-        Home
-    </a>
-
-</header>
-
-
-<main class="upload-page">
-
-    <section class="upload-container">
-
-        <div class="upload-heading">
-
-            <div class="heading-icon">
-                <i class="fa-solid fa-cloud-arrow-up"></i>
-            </div>
-
-            <h1>UPLOAD YOUR MUSIC</h1>
-
-            <p>
-                Share your sound with African music fans around
-                the world. Upload your song, add your cover artwork
-                and tell us about your music.
-            </p>
-
+        <div>
+            Welcome to Mbzedmusic.com —
+            Where African Music Meets The World.
         </div>
 
-
-        <!-- LOGIN AREA -->
-
-        <div class="account-box" id="accountBox">
-
-            <h2>
-                <i class="fa-solid fa-user"></i>
-                Artist Account
-            </h2>
-
-            <p>
-                Sign in or create an account before uploading your music.
-            </p>
-
-            <div class="account-fields">
-
-                <input
-                    type="email"
-                    id="email"
-                    placeholder="Your email address"
-                >
-
-                <input
-                    type="password"
-                    id="password"
-                    placeholder="Password"
-                >
-
-            </div>
-
-            <div class="account-buttons">
-
-                <button id="signUpButton">
-                    CREATE ACCOUNT
-                </button>
-
-                <button id="loginButton">
-                    LOGIN
-                </button>
-
-            </div>
-
-            <p
-                class="account-message"
-                id="accountMessage"
-            ></p>
-
-        </div>
-
-
-        <!-- UPLOAD FORM -->
-
-        <form
-            id="uploadForm"
-            class="upload-form"
-        >
-
-            <fieldset id="uploadFields" disabled>
-
-                <!-- SONG INFORMATION -->
-
-                <div class="form-section">
-
-                    <div class="section-title">
-
-                        <i class="fa-solid fa-music"></i>
-
-                        <h2>Song Information</h2>
-
-                    </div>
-
-
-                    <div class="form-grid">
-
-                        <div class="form-group">
-
-                            <label for="songTitle">
-                                Song Title <span>*</span>
-                            </label>
-
-                            <input
-                                type="text"
-                                id="songTitle"
-                                placeholder="Enter song title"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="artistName">
-                                Artist Name <span>*</span>
-                            </label>
-
-                            <input
-                                type="text"
-                                id="artistName"
-                                placeholder="Enter artist name"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="genre">
-                                Genre <span>*</span>
-                            </label>
-
-                            <select id="genre" required>
-
-                                <option value="">
-                                    Select genre
-                                </option>
-
-                                <option value="Afrobeats">
-                                    Afrobeats
-                                </option>
-
-                                <option value="Hip Hop">
-                                    Hip Hop
-                                </option>
-
-                                <option value="Zambian Music">
-                                    Zambian Music
-                                </option>
-
-                                <option value="Dancehall">
-                                    Dancehall
-                                </option>
-
-                                <option value="Gospel">
-                                    Gospel
-                                </option>
-
-                                <option value="R&B">
-                                    R&B
-                                </option>
-
-                                <option value="Amapiano">
-                                    Amapiano
-                                </option>
-
-                                <option value="Other">
-                                    Other
-                                </option>
-
-                            </select>
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="releaseYear">
-                                Release Year
-                            </label>
-
-                            <input
-                                type="number"
-                                id="releaseYear"
-                                min="1900"
-                                max="2100"
-                                placeholder="2026"
-                            >
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label for="description">
-                            Song Description
-                        </label>
-
-                        <textarea
-                            id="description"
-                            rows="5"
-                            placeholder="Tell fans about this song..."
-                        ></textarea>
-
-                    </div>
-
-                </div>
-
-
-                <!-- MUSIC FILE -->
-
-                <div class="form-section">
-
-                    <div class="section-title">
-
-                        <i class="fa-solid fa-file-audio"></i>
-
-                        <h2>Music File</h2>
-
-                    </div>
-
-                    <div class="file-upload">
-
-                        <label
-                            for="musicFile"
-                            class="file-box"
-                        >
-
-                            <i class="fa-solid fa-cloud-arrow-up"></i>
-
-                            <strong>
-                                Upload your MP3
-                            </strong>
-
-                            <small>
-                                MP3 audio files are recommended
-                            </small>
-
-                            <span id="musicFileName">
-                                Choose MP3 File
-                            </span>
-
-                        </label>
-
-                        <input
-                            type="file"
-                            id="musicFile"
-                            accept=".mp3,audio/mpeg"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <!-- COVER -->
-
-                <div class="form-section">
-
-                    <div class="section-title">
-
-                        <i class="fa-solid fa-image"></i>
-
-                        <h2>Cover Artwork</h2>
-
-                    </div>
-
-
-                    <div class="cover-area">
-
-                        <label
-                            for="coverFile"
-                            class="cover-box"
-                        >
-
-                            <div id="coverPreview">
-
-                                <i class="fa-solid fa-image"></i>
-
-                            </div>
-
-                            <strong>
-                                Add Cover Artwork
-                            </strong>
-
-                            <small>
-                                JPG or PNG image recommended
-                            </small>
-
-                            <span id="coverFileName">
-                                Choose Cover Image
-                            </span>
-
-                        </label>
-
-                        <input
-                            type="file"
-                            id="coverFile"
-                            accept="image/jpeg,image/png,image/webp"
-                            required
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <!-- STATUS -->
-
-                <div
-                    class="upload-status"
-                    id="uploadStatus"
-                ></div>
-
-
-                <!-- SUBMIT -->
-
-                <button
-                    type="submit"
-                    class="submit-button"
-                    id="submitButton"
-                >
-
-                    <i class="fa-solid fa-cloud-arrow-up"></i>
-
-                    UPLOAD MUSIC
-
-                </button>
-
-            </fieldset>
-
-        </form>
-
-
-        <!-- SUCCESS -->
-
-        <div
-            class="success-box"
-            id="successBox"
-        >
-
-            <div class="success-icon">
-
-                <i class="fa-solid fa-check"></i>
-
-            </div>
-
-            <h2>
-                MUSIC UPLOADED!
-            </h2>
-
-            <p>
-                Your song has been successfully uploaded
-                to Mbzedmusic.com.
-            </p>
+        <div class="top-links">
 
             <a href="index.html">
-                <i class="fa-solid fa-house"></i>
-                BACK TO HOME
+                Home
+            </a>
+
+            <span>|</span>
+
+            <a href="index.html#artists">
+                Artists
+            </a>
+
+            <span>|</span>
+
+            <a href="index.html#contact">
+                Contact
             </a>
 
         </div>
 
-    </section>
+    </div>
+
+</div>
+
+
+<!-- ============================= -->
+<!-- NAVIGATION -->
+<!-- ============================= -->
+
+<header class="header">
+
+    <div class="container nav-container">
+
+        <!-- LOGO -->
+
+        <a href="index.html" class="logo-link">
+
+            <img
+                src="logo.jpeg"
+                alt="Mbzedmusic.com Logo"
+                class="logo"
+            >
+
+        </a>
+
+
+        <!-- NAVIGATION -->
+
+        <nav class="navigation">
+
+            <a href="index.html">
+                HOME
+            </a>
+
+            <a href="index.html#music">
+                MUSIC
+            </a>
+
+            <a href="index.html#artists">
+                ARTISTS
+            </a>
+
+            <a href="index.html#charts">
+                CHARTS
+            </a>
+
+            <a href="index.html#news">
+                NEWS
+            </a>
+
+            <a href="index.html#genres">
+                GENRES
+            </a>
+
+            <a href="index.html#about">
+                ABOUT US
+            </a>
+
+            <a href="index.html#contact">
+                CONTACT
+            </a>
+
+        </nav>
+
+
+        <!-- NAV ACTIONS -->
+
+        <div class="nav-actions">
+
+            <a href="index.html"
+               class="upload-button">
+
+                <i class="fa-solid fa-house"></i>
+
+                HOME
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ============================= -->
+<!-- UPLOAD HERO -->
+<!-- ============================= -->
+
+<section class="upload-hero">
+
+    <div class="upload-hero-overlay"></div>
+
+    <div class="container upload-hero-content">
+
+        <div>
+
+            <p class="upload-small-title">
+                MBZEDMUSIC.COM
+            </p>
+
+            <h1>
+                UPLOAD YOUR
+                <br>
+                <span>MUSIC</span>
+            </h1>
+
+            <p>
+                Share your sound with African music fans
+                around the world.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ============================= -->
+<!-- UPLOAD PAGE -->
+<!-- ============================= -->
+
+<main class="container upload-page">
+
+
+    <!-- PAGE INTRO -->
+
+    <div class="upload-intro">
+
+        <div class="upload-icon">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+        </div>
+
+        <h2>
+            Upload Your Music
+        </h2>
+
+        <p>
+            Share your song, cover artwork and music information
+            with the Mbzedmusic community.
+        </p>
+
+    </div>
+
+
+    <!-- ============================= -->
+    <!-- UPLOAD FORM -->
+    <!-- ============================= -->
+
+    <form
+        id="musicUploadForm"
+        class="upload-form"
+        enctype="multipart/form-data"
+    >
+
+
+        <!-- ============================= -->
+        <!-- SONG INFORMATION -->
+        <!-- ============================= -->
+
+        <section class="upload-card">
+
+            <div class="upload-card-header">
+
+                <div class="section-icon">
+
+                    <i class="fa-solid fa-music"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Song Information
+                    </h3>
+
+                    <p>
+                        Tell us about your music.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SONG TITLE -->
+
+            <div class="form-group">
+
+                <label for="songTitle">
+
+                    Song Title
+
+                    <span>*</span>
+
+                </label>
+
+                <input
+                    type="text"
+                    id="songTitle"
+                    name="songTitle"
+                    placeholder="Enter song title"
+                    required
+                >
+
+            </div>
+
+
+            <!-- ARTIST -->
+
+            <div class="form-group">
+
+                <label for="artistName">
+
+                    Artist Name
+
+                    <span>*</span>
+
+                </label>
+
+                <input
+                    type="text"
+                    id="artistName"
+                    name="artistName"
+                    placeholder="Enter artist name"
+                    required
+                >
+
+            </div>
+
+
+            <!-- GENRE -->
+
+            <div class="form-group">
+
+                <label for="genre">
+
+                    Genre
+
+                    <span>*</span>
+
+                </label>
+
+                <select
+                    id="genre"
+                    name="genre"
+                    required
+                >
+
+                    <option value="">
+                        Select genre
+                    </option>
+
+                    <option value="Afrobeats">
+                        Afrobeats
+                    </option>
+
+                    <option value="Hip Hop">
+                        Hip Hop
+                    </option>
+
+                    <option value="Zambian Music">
+                        Zambian Music
+                    </option>
+
+                    <option value="Dancehall">
+                        Dancehall
+                    </option>
+
+                    <option value="Gospel">
+                        Gospel
+                    </option>
+
+                    <option value="R&B">
+                        R&B
+                    </option>
+
+                    <option value="Amapiano">
+                        Amapiano
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- RELEASE YEAR -->
+
+            <div class="form-group">
+
+                <label for="releaseYear">
+
+                    Release Year
+
+                </label>
+
+                <input
+                    type="number"
+                    id="releaseYear"
+                    name="releaseYear"
+                    placeholder="2026"
+                    min="1900"
+                    max="2100"
+                >
+
+            </div>
+
+
+            <!-- DESCRIPTION -->
+
+            <div class="form-group">
+
+                <label for="songDescription">
+
+                    Song Description
+
+                </label>
+
+                <textarea
+                    id="songDescription"
+                    name="songDescription"
+                    rows="6"
+                    placeholder="Tell fans about your song..."
+                ></textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- MUSIC FILE -->
+        <!-- ============================= -->
+
+        <section class="upload-card">
+
+            <div class="upload-card-header">
+
+                <div class="section-icon">
+
+                    <i class="fa-solid fa-file-audio"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Music File
+                    </h3>
+
+                    <p>
+                        Upload your MP3 audio file.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <label
+                for="audioFile"
+                class="file-upload"
+            >
+
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                <strong>
+                    Choose MP3 File
+                </strong>
+
+                <span id="audioFileName">
+                    No file selected
+                </span>
+
+                <small>
+                    MP3 audio files are recommended
+                </small>
+
+            </label>
+
+
+            <input
+                type="file"
+                id="audioFile"
+                name="audioFile"
+                accept=".mp3,audio/mpeg"
+                required
+                hidden
+            >
+
+
+            <!-- AUDIO FILE STATUS -->
+
+            <div
+                id="audioFileStatus"
+                class="file-status"
+            ></div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- COVER ARTWORK -->
+        <!-- ============================= -->
+
+        <section class="upload-card">
+
+            <div class="upload-card-header">
+
+                <div class="section-icon">
+
+                    <i class="fa-solid fa-image"></i>
+
+                </div>
+
+                <div>
+
+                    <h3>
+                        Cover Artwork
+                    </h3>
+
+                    <p>
+                        Add artwork for your song.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <label
+                for="coverImage"
+                class="file-upload"
+            >
+
+                <i class="fa-solid fa-image"></i>
+
+                <strong>
+                    Choose Cover Image
+                </strong>
+
+                <span id="coverFileName">
+                    No image selected
+                </span>
+
+                <small>
+                    JPG or PNG image recommended
+                </small>
+
+            </label>
+
+
+            <input
+                type="file"
+                id="coverImage"
+                name="coverImage"
+                accept="image/jpeg,image/png,image/webp"
+                required
+                hidden
+            >
+
+
+            <!-- COVER PREVIEW -->
+
+            <div
+                class="cover-preview"
+                id="coverPreview"
+            >
+
+                <div class="cover-placeholder">
+
+                    <i class="fa-solid fa-image"></i>
+
+                    <span>
+                        Cover preview
+                    </span>
+
+                </div>
+
+                <img
+                    id="coverPreviewImage"
+                    src=""
+                    alt="Cover artwork preview"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- COPYRIGHT AGREEMENT -->
+        <!-- ============================= -->
+
+        <section class="upload-card agreement-card">
+
+            <label class="checkbox-label">
+
+                <input
+                    type="checkbox"
+                    id="copyrightAgreement"
+                    required
+                >
+
+                <span>
+
+                    I confirm that I own this music and artwork,
+                    or I have permission from the copyright owner
+                    to upload them to Mbzedmusic.com.
+
+                </span>
+
+            </label>
+
+        </section>
+
+
+        <!-- ============================= -->
+        <!-- SUBMIT BUTTON -->
+        <!-- ============================= -->
+
+        <button
+            type="submit"
+            class="primary-button upload-submit"
+            id="uploadSubmit"
+        >
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            <span>
+                UPLOAD MUSIC
+            </span>
+
+        </button>
+
+
+        <!-- ============================= -->
+        <!-- MESSAGE -->
+        <!-- ============================= -->
+
+        <div
+            id="uploadMessage"
+            class="upload-message"
+            role="status"
+        ></div>
+
+
+    </form>
 
 </main>
 
 
-<footer class="upload-footer">
+<!-- ============================= -->
+<!-- FOOTER -->
+<!-- ============================= -->
 
-    <p>
-        © 2026 Mbzedmusic.com.
-        Built for Artists. Loved by Fans.
-    </p>
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+
+        <!-- BRAND -->
+
+        <div class="footer-brand">
+
+            <img
+                src="logo.jpeg"
+                alt="Mbzedmusic.com"
+            >
+
+            <p>
+                Mbzedmusic.com is a music promotion platform
+                dedicated to discovering, promoting and connecting
+                African artists with the world.
+            </p>
+
+        </div>
+
+
+        <!-- QUICK LINKS -->
+
+        <div class="footer-column">
+
+            <h3>
+                QUICK LINKS
+            </h3>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#music">
+                Music
+            </a>
+
+            <a href="index.html#artists">
+                Artists
+            </a>
+
+            <a href="index.html#charts">
+                Charts
+            </a>
+
+            <a href="index.html#news">
+                News
+            </a>
+
+        </div>
+
+
+        <!-- SUPPORT -->
+
+        <div class="footer-column">
+
+            <h3>
+                SUPPORT
+            </h3>
+
+            <a href="#">
+                Help Center
+            </a>
+
+            <a href="#">
+                Terms of Use
+            </a>
+
+            <a href="#">
+                Privacy Policy
+            </a>
+
+            <a href="#">
+                Copyright Policy
+            </a>
+
+            <a href="#">
+                FAQ
+            </a>
+
+        </div>
+
+
+        <!-- NEWSLETTER -->
+
+        <div class="footer-newsletter">
+
+            <h3>
+                NEWSLETTER
+            </h3>
+
+            <p>
+                Subscribe to get the latest updates,
+                new music and news.
+            </p>
+
+            <form id="newsletterForm">
+
+                <input
+                    type="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+                <button type="submit">
+                    SUBSCRIBE
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER BOTTOM -->
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 Mbzedmusic.com.
+            All Rights Reserved.
+        </p>
+
+        <p>
+            <i class="fa-solid fa-headphones"></i>
+            Built for Artists. Loved by Fans.
+        </p>
+
+        <a href="index.html">
+            Back to Home ↑
+        </a>
+
+    </div>
 
 </footer>
 
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- ============================= -->
+<!-- JAVASCRIPT -->
+<!-- ============================= -->
 
-<script src="upload.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
