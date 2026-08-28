@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
@@ -11,22 +13,25 @@
     <meta name="description"
           content="Upload your music to Mbzedmusic.com and reach African music fans around the world.">
 
-    <!-- Main website design -->
+    <!-- Main website CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Upload page design -->
+    <!-- Upload page CSS -->
     <link rel="stylesheet" href="upload.css">
 
-    <!-- Font Awesome icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 </head>
+
 
 <body>
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- TOP BAR -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <div class="top-bar">
 
@@ -62,17 +67,20 @@
 </div>
 
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- NAVIGATION -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <header class="header">
 
     <div class="container nav-container">
 
+
         <!-- LOGO -->
 
-        <a href="index.html" class="logo-link">
+        <a href="index.html"
+           class="logo-link">
 
             <img
                 src="logo.jpeg"
@@ -83,7 +91,8 @@
         </a>
 
 
-        <!-- NAVIGATION -->
+
+        <!-- MENU -->
 
         <nav class="navigation">
 
@@ -122,12 +131,15 @@
         </nav>
 
 
-        <!-- NAV ACTIONS -->
+
+        <!-- HOME BUTTON -->
 
         <div class="nav-actions">
 
-            <a href="index.html"
-               class="upload-button">
+            <a
+                href="index.html"
+                class="upload-button"
+            >
 
                 <i class="fa-solid fa-house"></i>
 
@@ -137,14 +149,16 @@
 
         </div>
 
+
     </div>
 
 </header>
 
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- UPLOAD HERO -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <section class="upload-hero">
 
@@ -158,15 +172,23 @@
                 MBZEDMUSIC.COM
             </p>
 
+
             <h1>
+
                 UPLOAD YOUR
+
                 <br>
+
                 <span>MUSIC</span>
+
             </h1>
 
+
             <p>
+
                 Share your sound with African music fans
                 around the world.
+
             </p>
 
         </div>
@@ -176,16 +198,18 @@
 </section>
 
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- UPLOAD PAGE -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <main class="container upload-page">
 
 
-    <!-- PAGE INTRO -->
+    <!-- INTRO -->
 
     <div class="upload-intro">
+
 
         <div class="upload-icon">
 
@@ -193,21 +217,27 @@
 
         </div>
 
+
         <h2>
             Upload Your Music
         </h2>
 
+
         <p>
-            Share your song, cover artwork and music information
-            with the Mbzedmusic community.
+
+            Share your song, cover artwork and music
+            information with the Mbzedmusic community.
+
         </p>
+
 
     </div>
 
 
-    <!-- ============================= -->
-    <!-- UPLOAD FORM -->
-    <!-- ============================= -->
+
+    <!-- ================================================= -->
+    <!-- FORM -->
+    <!-- ================================================= -->
 
     <form
         id="musicUploadForm"
@@ -216,19 +246,23 @@
     >
 
 
-        <!-- ============================= -->
+
+        <!-- ================================================= -->
         <!-- SONG INFORMATION -->
-        <!-- ============================= -->
+        <!-- ================================================= -->
 
         <section class="upload-card">
 
+
             <div class="upload-card-header">
+
 
                 <div class="section-icon">
 
                     <i class="fa-solid fa-music"></i>
 
                 </div>
+
 
                 <div>
 
@@ -242,7 +276,9 @@
 
                 </div>
 
+
             </div>
+
 
 
             <!-- SONG TITLE -->
@@ -257,6 +293,7 @@
 
                 </label>
 
+
                 <input
                     type="text"
                     id="songTitle"
@@ -266,6 +303,7 @@
                 >
 
             </div>
+
 
 
             <!-- ARTIST -->
@@ -280,6 +318,7 @@
 
                 </label>
 
+
                 <input
                     type="text"
                     id="artistName"
@@ -289,6 +328,7 @@
                 >
 
             </div>
+
 
 
             <!-- GENRE -->
@@ -303,6 +343,7 @@
 
                 </label>
 
+
                 <select
                     id="genre"
                     name="genre"
@@ -313,41 +354,51 @@
                         Select genre
                     </option>
 
+
                     <option value="Afrobeats">
                         Afrobeats
                     </option>
+
 
                     <option value="Hip Hop">
                         Hip Hop
                     </option>
 
+
                     <option value="Zambian Music">
                         Zambian Music
                     </option>
+
 
                     <option value="Dancehall">
                         Dancehall
                     </option>
 
+
                     <option value="Gospel">
                         Gospel
                     </option>
+
 
                     <option value="R&B">
                         R&B
                     </option>
 
+
                     <option value="Amapiano">
                         Amapiano
                     </option>
+
 
                     <option value="Other">
                         Other
                     </option>
 
+
                 </select>
 
             </div>
+
 
 
             <!-- RELEASE YEAR -->
@@ -359,6 +410,7 @@
                     Release Year
 
                 </label>
+
 
                 <input
                     type="number"
@@ -372,6 +424,7 @@
             </div>
 
 
+
             <!-- DESCRIPTION -->
 
             <div class="form-group">
@@ -382,6 +435,7 @@
 
                 </label>
 
+
                 <textarea
                     id="songDescription"
                     name="songDescription"
@@ -391,22 +445,27 @@
 
             </div>
 
+
         </section>
 
 
-        <!-- ============================= -->
+
+        <!-- ================================================= -->
         <!-- MUSIC FILE -->
-        <!-- ============================= -->
+        <!-- ================================================= -->
 
         <section class="upload-card">
 
+
             <div class="upload-card-header">
+
 
                 <div class="section-icon">
 
                     <i class="fa-solid fa-file-audio"></i>
 
                 </div>
+
 
                 <div>
 
@@ -420,7 +479,9 @@
 
                 </div>
 
+
             </div>
+
 
 
             <label
@@ -430,19 +491,24 @@
 
                 <i class="fa-solid fa-cloud-arrow-up"></i>
 
+
                 <strong>
                     Choose MP3 File
                 </strong>
+
 
                 <span id="audioFileName">
                     No file selected
                 </span>
 
+
                 <small>
                     MP3 audio files are recommended
                 </small>
 
+
             </label>
+
 
 
             <input
@@ -455,29 +521,33 @@
             >
 
 
-            <!-- AUDIO FILE STATUS -->
 
             <div
                 id="audioFileStatus"
                 class="file-status"
             ></div>
 
+
         </section>
 
 
-        <!-- ============================= -->
+
+        <!-- ================================================= -->
         <!-- COVER ARTWORK -->
-        <!-- ============================= -->
+        <!-- ================================================= -->
 
         <section class="upload-card">
 
+
             <div class="upload-card-header">
+
 
                 <div class="section-icon">
 
                     <i class="fa-solid fa-image"></i>
 
                 </div>
+
 
                 <div>
 
@@ -491,7 +561,9 @@
 
                 </div>
 
+
             </div>
+
 
 
             <label
@@ -501,19 +573,24 @@
 
                 <i class="fa-solid fa-image"></i>
 
+
                 <strong>
                     Choose Cover Image
                 </strong>
+
 
                 <span id="coverFileName">
                     No image selected
                 </span>
 
+
                 <small>
                     JPG or PNG image recommended
                 </small>
 
+
             </label>
+
 
 
             <input
@@ -524,6 +601,7 @@
                 required
                 hidden
             >
+
 
 
             <!-- COVER PREVIEW -->
@@ -543,6 +621,7 @@
 
                 </div>
 
+
                 <img
                     id="coverPreviewImage"
                     src=""
@@ -551,22 +630,27 @@
 
             </div>
 
+
         </section>
 
 
-        <!-- ============================= -->
-        <!-- COPYRIGHT AGREEMENT -->
-        <!-- ============================= -->
+
+        <!-- ================================================= -->
+        <!-- COPYRIGHT -->
+        <!-- ================================================= -->
 
         <section class="upload-card agreement-card">
 
+
             <label class="checkbox-label">
+
 
                 <input
                     type="checkbox"
                     id="copyrightAgreement"
                     required
                 >
+
 
                 <span>
 
@@ -576,14 +660,17 @@
 
                 </span>
 
+
             </label>
+
 
         </section>
 
 
-        <!-- ============================= -->
-        <!-- SUBMIT BUTTON -->
-        <!-- ============================= -->
+
+        <!-- ================================================= -->
+        <!-- SUBMIT -->
+        <!-- ================================================= -->
 
         <button
             type="submit"
@@ -593,16 +680,17 @@
 
             <i class="fa-solid fa-cloud-arrow-up"></i>
 
+
             <span>
                 UPLOAD MUSIC
             </span>
 
+
         </button>
 
 
-        <!-- ============================= -->
+
         <!-- MESSAGE -->
-        <!-- ============================= -->
 
         <div
             id="uploadMessage"
@@ -616,11 +704,13 @@
 </main>
 
 
-<!-- ============================= -->
+
+<!-- ================================================= -->
 <!-- FOOTER -->
-<!-- ============================= -->
+<!-- ================================================= -->
 
 <footer class="footer">
+
 
     <div class="container footer-grid">
 
@@ -629,96 +719,124 @@
 
         <div class="footer-brand">
 
+
             <img
                 src="logo.jpeg"
                 alt="Mbzedmusic.com"
             >
 
+
             <p>
+
                 Mbzedmusic.com is a music promotion platform
                 dedicated to discovering, promoting and connecting
                 African artists with the world.
+
             </p>
 
+
         </div>
+
 
 
         <!-- QUICK LINKS -->
 
         <div class="footer-column">
 
+
             <h3>
                 QUICK LINKS
             </h3>
+
 
             <a href="index.html">
                 Home
             </a>
 
+
             <a href="index.html#music">
                 Music
             </a>
+
 
             <a href="index.html#artists">
                 Artists
             </a>
 
+
             <a href="index.html#charts">
                 Charts
             </a>
+
 
             <a href="index.html#news">
                 News
             </a>
 
+
         </div>
+
 
 
         <!-- SUPPORT -->
 
         <div class="footer-column">
 
+
             <h3>
                 SUPPORT
             </h3>
+
 
             <a href="#">
                 Help Center
             </a>
 
+
             <a href="#">
                 Terms of Use
             </a>
+
 
             <a href="#">
                 Privacy Policy
             </a>
 
+
             <a href="#">
                 Copyright Policy
             </a>
+
 
             <a href="#">
                 FAQ
             </a>
 
+
         </div>
+
 
 
         <!-- NEWSLETTER -->
 
         <div class="footer-newsletter">
 
+
             <h3>
                 NEWSLETTER
             </h3>
 
+
             <p>
+
                 Subscribe to get the latest updates,
                 new music and news.
+
             </p>
 
+
             <form id="newsletterForm">
+
 
                 <input
                     type="email"
@@ -726,45 +844,69 @@
                     required
                 >
 
+
                 <button type="submit">
                     SUBSCRIBE
                 </button>
 
+
             </form>
+
 
         </div>
 
+
     </div>
+
 
 
     <!-- FOOTER BOTTOM -->
 
     <div class="footer-bottom">
 
+
         <p>
+
             © 2026 Mbzedmusic.com.
             All Rights Reserved.
+
         </p>
+
 
         <p>
+
             <i class="fa-solid fa-headphones"></i>
+
             Built for Artists. Loved by Fans.
+
         </p>
 
+
         <a href="index.html">
+
             Back to Home ↑
+
         </a>
 
+
     </div>
+
 
 </footer>
 
 
-<!-- ============================= -->
-<!-- JAVASCRIPT -->
-<!-- ============================= -->
 
+<!-- ================================================= -->
+<!-- JAVASCRIPT -->
+<!-- ================================================= -->
+
+<!-- Main website JavaScript -->
 <script src="script.js"></script>
 
+<!-- Upload page JavaScript -->
+<script src="upload.js"></script>
+
+
 </body>
+
 </html>
