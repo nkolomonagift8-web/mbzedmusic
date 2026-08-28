@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Mbzedmusic.com | African Music • Our Culture • Our Sound</title>
+    <title>Upload Music | Mbzedmusic.com</title>
 
     <meta
         name="description"
-        content="Mbzedmusic.com — Discover, promote and connect with African music."
+        content="Upload your music to Mbzedmusic.com and reach African music fans around the world."
     >
 
     <link rel="stylesheet" href="style.css">
@@ -17,6 +17,409 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     >
+
+    <style>
+        /* =========================
+           UPLOAD PAGE
+        ========================= */
+
+        .upload-page {
+            min-height: 100vh;
+            background: #f5f5f5;
+            padding: 60px 20px 100px;
+        }
+
+        .upload-wrapper {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .upload-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .upload-heading .small-title {
+            color: #f58220;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .upload-heading h1 {
+            font-size: 42px;
+            margin: 0 0 15px;
+            color: #111;
+        }
+
+        .upload-heading h1 span {
+            color: #f58220;
+        }
+
+        .upload-heading p {
+            color: #666;
+            max-width: 650px;
+            margin: auto;
+            line-height: 1.7;
+        }
+
+        .upload-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .upload-section {
+            margin-bottom: 35px;
+        }
+
+        .upload-section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 25px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .upload-section-title i {
+            color: #f58220;
+            font-size: 20px;
+        }
+
+        .upload-section-title h2 {
+            font-size: 20px;
+            margin: 0;
+            color: #222;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .form-group label span {
+            color: #f58220;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            padding: 14px 15px;
+            font-size: 15px;
+            outline: none;
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #f58220;
+            box-shadow: 0 0 0 3px rgba(245,130,32,0.10);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .input-help {
+            color: #888;
+            font-size: 12px;
+            margin-top: 7px;
+        }
+
+        /* =========================
+           FILE UPLOAD BOX
+        ========================= */
+
+        .file-upload-box {
+            border: 2px dashed #ddd;
+            border-radius: 14px;
+            padding: 35px 20px;
+            text-align: center;
+            transition: 0.3s;
+            cursor: pointer;
+            background: #fafafa;
+        }
+
+        .file-upload-box:hover {
+            border-color: #f58220;
+            background: #fff8f2;
+        }
+
+        .file-upload-box i {
+            font-size: 45px;
+            color: #f58220;
+            margin-bottom: 15px;
+        }
+
+        .file-upload-box h3 {
+            margin: 0 0 8px;
+            color: #222;
+        }
+
+        .file-upload-box p {
+            margin: 0 0 18px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        .choose-file-button {
+            display: inline-block;
+            background: #f58220;
+            color: white;
+            padding: 11px 22px;
+            border-radius: 7px;
+            font-weight: 700;
+        }
+
+        .file-name {
+            display: block;
+            margin-top: 15px;
+            color: #333;
+            font-size: 14px;
+            word-break: break-word;
+        }
+
+        /* =========================
+           COVER PREVIEW
+        ========================= */
+
+        .cover-upload-area {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .cover-preview {
+            width: 220px;
+            height: 220px;
+            border-radius: 14px;
+            background: #181818;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ddd;
+        }
+
+        .cover-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .cover-preview i {
+            font-size: 50px;
+            color: #555;
+        }
+
+        /* =========================
+           AUDIO PREVIEW
+        ========================= */
+
+        .audio-preview {
+            margin-top: 20px;
+            display: none;
+        }
+
+        .audio-preview audio {
+            width: 100%;
+        }
+
+        /* =========================
+           CHECKBOX
+        ========================= */
+
+        .terms-box {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            background: #fafafa;
+            padding: 18px;
+            border-radius: 10px;
+        }
+
+        .terms-box input {
+            margin-top: 4px;
+            accent-color: #f58220;
+        }
+
+        .terms-box label {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .terms-box a {
+            color: #f58220;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* =========================
+           SUBMIT
+        ========================= */
+
+        .submit-area {
+            text-align: center;
+            margin-top: 35px;
+        }
+
+        .submit-button {
+            border: none;
+            background: #f58220;
+            color: #fff;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #d9680c;
+            transform: translateY(-2px);
+        }
+
+        .submit-button i {
+            margin-right: 8px;
+        }
+
+        .upload-status {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .upload-status.success {
+            display: block;
+            background: #eaf8ee;
+            color: #18743a;
+        }
+
+        .upload-status.error {
+            display: block;
+            background: #fff0f0;
+            color: #b42318;
+        }
+
+        .upload-progress {
+            display: none;
+            margin-top: 20px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #eee;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #f58220;
+            transition: width 0.3s;
+        }
+
+        .progress-text {
+            display: block;
+            text-align: center;
+            margin-top: 8px;
+            color: #777;
+            font-size: 13px;
+        }
+
+        /* =========================
+           BACK BUTTON
+        ========================= */
+
+        .back-home {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        .back-home a {
+            color: #555;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-home a:hover {
+            color: #f58220;
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .upload-page {
+                padding: 35px 15px 70px;
+            }
+
+            .upload-card {
+                padding: 25px 18px;
+            }
+
+            .upload-heading h1 {
+                font-size: 31px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .cover-upload-area {
+                grid-template-columns: 1fr;
+            }
+
+            .cover-preview {
+                width: 200px;
+                height: 200px;
+                margin: auto;
+            }
+
+            .submit-button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -31,72 +434,49 @@
         </div>
 
         <div class="top-links">
-            <a href="#upload">Upload Your Music</a>
+            <a href="index.html">Home</a>
             <span>|</span>
-            <a href="#artist">Artist Sign Up</a>
-            <span>|</span>
-            <a href="#login">Login</a>
+            <a href="upload.html">Upload Music</a>
         </div>
 
     </div>
 </div>
 
 
-<!-- ================= NAVIGATION ================= -->
+<!-- ================= HEADER ================= -->
 
 <header class="header">
 
     <div class="container nav-container">
 
-        <a href="#" class="logo-link">
+        <a href="index.html" class="logo-link">
             <img
                 src="logo.jpeg"
-                alt="Mbzedmusic.com logo"
+                alt="Mbzedmusic.com"
                 class="logo"
             >
         </a>
 
-        <nav class="navigation" id="navigation">
+        <nav class="navigation">
 
-            <a href="#" class="active">HOME</a>
-
-            <a href="#music">
-                MUSIC
-                <i class="fa-solid fa-chevron-down"></i>
-            </a>
-
-            <a href="#artists">ARTISTS</a>
-            <a href="#charts">CHARTS</a>
-            <a href="#videos">VIDEOS</a>
-            <a href="#news">NEWS</a>
-            <a href="#promote">PROMOTE</a>
-            <a href="#about">ABOUT US</a>
-            <a href="#contact">CONTACT</a>
+            <a href="index.html">HOME</a>
+            <a href="#">MUSIC</a>
+            <a href="#">ARTISTS</a>
+            <a href="#">CHARTS</a>
+            <a href="#">VIDEOS</a>
+            <a href="#">NEWS</a>
+            <a href="#">PROMOTE</a>
+            <a href="#">ABOUT US</a>
+            <a href="#">CONTACT</a>
 
         </nav>
 
         <div class="nav-actions">
 
-            <button
-                class="search-button"
-                id="searchButton"
-                aria-label="Search"
-            >
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-
-            <button class="upload-button" id="uploadButton">
+            <a href="upload.html" class="upload-button">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
                 UPLOAD MUSIC
-            </button>
-
-            <button
-                class="mobile-menu"
-                id="mobileMenu"
-                aria-label="Open menu"
-            >
-                <i class="fa-solid fa-bars"></i>
-            </button>
+            </a>
 
         </div>
 
@@ -105,849 +485,486 @@
 </header>
 
 
-<!-- ================= SEARCH ================= -->
+<!-- ================= UPLOAD PAGE ================= -->
 
-<div class="search-box" id="searchBox">
+<main class="upload-page">
 
-    <div class="container">
+    <div class="upload-wrapper">
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Search artists, songs, albums..."
-            autocomplete="off"
-        >
+        <!-- HEADING -->
 
-        <button
-            id="closeSearch"
-            aria-label="Close search"
-        >
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- ================= HERO ================= -->
-
-<section class="hero">
-
-    <div class="hero-overlay"></div>
-
-    <div class="container hero-content">
-
-        <div class="hero-text">
+        <div class="upload-heading">
 
             <p class="small-title">
-                WELCOME TO MBZEDMUSIC.COM
+                MBZEDMUSIC.COM
             </p>
 
             <h1>
-                DISCOVER.
-                <br>
-                <span>PROMOTE.</span>
-                <br>
-                <strong>CONNECT.</strong>
+                UPLOAD YOUR <span>MUSIC</span>
             </h1>
 
-            <p class="hero-description">
-                The home for African music. Discover new artists,
-                promote your sound and connect with fans worldwide.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#music" class="primary-button">
-                    <i class="fa-solid fa-play"></i>
-                    EXPLORE MUSIC
-                </a>
-
-                <a href="#upload" class="secondary-button">
-                    <i class="fa-solid fa-upload"></i>
-                    UPLOAD YOUR MUSIC
-                </a>
-
-            </div>
-
-        </div>
-
-        <div class="hero-visual">
-
-            <div class="africa-shape">
-                AFRICA
-            </div>
-
-            <div class="sound-wave"></div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= MAIN CONTENT ================= -->
-
-<main class="container main-content">
-
-
-<!-- ================= FEATURED SONG ================= -->
-
-<section class="featured-song" id="music">
-
-    <div class="featured-cover">
-
-        <img
-            src="mb-levels-cover.jpg.jpeg"
-            alt="MB LEVELS song cover"
-        >
-
-        <button
-            class="featured-play"
-            data-track="mb-levels"
-            aria-label="Play MB LEVELS"
-        >
-            <i class="fa-solid fa-play"></i>
-        </button>
-
-    </div>
-
-    <div class="featured-info">
-
-        <span class="featured-label">
-            FEATURED SONG
-        </span>
-
-        <h2>MB LEVELS</h2>
-
-        <h3>
-            Mr. Kings ft. Bravo Uja Lapa,
-            Shax Morefire & Trykash Wayayo
-        </h3>
-
-        <p>
-            Prod. by DJ Widdah
-        </p>
-
-        <button
-            class="featured-button"
-            data-track="mb-levels"
-        >
-            <i class="fa-solid fa-play"></i>
-            PLAY NOW
-        </button>
-
-    </div>
-
-</section>
-
-
-<!-- ================= MUSIC COLUMNS ================= -->
-
-<section class="music-grid">
-
-
-<!-- TRENDING -->
-
-<div class="music-panel">
-
-    <div class="panel-header">
-
-        <h2>
-            <span class="orange">
-                <i class="fa-solid fa-fire"></i>
-            </span>
-            TRENDING NOW
-        </h2>
-
-        <a href="#music">
-            VIEW ALL
-            <i class="fa-solid fa-angle-right"></i>
-        </a>
-
-    </div>
-
-
-    <div class="track-list">
-
-        <div class="track">
-
-            <span class="track-number">1</span>
-
-            <div
-                class="track-image"
-                style="background-image:url('mb-levels-cover.jpg.jpeg')"
-            ></div>
-
-            <div class="track-info">
-                <h3>MB LEVELS</h3>
-                <p>Mr. Kings ft. Friends</p>
-            </div>
-
-            <button
-                class="play-button"
-                data-track="mb-levels"
-                aria-label="Play MB LEVELS"
-            >
-                <i class="fa-solid fa-play"></i>
-            </button>
-
-        </div>
-
-
-        <div class="track">
-
-            <span class="track-number">2</span>
-
-            <div
-                class="track-image"
-                style="background-image:url('mb-levels-cover.jpg.jpeg')"
-            ></div>
-
-            <div class="track-info">
-                <h3>Champion</h3>
-                <p>Yo Maps</p>
-            </div>
-
-            <button
-                class="play-button"
-                data-track="mb-levels"
-                aria-label="Play song"
-            >
-                <i class="fa-solid fa-play"></i>
-            </button>
-
-        </div>
-
-
-        <div class="track">
-
-            <span class="track-number">3</span>
-
-            <div
-                class="track-image"
-                style="background-image:url('mb-levels-cover.jpg.jpeg')"
-            ></div>
-
-            <div class="track-info">
-                <h3>Kuli Wanga</h3>
-                <p>Jae Cash</p>
-            </div>
-
-            <button
-                class="play-button"
-                data-track="mb-levels"
-                aria-label="Play song"
-            >
-                <i class="fa-solid fa-play"></i>
-            </button>
-
-        </div>
-
-
-        <div class="track">
-
-            <span class="track-number">4</span>
-
-            <div
-                class="track-image"
-                style="background-image:url('mb-levels-cover.jpg.jpeg')"
-            ></div>
-
-            <div class="track-info">
-                <h3>Number One</h3>
-                <p>Macky 2</p>
-            </div>
-
-            <button
-                class="play-button"
-                data-track="mb-levels"
-                aria-label="Play song"
-            >
-                <i class="fa-solid fa-play"></i>
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- NEW RELEASES -->
-
-<div class="music-panel releases">
-
-    <div class="panel-header">
-
-        <h2>
-            <span class="orange">
-                <i class="fa-solid fa-music"></i>
-            </span>
-            NEW RELEASES
-        </h2>
-
-        <a href="#music">
-            VIEW ALL
-            <i class="fa-solid fa-angle-right"></i>
-        </a>
-
-    </div>
-
-
-    <div class="release-grid">
-
-        <div class="release-card">
-
-            <div
-                class="release-image"
-                style="background-image:url('mb-levels-cover.jpg.jpeg')"
-            >
-
-                <span class="new-label">NEW</span>
-
-                <button
-                    class="card-play"
-                    data-track="mb-levels"
-                    aria-label="Play MB LEVELS"
-                >
-                    <i class="fa-solid fa-play"></i>
-                </button>
-
-            </div>
-
-            <h3>MB LEVELS</h3>
-            <p>Mr. Kings ft. Friends</p>
-
-        </div>
-
-
-        <div class="release-card">
-
-            <div
-                class="release-image"
-                style="background-image:url('mb-levels-cover.jpg.jpeg')"
-            >
-
-                <span class="new-label">NEW</span>
-
-                <button
-                    class="card-play"
-                    data-track="mb-levels"
-                    aria-label="Play song"
-                >
-                    <i class="fa-solid fa-play"></i>
-                </button>
-
-            </div>
-
-            <h3>Never Give Up</h3>
-            <p>Kav Jr</p>
-
-        </div>
-
-
-        <div class="release-card">
-
-            <div
-                class="release-image"
-                style="background-image:url('mb-levels-cover.jpg.jpeg')"
-            >
-
-                <span class="new-label">NEW</span>
-
-                <button
-                    class="card-play"
-                    data-track="mb-levels"
-                    aria-label="Play song"
-                >
-                    <i class="fa-solid fa-play"></i>
-                </button>
-
-            </div>
-
-            <h3>Better Days</h3>
-            <p>Blood Kid</p>
-
-        </div>
-
-
-        <div class="release-card">
-
-            <div
-                class="release-image"
-                style="background-image:url('mb-levels-cover.jpg.jpeg')"
-            >
-
-                <span class="new-label">NEW</span>
-
-                <button
-                    class="card-play"
-                    data-track="mb-levels"
-                    aria-label="Play song"
-                >
-                    <i class="fa-solid fa-play"></i>
-                </button>
-
-            </div>
-
-            <h3>My Time</h3>
-            <p>T-Sean</p>
-
-        </div>
-
-    </div>
-
-</div>
-
-
-<!-- CHART -->
-
-<div class="music-panel" id="charts">
-
-    <div class="panel-header">
-
-        <h2>
-            <span class="orange">
-                <i class="fa-solid fa-trophy"></i>
-            </span>
-            TOP 10 CHART
-        </h2>
-
-        <a href="#charts">
-            VIEW ALL
-            <i class="fa-solid fa-angle-right"></i>
-        </a>
-
-    </div>
-
-
-    <div class="chart-list">
-
-        <div class="chart-item">
-
-            <span>1</span>
-
-            <div
-                class="mini-cover"
-                style="background-image:url('mb-levels-cover.jpg.jpeg')"
-            ></div>
-
-            <div>
-                <h3>MB LEVELS</h3>
-                <p>Mr. Kings</p>
-            </div>
-
-            <button
-                class="play-button"
-                data-track="mb-levels"
-                aria-label="Play song"
-            >
-                <i class="fa-solid fa-play"></i>
-            </button>
-
-        </div>
-
-
-        <div class="chart-item">
-
-            <span>2</span>
-
-            <div
-                class="mini-cover"
-                style="background-image:url('mb-levels-cover.jpg.jpeg')"
-            ></div>
-
-            <div>
-                <h3>Champion</h3>
-                <p>Yo Maps</p>
-            </div>
-
-            <button
-                class="play-button"
-                data-track="mb-levels"
-                aria-label="Play song"
-            >
-                <i class="fa-solid fa-play"></i>
-            </button>
-
-        </div>
-
-
-        <div class="chart-item">
-
-            <span>3</span>
-
-            <div
-                class="mini-cover"
-                style="background-image:url('mb-levels-cover.jpg.jpeg')"
-            ></div>
-
-            <div>
-                <h3>Kuli Wanga</h3>
-                <p>Jae Cash</p>
-            </div>
-
-            <button
-                class="play-button"
-                data-track="mb-levels"
-                aria-label="Play song"
-            >
-                <i class="fa-solid fa-play"></i>
-            </button>
-
-        </div>
-
-
-        <div class="chart-item">
-
-            <span>4</span>
-
-            <div
-                class="mini-cover"
-                style="background-image:url('mb-levels-cover.jpg.jpeg')"
-            ></div>
-
-            <div>
-                <h3>Never Give Up</h3>
-                <p>Kav Jr</p>
-            </div>
-
-            <button
-                class="play-button"
-                data-track="mb-levels"
-                aria-label="Play song"
-            >
-                <i class="fa-solid fa-play"></i>
-            </button>
-
-        </div>
-
-
-        <div class="chart-item">
-
-            <span>5</span>
-
-            <div
-                class="mini-cover"
-                style="background-image:url('mb-levels-cover.jpg.jpeg')"
-            ></div>
-
-            <div>
-                <h3>Ndi Ine</h3>
-                <p>Slapdee</p>
-            </div>
-
-            <button
-                class="play-button"
-                data-track="mb-levels"
-                aria-label="Play song"
-            >
-                <i class="fa-solid fa-play"></i>
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
-</section>
-
-
-<!-- ================= GENRES ================= -->
-
-<section class="genres-section">
-
-    <div class="section-heading">
-
-        <h2>BROWSE BY GENRE</h2>
-
-        <a href="#genres">
-            VIEW ALL
-            <i class="fa-solid fa-angle-right"></i>
-        </a>
-
-    </div>
-
-
-    <div class="genre-grid" id="genres">
-
-        <a href="#" class="genre afrobeats">
-            <i class="fa-solid fa-drum"></i>
-            <span>AFROBEAT</span>
-        </a>
-
-        <a href="#" class="genre hiphop">
-            <i class="fa-solid fa-microphone"></i>
-            <span>HIP HOP</span>
-        </a>
-
-        <a href="#" class="genre zambian">
-            <i class="fa-solid fa-drum"></i>
-            <span>ZAMBIAN MUSIC</span>
-        </a>
-
-        <a href="#" class="genre dancehall">
-            <i class="fa-solid fa-tree"></i>
-            <span>DANCEHALL</span>
-        </a>
-
-        <a href="#" class="genre gospel">
-            <i class="fa-solid fa-cross"></i>
-            <span>GOSPEL</span>
-        </a>
-
-        <a href="#" class="genre rnb">
-            <i class="fa-solid fa-heart"></i>
-            <span>R&B</span>
-        </a>
-
-        <a href="#" class="genre amapiano">
-            <i class="fa-solid fa-keyboard"></i>
-            <span>AMAPIANO</span>
-        </a>
-
-        <a href="#" class="genre more">
-            <i class="fa-solid fa-ellipsis"></i>
-            <span>MORE</span>
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- ================= ARTIST BANNER ================= -->
-
-<section class="artist-banner" id="artist">
-
-    <div class="artist-pattern"></div>
-
-    <div class="artist-content">
-
-        <div class="artist-icon">
-            <i class="fa-solid fa-microphone-lines"></i>
-        </div>
-
-        <div>
-
-            <h2>
-                ARE YOU
-                <span>AN ARTIST?</span>
-            </h2>
-
             <p>
-                Get your music heard by thousands of fans.
-                Upload your songs, grow your fanbase and take
-                your music to the next level.
+                Share your sound with African music fans around the world.
+                Upload your song, add your cover artwork and tell us about your music.
             </p>
 
         </div>
 
-        <a href="#upload" class="artist-upload">
-            <i class="fa-solid fa-upload"></i>
-            UPLOAD YOUR MUSIC NOW
-        </a>
+
+        <!-- FORM -->
+
+        <div class="upload-card">
+
+            <form id="musicUploadForm">
+
+
+                <!-- ================= SONG INFORMATION ================= -->
+
+                <section class="upload-section">
+
+                    <div class="upload-section-title">
+
+                        <i class="fa-solid fa-music"></i>
+
+                        <h2>Song Information</h2>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="songTitle">
+                                Song Title <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="songTitle"
+                                name="songTitle"
+                                placeholder="Enter song title"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="artistName">
+                                Artist Name <span>*</span>
+                            </label>
+
+                            <input
+                                type="text"
+                                id="artistName"
+                                name="artistName"
+                                placeholder="Enter artist name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="genre">
+                                Genre <span>*</span>
+                            </label>
+
+                            <select
+                                id="genre"
+                                name="genre"
+                                required
+                            >
+
+                                <option value="">
+                                    Select genre
+                                </option>
+
+                                <option value="Afrobeats">
+                                    Afrobeats
+                                </option>
+
+                                <option value="Hip Hop">
+                                    Hip Hop
+                                </option>
+
+                                <option value="Zambian Music">
+                                    Zambian Music
+                                </option>
+
+                                <option value="Dancehall">
+                                    Dancehall
+                                </option>
+
+                                <option value="Gospel">
+                                    Gospel
+                                </option>
+
+                                <option value="R&B">
+                                    R&B
+                                </option>
+
+                                <option value="Amapiano">
+                                    Amapiano
+                                </option>
+
+                                <option value="Other">
+                                    Other
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="releaseYear">
+                                Release Year
+                            </label>
+
+                            <input
+                                type="number"
+                                id="releaseYear"
+                                name="releaseYear"
+                                min="1900"
+                                max="2100"
+                                placeholder="2026"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group full">
+
+                            <label for="description">
+                                Song Description
+                            </label>
+
+                            <textarea
+                                id="description"
+                                name="description"
+                                placeholder="Tell fans something about this song..."
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= AUDIO ================= -->
+
+                <section class="upload-section">
+
+                    <div class="upload-section-title">
+
+                        <i class="fa-solid fa-headphones"></i>
+
+                        <h2>Music File</h2>
+
+                    </div>
+
+
+                    <div
+                        class="file-upload-box"
+                        id="audioUploadBox"
+                    >
+
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                        <h3>
+                            Upload your MP3
+                        </h3>
+
+                        <p>
+                            MP3 audio files are recommended
+                        </p>
+
+                        <span class="choose-file-button">
+                            Choose MP3 File
+                        </span>
+
+                        <span
+                            class="file-name"
+                            id="audioFileName"
+                        >
+                            No file selected
+                        </span>
+
+                        <input
+                            type="file"
+                            id="audioFile"
+                            name="audioFile"
+                            accept="audio/mpeg,audio/mp3"
+                            hidden
+                            required
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="audio-preview"
+                        id="audioPreview"
+                    >
+
+                        <audio
+                            id="audioPlayer"
+                            controls
+                        ></audio>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= COVER ================= -->
+
+                <section class="upload-section">
+
+                    <div class="upload-section-title">
+
+                        <i class="fa-solid fa-image"></i>
+
+                        <h2>Cover Artwork</h2>
+
+                    </div>
+
+
+                    <div class="cover-upload-area">
+
+                        <div class="cover-preview">
+
+                            <i
+                                class="fa-solid fa-music"
+                                id="coverPlaceholder"
+                            ></i>
+
+                            <img
+                                id="coverPreviewImage"
+                                alt="Cover preview"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <div
+                                class="file-upload-box"
+                                id="coverUploadBox"
+                            >
+
+                                <i class="fa-solid fa-image"></i>
+
+                                <h3>
+                                    Add Cover Artwork
+                                </h3>
+
+                                <p>
+                                    JPG or PNG image recommended
+                                </p>
+
+                                <span class="choose-file-button">
+                                    Choose Cover Image
+                                </span>
+
+                                <span
+                                    class="file-name"
+                                    id="coverFileName"
+                                >
+                                    No image selected
+                                </span>
+
+                                <input
+                                    type="file"
+                                    id="coverFile"
+                                    name="coverFile"
+                                    accept="image/jpeg,image/png,image/webp"
+                                    hidden
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= ARTIST ================= -->
+
+                <section class="upload-section">
+
+                    <div class="upload-section-title">
+
+                        <i class="fa-solid fa-user"></i>
+
+                        <h2>Artist Information</h2>
+
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="artistEmail">
+                                Email Address <span>*</span>
+                            </label>
+
+                            <input
+                                type="email"
+                                id="artistEmail"
+                                name="artistEmail"
+                                placeholder="artist@example.com"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="artistLocation">
+                                Country / Location
+                            </label>
+
+                            <input
+                                type="text"
+                                id="artistLocation"
+                                name="artistLocation"
+                                placeholder="e.g. Zambia"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= TERMS ================= -->
+
+                <section class="upload-section">
+
+                    <div class="terms-box">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required
+                        >
+
+                        <label for="terms">
+
+                            I confirm that I own or have permission to upload
+                            this music and artwork. I agree to the
+                            <a href="#">Terms of Use</a>
+                            and
+                            <a href="#">Copyright Policy</a>.
+
+                        </label>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ================= PROGRESS ================= -->
+
+                <div
+                    class="upload-progress"
+                    id="uploadProgress"
+                >
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            id="progressFill"
+                        ></div>
+
+                    </div>
+
+                    <span
+                        class="progress-text"
+                        id="progressText"
+                    >
+                        Preparing upload...
+                    </span>
+
+                </div>
+
+
+                <!-- ================= STATUS ================= -->
+
+                <div
+                    class="upload-status"
+                    id="uploadStatus"
+                ></div>
+
+
+                <!-- ================= SUBMIT ================= -->
+
+                <div class="submit-area">
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                        id="submitButton"
+                    >
+
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                        SUBMIT MUSIC
+
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <!-- BACK -->
+
+            <div class="back-home">
+
+                <a href="index.html">
+
+                    <i class="fa-solid fa-arrow-left"></i>
+
+                    Back to Mbzedmusic
+
+                </a>
+
+            </div>
+
+        </div>
 
     </div>
-
-
-    <div class="artist-benefits">
-
-        <div>
-            <i class="fa-solid fa-thumbs-up"></i>
-            EASY UPLOAD
-            <small>Fast & simple process</small>
-        </div>
-
-        <div>
-            <i class="fa-solid fa-bullhorn"></i>
-            GET PROMOTED
-            <small>Reach new audiences</small>
-        </div>
-
-        <div>
-            <i class="fa-solid fa-chart-column"></i>
-            REAL STATISTICS
-            <small>Track your growth</small>
-        </div>
-
-        <div>
-            <i class="fa-solid fa-shield"></i>
-            YOUR MUSIC
-            <small>You own your sound</small>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ================= NEWS ================= -->
-
-<section class="news-section" id="news">
-
-    <div class="news-column">
-
-        <div class="section-heading">
-
-            <h2>LATEST MUSIC NEWS</h2>
-
-            <a href="#news">
-                VIEW ALL
-                <i class="fa-solid fa-angle-right"></i>
-            </a>
-
-        </div>
-
-
-        <div class="news-grid">
-
-            <article class="news-card">
-
-                <div
-                    class="news-image"
-                    style="background-image:url('mb-levels-cover.jpg.jpeg')"
-                ></div>
-
-                <div class="news-content">
-
-                    <h3>
-                        Yo Maps releases new album
-                        "Try Again"
-                    </h3>
-
-                    <p>
-                        May 12, 2026 • News
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="news-card">
-
-                <div
-                    class="news-image"
-                    style="background-image:url('mb-levels-cover.jpg.jpeg')"
-                ></div>
-
-                <div class="news-content">
-
-                    <h3>
-                        Jae Cash announces national tour
-                    </h3>
-
-                    <p>
-                        May 10, 2026 • News
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="news-card">
-
-                <div
-                    class="news-image"
-                    style="background-image:url('mb-levels-cover.jpg.jpeg')"
-                ></div>
-
-                <div class="news-content">
-
-                    <h3>
-                        The rise of Afrobeats in Africa
-                    </h3>
-
-                    <p>
-                        May 8, 2026 • Feature
-                    </p>
-
-                </div>
-
-            </article>
-
-
-            <article class="news-card">
-
-                <div
-                    class="news-image"
-                    style="background-image:url('mb-levels-cover.jpg.jpeg')"
-                ></div>
-
-                <div class="news-content">
-
-                    <h3>
-                        Top 5 upcoming artists to watch
-                    </h3>
-
-                    <p>
-                        May 5, 2026 • Feature
-                    </p>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-
-    <!-- SOCIAL -->
-
-    <aside class="social-panel">
-
-        <h2>FOLLOW US</h2>
-
-        <a href="#">
-            <i class="fa-brands fa-facebook"></i>
-            Facebook
-            <span>@mbzedmusic</span>
-        </a>
-
-        <a href="#">
-            <i class="fa-brands fa-instagram"></i>
-            Instagram
-            <span>@mbzedmusic</span>
-        </a>
-
-        <a href="#">
-            <i class="fa-brands fa-x-twitter"></i>
-            Twitter (X)
-            <span>@mbzedmusic</span>
-        </a>
-
-        <a href="#">
-            <i class="fa-brands fa-youtube"></i>
-            YouTube
-            <span>Mbzedmusic TV</span>
-        </a>
-
-    </aside>
-
-</section>
 
 </main>
 
 
 <!-- ================= FOOTER ================= -->
 
-<footer class="footer" id="about">
+<footer class="footer">
 
     <div class="container footer-grid">
-
 
         <div class="footer-brand">
 
             <img
                 src="logo.jpeg"
-                alt="Mbzedmusic logo"
+                alt="Mbzedmusic"
             >
 
             <p>
@@ -963,11 +980,11 @@
 
             <h3>QUICK LINKS</h3>
 
-            <a href="#">Home</a>
-            <a href="#music">Music</a>
-            <a href="#artists">Artists</a>
-            <a href="#charts">Charts</a>
-            <a href="#videos">Videos</a>
+            <a href="index.html">Home</a>
+            <a href="#">Music</a>
+            <a href="#">Artists</a>
+            <a href="#">Charts</a>
+            <a href="#">Videos</a>
 
         </div>
 
@@ -985,10 +1002,7 @@
         </div>
 
 
-        <div
-            class="footer-newsletter"
-            id="contact"
-        >
+        <div class="footer-newsletter">
 
             <h3>NEWSLETTER</h3>
 
@@ -997,7 +1011,7 @@
                 new music and news.
             </p>
 
-            <form id="newsletterForm">
+            <form>
 
                 <input
                     type="email"
@@ -1036,85 +1050,224 @@
 </footer>
 
 
-<!-- ================= MUSIC PLAYER ================= -->
+<!-- ================= JAVASCRIPT ================= -->
 
-<div
-    class="music-player"
-    id="musicPlayer"
->
+<script>
 
-    <div class="player-info">
+    /* =========================
+       AUDIO FILE
+    ========================= */
 
-        <div
-            class="player-cover"
-            style="background-image:url('mb-levels-cover.jpg.jpeg')"
-        ></div>
-
-        <div>
-
-            <strong id="playerTitle">
-                MB LEVELS
-            </strong>
-
-            <small id="playerArtist">
-                Mr. Kings ft. Friends
-            </small>
-
-        </div>
-
-    </div>
+    const audioFile = document.getElementById("audioFile");
+    const audioFileName = document.getElementById("audioFileName");
+    const audioPreview = document.getElementById("audioPreview");
+    const audioPlayer = document.getElementById("audioPlayer");
 
 
-    <div class="player-controls">
+    document
+        .getElementById("audioUploadBox")
+        .addEventListener("click", function () {
 
-        <button
-            id="previousButton"
-            aria-label="Previous"
-        >
-            <i class="fa-solid fa-backward"></i>
-        </button>
+            audioFile.click();
 
-        <button
-            class="main-player-button"
-            id="mainPlayerButton"
-            aria-label="Play or pause"
-        >
-            <i class="fa-solid fa-play"></i>
-        </button>
-
-        <button
-            id="nextButton"
-            aria-label="Next"
-        >
-            <i class="fa-solid fa-forward"></i>
-        </button>
-
-    </div>
+        });
 
 
-    <div class="player-progress">
+    audioFile.addEventListener("change", function () {
 
-        <div></div>
+        if (this.files.length > 0) {
 
-    </div>
+            const file = this.files[0];
 
-</div>
+            audioFileName.textContent = file.name;
 
+            const audioURL = URL.createObjectURL(file);
 
-<!-- ================= HIDDEN AUDIO ================= -->
+            audioPlayer.src = audioURL;
 
-<audio
-    id="audioPlayer"
-    preload="metadata"
->
-    <source
-        src="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3"
-        type="audio/mpeg"
-    >
-</audio>
+            audioPreview.style.display = "block";
+
+        }
+
+    });
 
 
-<script src="script.js"></script>
+    /* =========================
+       COVER IMAGE
+    ========================= */
+
+    const coverFile = document.getElementById("coverFile");
+
+    const coverFileName =
+        document.getElementById("coverFileName");
+
+    const coverPreviewImage =
+        document.getElementById("coverPreviewImage");
+
+    const coverPlaceholder =
+        document.getElementById("coverPlaceholder");
+
+
+    document
+        .getElementById("coverUploadBox")
+        .addEventListener("click", function () {
+
+            coverFile.click();
+
+        });
+
+
+    coverFile.addEventListener("change", function () {
+
+        if (this.files.length > 0) {
+
+            const file = this.files[0];
+
+            coverFileName.textContent = file.name;
+
+            const imageURL = URL.createObjectURL(file);
+
+            coverPreviewImage.src = imageURL;
+
+            coverPreviewImage.style.display = "block";
+
+            coverPlaceholder.style.display = "none";
+
+        }
+
+    });
+
+
+    /* =========================
+       FORM
+    ========================= */
+
+    const uploadForm =
+        document.getElementById("musicUploadForm");
+
+    const uploadStatus =
+        document.getElementById("uploadStatus");
+
+    const submitButton =
+        document.getElementById("submitButton");
+
+    const uploadProgress =
+        document.getElementById("uploadProgress");
+
+    const progressFill =
+        document.getElementById("progressFill");
+
+    const progressText =
+        document.getElementById("progressText");
+
+
+    uploadForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        if (!audioFile.files.length) {
+
+            showError("Please select your MP3 file.");
+
+            return;
+
+        }
+
+
+        if (!coverFile.files.length) {
+
+            showError("Please select your cover artwork.");
+
+            return;
+
+        }
+
+
+        uploadStatus.style.display = "none";
+
+        uploadProgress.style.display = "block";
+
+        submitButton.disabled = true;
+
+        submitButton.innerHTML =
+            '<i class="fa-solid fa-spinner fa-spin"></i> PREPARING...';
+
+
+        let progress = 0;
+
+
+        const progressTimer = setInterval(function() {
+
+            progress += 10;
+
+            if (progress > 100) {
+
+                progress = 100;
+
+            }
+
+
+            progressFill.style.width =
+                progress + "%";
+
+            progressText.textContent =
+                "Preparing upload... " + progress + "%";
+
+
+            if (progress >= 100) {
+
+                clearInterval(progressTimer);
+
+                submitButton.disabled = false;
+
+                submitButton.innerHTML =
+                    '<i class="fa-solid fa-cloud-arrow-up"></i> SUBMIT MUSIC';
+
+
+                showSuccess(
+                    "Your music form is ready. The next step is connecting this form to Supabase so your MP3 and cover image are actually uploaded."
+                );
+
+            }
+
+        }, 150);
+
+    });
+
+
+    /* =========================
+       STATUS FUNCTIONS
+    ========================= */
+
+    function showError(message) {
+
+        uploadStatus.className =
+            "upload-status error";
+
+        uploadStatus.innerHTML =
+            '<i class="fa-solid fa-circle-exclamation"></i> ' +
+            message;
+
+        uploadStatus.style.display = "block";
+
+    }
+
+
+    function showSuccess(message) {
+
+        uploadStatus.className =
+            "upload-status success";
+
+        uploadStatus.innerHTML =
+            '<i class="fa-solid fa-circle-check"></i> ' +
+            message;
+
+        uploadStatus.style.display = "block";
+
+    }
+
+</script>
 
 </body>
 </html>
