@@ -6,17 +6,13 @@
 
     <title>Mbzedmusic.com | African Music • Our Culture • Our Sound</title>
 
-    <meta
-        name="description"
-        content="Mbzedmusic.com — Discover, promote and connect with African music."
-    >
+    <meta name="description"
+          content="Mbzedmusic.com — Discover, promote and connect with African music.">
 
     <link rel="stylesheet" href="style.css">
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
@@ -50,8 +46,8 @@
 
         <a href="#" class="logo-link">
             <img
-                src="mb-levels-cover.png"
-                alt="Mbzedmusic.com"
+                src="logo.jpeg"
+                alt="Mbzedmusic.com logo"
                 class="logo"
             >
         </a>
@@ -59,12 +55,7 @@
         <nav class="navigation" id="navigation">
 
             <a href="#" class="active">HOME</a>
-
-            <a href="#music">
-                MUSIC
-                <i class="fa-solid fa-chevron-down"></i>
-            </a>
-
+            <a href="#music">MUSIC</a>
             <a href="#artists">ARTISTS</a>
             <a href="#charts">CHARTS</a>
             <a href="#videos">VIDEOS</a>
@@ -77,11 +68,8 @@
 
         <div class="nav-actions">
 
-            <button
-                class="search-button"
-                id="searchButton"
-                aria-label="Open search"
-            >
+            <button class="search-button" id="searchButton"
+                    aria-label="Open search">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
 
@@ -90,11 +78,8 @@
                 UPLOAD MUSIC
             </a>
 
-            <button
-                class="mobile-menu"
-                id="mobileMenu"
-                aria-label="Open menu"
-            >
+            <button class="mobile-menu" id="mobileMenu"
+                    aria-label="Open menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
@@ -109,7 +94,7 @@
 
 <div class="search-box" id="searchBox">
 
-    <div class="container search-container">
+    <div class="container search-inner">
 
         <input
             type="text"
@@ -123,8 +108,6 @@
         </button>
 
     </div>
-
-    <div class="container search-results" id="searchResults"></div>
 
 </div>
 
@@ -174,11 +157,17 @@
 
         <div class="hero-visual">
 
-            <div class="africa-shape">
-                AFRICA
+            <div class="hero-cover">
+                <img
+                    src="mb-levels-cover.jpg.jpeg"
+                    alt="MB Levels song cover"
+                >
             </div>
 
-            <div class="sound-wave"></div>
+            <div class="hero-badge">
+                <i class="fa-solid fa-music"></i>
+                AFRICAN MUSIC
+            </div>
 
         </div>
 
@@ -187,65 +176,58 @@
 </section>
 
 
-<!-- ================= MAIN ================= -->
+<!-- ================= MAIN CONTENT ================= -->
 
 <main class="container main-content">
 
 
-<!-- ================= FEATURED MB LEVELS ================= -->
+<!-- ================= FEATURED SONG ================= -->
 
-<section class="featured-section" id="music">
+<section class="featured-song" id="music">
 
-    <div class="section-heading">
+    <div class="featured-cover">
 
-        <h2>
-            <i class="fa-solid fa-star"></i>
-            FEATURED MUSIC
-        </h2>
-
-        <a href="#">
-            VIEW ALL
-            <i class="fa-solid fa-angle-right"></i>
-        </a>
+        <img
+            src="mb-levels-cover.jpg.jpeg"
+            alt="MB Levels cover artwork"
+        >
 
     </div>
 
+    <div class="featured-info">
 
-    <div class="featured-card">
+        <span class="featured-label">
+            FEATURED MUSIC
+        </span>
 
-        <img
-            src="mb-levels-cover.png"
-            alt="MB Levels by Mr. Kings featuring Bravo Uja Lapa, Shax Morefire and Trykash"
-        >
+        <h2>MB LEVELS</h2>
 
-        <div class="featured-overlay">
+        <h3>
+            Mr. Kings ft. Bravo Uja Lapa, Shax Morefire,
+            Trykash & Wayayo
+        </h3>
 
-            <div class="featured-info">
+        <p>
+            Prod. by DJ Widdah
+        </p>
 
-                <span class="featured-label">
-                    MBZED MUSIC FEATURE
-                </span>
-
-                <h2>MB LEVELS</h2>
-
-                <p>
-                    Mr. Kings ft. Bravo Uja Lapa,
-                    Shax Morefire & Trykash
-                </p>
-
-                <small>
-                    Prod. by DJ Widdah
-                </small>
-
-            </div>
+        <div class="featured-actions">
 
             <button
                 class="featured-play"
-                id="featuredPlay"
-                aria-label="Play MB Levels"
+                data-title="MB Levels"
+                data-artist="Mr. Kings ft. Bravo Uja Lapa, Shax Morefire, Trykash & Wayayo"
+                data-cover="mb-levels-cover.jpg.jpeg"
+                data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3"
             >
                 <i class="fa-solid fa-play"></i>
+                PLAY SONG
             </button>
+
+            <a href="#promote" class="featured-secondary">
+                <i class="fa-solid fa-bullhorn"></i>
+                PROMOTE
+            </a>
 
         </div>
 
@@ -272,7 +254,7 @@
             TRENDING NOW
         </h2>
 
-        <a href="#">
+        <a href="#music">
             VIEW ALL
             <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -282,105 +264,103 @@
 
     <div class="track-list">
 
-        <div
-            class="track"
-            data-title="MB Levels"
-            data-artist="Mr. Kings ft. Bravo Uja Lapa, Shax Morefire & Trykash"
-            data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3"
-            data-cover="mb-levels-cover.png"
-        >
+        <div class="track"
+             data-title="Champion"
+             data-artist="Yo Maps"
+             data-cover="mb-levels-cover.jpg.jpeg">
 
             <span class="track-number">1</span>
 
-            <div
-                class="track-image"
-                style="background-image:url('mb-levels-cover.png')"
-            ></div>
-
-            <div class="track-info">
-                <h3>MB Levels</h3>
-                <p>Mr. Kings & Friends</p>
+            <div class="track-image">
+                <img src="mb-levels-cover.jpg.jpeg"
+                     alt="Champion cover">
             </div>
-
-            <button class="play-button" aria-label="Play MB Levels">
-                <i class="fa-solid fa-play"></i>
-            </button>
-
-        </div>
-
-
-        <div
-            class="track"
-            data-title="Champion"
-            data-artist="Yo Maps"
-            data-cover="mb-levels-cover.png"
-        >
-
-            <span class="track-number">2</span>
-
-            <div
-                class="track-image"
-                style="background-image:url('mb-levels-cover.png')"
-            ></div>
 
             <div class="track-info">
                 <h3>Champion</h3>
                 <p>Yo Maps</p>
             </div>
 
-            <button class="play-button" aria-label="Play Champion">
+            <button class="play-button"
+                    data-title="Champion"
+                    data-artist="Yo Maps"
+                    data-cover="mb-levels-cover.jpg.jpeg"
+                    data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
                 <i class="fa-solid fa-play"></i>
             </button>
 
         </div>
 
 
-        <div
-            class="track"
-            data-title="Kuli Wanga"
-            data-artist="Jae Cash"
-            data-cover="mb-levels-cover.png"
-        >
+        <div class="track">
 
-            <span class="track-number">3</span>
+            <span class="track-number">2</span>
 
-            <div
-                class="track-image"
-                style="background-image:url('mb-levels-cover.png')"
-            ></div>
+            <div class="track-image">
+                <img src="mb-levels-cover.jpg.jpeg"
+                     alt="Kuli Wanga cover">
+            </div>
 
             <div class="track-info">
                 <h3>Kuli Wanga</h3>
                 <p>Jae Cash</p>
             </div>
 
-            <button class="play-button" aria-label="Play Kuli Wanga">
+            <button class="play-button"
+                    data-title="Kuli Wanga"
+                    data-artist="Jae Cash"
+                    data-cover="mb-levels-cover.jpg.jpeg"
+                    data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
                 <i class="fa-solid fa-play"></i>
             </button>
 
         </div>
 
 
-        <div
-            class="track"
-            data-title="Number One"
-            data-artist="Macky 2"
-            data-cover="mb-levels-cover.png"
-        >
+        <div class="track">
 
-            <span class="track-number">4</span>
+            <span class="track-number">3</span>
 
-            <div
-                class="track-image"
-                style="background-image:url('mb-levels-cover.png')"
-            ></div>
+            <div class="track-image">
+                <img src="mb-levels-cover.jpg.jpeg"
+                     alt="Number One cover">
+            </div>
 
             <div class="track-info">
                 <h3>Number One</h3>
                 <p>Macky 2</p>
             </div>
 
-            <button class="play-button" aria-label="Play Number One">
+            <button class="play-button"
+                    data-title="Number One"
+                    data-artist="Macky 2"
+                    data-cover="mb-levels-cover.jpg.jpeg"
+                    data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
+                <i class="fa-solid fa-play"></i>
+            </button>
+
+        </div>
+
+
+        <div class="track">
+
+            <span class="track-number">4</span>
+
+            <div class="track-image">
+                <img src="mb-levels-cover.jpg.jpeg"
+                     alt="Ndi Slapede cover">
+            </div>
+
+            <div class="track-info">
+                <h3>Ndi Slapede</h3>
+                <p>Slapdee</p>
+            </div>
+
+            <button class="play-button"
+                    data-title="Ndi Slapede"
+                    data-artist="Slapdee"
+                    data-cover="mb-levels-cover.jpg.jpeg"
+                    data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
                 <i class="fa-solid fa-play"></i>
             </button>
 
@@ -404,7 +384,7 @@
             NEW RELEASES
         </h2>
 
-        <a href="#">
+        <a href="#music">
             VIEW ALL
             <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -414,44 +394,48 @@
 
     <div class="release-grid">
 
-        <div
-            class="release-card"
-            data-title="MB Levels"
-            data-artist="Mr. Kings"
-            data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3"
-            data-cover="mb-levels-cover.png"
-        >
+        <div class="release-card">
 
-            <div
-                class="release-image"
-                style="background-image:url('mb-levels-cover.png')"
-            >
+            <div class="release-image">
 
-                <span class="new-label">FEATURED</span>
+                <img src="mb-levels-cover.jpg.jpeg"
+                     alt="Never Give Up cover">
 
-                <button class="card-play" aria-label="Play MB Levels">
+                <span class="new-label">NEW</span>
+
+                <button class="card-play"
+                        data-title="Never Give Up"
+                        data-artist="Kav Jr"
+                        data-cover="mb-levels-cover.jpg.jpeg"
+                        data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
                     <i class="fa-solid fa-play"></i>
                 </button>
 
             </div>
 
-            <h3>MB Levels</h3>
-            <p>Mr. Kings</p>
+            <h3>Never Give Up</h3>
+            <p>Kav Jr</p>
 
         </div>
 
 
         <div class="release-card">
 
-            <div
-                class="release-image"
-                style="background-image:url('mb-levels-cover.png')"
-            >
+            <div class="release-image">
+
+                <img src="mb-levels-cover.jpg.jpeg"
+                     alt="Better Days cover">
+
                 <span class="new-label">NEW</span>
 
-                <button class="card-play">
+                <button class="card-play"
+                        data-title="Better Days"
+                        data-artist="Blood Kid"
+                        data-cover="mb-levels-cover.jpg.jpeg"
+                        data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
                     <i class="fa-solid fa-play"></i>
                 </button>
+
             </div>
 
             <h3>Better Days</h3>
@@ -462,15 +446,21 @@
 
         <div class="release-card">
 
-            <div
-                class="release-image"
-                style="background-image:url('mb-levels-cover.png')"
-            >
+            <div class="release-image">
+
+                <img src="mb-levels-cover.jpg.jpeg"
+                     alt="My Time cover">
+
                 <span class="new-label">NEW</span>
 
-                <button class="card-play">
+                <button class="card-play"
+                        data-title="My Time"
+                        data-artist="T-Sean"
+                        data-cover="mb-levels-cover.jpg.jpeg"
+                        data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
                     <i class="fa-solid fa-play"></i>
                 </button>
+
             </div>
 
             <h3>My Time</h3>
@@ -481,15 +471,21 @@
 
         <div class="release-card">
 
-            <div
-                class="release-image"
-                style="background-image:url('mb-levels-cover.png')"
-            >
+            <div class="release-image">
+
+                <img src="mb-levels-cover.jpg.jpeg"
+                     alt="Tuli Bwino cover">
+
                 <span class="new-label">NEW</span>
 
-                <button class="card-play">
+                <button class="card-play"
+                        data-title="Tuli Bwino"
+                        data-artist="Chile One Zambia"
+                        data-cover="mb-levels-cover.jpg.jpeg"
+                        data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
                     <i class="fa-solid fa-play"></i>
                 </button>
+
             </div>
 
             <h3>Tuli Bwino</h3>
@@ -515,7 +511,7 @@
             TOP 10 CHART
         </h2>
 
-        <a href="#">
+        <a href="#charts">
             VIEW ALL
             <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -525,27 +521,25 @@
 
     <div class="chart-list">
 
-        <div
-            class="chart-item"
-            data-title="MB Levels"
-            data-artist="Mr. Kings"
-            data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3"
-            data-cover="mb-levels-cover.png"
-        >
+        <div class="chart-item">
 
             <span>1</span>
 
-            <div
-                class="mini-cover"
-                style="background-image:url('mb-levels-cover.png')"
-            ></div>
-
-            <div>
-                <h3>MB Levels</h3>
-                <p>Mr. Kings</p>
+            <div class="mini-cover">
+                <img src="mb-levels-cover.jpg.jpeg"
+                     alt="Champion">
             </div>
 
-            <button class="play-button">
+            <div>
+                <h3>Champion</h3>
+                <p>Yo Maps</p>
+            </div>
+
+            <button class="play-button"
+                    data-title="Champion"
+                    data-artist="Yo Maps"
+                    data-cover="mb-levels-cover.jpg.jpeg"
+                    data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
                 <i class="fa-solid fa-play"></i>
             </button>
 
@@ -556,17 +550,21 @@
 
             <span>2</span>
 
-            <div
-                class="mini-cover"
-                style="background-image:url('mb-levels-cover.png')"
-            ></div>
-
-            <div>
-                <h3>Champion</h3>
-                <p>Yo Maps</p>
+            <div class="mini-cover">
+                <img src="mb-levels-cover.jpg.jpeg"
+                     alt="Kuli Wanga">
             </div>
 
-            <button class="play-button">
+            <div>
+                <h3>Kuli Wanga</h3>
+                <p>Jae Cash</p>
+            </div>
+
+            <button class="play-button"
+                    data-title="Kuli Wanga"
+                    data-artist="Jae Cash"
+                    data-cover="mb-levels-cover.jpg.jpeg"
+                    data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
                 <i class="fa-solid fa-play"></i>
             </button>
 
@@ -577,17 +575,21 @@
 
             <span>3</span>
 
-            <div
-                class="mini-cover"
-                style="background-image:url('mb-levels-cover.png')"
-            ></div>
-
-            <div>
-                <h3>Kuli Wanga</h3>
-                <p>Jae Cash</p>
+            <div class="mini-cover">
+                <img src="mb-levels-cover.jpg.jpeg"
+                     alt="Number One">
             </div>
 
-            <button class="play-button">
+            <div>
+                <h3>Number One</h3>
+                <p>Macky 2</p>
+            </div>
+
+            <button class="play-button"
+                    data-title="Number One"
+                    data-artist="Macky 2"
+                    data-cover="mb-levels-cover.jpg.jpeg"
+                    data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
                 <i class="fa-solid fa-play"></i>
             </button>
 
@@ -598,17 +600,21 @@
 
             <span>4</span>
 
-            <div
-                class="mini-cover"
-                style="background-image:url('mb-levels-cover.png')"
-            ></div>
+            <div class="mini-cover">
+                <img src="mb-levels-cover.jpg.jpeg"
+                     alt="Never Give Up">
+            </div>
 
             <div>
                 <h3>Never Give Up</h3>
                 <p>Kav Jr</p>
             </div>
 
-            <button class="play-button">
+            <button class="play-button"
+                    data-title="Never Give Up"
+                    data-artist="Kav Jr"
+                    data-cover="mb-levels-cover.jpg.jpeg"
+                    data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
                 <i class="fa-solid fa-play"></i>
             </button>
 
@@ -619,17 +625,21 @@
 
             <span>5</span>
 
-            <div
-                class="mini-cover"
-                style="background-image:url('mb-levels-cover.png')"
-            ></div>
+            <div class="mini-cover">
+                <img src="mb-levels-cover.jpg.jpeg"
+                     alt="Ndi Ine">
+            </div>
 
             <div>
                 <h3>Ndi Ine</h3>
                 <p>Slapdee</p>
             </div>
 
-            <button class="play-button">
+            <button class="play-button"
+                    data-title="Ndi Ine"
+                    data-artist="Slapdee"
+                    data-cover="mb-levels-cover.jpg.jpeg"
+                    data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
                 <i class="fa-solid fa-play"></i>
             </button>
 
@@ -650,7 +660,7 @@
 
         <h2>BROWSE BY GENRE</h2>
 
-        <a href="#">
+        <a href="#music">
             VIEW ALL
             <i class="fa-solid fa-angle-right"></i>
         </a>
@@ -660,42 +670,42 @@
 
     <div class="genre-grid">
 
-        <a href="#" class="genre afrobeats">
+        <a href="#music" class="genre">
             <i class="fa-solid fa-drum"></i>
             <span>AFROBEAT</span>
         </a>
 
-        <a href="#" class="genre hiphop">
+        <a href="#music" class="genre">
             <i class="fa-solid fa-microphone"></i>
             <span>HIP HOP</span>
         </a>
 
-        <a href="#" class="genre zambian">
+        <a href="#music" class="genre">
             <i class="fa-solid fa-drum"></i>
             <span>ZAMBIAN MUSIC</span>
         </a>
 
-        <a href="#" class="genre dancehall">
+        <a href="#music" class="genre">
             <i class="fa-solid fa-tree"></i>
             <span>DANCEHALL</span>
         </a>
 
-        <a href="#" class="genre gospel">
+        <a href="#music" class="genre">
             <i class="fa-solid fa-cross"></i>
             <span>GOSPEL</span>
         </a>
 
-        <a href="#" class="genre rnb">
+        <a href="#music" class="genre">
             <i class="fa-solid fa-heart"></i>
             <span>R&B</span>
         </a>
 
-        <a href="#" class="genre amapiano">
+        <a href="#music" class="genre">
             <i class="fa-solid fa-keyboard"></i>
             <span>AMAPIANO</span>
         </a>
 
-        <a href="#" class="genre more">
+        <a href="#music" class="genre">
             <i class="fa-solid fa-ellipsis"></i>
             <span>MORE</span>
         </a>
@@ -781,7 +791,7 @@
 
             <h2>LATEST MUSIC NEWS</h2>
 
-            <a href="#">
+            <a href="#news">
                 VIEW ALL
                 <i class="fa-solid fa-angle-right"></i>
             </a>
@@ -793,20 +803,18 @@
 
             <article class="news-card">
 
-                <div
-                    class="news-image"
-                    style="background-image:url('mb-levels-cover.png')"
-                ></div>
+                <div class="news-image">
+                    <img src="mb-levels-cover.jpg.jpeg"
+                         alt="Music news">
+                </div>
 
                 <div class="news-content">
 
                     <h3>
-                        MB Levels brings a new sound to Mbzedmusic
+                        Yo Maps releases new album "Try Again"
                     </h3>
 
-                    <p>
-                        August 28, 2026 • Music
-                    </p>
+                    <p>May 12, 2026 • News</p>
 
                 </div>
 
@@ -815,10 +823,10 @@
 
             <article class="news-card">
 
-                <div
-                    class="news-image"
-                    style="background-image:url('mb-levels-cover.png')"
-                ></div>
+                <div class="news-image">
+                    <img src="mb-levels-cover.jpg.jpeg"
+                         alt="Music news">
+                </div>
 
                 <div class="news-content">
 
@@ -826,9 +834,7 @@
                         Jae Cash announces national tour
                     </h3>
 
-                    <p>
-                        May 10, 2026 • News
-                    </p>
+                    <p>May 10, 2026 • News</p>
 
                 </div>
 
@@ -837,10 +843,10 @@
 
             <article class="news-card">
 
-                <div
-                    class="news-image"
-                    style="background-image:url('mb-levels-cover.png')"
-                ></div>
+                <div class="news-image">
+                    <img src="mb-levels-cover.jpg.jpeg"
+                         alt="Music news">
+                </div>
 
                 <div class="news-content">
 
@@ -848,9 +854,7 @@
                         The rise of Afrobeats in Africa
                     </h3>
 
-                    <p>
-                        May 8, 2026 • Feature
-                    </p>
+                    <p>May 8, 2026 • Feature</p>
 
                 </div>
 
@@ -859,10 +863,10 @@
 
             <article class="news-card">
 
-                <div
-                    class="news-image"
-                    style="background-image:url('mb-levels-cover.png')"
-                ></div>
+                <div class="news-image">
+                    <img src="mb-levels-cover.jpg.jpeg"
+                         alt="Music news">
+                </div>
 
                 <div class="news-content">
 
@@ -870,9 +874,7 @@
                         Top 5 upcoming artists to watch
                     </h3>
 
-                    <p>
-                        May 5, 2026 • Feature
-                    </p>
+                    <p>May 5, 2026 • Feature</p>
 
                 </div>
 
@@ -917,21 +919,41 @@
 
 </section>
 
-</main>
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about-section" id="about">
+
+    <div class="about-content">
+
+        <span>OUR CULTURE • OUR SOUND</span>
+
+        <h2>AFRICAN MUSIC MEETS THE WORLD</h2>
+
+        <p>
+            Mbzedmusic.com is built to help African music reach
+            audiences everywhere. Discover artists, stream music,
+            follow the charts and support the sounds you love.
+        </p>
+
+    </div>
+
+</section>
 
 
 <!-- ================= FOOTER ================= -->
 
-<footer class="footer" id="about">
+</main>
+
+<footer class="footer" id="contact">
 
     <div class="container footer-grid">
 
+
         <div class="footer-brand">
 
-            <img
-                src="mb-levels-cover.png"
-                alt="Mbzedmusic"
-            >
+            <img src="logo.jpeg"
+                 alt="Mbzedmusic">
 
             <p>
                 Mbzedmusic.com is a music promotion platform
@@ -968,7 +990,7 @@
         </div>
 
 
-        <div class="footer-newsletter">
+        <div class="footer-newsletter" id="upload">
 
             <h3>NEWSLETTER</h3>
 
@@ -1022,11 +1044,15 @@
 
     <div class="player-info">
 
-        <div
-            class="player-cover"
-            id="playerCover"
-            style="background-image:url('mb-levels-cover.png')"
-        ></div>
+        <div class="player-cover">
+
+            <img
+                id="playerCover"
+                src="mb-levels-cover.jpg.jpeg"
+                alt="Currently playing"
+            >
+
+        </div>
 
         <div class="player-text">
 
@@ -1035,7 +1061,7 @@
             </strong>
 
             <small id="playerArtist">
-                Mr. Kings
+                Mr. Kings ft. Bravo Uja Lapa
             </small>
 
         </div>
@@ -1045,19 +1071,20 @@
 
     <div class="player-controls">
 
-        <button id="previousButton" aria-label="Previous song">
+        <button id="previousButton"
+                aria-label="Previous song">
             <i class="fa-solid fa-backward"></i>
         </button>
 
         <button
             class="main-player-button"
             id="mainPlayerButton"
-            aria-label="Play or pause"
-        >
+            aria-label="Play or pause">
             <i class="fa-solid fa-play"></i>
         </button>
 
-        <button id="nextButton" aria-label="Next song">
+        <button id="nextButton"
+                aria-label="Next song">
             <i class="fa-solid fa-forward"></i>
         </button>
 
@@ -1080,19 +1107,8 @@
 
     </div>
 
-
-    <button
-        class="player-close"
-        id="closePlayer"
-        aria-label="Close player"
-    >
-        <i class="fa-solid fa-xmark"></i>
-    </button>
-
 </div>
 
-
-<!-- Hidden audio element -->
 
 <audio id="audioPlayer" preload="metadata"></audio>
 
