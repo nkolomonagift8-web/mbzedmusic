@@ -5,21 +5,20 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Upload Music | Mbzedmusic.com</title>
 
     <meta name="description"
           content="Upload your music to Mbzedmusic.com and reach African music fans around the world.">
 
-    <!-- Main website CSS -->
+    <!-- MAIN WEBSITE CSS -->
     <link rel="stylesheet" href="style.css">
 
-    <!-- Upload page CSS -->
+    <!-- UPLOAD PAGE CSS -->
     <link rel="stylesheet" href="upload.css">
 
-    <!-- Font Awesome -->
+    <!-- FONT AWESOME -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -29,9 +28,9 @@
 <body>
 
 
-<!-- ================================================= -->
-<!-- TOP BAR -->
-<!-- ================================================= -->
+<!-- =====================================================
+     TOP BAR
+===================================================== -->
 
 <div class="top-bar">
 
@@ -44,21 +43,15 @@
 
         <div class="top-links">
 
-            <a href="index.html">
-                Home
-            </a>
+            <a href="index.html">Home</a>
 
             <span>|</span>
 
-            <a href="index.html#artists">
-                Artists
-            </a>
+            <a href="index.html#artists">Artists</a>
 
             <span>|</span>
 
-            <a href="index.html#contact">
-                Contact
-            </a>
+            <a href="index.html#contact">Contact</a>
 
         </div>
 
@@ -68,9 +61,9 @@
 
 
 
-<!-- ================================================= -->
-<!-- NAVIGATION -->
-<!-- ================================================= -->
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
 
 <header class="header">
 
@@ -79,8 +72,7 @@
 
         <!-- LOGO -->
 
-        <a href="index.html"
-           class="logo-link">
+        <a href="index.html" class="logo-link">
 
             <img
                 src="logo.jpeg"
@@ -110,6 +102,10 @@
 
             <a href="index.html#charts">
                 CHARTS
+            </a>
+
+            <a href="index.html#videos">
+                VIDEOS
             </a>
 
             <a href="index.html#news">
@@ -156,9 +152,9 @@
 
 
 
-<!-- ================================================= -->
-<!-- UPLOAD HERO -->
-<!-- ================================================= -->
+<!-- =====================================================
+     UPLOAD HERO
+===================================================== -->
 
 <section class="upload-hero">
 
@@ -185,10 +181,8 @@
 
 
             <p>
-
                 Share your sound with African music fans
                 around the world.
-
             </p>
 
         </div>
@@ -199,9 +193,9 @@
 
 
 
-<!-- ================================================= -->
-<!-- UPLOAD PAGE -->
-<!-- ================================================= -->
+<!-- =====================================================
+     MAIN UPLOAD AREA
+===================================================== -->
 
 <main class="container upload-page">
 
@@ -209,7 +203,6 @@
     <!-- INTRO -->
 
     <div class="upload-intro">
-
 
         <div class="upload-icon">
 
@@ -230,14 +223,13 @@
 
         </p>
 
-
     </div>
 
 
 
-    <!-- ================================================= -->
-    <!-- FORM -->
-    <!-- ================================================= -->
+    <!-- =================================================
+         UPLOAD FORM
+    ================================================= -->
 
     <form
         id="musicUploadForm"
@@ -246,10 +238,9 @@
     >
 
 
-
-        <!-- ================================================= -->
-        <!-- SONG INFORMATION -->
-        <!-- ================================================= -->
+        <!-- =================================================
+             SONG INFORMATION
+        ================================================= -->
 
         <section class="upload-card">
 
@@ -354,46 +345,37 @@
                         Select genre
                     </option>
 
-
                     <option value="Afrobeats">
                         Afrobeats
                     </option>
-
 
                     <option value="Hip Hop">
                         Hip Hop
                     </option>
 
-
                     <option value="Zambian Music">
                         Zambian Music
                     </option>
-
 
                     <option value="Dancehall">
                         Dancehall
                     </option>
 
-
                     <option value="Gospel">
                         Gospel
                     </option>
-
 
                     <option value="R&B">
                         R&B
                     </option>
 
-
                     <option value="Amapiano">
                         Amapiano
                     </option>
 
-
                     <option value="Other">
                         Other
                     </option>
-
 
                 </select>
 
@@ -450,9 +432,9 @@
 
 
 
-        <!-- ================================================= -->
-        <!-- MUSIC FILE -->
-        <!-- ================================================= -->
+        <!-- =================================================
+             MUSIC FILE
+        ================================================= -->
 
         <section class="upload-card">
 
@@ -484,6 +466,8 @@
 
 
 
+            <!-- MP3 UPLOAD -->
+
             <label
                 for="audioFile"
                 class="file-upload"
@@ -506,9 +490,7 @@
                     MP3 audio files are recommended
                 </small>
 
-
             </label>
-
 
 
             <input
@@ -521,7 +503,6 @@
             >
 
 
-
             <div
                 id="audioFileStatus"
                 class="file-status"
@@ -532,9 +513,9 @@
 
 
 
-        <!-- ================================================= -->
-        <!-- COVER ARTWORK -->
-        <!-- ================================================= -->
+        <!-- =================================================
+             COVER ARTWORK
+        ================================================= -->
 
         <section class="upload-card">
 
@@ -566,6 +547,8 @@
 
 
 
+            <!-- COVER UPLOAD -->
+
             <label
                 for="coverImage"
                 class="file-upload"
@@ -585,12 +568,10 @@
 
 
                 <small>
-                    JPG or PNG image recommended
+                    JPG, PNG or WEBP recommended
                 </small>
 
-
             </label>
-
 
 
             <input
@@ -635,9 +616,9 @@
 
 
 
-        <!-- ================================================= -->
-        <!-- COPYRIGHT -->
-        <!-- ================================================= -->
+        <!-- =================================================
+             COPYRIGHT AGREEMENT
+        ================================================= -->
 
         <section class="upload-card agreement-card">
 
@@ -668,9 +649,9 @@
 
 
 
-        <!-- ================================================= -->
-        <!-- SUBMIT -->
-        <!-- ================================================= -->
+        <!-- =================================================
+             UPLOAD BUTTON
+        ================================================= -->
 
         <button
             type="submit"
@@ -680,17 +661,17 @@
 
             <i class="fa-solid fa-cloud-arrow-up"></i>
 
-
             <span>
                 UPLOAD MUSIC
             </span>
-
 
         </button>
 
 
 
-        <!-- MESSAGE -->
+        <!-- =================================================
+             UPLOAD MESSAGE
+        ================================================= -->
 
         <div
             id="uploadMessage"
@@ -705,9 +686,9 @@
 
 
 
-<!-- ================================================= -->
-<!-- FOOTER -->
-<!-- ================================================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer class="footer">
 
@@ -743,7 +724,6 @@
 
         <div class="footer-column">
 
-
             <h3>
                 QUICK LINKS
             </h3>
@@ -773,7 +753,6 @@
                 News
             </a>
 
-
         </div>
 
 
@@ -781,7 +760,6 @@
         <!-- SUPPORT -->
 
         <div class="footer-column">
-
 
             <h3>
                 SUPPORT
@@ -812,7 +790,6 @@
                 FAQ
             </a>
 
-
         </div>
 
 
@@ -820,7 +797,6 @@
         <!-- NEWSLETTER -->
 
         <div class="footer-newsletter">
-
 
             <h3>
                 NEWSLETTER
@@ -837,7 +813,6 @@
 
             <form id="newsletterForm">
 
-
                 <input
                     type="email"
                     placeholder="Enter your email"
@@ -849,9 +824,7 @@
                     SUBSCRIBE
                 </button>
 
-
             </form>
-
 
         </div>
 
@@ -896,9 +869,9 @@
 
 
 
-<!-- ================================================= -->
-<!-- JAVASCRIPT -->
-<!-- ================================================= -->
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
 <!-- Main website JavaScript -->
 <script src="script.js"></script>
