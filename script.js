@@ -17,85 +17,10 @@ const SUPABASE_KEY =
 
 
 /* =========================================================
-   SUPABASE CLIENT
+   GLOBAL VARIABLES
    ========================================================= */
 
 let mbzedSupabase = null;
-
-
-/* =========================================================
-   LOAD SUPABASE LIBRARY
-   ========================================================= */
-
-const supabaseScript = document.createElement("script");
-
-supabaseScript.src =
-    "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
-
-supabaseScript.onload = () => {
-
-    mbzedSupabase =
-        window.supabase.createClient(
-            SUPABASE_URL,
-            SUPABASE_KEY
-        );
-
-    console.log(
-        "MBZEDMUSIC: Supabase connected."
-    );
-
-    initializeMbzedMusic();
-
-};
-
-supabaseScript.onerror = () => {
-
-    console.error(
-        "MBZEDMUSIC: Could not load Supabase."
-    );
-
-    initializeMbzedMusic();
-
-};
-
-document.head.appendChild(
-    supabaseScript
-);
-
-
-/* =========================================================
-   MAIN INITIALIZATION
-   ========================================================= */
-
-function initializeMbzedMusic() {
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        () => {
-
-            setupMusicPlayer();
-
-            setupSearch();
-
-            setupMobileMenu();
-
-            setupNewsletter();
-
-            setupBackToTop();
-
-            setupUploadButtons();
-
-            loadSongsFromSupabase();
-
-        }
-    );
-
-}
-
-
-/* =========================================================
-   GLOBAL MUSIC DATA
-   ========================================================= */
 
 let musicTracks = [];
 
@@ -103,8 +28,140 @@ let currentTrack = 0;
 
 let isPlaying = false;
 
-const audio =
-    new Audio();
+const audio = new Audio();
+
+
+/* =========================================================
+   START WEBSITE
+   ========================================================= */
+
+function startMbzedMusic() {
+
+    console.log(
+        "MBZEDMUSIC: Starting website..."
+    );
+
+
+    setupMusicPlayer();
+
+    setupSearch();
+
+    setupMobileMenu();
+
+    setupNewsletter();
+
+    setupBackToTop();
+
+    setupUploadButtons();
+
+
+    if (mbzedSupabase) {
+
+        loadSongsFromSupabase();
+
+    } else {
+
+        console.warn(
+            "MBZEDMUSIC: Supabase is not connected."
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   LOAD SUPABASE
+   ========================================================= */
+
+function loadSupabase() {
+
+    if (
+        window.supabase
+    ) {
+
+        connectSupabase();
+
+        return;
+
+    }
+
+
+    const supabaseScript =
+        document.createElement("script");
+
+
+    supabaseScript.src =
+        "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+
+
+    supabaseScript.onload =
+        () => {
+
+            console.log(
+                "MBZEDMUSIC: Supabase library loaded."
+            );
+
+            connectSupabase();
+
+        };
+
+
+    supabaseScript.onerror =
+        () => {
+
+            console.error(
+                "MBZEDMUSIC: Could not load Supabase library."
+            );
+
+            startMbzedMusic();
+
+        };
+
+
+    document.head.appendChild(
+        supabaseScript
+    );
+
+}
+
+
+/* =========================================================
+   CONNECT SUPABASE
+   ========================================================= */
+
+function connectSupabase() {
+
+    try {
+
+        mbzedSupabase =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        console.log(
+            "MBZEDMUSIC: Supabase connected."
+        );
+
+
+        startMbzedMusic();
+
+
+    } catch (error) {
+
+        console.error(
+            "MBZEDMUSIC: Supabase connection failed:",
+            error
+        );
+
+
+        startMbzedMusic();
+
+    }
+
+}
 
 
 /* =========================================================
@@ -118,30 +175,36 @@ function setupMusicPlayer() {
             "musicPlayer"
         );
 
+
     const mainPlayerButton =
         document.getElementById(
             "mainPlayerButton"
         );
+
 
     const playerTitle =
         document.getElementById(
             "playerTitle"
         );
 
+
     const playerArtist =
         document.getElementById(
             "playerArtist"
         );
+
 
     const playerCover =
         document.querySelector(
             ".player-cover"
         );
 
+
     const progressContainer =
         document.querySelector(
             ".player-progress"
         );
+
 
     const progressBar =
         progressContainer
@@ -153,135 +216,155 @@ function setupMusicPlayer() {
        LOAD TRACK
        ===================================================== */
 
-    window.loadMbzedTrack = function(index) {
+    window.loadMbzedTrack =
+        function(index) {
 
-        if (
-            !musicTracks[index]
-        ) {
+            if (
+                !musicTracks[index]
+            ) {
 
-            console.log(
-                "No track available."
-            );
+                console.log(
+                    "MBZEDMUSIC: No track available."
+                );
 
-            return;
+                return;
 
-        }
-
-
-        const track =
-            musicTracks[index];
+            }
 
 
-        audio.src =
-            track.audio;
+            const track =
+                musicTracks[index];
 
 
-        if (playerTitle) {
-
-            playerTitle.textContent =
-                track.title ||
-                "Unknown Song";
-
-        }
+            audio.src =
+                track.audio;
 
 
-        if (playerArtist) {
+            if (playerTitle) {
 
-            playerArtist.textContent =
-                track.artist ||
-                "Unknown Artist";
+                playerTitle.textContent =
+                    track.title ||
+                    "Unknown Song";
 
-        }
+            }
 
 
-        if (playerCover) {
+            if (playerArtist) {
 
-            if (track.cover) {
+                playerArtist.textContent =
+                    track.artist ||
+                    "Unknown Artist";
+
+            }
+
+
+            if (
+                playerCover &&
+                track.cover
+            ) {
 
                 playerCover.style.backgroundImage =
                     `url("${track.cover}")`;
 
+                playerCover.style.backgroundSize =
+                    "cover";
+
+                playerCover.style.backgroundPosition =
+                    "center";
+
             }
 
-            playerCover.style.backgroundSize =
-                "cover";
 
-            playerCover.style.backgroundPosition =
-                "center";
+            audio.load();
 
-        }
-
-
-        audio.load();
-
-    };
+        };
 
 
     /* =====================================================
        PLAY
        ===================================================== */
 
-    window.playMbzedMusic = function() {
+    window.playMbzedMusic =
+        function() {
 
-        if (
-            !audio.src &&
-            musicTracks.length
-        ) {
+            if (
+                !musicTracks.length
+            ) {
 
-            window.loadMbzedTrack(
-                currentTrack
-            );
-
-        }
-
-
-        audio.play()
-            .then(() => {
-
-                isPlaying =
-                    true;
-
-                updateMainPlayButton();
-
-                if (player) {
-
-                    player.classList.add(
-                        "active"
-                    );
-
-                }
-
-            })
-            .catch(error => {
-
-                console.error(
-                    "Music could not play:",
-                    error
+                console.warn(
+                    "MBZEDMUSIC: There are no songs available."
                 );
 
-            });
+                return;
 
-    };
+            }
+
+
+            if (
+                !audio.src
+            ) {
+
+                window.loadMbzedTrack(
+                    currentTrack
+                );
+
+            }
+
+
+            audio.play()
+                .then(
+                    () => {
+
+                        isPlaying =
+                            true;
+
+
+                        updateMainPlayButton();
+
+
+                        if (player) {
+
+                            player.classList.add(
+                                "active"
+                            );
+
+                        }
+
+                    }
+                )
+                .catch(
+                    error => {
+
+                        console.error(
+                            "MBZEDMUSIC: Music could not play:",
+                            error
+                        );
+
+                    }
+                );
+
+        };
 
 
     /* =====================================================
        PAUSE
        ===================================================== */
 
-    window.pauseMbzedMusic = function() {
+    window.pauseMbzedMusic =
+        function() {
 
-        audio.pause();
+            audio.pause();
 
-        isPlaying =
-            false;
+            isPlaying =
+                false;
 
-        updateMainPlayButton();
+            updateMainPlayButton();
 
-    };
+        };
 
 
     /* =====================================================
-       TOGGLE
+       TOGGLE PLAY
        ===================================================== */
 
     function toggleMusic() {
@@ -300,10 +383,12 @@ function setupMusicPlayer() {
 
 
     /* =====================================================
-       MAIN PLAYER BUTTON
+       MAIN PLAY BUTTON
        ===================================================== */
 
-    if (mainPlayerButton) {
+    if (
+        mainPlayerButton
+    ) {
 
         mainPlayerButton.addEventListener(
             "click",
@@ -314,7 +399,7 @@ function setupMusicPlayer() {
 
 
     /* =====================================================
-       PROGRESS
+       AUDIO PROGRESS
        ===================================================== */
 
     audio.addEventListener(
@@ -346,16 +431,20 @@ function setupMusicPlayer() {
 
 
     /* =====================================================
-       CLICK PROGRESS
+       PROGRESS BAR CLICK
        ===================================================== */
 
-    if (progressContainer) {
+    if (
+        progressContainer
+    ) {
 
         progressContainer.addEventListener(
             "click",
             event => {
 
-                if (!audio.duration) {
+                if (
+                    !audio.duration
+                ) {
 
                     return;
 
@@ -363,8 +452,7 @@ function setupMusicPlayer() {
 
 
                 const rect =
-                    progressContainer
-                        .getBoundingClientRect();
+                    progressContainer.getBoundingClientRect();
 
 
                 const clickPosition =
@@ -398,9 +486,13 @@ function setupMusicPlayer() {
             isPlaying =
                 false;
 
+
             updateMainPlayButton();
 
-            if (progressBar) {
+
+            if (
+                progressBar
+            ) {
 
                 progressBar.style.width =
                     "0%";
@@ -412,12 +504,14 @@ function setupMusicPlayer() {
 
 
     /* =====================================================
-       UPDATE MAIN BUTTON
+       UPDATE PLAY BUTTON
        ===================================================== */
 
     function updateMainPlayButton() {
 
-        if (!mainPlayerButton) {
+        if (
+            !mainPlayerButton
+        ) {
 
             return;
 
@@ -437,7 +531,9 @@ function setupMusicPlayer() {
         }
 
 
-        if (isPlaying) {
+        if (
+            isPlaying
+        ) {
 
             icon.classList.remove(
                 "fa-play"
@@ -462,37 +558,7 @@ function setupMusicPlayer() {
     }
 
 
-    /* =====================================================
-       SMALL PLAY BUTTONS
-       ===================================================== */
-
     attachPlayButtons();
-
-
-    /* =====================================================
-       INITIAL DEFAULT TRACK
-       ===================================================== */
-
-    musicTracks = [
-
-        {
-            title: "MB LEVELS",
-
-            artist:
-                "Mr. Kings ft. Bravo Uja Lapa, Shax Morefire & Trykash Wayayo",
-
-            cover:
-                "mb-levels-cover.jpg.jpeg",
-
-            audio:
-                "MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3"
-
-        }
-
-    ];
-
-
-    window.loadMbzedTrack(0);
 
 }
 
@@ -511,8 +577,6 @@ function attachPlayButtons() {
 
     playButtons.forEach(
         button => {
-
-            /* Prevent duplicate listeners */
 
             if (
                 button.dataset.mbzedReady ===
@@ -537,42 +601,62 @@ function attachPlayButtons() {
                     event.stopPropagation();
 
 
-                    /* =================================================
-                       BUTTON DATA
-                       ================================================= */
-
                     const title =
-                        button.dataset.title;
+                        button.dataset.title ||
+                        "Unknown Song";
+
 
                     const artist =
-                        button.dataset.artist;
+                        button.dataset.artist ||
+                        "Unknown Artist";
+
 
                     const audioUrl =
                         button.dataset.audio;
 
 
-                    /* =================================================
-                       IF BUTTON CONTAINS SONG DATA
-                       ================================================= */
+                    const cover =
+                        button.dataset.cover ||
+                        "mb-levels-cover.jpg.jpeg";
+
 
                     if (
-                        audioUrl
+                        !audioUrl
                     ) {
 
-                        const cover =
-                            button.dataset.cover ||
-                            "mb-levels-cover.jpg.jpeg";
+                        console.warn(
+                            "MBZEDMUSIC: This song has no audio URL."
+                        );
+
+                        return;
+
+                    }
 
 
-                        const track = {
+                    const existingIndex =
+                        musicTracks.findIndex(
+                            track =>
+                                track.audio ===
+                                audioUrl
+                        );
+
+
+                    if (
+                        existingIndex >= 0
+                    ) {
+
+                        currentTrack =
+                            existingIndex;
+
+                    } else {
+
+                        musicTracks.push({
 
                             title:
-                                title ||
-                                "Unknown Song",
+                                title,
 
                             artist:
-                                artist ||
-                                "Unknown Artist",
+                                artist,
 
                             audio:
                                 audioUrl,
@@ -580,67 +664,21 @@ function attachPlayButtons() {
                             cover:
                                 cover
 
-                        };
+                        });
 
-
-                        const existingIndex =
-                            musicTracks.findIndex(
-                                item =>
-                                    item.audio ===
-                                    audioUrl
-                            );
-
-
-                        if (
-                            existingIndex >=
-                            0
-                        ) {
-
-                            currentTrack =
-                                existingIndex;
-
-                        } else {
-
-                            musicTracks.push(
-                                track
-                            );
-
-                            currentTrack =
-                                musicTracks.length -
-                                1;
-
-                        }
-
-
-                        window.loadMbzedTrack(
-                            currentTrack
-                        );
-
-                        window.playMbzedMusic();
-
-                        return;
-
-                    }
-
-
-                    /* =================================================
-                       DEFAULT FIRST TRACK
-                       ================================================= */
-
-                    if (
-                        musicTracks.length
-                    ) {
 
                         currentTrack =
-                            0;
-
-                        window.loadMbzedTrack(
-                            currentTrack
-                        );
-
-                        window.playMbzedMusic();
+                            musicTracks.length - 1;
 
                     }
+
+
+                    window.loadMbzedTrack(
+                        currentTrack
+                    );
+
+
+                    window.playMbzedMusic();
 
                 }
             );
@@ -657,10 +695,17 @@ function attachPlayButtons() {
 
 async function loadSongsFromSupabase() {
 
-    if (!mbzedSupabase) {
+    console.log(
+        "MBZEDMUSIC: Loading songs..."
+    );
 
-        console.warn(
-            "Supabase is not ready yet."
+
+    if (
+        !mbzedSupabase
+    ) {
+
+        console.error(
+            "MBZEDMUSIC: Supabase client is missing."
         );
 
         return;
@@ -670,19 +715,11 @@ async function loadSongsFromSupabase() {
 
     try {
 
-        console.log(
-            "MBZEDMUSIC: Loading songs..."
-        );
-
-
-        const {
-            data,
-            error
-        } =
+        const response =
             await mbzedSupabase
                 .from("songs")
                 .select(
-                    "id,title,artist_name,genre,release_year,description,audio_url,cover_url,created_at"
+                    "id,user_id,title,artist_name,genre,release_year,description,audio_url,cover_url,created_at"
                 )
                 .order(
                     "created_at",
@@ -693,10 +730,20 @@ async function loadSongsFromSupabase() {
                 );
 
 
-        if (error) {
+        const data =
+            response.data;
+
+
+        const error =
+            response.error;
+
+
+        if (
+            error
+        ) {
 
             console.error(
-                "Could not load songs:",
+                "MBZEDMUSIC: Could not load songs:",
                 error
             );
 
@@ -705,122 +752,130 @@ async function loadSongsFromSupabase() {
         }
 
 
+        console.log(
+            "MBZEDMUSIC: Songs returned from Supabase:",
+            data
+        );
+
+
         if (
             !data ||
             data.length === 0
         ) {
 
             console.log(
-                "No uploaded songs found."
+                "MBZEDMUSIC: No uploaded songs found."
             );
+
+            showNoSongsMessage();
 
             return;
 
         }
 
 
-        console.log(
-            "MBZEDMUSIC songs:",
+        /* =================================================
+           CONVERT DATABASE SONGS TO PLAYER TRACKS
+           ================================================= */
+
+        musicTracks =
             data
+                .filter(
+                    song =>
+                        song.audio_url
+                )
+                .map(
+                    song => ({
+
+                        id:
+                            song.id,
+
+                        title:
+                            song.title ||
+                            "Untitled",
+
+                        artist:
+                            song.artist_name ||
+                            "Unknown Artist",
+
+                        genre:
+                            song.genre ||
+                            "",
+
+                        cover:
+                            song.cover_url ||
+                            "mb-levels-cover.jpg.jpeg",
+
+                        audio:
+                            song.audio_url,
+
+                        description:
+                            song.description ||
+                            "",
+
+                        releaseYear:
+                            song.release_year ||
+                            "",
+
+                        createdAt:
+                            song.created_at ||
+                            ""
+
+                    })
+                );
+
+
+        console.log(
+            "MBZEDMUSIC: Player tracks:",
+            musicTracks
         );
 
 
-        /* =====================================================
-           CONVERT SUPABASE SONGS TO PLAYER TRACKS
-           ===================================================== */
+        if (
+            musicTracks.length === 0
+        ) {
 
-        const databaseTracks =
-            data
-                .filter(song =>
-                    song.audio_url
-                )
-                .map(song => ({
+            console.warn(
+                "MBZEDMUSIC: Songs exist, but none have an audio_url."
+            );
 
-                    id:
-                        song.id,
+            showNoSongsMessage();
 
-                    title:
-                        song.title ||
-                        "Untitled",
+            return;
 
-                    artist:
-                        song.artist_name ||
-                        "Unknown Artist",
-
-                    genre:
-                        song.genre ||
-                        "",
-
-                    cover:
-                        song.cover_url ||
-                        "mb-levels-cover.jpg.jpeg",
-
-                    audio:
-                        song.audio_url,
-
-                    description:
-                        song.description ||
-                        "",
-
-                    releaseYear:
-                        song.release_year ||
-                        "",
-
-                    createdAt:
-                        song.created_at ||
-                        ""
-
-                }));
+        }
 
 
-        /* =====================================================
-           USE DATABASE SONGS
-           ===================================================== */
-
-        musicTracks =
-            databaseTracks;
-
-
-        /* =====================================================
-           CREATE HOMEPAGE CONTENT
-           ===================================================== */
+        /* =================================================
+           RENDER HOMEPAGE
+           ================================================= */
 
         renderTrendingSongs(
             data
         );
 
+
         renderNewReleases(
             data
         );
+
 
         renderChartSongs(
             data
         );
 
 
-        /* =====================================================
-           RECONNECT PLAY BUTTONS
-           ===================================================== */
-
-        attachPlayButtons();
-
-
-        /* =====================================================
+        /* =================================================
            LOAD FIRST SONG
-           ===================================================== */
+           ================================================= */
 
-        if (
-            musicTracks.length
-        ) {
+        currentTrack =
+            0;
 
-            currentTrack =
-                0;
 
-            window.loadMbzedTrack(
-                currentTrack
-            );
-
-        }
+        window.loadMbzedTrack(
+            currentTrack
+        );
 
 
         console.log(
@@ -830,7 +885,7 @@ async function loadSongsFromSupabase() {
     } catch (error) {
 
         console.error(
-            "MBZEDMUSIC loading error:",
+            "MBZEDMUSIC: Unexpected loading error:",
             error
         );
 
@@ -840,7 +895,108 @@ async function loadSongsFromSupabase() {
 
 
 /* =========================================================
-   CREATE SONG OBJECT
+   SHOW NO SONGS MESSAGE
+   ========================================================= */
+
+function showNoSongsMessage() {
+
+    const trackList =
+        document.querySelector(
+            ".track-list"
+        );
+
+
+    if (
+        trackList
+    ) {
+
+        trackList.innerHTML = `
+
+            <div class="empty-music-message">
+
+                <i class="fa-solid fa-music"></i>
+
+                <h3>
+                    No music uploaded yet
+                </h3>
+
+                <p>
+                    Be the first artist to upload music.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+    const releaseGrid =
+        document.querySelector(
+            ".release-grid"
+        );
+
+
+    if (
+        releaseGrid
+    ) {
+
+        releaseGrid.innerHTML = `
+
+            <div class="empty-music-message">
+
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                <h3>
+                    No new releases yet
+                </h3>
+
+                <p>
+                    Upload your music to appear here.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+
+    const chartList =
+        document.querySelector(
+            ".chart-list"
+        );
+
+
+    if (
+        chartList
+    ) {
+
+        chartList.innerHTML = `
+
+            <div class="empty-music-message">
+
+                <i class="fa-solid fa-chart-line"></i>
+
+                <h3>
+                    Chart is waiting for music
+                </h3>
+
+                <p>
+                    Upload songs to start the chart.
+                </p>
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   CREATE TRENDING SONG HTML
    ========================================================= */
 
 function createSongHTML(
@@ -867,7 +1023,7 @@ function createSongHTML(
         "mb-levels-cover.jpg.jpeg";
 
 
-    const audio =
+    const audioUrl =
         song.audio_url ||
         "";
 
@@ -905,6 +1061,7 @@ function createSongHTML(
 
             </div>
 
+
             <button
                 class="play-button"
                 type="button"
@@ -913,7 +1070,7 @@ function createSongHTML(
 
                 data-artist="${escapeAttribute(song.artist_name || "Unknown Artist")}"
 
-                data-audio="${escapeAttribute(audio)}"
+                data-audio="${escapeAttribute(audioUrl)}"
 
                 data-cover="${escapeAttribute(cover)}"
 
@@ -931,7 +1088,7 @@ function createSongHTML(
 
 
 /* =========================================================
-   TRENDING SONGS
+   TRENDING
    ========================================================= */
 
 function renderTrendingSongs(
@@ -944,7 +1101,13 @@ function renderTrendingSongs(
         );
 
 
-    if (!container) {
+    if (
+        !container
+    ) {
+
+        console.warn(
+            "MBZEDMUSIC: Trending container not found."
+        );
 
         return;
 
@@ -952,13 +1115,20 @@ function renderTrendingSongs(
 
 
     const trending =
-        songs.slice(
-            0,
-            5
-        );
+        songs
+            .filter(
+                song =>
+                    song.audio_url
+            )
+            .slice(
+                0,
+                10
+            );
 
 
-    if (!trending.length) {
+    if (
+        !trending.length
+    ) {
 
         return;
 
@@ -968,7 +1138,10 @@ function renderTrendingSongs(
     container.innerHTML =
         trending
             .map(
-                (song, index) =>
+                (
+                    song,
+                    index
+                ) =>
                     createSongHTML(
                         song,
                         index + 1
@@ -996,7 +1169,13 @@ function renderNewReleases(
         );
 
 
-    if (!container) {
+    if (
+        !container
+    ) {
+
+        console.warn(
+            "MBZEDMUSIC: New releases container not found."
+        );
 
         return;
 
@@ -1004,13 +1183,20 @@ function renderNewReleases(
 
 
     const releases =
-        songs.slice(
-            0,
-            8
-        );
+        songs
+            .filter(
+                song =>
+                    song.audio_url
+            )
+            .slice(
+                0,
+                8
+            );
 
 
-    if (!releases.length) {
+    if (
+        !releases.length
+    ) {
 
         return;
 
@@ -1055,10 +1241,9 @@ function renderNewReleases(
                                     NEW
                                 </span>
 
+
                                 <button
-
                                     class="card-play"
-
                                     type="button"
 
                                     data-title="${escapeAttribute(song.title || "Untitled")}"
@@ -1077,9 +1262,11 @@ function renderNewReleases(
 
                             </div>
 
+
                             <h3>
                                 ${title}
                             </h3>
+
 
                             <p>
                                 ${artist}
@@ -1100,7 +1287,7 @@ function renderNewReleases(
 
 
 /* =========================================================
-   CHART SONGS
+   CHART
    ========================================================= */
 
 function renderChartSongs(
@@ -1113,7 +1300,13 @@ function renderChartSongs(
         );
 
 
-    if (!container) {
+    if (
+        !container
+    ) {
+
+        console.warn(
+            "MBZEDMUSIC: Chart container not found."
+        );
 
         return;
 
@@ -1121,13 +1314,20 @@ function renderChartSongs(
 
 
     const chartSongs =
-        songs.slice(
-            0,
-            10
-        );
+        songs
+            .filter(
+                song =>
+                    song.audio_url
+            )
+            .slice(
+                0,
+                10
+            );
 
 
-    if (!chartSongs.length) {
+    if (
+        !chartSongs.length
+    ) {
 
         return;
 
@@ -1137,7 +1337,10 @@ function renderChartSongs(
     container.innerHTML =
         chartSongs
             .map(
-                (song, index) => {
+                (
+                    song,
+                    index
+                ) => {
 
                     const title =
                         escapeHtml(
@@ -1166,13 +1369,13 @@ function renderChartSongs(
                                 ${index + 1}
                             </span>
 
-                            <div
 
+                            <div
                                 class="mini-cover"
 
                                 style="background-image:url('${escapeAttribute(cover)}');"
-
                             ></div>
+
 
                             <div>
 
@@ -1180,16 +1383,16 @@ function renderChartSongs(
                                     ${title}
                                 </h3>
 
+
                                 <p>
                                     ${artist}
                                 </p>
 
                             </div>
 
+
                             <button
-
                                 class="play-button"
-
                                 type="button"
 
                                 data-title="${escapeAttribute(song.title || "Untitled")}"
@@ -1264,7 +1467,9 @@ function setupSearch() {
                 );
 
 
-                if (searchInput) {
+                if (
+                    searchInput
+                ) {
 
                     setTimeout(
                         () => {
@@ -1297,7 +1502,9 @@ function setupSearch() {
                 );
 
 
-                if (searchInput) {
+                if (
+                    searchInput
+                ) {
 
                     searchInput.value =
                         "";
@@ -1310,7 +1517,9 @@ function setupSearch() {
     }
 
 
-    if (searchInput) {
+    if (
+        searchInput
+    ) {
 
         searchInput.addEventListener(
             "keydown",
@@ -1332,7 +1541,9 @@ function setupSearch() {
                         .toLowerCase();
 
 
-                if (!query) {
+                if (
+                    !query
+                ) {
 
                     return;
 
@@ -1454,7 +1665,9 @@ function setupMobileMenu() {
                 );
 
 
-            if (!icon) {
+            if (
+                !icon
+            ) {
 
                 return;
 
@@ -1515,7 +1728,9 @@ function setupMobileMenu() {
                         );
 
 
-                    if (icon) {
+                    if (
+                        icon
+                    ) {
 
                         icon.classList.remove(
                             "fa-xmark"
@@ -1548,7 +1763,9 @@ function setupNewsletter() {
         );
 
 
-    if (!newsletterForm) {
+    if (
+        !newsletterForm
+    ) {
 
         return;
 
@@ -1568,7 +1785,9 @@ function setupNewsletter() {
                 );
 
 
-            if (!emailInput) {
+            if (
+                !emailInput
+            ) {
 
                 return;
 
@@ -1579,7 +1798,9 @@ function setupNewsletter() {
                 emailInput.value.trim();
 
 
-            if (!email) {
+            if (
+                !email
+            ) {
 
                 return;
 
@@ -1612,7 +1833,9 @@ function setupBackToTop() {
         );
 
 
-    if (!backToTop) {
+    if (
+        !backToTop
+    ) {
 
         return;
 
@@ -1710,7 +1933,9 @@ function escapeHtml(
     value
 ) {
 
-    return String(value)
+    return String(
+        value
+    )
         .replace(
             /&/g,
             "&amp;"
@@ -1751,8 +1976,25 @@ function escapeAttribute(
 
 
 /* =========================================================
-   CONSOLE
+   START
    ========================================================= */
+
+if (
+    document.readyState ===
+    "loading"
+) {
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        loadSupabase
+    );
+
+} else {
+
+    loadSupabase();
+
+}
+
 
 console.log(
     "MBZEDMUSIC.COM JavaScript loaded."
