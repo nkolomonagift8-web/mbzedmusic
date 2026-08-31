@@ -1,6 +1,11 @@
 /* =========================================================
    MBZEDMUSIC.COM
-   MAIN WEBSITE STYLESHEET
+   COMPLETE MAIN STYLESHEET
+   Designed for the current Mbzedmusic homepage
+   ========================================================= */
+
+/* =========================================================
+   1. RESET
    ========================================================= */
 
 * {
@@ -15,9 +20,10 @@ html {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #f5f5f5;
-    color: #111;
+    background: #f5f6f8;
+    color: #151515;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 img {
@@ -26,8 +32,8 @@ img {
 }
 
 a {
-    text-decoration: none;
     color: inherit;
+    text-decoration: none;
 }
 
 button,
@@ -48,20 +54,20 @@ button {
 
 
 /* =========================================================
-   TOP BAR
+   2. TOP BAR
    ========================================================= */
 
 .top-bar {
-    background: #050505;
-    color: #fff;
+    background: #111111;
+    color: #ffffff;
     font-size: 13px;
     padding: 9px 0;
 }
 
 .top-content {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     gap: 20px;
 }
 
@@ -76,46 +82,48 @@ button {
 }
 
 .top-links a {
-    color: #fff;
-    transition: 0.3s ease;
+    color: #ffffff;
+    transition: 0.25s ease;
 }
 
 .top-links a:hover {
-    color: #19c463;
+    color: #f4c400;
 }
 
 
 /* =========================================================
-   HEADER / NAVIGATION
+   3. HEADER / NAVIGATION
    ========================================================= */
 
 .header {
-    background: #fff;
-    border-bottom: 1px solid #e5e5e5;
     position: sticky;
     top: 0;
     z-index: 1000;
+    background: #ffffff;
+    border-bottom: 1px solid #e6e6e6;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.06);
 }
 
 .nav-container {
     min-height: 82px;
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 28px;
 }
 
 
 /* LOGO */
 
 .logo-link {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
-    flex-shrink: 0;
 }
 
 .logo {
-    width: 105px;
-    height: 60px;
+    width: 155px;
+    height: auto;
+    max-height: 62px;
     object-fit: contain;
 }
 
@@ -123,24 +131,41 @@ button {
 /* NAVIGATION */
 
 .navigation {
-    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 22px;
+    flex: 1;
 }
 
 .navigation a {
-    font-size: 13px;
+    position: relative;
+    color: #171717;
+    font-size: 12px;
     font-weight: 800;
     letter-spacing: 0.4px;
-    color: #111;
+    padding: 30px 0;
     white-space: nowrap;
-    transition: color 0.3s ease;
+    transition: color 0.25s ease;
+}
+
+.navigation a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 21px;
+    width: 0;
+    height: 3px;
+    background: #f4c400;
+    transition: width 0.25s ease;
 }
 
 .navigation a:hover {
-    color: #18a957;
+    color: #d49f00;
+}
+
+.navigation a:hover::after {
+    width: 100%;
 }
 
 
@@ -155,93 +180,91 @@ button {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    background: #19b85b;
-    color: #fff;
+    background: #111111;
+    color: #ffffff;
     padding: 12px 17px;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 12px;
     font-weight: 800;
-    transition: 0.3s ease;
+    transition: 0.25s ease;
 }
 
 .upload-button:hover {
-    background: #128d45;
-    transform: translateY(-1px);
+    background: #f4c400;
+    color: #111111;
+    transform: translateY(-2px);
 }
 
 
 /* =========================================================
-   HERO
+   4. HERO
    ========================================================= */
 
 .hero {
     position: relative;
-    min-height: 590px;
+    min-height: 570px;
     display: flex;
     align-items: center;
     overflow: hidden;
     background:
         linear-gradient(
-            90deg,
+            110deg,
             rgba(0, 0, 0, 0.90),
-            rgba(0, 0, 0, 0.62),
-            rgba(0, 0, 0, 0.30)
+            rgba(0, 0, 0, 0.66),
+            rgba(0, 0, 0, 0.28)
         ),
-        url("hero.jpg") center/cover no-repeat;
+        linear-gradient(
+            135deg,
+            #111111,
+            #303030
+        );
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background:
-        radial-gradient(
-            circle at 80% 50%,
-            rgba(25, 196, 99, 0.18),
-            transparent 40%
-        );
+    pointer-events: none;
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
-    color: #fff;
+    color: #ffffff;
+    padding: 85px 0;
     max-width: 760px;
-    padding: 80px 0;
 }
 
-.hero-content p {
-    font-size: 18px;
-    max-width: 650px;
-    margin: 20px 0 30px;
-    color: #eee;
+.hero-content p:first-child {
+    color: #f4c400;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
 }
 
 .hero h1 {
-    font-size: clamp(46px, 6vw, 78px);
+    font-size: clamp(48px, 7vw, 86px);
     line-height: 0.98;
     font-weight: 950;
-    letter-spacing: -2px;
+    letter-spacing: -3px;
+    margin-bottom: 25px;
 }
 
 .hero h1 span {
-    color: #19c463;
+    color: #f4c400;
 }
 
-.hero-small-title {
-    font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 3px;
-    color: #19c463;
-    margin-bottom: 15px;
+.hero p {
+    max-width: 650px;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.88);
+    margin-bottom: 32px;
 }
-
-
-/* HERO BUTTONS */
 
 .hero-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 14px;
+    gap: 13px;
 }
 
 .primary-button,
@@ -250,142 +273,148 @@ button {
     align-items: center;
     justify-content: center;
     gap: 9px;
-    padding: 14px 23px;
-    border-radius: 5px;
+    min-height: 48px;
+    padding: 13px 24px;
+    border-radius: 6px;
     font-size: 13px;
     font-weight: 900;
-    transition: 0.3s ease;
+    border: 2px solid transparent;
+    transition: 0.25s ease;
 }
 
 .primary-button {
-    background: #19b85b;
-    color: #fff;
+    background: #f4c400;
+    color: #111111;
 }
 
 .primary-button:hover {
-    background: #128d45;
+    background: #ffffff;
     transform: translateY(-2px);
 }
 
 .secondary-button {
-    background: #fff;
-    color: #111;
+    background: transparent;
+    border-color: #ffffff;
+    color: #ffffff;
 }
 
 .secondary-button:hover {
-    background: #19b85b;
-    color: #fff;
+    background: #ffffff;
+    color: #111111;
 }
 
 
 /* =========================================================
-   SECTION HEADINGS
+   5. GENERAL SECTIONS
    ========================================================= */
 
 section {
-    scroll-margin-top: 100px;
+    scroll-margin-top: 90px;
+}
+
+.music-section,
+.genres-section,
+.artist-banner,
+.news-section,
+.about-section,
+.contact-section {
+    padding: 75px 0;
 }
 
 .section-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: end;
     gap: 20px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .section-header h2 {
-    font-size: clamp(25px, 3vw, 36px);
+    font-size: clamp(28px, 4vw, 40px);
     line-height: 1.1;
     font-weight: 950;
-    letter-spacing: -0.7px;
+    letter-spacing: -1px;
 }
 
-.section-header a {
-    color: #19a954;
-    font-size: 13px;
-    font-weight: 800;
+.section-header p {
+    margin-top: 7px;
+    color: #777777;
+}
+
+.view-all {
+    color: #111111;
+    font-size: 12px;
+    font-weight: 900;
+    border-bottom: 2px solid #f4c400;
+    padding-bottom: 4px;
+    white-space: nowrap;
+}
+
+.view-all:hover {
+    color: #d49f00;
 }
 
 
 /* =========================================================
-   MUSIC SECTION
+   6. MUSIC PANELS
    ========================================================= */
-
-.music-section {
-    padding: 70px 0;
-    background: #fff;
-}
 
 .music-grid {
     display: grid;
-    grid-template-columns: 1.3fr 1fr 1fr;
-    gap: 25px;
+    grid-template-columns: 1.25fr 1fr 1fr;
+    gap: 22px;
 }
 
 .music-panel {
-    background: #fff;
-    border: 1px solid #e5e5e5;
-    border-radius: 9px;
-    overflow: hidden;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.06);
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #e7e7e7;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
 }
 
-.music-panel-header {
-    padding: 20px 22px;
-    background: #111;
-    color: #fff;
-}
-
-.music-panel-header h2 {
+.music-panel h2 {
     font-size: 20px;
-    font-weight: 900;
+    font-weight: 950;
+    margin-bottom: 20px;
 }
-
-.music-panel-header a {
-    color: #19c463;
-    font-size: 12px;
-    font-weight: 800;
-}
-
-
-/* =========================================================
-   TRACK LIST
-   ========================================================= */
 
 .track-list {
     display: flex;
     flex-direction: column;
 }
 
+
+/* =========================================================
+   7. TRACKS
+   ========================================================= */
+
 .track {
-    min-height: 86px;
-    padding: 13px 16px;
     display: grid;
-    grid-template-columns: 30px 62px 1fr 42px;
+    grid-template-columns: 30px 52px 1fr 42px;
     align-items: center;
-    gap: 13px;
-    border-bottom: 1px solid #eee;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eeeeee;
 }
 
 .track:last-child {
-    border-bottom: none;
+    border-bottom: 0;
 }
 
 .track-number {
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 900;
-    color: #999;
+    color: #999999;
     text-align: center;
 }
 
 .track-image {
-    width: 62px;
-    height: 62px;
-    border-radius: 5px;
-    background-size: cover;
-    background-position: center;
-    background-color: #ddd;
+    width: 52px;
+    height: 52px;
+    border-radius: 7px;
+    background: #dddddd center / cover no-repeat;
+    flex-shrink: 0;
 }
 
 .track-info {
@@ -393,7 +422,7 @@ section {
 }
 
 .track-info h3 {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 900;
     white-space: nowrap;
     overflow: hidden;
@@ -401,9 +430,8 @@ section {
 }
 
 .track-info p {
-    margin-top: 3px;
+    color: #777777;
     font-size: 12px;
-    color: #777;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -414,33 +442,34 @@ section {
 
 .play-button,
 .card-play {
-    border: none;
+    border: 0;
+    background: #111111;
+    color: #ffffff;
     width: 38px;
     height: 38px;
     border-radius: 50%;
-    background: #19b85b;
-    color: #fff;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: 0.3s ease;
+    transition: 0.25s ease;
 }
 
 .play-button:hover,
 .card-play:hover {
-    background: #111;
+    background: #f4c400;
+    color: #111111;
     transform: scale(1.08);
+}
+
+.play-button i,
+.card-play i {
+    font-size: 12px;
 }
 
 
 /* =========================================================
-   NEW RELEASES
+   8. NEW RELEASES
    ========================================================= */
-
-.releases-section {
-    padding: 70px 0;
-    background: #f5f5f5;
-}
 
 .release-grid {
     display: grid;
@@ -449,98 +478,110 @@ section {
 }
 
 .release-card {
-    background: #fff;
-    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #e7e7e7;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
     transition: 0.3s ease;
 }
 
 .release-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.10);
 }
 
 .release-image {
     position: relative;
     aspect-ratio: 1 / 1;
-    background-size: cover;
-    background-position: center;
-    background-color: #ddd;
+    background: #dddddd center / cover no-repeat;
+    overflow: hidden;
+}
+
+.release-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.35),
+        transparent 45%
+    );
+    pointer-events: none;
 }
 
 .release-image .card-play {
     position: absolute;
-    right: 14px;
-    bottom: 14px;
+    right: 15px;
+    bottom: 15px;
+    z-index: 2;
+    width: 46px;
+    height: 46px;
 }
 
 .new-label {
     position: absolute;
-    top: 12px;
-    left: 12px;
-    background: #19b85b;
-    color: #fff;
+    top: 13px;
+    left: 13px;
+    z-index: 3;
+    background: #f4c400;
+    color: #111111;
     padding: 5px 9px;
-    border-radius: 3px;
+    border-radius: 4px;
     font-size: 10px;
-    font-weight: 900;
+    font-weight: 950;
 }
 
 .release-card h3 {
-    padding: 15px 15px 3px;
+    padding: 15px 16px 3px;
     font-size: 16px;
     font-weight: 900;
 }
 
 .release-card p {
-    padding: 0 15px 17px;
-    color: #777;
+    padding: 0 16px 18px;
+    color: #777777;
     font-size: 13px;
 }
 
 
 /* =========================================================
-   CHART
+   9. CHART
    ========================================================= */
 
-.chart-section {
-    padding: 70px 0;
-    background: #fff;
-}
-
 .chart-list {
-    background: #111;
-    border-radius: 9px;
+    background: #ffffff;
+    border: 1px solid #e7e7e7;
+    border-radius: 12px;
     overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
 }
 
 .chart-item {
     display: grid;
-    grid-template-columns: 45px 60px 1fr 42px;
+    grid-template-columns: 35px 58px 1fr 42px;
     align-items: center;
-    gap: 15px;
+    gap: 14px;
     padding: 14px 20px;
-    color: #fff;
-    border-bottom: 1px solid #292929;
+    border-bottom: 1px solid #eeeeee;
 }
 
 .chart-item:last-child {
-    border-bottom: none;
+    border-bottom: 0;
 }
 
 .chart-item > span {
-    font-size: 20px;
-    font-weight: 900;
-    color: #19c463;
+    font-size: 18px;
+    font-weight: 950;
+    color: #999999;
     text-align: center;
 }
 
 .mini-cover {
     width: 58px;
     height: 58px;
-    border-radius: 5px;
-    background-size: cover;
-    background-position: center;
+    border-radius: 7px;
+    background: #ddd center / cover no-repeat;
 }
 
 .chart-item h3 {
@@ -549,256 +590,264 @@ section {
 }
 
 .chart-item p {
-    color: #aaa;
     font-size: 12px;
+    color: #777777;
 }
 
 
 /* =========================================================
-   GENRES
+   10. GENRES
    ========================================================= */
 
 .genres-section {
-    padding: 70px 0;
-    background: #f5f5f5;
+    background: #111111;
+    color: #ffffff;
+}
+
+.genres-section .section-header p {
+    color: #aaaaaa;
 }
 
 .genre-grid {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 14px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
 }
 
-.genre-item {
+.genre-card {
     min-height: 125px;
-    background: #fff;
-    border: 1px solid #e2e2e2;
-    border-radius: 8px;
+    background: #1d1d1d;
+    border: 1px solid #333333;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 12px;
+    gap: 10px;
+    padding: 18px;
+    transition: 0.25s ease;
+}
+
+.genre-card:hover {
+    background: #f4c400;
+    color: #111111;
+    transform: translateY(-4px);
+}
+
+.genre-card i {
+    font-size: 27px;
+}
+
+.genre-card h3 {
     font-size: 12px;
     font-weight: 900;
-    transition: 0.3s ease;
-}
-
-.genre-item i {
-    font-size: 27px;
-    color: #19b85b;
-}
-
-.genre-item:hover {
-    background: #111;
-    color: #fff;
-    transform: translateY(-4px);
 }
 
 
 /* =========================================================
-   ARTIST CTA
+   11. ARTIST BANNER
    ========================================================= */
 
-.artist-section {
-    padding: 80px 0;
+.artist-banner {
     background:
         linear-gradient(
-            100deg,
-            rgba(0, 0, 0, 0.94),
-            rgba(0, 0, 0, 0.75)
-        ),
-        url("artist-banner.jpg") center/cover no-repeat;
-    color: #fff;
+            110deg,
+            #f4c400,
+            #f7d94b
+        );
 }
 
-.artist-content {
-    max-width: 720px;
+.artist-banner .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
 }
 
-.artist-content h2 {
-    font-size: clamp(32px, 5vw, 58px);
+.artist-banner-content {
+    max-width: 700px;
+}
+
+.artist-banner h2 {
+    font-size: clamp(32px, 5vw, 55px);
     line-height: 1;
     font-weight: 950;
-    margin-bottom: 18px;
+    margin-bottom: 15px;
 }
 
-.artist-content h2 span {
-    color: #19c463;
-}
-
-.artist-content p {
-    color: #ddd;
+.artist-banner p {
     font-size: 17px;
-    margin-bottom: 27px;
+    max-width: 650px;
+    margin-bottom: 25px;
 }
+
+.artist-upload {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #111111;
+    color: #ffffff;
+    padding: 15px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 900;
+    transition: 0.25s ease;
+}
+
+.artist-upload:hover {
+    background: #ffffff;
+    color: #111111;
+    transform: translateY(-3px);
+}
+
+
+/* BENEFITS */
 
 .artist-benefits {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-    margin-top: 35px;
+    gap: 15px;
+    margin-top: 40px;
 }
 
 .artist-benefit {
+    background: rgba(255, 255, 255, 0.38);
+    border-radius: 9px;
     padding: 18px;
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 7px;
 }
 
 .artist-benefit i {
-    color: #19c463;
     font-size: 24px;
-    margin-bottom: 9px;
+    margin-bottom: 10px;
 }
 
 .artist-benefit h3 {
     font-size: 13px;
-    font-weight: 900;
+    font-weight: 950;
 }
 
 .artist-benefit p {
-    font-size: 11px;
-    margin: 3px 0 0;
+    font-size: 12px;
+    margin: 4px 0 0;
 }
 
 
 /* =========================================================
-   NEWS
+   12. NEWS
    ========================================================= */
-
-.news-section {
-    padding: 70px 0;
-    background: #fff;
-}
 
 .news-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 22px;
+    gap: 20px;
 }
 
 .news-card {
-    background: #f7f7f7;
-    padding: 25px;
-    border-radius: 8px;
+    background: #ffffff;
+    border-radius: 10px;
     border: 1px solid #e7e7e7;
-    transition: 0.3s ease;
+    padding: 22px;
+    min-height: 190px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.04);
+    transition: 0.25s ease;
 }
 
 .news-card:hover {
     transform: translateY(-4px);
 }
 
+.news-card span {
+    display: inline-block;
+    color: #b08300;
+    background: #fff4bd;
+    padding: 5px 9px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 900;
+    margin-bottom: 16px;
+}
+
 .news-card h3 {
     font-size: 18px;
     line-height: 1.25;
-    margin: 10px 0;
     font-weight: 900;
+    margin-bottom: 10px;
 }
 
 .news-card p {
-    color: #777;
-    font-size: 13px;
+    font-size: 12px;
+    color: #777777;
 }
 
 
 /* =========================================================
-   FOOTER
+   13. ABOUT
    ========================================================= */
 
-.footer {
-    background: #090909;
-    color: #fff;
-    padding-top: 60px;
+.about-section {
+    background: #ffffff;
 }
 
-.footer-grid {
-    display: grid;
-    grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
-    gap: 45px;
-    padding-bottom: 50px;
+.about-content {
+    max-width: 800px;
 }
 
-.footer-brand img {
-    width: 110px;
-    height: 65px;
-    object-fit: contain;
-    margin-bottom: 17px;
+.about-content h2 {
+    font-size: clamp(30px, 5vw, 48px);
+    font-weight: 950;
+    line-height: 1.05;
+    margin-bottom: 20px;
 }
 
-.footer-brand p,
-.footer-newsletter p {
-    color: #aaa;
-    font-size: 13px;
-    line-height: 1.8;
-}
-
-.footer-column {
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-}
-
-.footer-column h3,
-.footer-newsletter h3 {
-    font-size: 14px;
-    color: #19c463;
-    margin-bottom: 10px;
-    font-weight: 900;
-}
-
-.footer-column a {
-    color: #aaa;
-    font-size: 13px;
-    transition: 0.3s ease;
-}
-
-.footer-column a:hover {
-    color: #19c463;
-}
-
-.footer-newsletter form {
-    display: flex;
-    margin-top: 18px;
-}
-
-.footer-newsletter input {
-    min-width: 0;
-    flex: 1;
-    padding: 12px;
-    border: none;
-    outline: none;
-}
-
-.footer-newsletter button {
-    border: none;
-    background: #19b85b;
-    color: #fff;
-    padding: 0 15px;
-    font-size: 11px;
-    font-weight: 900;
-}
-
-.footer-bottom {
-    border-top: 1px solid #222;
-    padding: 20px 4%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    color: #888;
-    font-size: 12px;
-}
-
-.footer-bottom a {
-    color: #19c463;
+.about-content p {
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
 }
 
 
 /* =========================================================
-   MUSIC PLAYER
+   14. CONTACT
+   ========================================================= */
+
+.contact-section {
+    background: #f1f2f4;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.contact-card {
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+}
+
+.contact-card i {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.contact-card h3 {
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 5px;
+}
+
+.contact-card p {
+    color: #777777;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   15. MUSIC PLAYER
    ========================================================= */
 
 .music-player,
@@ -806,18 +855,20 @@ section {
     position: fixed;
     left: 20px;
     right: 20px;
-    bottom: 20px;
+    bottom: 18px;
     z-index: 2000;
-    background: #111;
-    color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 15px 45px rgba(0,0,0,0.3);
+    background: rgba(17, 17, 17, 0.97);
+    color: #ffffff;
+    border-radius: 12px;
     padding: 13px 18px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.28);
+    transform: translateY(150%);
+    transition: transform 0.35s ease;
 }
 
-.music-player:not(.active),
-#musicPlayer:not(.active) {
-    display: none;
+.music-player.active,
+#musicPlayer.active {
+    transform: translateY(0);
 }
 
 .player-inner {
@@ -829,15 +880,14 @@ section {
 .player-cover {
     width: 52px;
     height: 52px;
+    border-radius: 6px;
     flex-shrink: 0;
-    border-radius: 5px;
-    background-size: cover;
-    background-position: center;
+    background: #333333 center / cover no-repeat;
 }
 
 .player-info {
+    min-width: 160px;
     flex: 1;
-    min-width: 0;
 }
 
 #playerTitle {
@@ -846,172 +896,309 @@ section {
 }
 
 #playerArtist {
+    color: #aaaaaa;
     font-size: 12px;
-    color: #aaa;
 }
 
 .player-progress {
+    flex: 2;
     height: 5px;
-    background: #333;
+    background: #444444;
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
 }
 
 .player-progress div {
-    width: 0;
     height: 100%;
-    background: #19c463;
+    width: 0;
+    background: #f4c400;
+    border-radius: inherit;
+}
+
+#mainPlayerButton {
+    width: 45px;
+    height: 45px;
+    border: 0;
+    border-radius: 50%;
+    background: #f4c400;
+    color: #111111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+#mainPlayerButton:hover {
+    background: #ffffff;
 }
 
 
 /* =========================================================
-   SEARCH
+   16. SEARCH
    ========================================================= */
 
-.search-box {
+#searchBox {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.92);
     z-index: 3000;
+    background: rgba(0, 0, 0, 0.86);
     display: none;
     align-items: center;
     justify-content: center;
     padding: 25px;
 }
 
-.search-box.active {
+#searchBox.active {
     display: flex;
 }
 
-.search-box form {
+.search-inner {
     width: min(700px, 100%);
+    position: relative;
 }
 
-.search-box input {
+#searchInput {
     width: 100%;
-    padding: 18px 20px;
-    border: none;
-    border-radius: 6px;
-    outline: none;
+    background: #ffffff;
+    border: 0;
+    border-radius: 8px;
+    padding: 20px 55px 20px 20px;
     font-size: 20px;
+    outline: none;
 }
 
 #closeSearch {
     position: absolute;
-    top: 25px;
-    right: 30px;
-    border: none;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border: 0;
     background: transparent;
-    color: #fff;
-    font-size: 30px;
+    font-size: 22px;
+    color: #111111;
 }
 
 
 /* =========================================================
-   MOBILE MENU
+   17. FOOTER
+   ========================================================= */
+
+.footer {
+    background: #0d0d0d;
+    color: #ffffff;
+    padding-top: 65px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.4fr;
+    gap: 40px;
+    padding-bottom: 50px;
+}
+
+.footer-brand img {
+    width: 155px;
+    max-height: 65px;
+    object-fit: contain;
+    margin-bottom: 18px;
+}
+
+.footer-brand p {
+    max-width: 360px;
+    color: #aaaaaa;
+    font-size: 13px;
+}
+
+.footer-column,
+.footer-newsletter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.footer h3 {
+    font-size: 13px;
+    font-weight: 950;
+    margin-bottom: 18px;
+    color: #f4c400;
+}
+
+.footer-column a {
+    color: #aaaaaa;
+    font-size: 13px;
+    margin-bottom: 9px;
+    transition: 0.2s ease;
+}
+
+.footer-column a:hover {
+    color: #ffffff;
+}
+
+.footer-newsletter p {
+    color: #aaaaaa;
+    font-size: 13px;
+    margin-bottom: 15px;
+}
+
+.footer-newsletter form {
+    width: 100%;
+    display: flex;
+}
+
+.footer-newsletter input {
+    min-width: 0;
+    flex: 1;
+    border: 0;
+    outline: 0;
+    padding: 12px;
+    background: #222222;
+    color: #ffffff;
+}
+
+.footer-newsletter button {
+    border: 0;
+    background: #f4c400;
+    color: #111111;
+    padding: 0 15px;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.footer-bottom {
+    border-top: 1px solid #292929;
+    padding: 20px 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    color: #888888;
+    font-size: 11px;
+}
+
+.footer-bottom a {
+    color: #f4c400;
+}
+
+
+/* =========================================================
+   18. MOBILE MENU
    ========================================================= */
 
 #mobileMenu {
     display: none;
-    width: 42px;
-    height: 42px;
-    border: none;
-    background: #111;
-    color: #fff;
-    border-radius: 5px;
-    align-items: center;
-    justify-content: center;
+    border: 0;
+    background: transparent;
+    font-size: 25px;
+    color: #111111;
 }
 
 
 /* =========================================================
-   RESPONSIVE - TABLET
+   19. RESPONSIVE — TABLET
    ========================================================= */
 
 @media (max-width: 1050px) {
 
+    .nav-container {
+        gap: 18px;
+    }
+
     .navigation {
-        gap: 13px;
+        gap: 14px;
     }
 
     .navigation a {
-        font-size: 11px;
+        font-size: 10px;
     }
 
     .music-grid {
         grid-template-columns: 1fr 1fr;
     }
 
-    .music-panel:first-child {
+    .music-panel:last-child {
         grid-column: 1 / -1;
     }
 
-    .genre-grid {
-        grid-template-columns: repeat(4, 1fr);
+    .release-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .genre-grid,
+    .news-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .footer-grid {
         grid-template-columns: 1fr 1fr;
     }
-
 }
 
 
 /* =========================================================
-   RESPONSIVE - MOBILE
+   20. RESPONSIVE — MOBILE
    ========================================================= */
 
 @media (max-width: 760px) {
 
+    .container {
+        width: min(94%, 600px);
+    }
+
+
+    /* TOP BAR */
+
     .top-content {
         flex-direction: column;
-        text-align: center;
-        gap: 5px;
+        align-items: flex-start;
+        gap: 4px;
     }
 
     .top-bar {
         font-size: 11px;
     }
 
+
+    /* HEADER */
+
+    .header {
+        position: sticky;
+    }
+
     .nav-container {
-        min-height: 70px;
+        min-height: 72px;
         justify-content: space-between;
     }
 
     .logo {
-        width: 85px;
-        height: 50px;
-    }
-
-    .nav-actions {
-        margin-left: auto;
-        margin-right: 8px;
-    }
-
-    .nav-actions .upload-button {
-        padding: 10px 12px;
-        font-size: 10px;
+        width: 125px;
+        max-height: 52px;
     }
 
     #mobileMenu {
-        display: flex;
+        display: block;
+    }
+
+    .nav-actions {
+        display: none;
     }
 
     .navigation {
         position: absolute;
-        top: 70px;
         left: 0;
         right: 0;
-        background: #fff;
+        top: 72px;
         display: none;
         flex-direction: column;
         align-items: stretch;
-        justify-content: flex-start;
         gap: 0;
-        padding: 10px 5%;
-        border-top: 1px solid #eee;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+        background: #ffffff;
+        border-top: 1px solid #eeeeee;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.10);
+        max-height: calc(100vh - 72px);
+        overflow-y: auto;
     }
 
     .navigation.active {
@@ -1019,83 +1206,33 @@ section {
     }
 
     .navigation a {
-        padding: 14px 5px;
-        border-bottom: 1px solid #eee;
-        font-size: 13px;
+        padding: 15px 5%;
+        border-bottom: 1px solid #eeeeee;
+        font-size: 12px;
     }
 
+    .navigation a::after {
+        display: none;
+    }
+
+
+    /* HERO */
+
     .hero {
-        min-height: 520px;
+        min-height: 510px;
     }
 
     .hero-content {
-        padding: 60px 0;
+        padding: 65px 0;
     }
 
     .hero h1 {
-        font-size: 45px;
+        font-size: clamp(43px, 13vw, 65px);
+        letter-spacing: -2px;
     }
 
-    .hero-content p {
+    .hero p {
         font-size: 15px;
-    }
-
-    .music-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .music-panel:first-child {
-        grid-column: auto;
-    }
-
-    .release-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 14px;
-    }
-
-    .news-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-    }
-
-    .artist-benefits {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-    }
-
-}
-
-
-/* =========================================================
-   RESPONSIVE - SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 480px) {
-
-    .container {
-        width: 94%;
-    }
-
-    .logo {
-        width: 78px;
-        height: 48px;
-    }
-
-    .nav-actions .upload-button {
-        padding: 9px 10px;
-    }
-
-    .hero h1 {
-        font-size: 39px;
     }
 
     .hero-buttons {
@@ -1108,50 +1245,64 @@ section {
         width: 100%;
     }
 
+
+    /* SECTIONS */
+
+    .music-section,
+    .genres-section,
+    .artist-banner,
+    .news-section,
+    .about-section,
+    .contact-section {
+        padding: 55px 0;
+    }
+
     .section-header {
         align-items: flex-start;
         flex-direction: column;
+        margin-bottom: 22px;
     }
 
-    .track {
-        grid-template-columns: 24px 52px 1fr 38px;
-        gap: 9px;
-        padding: 11px;
+
+    /* MUSIC */
+
+    .music-grid {
+        grid-template-columns: 1fr;
     }
 
-    .track-image {
-        width: 52px;
-        height: 52px;
+    .music-panel:last-child {
+        grid-column: auto;
     }
 
-    .track-info h3 {
-        font-size: 13px;
+    .music-panel {
+        padding: 18px;
     }
 
-    .track-info p {
-        font-size: 10px;
-    }
+
+    /* RELEASES */
 
     .release-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .genre-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 13px;
     }
 
-    .artist-benefits {
-        grid-template-columns: 1fr;
+    .release-card h3 {
+        font-size: 14px;
+        padding: 11px 12px 2px;
     }
 
-    .news-grid {
-        grid-template-columns: 1fr;
+    .release-card p {
+        padding: 0 12px 13px;
+        font-size: 11px;
     }
+
+
+    /* CHART */
 
     .chart-item {
-        grid-template-columns: 30px 48px 1fr 38px;
+        grid-template-columns: 25px 48px 1fr 38px;
+        padding: 11px 13px;
         gap: 9px;
-        padding: 11px;
     }
 
     .mini-cover {
@@ -1159,11 +1310,213 @@ section {
         height: 48px;
     }
 
+
+    /* GENRES */
+
+    .genre-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    /* ARTIST */
+
+    .artist-banner .container {
+        display: block;
+    }
+
+    .artist-banner h2 {
+        font-size: 38px;
+    }
+
+    .artist-banner p {
+        font-size: 14px;
+    }
+
+    .artist-benefits {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    /* NEWS */
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* CONTACT */
+
+    .contact-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    /* FOOTER */
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+
+
+    /* PLAYER */
+
     .music-player,
     #musicPlayer {
         left: 8px;
         right: 8px;
         bottom: 8px;
+        padding: 10px;
     }
 
+    .player-inner {
+        gap: 9px;
+    }
+
+    .player-cover {
+        width: 44px;
+        height: 44px;
+    }
+
+    .player-info {
+        min-width: 0;
+    }
+
+    #playerTitle {
+        font-size: 12px;
+    }
+
+    #playerArtist {
+        font-size: 10px;
+    }
+
+    .player-progress {
+        display: none;
+    }
+
+    #mainPlayerButton {
+        width: 40px;
+        height: 40px;
+    }
+
+}
+
+
+/* =========================================================
+   21. VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .logo {
+        width: 110px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .release-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .genre-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .artist-benefits {
+        grid-template-columns: 1fr;
+    }
+
+    .track {
+        grid-template-columns: 25px 45px 1fr 36px;
+        gap: 8px;
+    }
+
+    .track-image {
+        width: 45px;
+        height: 45px;
+    }
+
+    .play-button {
+        width: 34px;
+        height: 34px;
+    }
+
+}
+
+
+/* =========================================================
+   22. ACCESSIBILITY
+   ========================================================= */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #f4c400;
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   23. SELECTION
+   ========================================================= */
+
+::selection {
+    background: #f4c400;
+    color: #111111;
+}
+
+
+/* =========================================================
+   24. SCROLLBAR
+   ========================================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: #eeeeee;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #777777;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #333333;
+}
+
+
+/* =========================================================
+   25. FINAL POLISH
+   ========================================================= */
+
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.no-results {
+    padding: 30px;
+    text-align: center;
+    color: #777777;
+}
+
+.loading {
+    padding: 30px;
+    text-align: center;
+    color: #777777;
 }
