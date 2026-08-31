@@ -1,3 +1,12 @@
+/* =========================================================
+   MBZEDMUSIC.COM
+   PROFESSIONAL MAIN WEBSITE STYLESHEET
+   ========================================================= */
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -13,6 +22,7 @@ body {
     background: #080808;
     color: #ffffff;
     line-height: 1.6;
+    overflow-x: hidden;
 }
 
 a {
@@ -20,37 +30,60 @@ a {
     text-decoration: none;
 }
 
-button {
+button,
+input,
+textarea,
+select {
     font-family: inherit;
+}
+
+button {
     cursor: pointer;
 }
 
+img {
+    max-width: 100%;
+    display: block;
+}
+
 .container {
-    width: min(1200px, 92%);
-    margin: auto;
+    width: min(1320px, 92%);
+    margin: 0 auto;
 }
 
 
-/* TOP BAR */
+/* =========================================================
+   TOP BAR
+   ========================================================= */
 
 .top-bar {
-    background: #111111;
+    background: #101010;
     border-bottom: 1px solid #292929;
-    font-size: 13px;
-    color: #bbbbbb;
+    color: #bdbdbd;
+    font-size: 14px;
 }
 
 .top-content {
-    min-height: 42px;
+    min-height: 44px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 25px;
+}
+
+.top-welcome {
+    font-weight: 500;
 }
 
 .top-links {
     display: flex;
-    gap: 10px;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+}
+
+.top-links a {
+    transition: .25s ease;
 }
 
 .top-links a:hover {
@@ -58,41 +91,76 @@ button {
 }
 
 
-/* HEADER */
+/* =========================================================
+   HEADER
+   ========================================================= */
 
 .header {
-    background: #050505;
+    background: rgba(5, 5, 5, .98);
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid #222;
+    border-bottom: 1px solid #242424;
+    backdrop-filter: blur(10px);
 }
 
 .nav-container {
-    min-height: 82px;
+    min-height: 86px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 25px;
+    gap: 30px;
+}
+
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.logo-link {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
 }
 
 .logo {
-    width: 155px;
-    height: auto;
-    display: block;
+    width: 125px;
+    height: 62px;
+    object-fit: contain;
+    object-position: center;
 }
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
 
 .navigation {
     display: flex;
     align-items: center;
-    gap: 20px;
+    justify-content: center;
+    gap: 24px;
+    flex: 1;
 }
 
 .navigation a {
-    font-size: 13px;
-    font-weight: 700;
-    color: #ddd;
-    transition: 0.3s;
+    position: relative;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: .4px;
+    color: #dedede;
+    padding: 32px 0;
+    transition: .25s ease;
+}
+
+.navigation a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 23px;
+    width: 0;
+    height: 2px;
+    background: #ff7a00;
+    transition: .25s ease;
 }
 
 .navigation a:hover,
@@ -100,39 +168,59 @@ button {
     color: #ff7a00;
 }
 
+.navigation a:hover::after,
+.navigation a.active::after {
+    width: 100%;
+}
+
+
+/* =========================================================
+   NAV ACTIONS
+   ========================================================= */
+
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
+    flex-shrink: 0;
 }
 
 .search-button,
 .mobile-menu {
-    width: 42px;
-    height: 42px;
-    border: 1px solid #333;
+    width: 44px;
+    height: 44px;
+    border: 1px solid #363636;
     background: #151515;
-    color: white;
-    border-radius: 5px;
+    color: #ffffff;
+    border-radius: 6px;
+    transition: .25s ease;
 }
 
 .search-button:hover,
 .mobile-menu:hover {
     color: #ff7a00;
+    border-color: #ff7a00;
 }
 
 .upload-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     background: #ff7a00;
-    color: #fff;
+    color: #ffffff;
     border: 0;
-    padding: 12px 18px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: 700;
+    padding: 13px 18px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 800;
+    white-space: nowrap;
+    transition: .25s ease;
 }
 
 .upload-button:hover {
     background: #ff941f;
+    transform: translateY(-1px);
 }
 
 .mobile-menu {
@@ -140,12 +228,14 @@ button {
 }
 
 
-/* SEARCH */
+/* =========================================================
+   SEARCH
+   ========================================================= */
 
 .search-box {
     display: none;
     background: #101010;
-    padding: 15px 0;
+    padding: 16px 0;
     border-bottom: 1px solid #292929;
 }
 
@@ -161,11 +251,12 @@ button {
 .search-box input {
     width: 100%;
     background: #181818;
-    border: 1px solid #333;
-    color: #fff;
-    padding: 14px;
-    border-radius: 5px;
+    border: 1px solid #363636;
+    color: #ffffff;
+    padding: 14px 16px;
+    border-radius: 6px;
     outline: none;
+    font-size: 15px;
 }
 
 .search-box input:focus {
@@ -173,61 +264,74 @@ button {
 }
 
 .search-box button {
-    width: 48px;
+    width: 50px;
     background: #ff7a00;
-    color: white;
+    color: #ffffff;
     border: 0;
-    border-radius: 5px;
+    border-radius: 6px;
 }
 
 
-/* HERO */
+/* =========================================================
+   HERO
+   ========================================================= */
 
 .hero {
-    min-height: 620px;
+    min-height: 650px;
     position: relative;
     overflow: hidden;
     background:
-        radial-gradient(circle at 75% 35%, #592500 0%, transparent 30%),
-        linear-gradient(135deg, #080808, #17100a 55%, #050505);
+        radial-gradient(
+            circle at 78% 35%,
+            #642b00 0%,
+            transparent 32%
+        ),
+        linear-gradient(
+            135deg,
+            #070707,
+            #181008 55%,
+            #050505
+        );
 }
 
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        90deg,
-        rgba(0,0,0,.85),
-        rgba(0,0,0,.35)
-    );
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.9),
+            rgba(0,0,0,.42)
+        );
 }
 
 .hero-content {
     position: relative;
     z-index: 2;
-    min-height: 620px;
+    min-height: 650px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 50px;
+    gap: 70px;
 }
 
 .hero-text {
-    max-width: 650px;
+    max-width: 680px;
 }
 
 .small-title {
     color: #ff7a00;
-    font-weight: 800;
-    letter-spacing: 3px;
-    font-size: 14px;
-    margin-bottom: 15px;
+    font-weight: 900;
+    letter-spacing: 4px;
+    font-size: 15px;
+    margin-bottom: 18px;
 }
 
 .hero h1 {
-    font-size: clamp(48px, 7vw, 88px);
-    line-height: .98;
-    letter-spacing: -3px;
+    font-size: clamp(54px, 7vw, 96px);
+    line-height: .96;
+    letter-spacing: -4px;
+    font-weight: 900;
 }
 
 .hero h1 span {
@@ -235,37 +339,50 @@ button {
 }
 
 .hero h1 strong {
-    color: #fff;
+    color: #ffffff;
 }
 
 .hero-description {
-    max-width: 560px;
-    color: #c9c9c9;
-    margin: 25px 0;
-    font-size: 17px;
+    max-width: 600px;
+    color: #c8c8c8;
+    margin: 28px 0;
+    font-size: 18px;
+    line-height: 1.7;
 }
 
 .hero-buttons {
     display: flex;
-    gap: 12px;
+    gap: 14px;
     flex-wrap: wrap;
 }
 
 .primary-button,
 .secondary-button {
-    padding: 14px 20px;
-    border-radius: 5px;
-    font-size: 13px;
-    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    padding: 15px 23px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 900;
+    transition: .25s ease;
 }
 
 .primary-button {
     background: #ff7a00;
+    color: #ffffff;
+}
+
+.primary-button:hover {
+    background: #ff941f;
+    transform: translateY(-2px);
 }
 
 .secondary-button {
     border: 1px solid #555;
-    background: rgba(0,0,0,.3);
+    background: rgba(0,0,0,.35);
+    color: #ffffff;
 }
 
 .secondary-button:hover {
@@ -273,20 +390,26 @@ button {
     color: #ff7a00;
 }
 
+
+/* =========================================================
+   HERO VISUAL
+   ========================================================= */
+
 .hero-visual {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
 }
 
 .hero-cover {
-    width: 390px;
-    height: 390px;
-    border-radius: 12px;
+    width: 410px;
+    height: 410px;
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 25px 80px rgba(0,0,0,.7);
+    box-shadow: 0 30px 90px rgba(0,0,0,.75);
     transform: rotate(3deg);
-    border: 3px solid rgba(255,122,0,.5);
+    border: 3px solid rgba(255,122,0,.55);
 }
 
 .hero-cover img {
@@ -296,23 +419,26 @@ button {
 }
 
 
-/* MAIN */
+/* =========================================================
+   MAIN
+   ========================================================= */
 
 .main-content {
-    padding: 70px 0;
+    padding: 85px 0;
 }
 
 .music-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
 }
 
 .music-panel {
-    background: #111;
-    border: 1px solid #262626;
-    border-radius: 8px;
-    padding: 22px;
+    background: #111111;
+    border: 1px solid #292929;
+    border-radius: 10px;
+    padding: 25px;
+    min-width: 0;
 }
 
 .panel-header,
@@ -320,20 +446,23 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 18px;
+    margin-bottom: 23px;
 }
 
 .panel-header h2,
 .section-heading h2 {
-    font-size: 18px;
+    font-size: 21px;
+    font-weight: 900;
+    letter-spacing: -.3px;
 }
 
 .panel-header a,
 .section-heading a {
-    color: #999;
-    font-size: 11px;
-    font-weight: 700;
+    color: #999999;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
 }
 
 .panel-header a:hover,
@@ -346,14 +475,16 @@ button {
 }
 
 
-/* TRACKS */
+/* =========================================================
+   TRACKS
+   ========================================================= */
 
 .track {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 13px 0;
-    border-bottom: 1px solid #252525;
+    gap: 14px;
+    padding: 15px 0;
+    border-bottom: 1px solid #282828;
 }
 
 .track:last-child {
@@ -361,19 +492,24 @@ button {
 }
 
 .track-number {
-    color: #777;
-    width: 20px;
+    color: #777777;
+    width: 24px;
     text-align: center;
-    font-weight: 800;
+    font-weight: 900;
+    font-size: 14px;
+    flex-shrink: 0;
 }
 
 .track-image,
 .mini-cover {
-    width: 52px;
-    height: 52px;
-    border-radius: 5px;
+    width: 58px;
+    height: 58px;
+    border-radius: 6px;
     object-fit: cover;
     flex-shrink: 0;
+    background-color: #222222;
+    background-size: cover;
+    background-position: center;
 }
 
 .track-info {
@@ -383,7 +519,8 @@ button {
 
 .track-info h3,
 .chart-item h3 {
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 800;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -391,19 +528,23 @@ button {
 
 .track-info p,
 .chart-item p {
-    color: #888;
-    font-size: 12px;
+    color: #888888;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .play-button,
 .card-play {
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    border: 1px solid #444;
+    border: 1px solid #444444;
     background: #1b1b1b;
-    color: #fff;
+    color: #ffffff;
     flex-shrink: 0;
+    transition: .25s ease;
 }
 
 .play-button:hover,
@@ -411,23 +552,43 @@ button {
 .play-button.playing {
     background: #ff7a00;
     border-color: #ff7a00;
+    transform: scale(1.05);
 }
 
 
-/* RELEASES */
+/* =========================================================
+   RELEASES
+   ========================================================= */
 
 .release-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.release-card {
+    min-width: 0;
 }
 
 .release-image {
     position: relative;
-    height: 150px;
+    height: 165px;
     overflow: hidden;
-    border-radius: 7px;
-    background: #222;
+    border-radius: 8px;
+    background: #222222;
+    background-size: cover;
+    background-position: center;
+}
+
+.release-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            transparent 35%,
+            rgba(0,0,0,.65)
+        );
 }
 
 .release-image img {
@@ -436,57 +597,60 @@ button {
     object-fit: cover;
 }
 
-.release-image::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(transparent, rgba(0,0,0,.5));
-}
-
 .new-label {
     position: absolute;
-    top: 8px;
-    left: 8px;
+    top: 9px;
+    left: 9px;
     z-index: 2;
     background: #ff7a00;
-    padding: 4px 7px;
-    border-radius: 3px;
-    font-size: 9px;
-    font-weight: 800;
+    color: #ffffff;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 900;
 }
 
 .card-play {
     position: absolute;
-    right: 10px;
-    bottom: 10px;
+    right: 11px;
+    bottom: 11px;
     z-index: 3;
 }
 
 .release-card h3 {
-    margin-top: 8px;
-    font-size: 14px;
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 800;
 }
 
 .release-card p {
-    color: #888;
-    font-size: 12px;
+    color: #888888;
+    font-size: 13px;
 }
 
 
-/* CHART */
+/* =========================================================
+   CHART
+   ========================================================= */
 
 .chart-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 11px 0;
-    border-bottom: 1px solid #252525;
+    gap: 13px;
+    padding: 13px 0;
+    border-bottom: 1px solid #282828;
+}
+
+.chart-item:last-child {
+    border-bottom: 0;
 }
 
 .chart-item > span {
-    width: 20px;
+    width: 24px;
     color: #ff7a00;
-    font-weight: 800;
+    font-weight: 900;
+    font-size: 14px;
+    flex-shrink: 0;
 }
 
 .chart-item > div {
@@ -495,76 +659,85 @@ button {
 }
 
 
-/* GENRES */
+/* =========================================================
+   GENRES
+   ========================================================= */
 
 .genres-section {
-    margin-top: 60px;
+    margin-top: 75px;
 }
 
 .genre-grid {
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    gap: 10px;
+    gap: 12px;
 }
 
 .genre {
-    min-height: 105px;
+    min-height: 120px;
     background: #121212;
-    border: 1px solid #272727;
-    border-radius: 7px;
+    border: 1px solid #292929;
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
-    transition: .3s;
+    gap: 12px;
+    transition: .3s ease;
 }
 
 .genre i {
     color: #ff7a00;
-    font-size: 25px;
+    font-size: 28px;
 }
 
 .genre span {
-    font-size: 10px;
-    font-weight: 800;
+    font-size: 11px;
+    font-weight: 900;
     text-align: center;
 }
 
 .genre:hover {
-    transform: translateY(-4px);
+    transform: translateY(-5px);
     border-color: #ff7a00;
     background: #1b130c;
 }
 
 
-/* ARTIST BANNER */
+/* =========================================================
+   ARTIST BANNER
+   ========================================================= */
 
 .artist-banner {
-    margin-top: 65px;
+    margin-top: 75px;
     background:
-        linear-gradient(135deg, #1d0f05, #100d0a);
-    border: 1px solid #49240d;
-    border-radius: 10px;
+        linear-gradient(
+            135deg,
+            #211005,
+            #100d0a
+        );
+    border: 1px solid #4b250d;
+    border-radius: 11px;
     overflow: hidden;
 }
 
 .artist-content {
-    padding: 35px;
+    padding: 40px;
     display: flex;
     align-items: center;
-    gap: 25px;
+    gap: 28px;
 }
 
 .artist-icon {
-    width: 65px;
-    height: 65px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     background: #ff7a00;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 25px;
+    font-size: 27px;
+    flex-shrink: 0;
 }
 
 .artist-content > div:nth-child(2) {
@@ -572,7 +745,8 @@ button {
 }
 
 .artist-content h2 {
-    font-size: 28px;
+    font-size: 30px;
+    font-weight: 900;
 }
 
 .artist-content h2 span {
@@ -580,16 +754,25 @@ button {
 }
 
 .artist-content p {
-    color: #aaa;
-    max-width: 700px;
+    color: #aaaaaa;
+    max-width: 750px;
+    font-size: 15px;
 }
 
 .artist-upload {
     background: #ff7a00;
-    padding: 14px 18px;
-    border-radius: 5px;
-    font-size: 11px;
-    font-weight: 800;
+    color: #ffffff;
+    padding: 15px 20px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 900;
+    white-space: nowrap;
+    transition: .25s ease;
+}
+
+.artist-upload:hover {
+    background: #ff941f;
+    transform: translateY(-2px);
 }
 
 .artist-benefits {
@@ -599,10 +782,14 @@ button {
 }
 
 .artist-benefits div {
-    padding: 20px;
+    padding: 22px;
     border-right: 1px solid #3a200e;
-    font-size: 12px;
-    font-weight: 800;
+    font-size: 13px;
+    font-weight: 900;
+}
+
+.artist-benefits div:last-child {
+    border-right: 0;
 }
 
 .artist-benefits i {
@@ -612,127 +799,147 @@ button {
 
 .artist-benefits small {
     display: block;
-    color: #777;
-    margin-top: 5px;
+    color: #777777;
+    margin-top: 6px;
     margin-left: 27px;
     font-weight: normal;
+    font-size: 11px;
 }
 
 
-/* NEWS */
+/* =========================================================
+   NEWS
+   ========================================================= */
 
 .news-section {
     display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 30px;
-    margin-top: 70px;
+    grid-template-columns: 1fr 320px;
+    gap: 32px;
+    margin-top: 80px;
 }
 
 .news-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
 .news-card {
-    background: #111;
-    border: 1px solid #272727;
-    border-radius: 7px;
+    background: #111111;
+    border: 1px solid #292929;
+    border-radius: 8px;
     overflow: hidden;
 }
 
 .news-card img {
     width: 100%;
-    height: 180px;
+    height: 190px;
     object-fit: cover;
 }
 
 .news-content {
-    padding: 15px;
+    padding: 17px;
 }
 
 .news-content h3 {
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: 800;
 }
 
 .news-content p {
     margin-top: 8px;
-    color: #777;
-    font-size: 11px;
+    color: #777777;
+    font-size: 12px;
 }
 
 
-/* SOCIAL */
+/* =========================================================
+   SOCIAL
+   ========================================================= */
 
 .social-panel {
-    background: #111;
-    border: 1px solid #272727;
-    border-radius: 7px;
-    padding: 22px;
+    background: #111111;
+    border: 1px solid #292929;
+    border-radius: 8px;
+    padding: 24px;
 }
 
 .social-panel h2 {
-    font-size: 18px;
-    margin-bottom: 15px;
+    font-size: 20px;
+    margin-bottom: 16px;
 }
 
 .social-panel a {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 15px 0;
-    border-bottom: 1px solid #252525;
-    font-size: 13px;
+    gap: 12px;
+    padding: 16px 0;
+    border-bottom: 1px solid #282828;
+    font-size: 14px;
+    transition: .25s ease;
+}
+
+.social-panel a:hover {
+    color: #ff7a00;
 }
 
 .social-panel i {
     color: #ff7a00;
-    width: 20px;
+    width: 22px;
+    font-size: 16px;
 }
 
 .social-panel span {
     margin-left: auto;
-    color: #777;
-    font-size: 10px;
+    color: #777777;
+    font-size: 11px;
 }
 
 
-/* FOOTER */
+/* =========================================================
+   FOOTER
+   ========================================================= */
 
 .footer {
     background: #050505;
     border-top: 1px solid #242424;
-    padding-top: 60px;
+    padding-top: 70px;
+    margin-top: 40px;
 }
 
 .footer-grid {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
-    gap: 40px;
-    padding-bottom: 45px;
+    gap: 45px;
+    padding-bottom: 50px;
 }
 
 .footer-brand img {
-    width: 150px;
-    margin-bottom: 15px;
+    width: 125px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 18px;
 }
 
 .footer-brand p,
 .footer-newsletter p {
-    color: #888;
+    color: #888888;
     font-size: 13px;
+    line-height: 1.7;
 }
 
 .footer h3 {
-    font-size: 14px;
-    margin-bottom: 15px;
+    font-size: 15px;
+    margin-bottom: 18px;
+    font-weight: 900;
 }
 
 .footer-column a {
     display: block;
-    color: #888;
+    color: #888888;
     font-size: 13px;
-    margin: 8px 0;
+    margin: 10px 0;
+    transition: .25s ease;
 }
 
 .footer-column a:hover {
@@ -741,36 +948,41 @@ button {
 
 .footer-newsletter form {
     display: flex;
-    margin-top: 15px;
+    margin-top: 18px;
 }
 
 .footer-newsletter input {
     flex: 1;
     min-width: 0;
     background: #151515;
-    border: 1px solid #333;
-    color: #fff;
-    padding: 12px;
+    border: 1px solid #333333;
+    color: #ffffff;
+    padding: 13px;
     outline: none;
+}
+
+.footer-newsletter input:focus {
+    border-color: #ff7a00;
 }
 
 .footer-newsletter button {
     background: #ff7a00;
     border: 0;
-    color: #fff;
-    padding: 0 15px;
-    font-weight: 800;
+    color: #ffffff;
+    padding: 0 17px;
+    font-weight: 900;
     font-size: 11px;
 }
 
 .footer-bottom {
-    border-top: 1px solid #222;
-    padding: 20px 4%;
+    border-top: 1px solid #222222;
+    padding: 22px 4%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     gap: 20px;
-    color: #666;
-    font-size: 11px;
+    color: #666666;
+    font-size: 12px;
 }
 
 .footer-bottom a {
@@ -778,66 +990,81 @@ button {
 }
 
 
-/* MUSIC PLAYER */
+/* =========================================================
+   MUSIC PLAYER
+   ========================================================= */
 
 .music-player {
     position: fixed;
-    left: 20px;
-    right: 20px;
-    bottom: 18px;
+    left: 25px;
+    right: 25px;
+    bottom: 20px;
     z-index: 2000;
-    background: rgba(18,18,18,.97);
-    border: 1px solid #333;
-    border-radius: 10px;
-    min-height: 72px;
-    padding: 10px 15px;
+    background: rgba(18,18,18,.98);
+    border: 1px solid #383838;
+    border-radius: 12px;
+    min-height: 78px;
+    padding: 11px 18px;
     display: flex;
     align-items: center;
-    gap: 25px;
-    box-shadow: 0 15px 50px rgba(0,0,0,.7);
+    gap: 28px;
+    box-shadow: 0 18px 60px rgba(0,0,0,.75);
 }
 
 .player-info {
     display: flex;
     align-items: center;
-    gap: 12px;
-    width: 300px;
+    gap: 13px;
+    width: 330px;
+    min-width: 0;
 }
 
 .player-cover {
-    width: 52px;
-    height: 52px;
-    border-radius: 5px;
+    width: 56px;
+    height: 56px;
+    border-radius: 6px;
     object-fit: cover;
+    background-size: cover;
+    background-position: center;
+    background-color: #222222;
+    flex-shrink: 0;
+}
+
+.player-info > div {
+    min-width: 0;
 }
 
 .player-info strong,
 .player-info small {
     display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .player-info strong {
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .player-info small {
-    color: #888;
-    font-size: 11px;
+    color: #888888;
+    font-size: 12px;
 }
 
 .player-controls {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 15px;
+    gap: 18px;
     flex: 1;
 }
 
 .player-controls button {
     border: 0;
     background: transparent;
-    color: #ddd;
-    font-size: 17px;
+    color: #dddddd;
+    font-size: 18px;
+    transition: .2s ease;
 }
 
 .player-controls button:hover {
@@ -845,19 +1072,24 @@ button {
 }
 
 .main-player-button {
-    width: 45px;
-    height: 45px;
+    width: 48px;
+    height: 48px;
     background: #ff7a00 !important;
-    color: #fff !important;
+    color: #ffffff !important;
     border-radius: 50%;
 }
 
+.main-player-button:hover {
+    transform: scale(1.06);
+}
+
 .player-progress {
-    width: 280px;
-    height: 5px;
-    background: #333;
+    width: 300px;
+    height: 6px;
+    background: #333333;
     border-radius: 10px;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .player-progress div {
@@ -867,25 +1099,99 @@ button {
 }
 
 
-/* MOBILE */
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .container {
+        width: min(1100px, 94%);
+    }
+
+    .navigation {
+        gap: 16px;
+    }
+
+    .navigation a {
+        font-size: 13px;
+    }
+
+    .nav-container {
+        gap: 20px;
+    }
+
+    .hero-content {
+        gap: 35px;
+    }
+
+    .hero-cover {
+        width: 350px;
+        height: 350px;
+    }
+
+    .genre-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .music-player {
+        gap: 18px;
+    }
+
+    .player-info {
+        width: 270px;
+    }
+
+    .player-progress {
+        width: 220px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE NAVIGATION / TABLET
+   ========================================================= */
 
 @media (max-width: 1000px) {
+
+    .nav-container {
+        min-height: 78px;
+    }
+
+    .logo {
+        width: 115px;
+        height: 58px;
+    }
 
     .navigation {
         display: none;
         position: absolute;
-        top: 82px;
+        top: 78px;
         left: 0;
         right: 0;
         background: #080808;
         padding: 20px;
         flex-direction: column;
         align-items: flex-start;
-        border-bottom: 1px solid #333;
+        gap: 0;
+        border-bottom: 1px solid #333333;
+        box-shadow: 0 15px 30px rgba(0,0,0,.5);
     }
 
-    .navigation.open {
+    /* Matches script.js */
+    .navigation.active {
         display: flex;
+    }
+
+    .navigation a {
+        width: 100%;
+        padding: 14px 0;
+        font-size: 14px;
+        border-bottom: 1px solid #222222;
+    }
+
+    .navigation a::after {
+        display: none;
     }
 
     .mobile-menu {
@@ -896,14 +1202,15 @@ button {
         grid-template-columns: 1fr;
     }
 
-    .genre-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
     .hero-content {
         flex-direction: column;
         justify-content: center;
         text-align: center;
+        padding: 70px 0;
+    }
+
+    .hero-text {
+        max-width: 750px;
     }
 
     .hero-description {
@@ -916,8 +1223,8 @@ button {
     }
 
     .hero-cover {
-        width: 280px;
-        height: 280px;
+        width: 320px;
+        height: 320px;
     }
 
     .news-section {
@@ -925,29 +1232,44 @@ button {
     }
 
     .footer-grid {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .artist-content {
+        flex-wrap: wrap;
+    }
+
+    .artist-content > div:nth-child(2) {
+        min-width: 250px;
     }
 }
 
 
-@media (max-width: 600px) {
+/* =========================================================
+   SMALL TABLET / LARGE PHONE
+   ========================================================= */
+
+@media (max-width: 700px) {
 
     .top-content {
-        flex-direction: column;
+        min-height: auto;
         padding: 10px 0;
+        flex-direction: column;
         text-align: center;
+        gap: 7px;
     }
 
     .top-links {
-        flex-wrap: wrap;
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     .logo {
-        width: 120px;
+        width: 105px;
+        height: 54px;
     }
 
-    .upload-button {
+    .nav-actions .upload-button {
         display: none;
     }
 
@@ -956,25 +1278,76 @@ button {
     }
 
     .hero-content {
-        min-height: 700px;
+        min-height: auto;
+        padding: 80px 0 70px;
+    }
+
+    .small-title {
+        font-size: 12px;
+        letter-spacing: 2.5px;
     }
 
     .hero h1 {
-        font-size: 52px;
+        font-size: clamp(43px, 13vw, 65px);
+        letter-spacing: -2px;
+    }
+
+    .hero-description {
+        font-size: 15px;
     }
 
     .hero-cover {
-        width: 230px;
-        height: 230px;
+        width: 260px;
+        height: 260px;
+    }
+
+    .main-content {
+        padding: 55px 0;
+    }
+
+    .music-panel {
+        padding: 18px;
+    }
+
+    .panel-header h2,
+    .section-heading h2 {
+        font-size: 19px;
+    }
+
+    .track-image,
+    .mini-cover {
+        width: 52px;
+        height: 52px;
+    }
+
+    .release-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .release-image {
+        height: 145px;
     }
 
     .genre-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .genre {
+        min-height: 105px;
+    }
+
     .artist-content {
         flex-direction: column;
         text-align: center;
+        padding: 28px 20px;
+    }
+
+    .artist-content > div:nth-child(2) {
+        min-width: 0;
+    }
+
+    .artist-upload {
+        width: 100%;
     }
 
     .artist-benefits {
@@ -991,16 +1364,20 @@ button {
 
     .footer-grid {
         grid-template-columns: 1fr;
+        gap: 35px;
     }
 
     .footer-bottom {
         flex-direction: column;
+        text-align: center;
     }
 
     .music-player {
         left: 8px;
         right: 8px;
         bottom: 8px;
+        min-height: 70px;
+        padding: 8px 10px;
         gap: 10px;
     }
 
@@ -1009,14 +1386,151 @@ button {
         flex: 1;
     }
 
+    .player-cover {
+        width: 48px;
+        height: 48px;
+    }
+
+    .player-info strong {
+        font-size: 12px;
+    }
+
     .player-info small {
-        max-width: 110px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        max-width: 125px;
+        font-size: 10px;
+    }
+
+    .player-controls {
+        flex: 0 0 auto;
+        gap: 8px;
+    }
+
+    .player-controls button {
+        font-size: 15px;
+    }
+
+    .main-player-button {
+        width: 42px;
+        height: 42px;
     }
 
     .player-progress {
         display: none;
     }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .container {
+        width: 94%;
+    }
+
+    .logo {
+        width: 95px;
+        height: 50px;
+    }
+
+    .mobile-menu {
+        width: 40px;
+        height: 40px;
+    }
+
+    .hero-content {
+        padding-top: 65px;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .primary-button,
+    .secondary-button {
+        width: 100%;
+    }
+
+    .hero-cover {
+        width: 220px;
+        height: 220px;
+    }
+
+    .release-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .release-image {
+        height: 210px;
+    }
+
+    .artist-benefits {
+        grid-template-columns: 1fr;
+    }
+
+    .artist-benefits div {
+        border-right: 0;
+    }
+
+    .track {
+        gap: 9px;
+    }
+
+    .track-number {
+        width: 18px;
+        font-size: 12px;
+    }
+
+    .track-image,
+    .mini-cover {
+        width: 48px;
+        height: 48px;
+    }
+
+    .track-info h3,
+    .chart-item h3 {
+        font-size: 13px;
+    }
+
+    .track-info p,
+    .chart-item p {
+        font-size: 11px;
+    }
+
+    .play-button,
+    .card-play {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid #ff7a00;
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+    background: #ff7a00;
+    color: #ffffff;
 }
