@@ -2,23 +2,22 @@
 /* =========================================================
    MBZEDMUSIC.COM
    AFRICAN MUSIC • OUR CULTURE • OUR SOUND
-   MASTER STYLESHEET — LEVEL UP
+   COMPLETE IMPROVED STYLE.CSS
    ========================================================= */
 
 :root {
-    --black: #030503;
-    --black-2: #070b07;
-    --black-3: #0d140e;
+    --black: #050705;
+    --black-2: #080d09;
+    --black-3: #101710;
 
     --green: #18b968;
     --green-dark: #08783f;
-    --green-light: #42e88c;
+    --green-light: #35dc83;
 
     --gold: #f5b82e;
-    --gold-light: #ffdc70;
+    --gold-light: #ffd967;
 
     --red: #d93632;
-    --red-light: #f05a50;
 
     --white: #ffffff;
     --text: #f7faf7;
@@ -53,14 +52,14 @@ body {
 
     background:
         radial-gradient(
-            circle at 8% 8%,
+            circle at 10% 8%,
             rgba(24,185,104,0.10),
-            transparent 25%
+            transparent 28%
         ),
         radial-gradient(
-            circle at 92% 18%,
-            rgba(245,184,46,0.07),
-            transparent 22%
+            circle at 90% 18%,
+            rgba(245,184,46,0.06),
+            transparent 24%
         ),
         var(--black);
 
@@ -77,8 +76,9 @@ body {
 }
 
 img {
-    display: block;
     max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 a {
@@ -99,7 +99,7 @@ button {
 
 
 /* =========================================================
-   GLOBAL CONTAINER
+   CONTAINER
    ========================================================= */
 
 .container {
@@ -108,7 +108,7 @@ button {
         var(--container)
     );
 
-    margin: 0 auto;
+    margin-inline: auto;
 }
 
 
@@ -118,6 +118,7 @@ button {
 
 .top-bar {
     position: relative;
+    z-index: 1100;
 
     background:
         linear-gradient(
@@ -147,21 +148,18 @@ button {
 }
 
 .welcome-text {
-    color: #fff;
     font-weight: 700;
 }
 
 .top-links {
     display: flex;
     align-items: center;
-
-    gap: 14px;
+    gap: 13px;
 
     white-space: nowrap;
 }
 
 .top-links a {
-    font-weight: 700;
     transition: color .2s ease;
 }
 
@@ -181,22 +179,22 @@ button {
     z-index: 1000;
 
     background:
-        rgba(3,5,3,0.94);
+        rgba(5,7,5,0.94);
 
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
     border-bottom:
-        1px solid rgba(255,255,255,0.08);
+        1px solid var(--border);
 }
 
 .header-inner {
-    min-height: 78px;
+    min-height: 82px;
 
     display: flex;
     align-items: center;
 
-    gap: 28px;
+    gap: 26px;
 }
 
 
@@ -209,13 +207,11 @@ button {
     align-items: center;
 
     flex-shrink: 0;
-
-    height: 62px;
 }
 
 .logo img {
     width: 145px;
-    height: 56px;
+    height: 58px;
 
     object-fit: contain;
     object-position: center;
@@ -229,13 +225,13 @@ button {
    ========================================================= */
 
 .navigation {
-    flex: 1;
-
     display: flex;
     align-items: center;
     justify-content: center;
 
-    gap: 20px;
+    gap: 21px;
+
+    flex: 1;
 }
 
 .navigation a {
@@ -246,17 +242,16 @@ button {
 
     color: #dce4de;
 
-    font-size: 11px;
-    font-weight: 900;
+    font-size: 12px;
+    font-weight: 800;
 
     letter-spacing: .65px;
 
-    padding: 29px 0;
+    padding: 31px 0;
 
     white-space: nowrap;
 
-    transition:
-        color .2s ease;
+    transition: color .2s ease;
 }
 
 .navigation a:hover,
@@ -271,11 +266,11 @@ button {
 
     left: 0;
     right: 0;
-    bottom: 17px;
+    bottom: 20px;
 
     height: 3px;
 
-    border-radius: 20px;
+    border-radius: 10px;
 
     background:
         linear-gradient(
@@ -286,10 +281,8 @@ button {
         );
 
     transform: scaleX(0);
-    transform-origin: center;
 
-    transition:
-        transform .2s ease;
+    transition: transform .2s ease;
 }
 
 .navigation a:hover::after,
@@ -299,7 +292,7 @@ button {
 
 .navigation i {
     margin-left: 4px;
-    font-size: 8px;
+    font-size: 9px;
 }
 
 
@@ -310,7 +303,6 @@ button {
 .header-actions {
     display: flex;
     align-items: center;
-
     gap: 9px;
 
     flex-shrink: 0;
@@ -321,12 +313,7 @@ button {
     width: 42px;
     height: 42px;
 
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    border:
-        1px solid rgba(255,255,255,0.11);
+    border: 1px solid var(--border);
 
     background:
         rgba(255,255,255,0.05);
@@ -345,7 +332,6 @@ button {
 .mobile-menu:hover {
     background: var(--green);
     border-color: var(--green);
-
     transform: translateY(-1px);
 }
 
@@ -362,22 +348,21 @@ button {
 
     gap: 8px;
 
-    padding: 0 17px;
+    padding: 0 18px;
 
     background: var(--gold);
-
     color: #111;
 
     border-radius: 8px;
 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 900;
 
     text-transform: uppercase;
 
     transition:
-        background .2s ease,
-        transform .2s ease;
+        transform .2s ease,
+        background .2s ease;
 }
 
 .upload-button:hover {
@@ -393,8 +378,7 @@ button {
 .search-box {
     display: none;
 
-    background:
-        #080d08;
+    background: #0c120c;
 
     border-bottom:
         1px solid var(--border);
@@ -408,9 +392,9 @@ button {
     display: flex;
     align-items: center;
 
-    gap: 12px;
+    gap: 14px;
 
-    padding: 14px 0;
+    padding: 15px 0;
 }
 
 .search-inner input {
@@ -418,22 +402,16 @@ button {
 
     height: 50px;
 
-    padding: 0 17px;
+    padding: 0 18px;
 
-    background: #050805;
+    background: #060906;
 
     color: #fff;
 
-    border:
-        1px solid var(--border);
-
+    border: 1px solid var(--border);
     border-radius: 8px;
 
     outline: none;
-}
-
-.search-inner input::placeholder {
-    color: #748076;
 }
 
 .search-inner input:focus {
@@ -441,22 +419,14 @@ button {
 }
 
 .search-inner button {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
 
     border: 0;
-
     border-radius: 8px;
 
     background: var(--red);
-
     color: #fff;
-
-    transition: .2s ease;
-}
-
-.search-inner button:hover {
-    background: var(--red-light);
 }
 
 
@@ -476,27 +446,27 @@ button {
 
     background:
         radial-gradient(
-            circle at 78% 42%,
-            rgba(24,185,104,0.30),
-            transparent 30%
+            circle at 75% 44%,
+            rgba(24,185,104,0.28),
+            transparent 29%
         ),
         radial-gradient(
-            circle at 92% 80%,
-            rgba(245,184,46,0.19),
-            transparent 28%
+            circle at 90% 80%,
+            rgba(245,184,46,0.18),
+            transparent 25%
         ),
         linear-gradient(
-            115deg,
+            110deg,
             #020402 0%,
-            #071008 35%,
-            #0a1b10 67%,
-            #061007 100%
+            #061008 38%,
+            #0a1b10 68%,
+            #071008 100%
         );
 }
 
 
 /* =========================================================
-   HERO GLOWS
+   HERO GLOW
    ========================================================= */
 
 .hero::before {
@@ -504,18 +474,16 @@ button {
 
     position: absolute;
 
-    width: 760px;
-    height: 760px;
+    width: 720px;
+    height: 720px;
 
-    left: -360px;
-    top: -300px;
-
-    border-radius: 50%;
+    left: -340px;
+    top: -290px;
 
     background:
         radial-gradient(
             circle,
-            rgba(24,185,104,0.27),
+            rgba(24,185,104,0.26),
             transparent 68%
         );
 
@@ -527,20 +495,18 @@ button {
 
     position: absolute;
 
-    width: 720px;
-    height: 720px;
+    width: 700px;
+    height: 700px;
 
-    right: -300px;
-    bottom: -350px;
-
-    border-radius: 50%;
+    right: -260px;
+    bottom: -340px;
 
     background:
         radial-gradient(
             circle,
-            rgba(245,184,46,0.24),
-            rgba(217,54,50,0.09) 42%,
-            transparent 73%
+            rgba(245,184,46,0.22),
+            rgba(217,54,50,0.07) 42%,
+            transparent 72%
         );
 
     pointer-events: none;
@@ -561,9 +527,9 @@ button {
         linear-gradient(
             90deg,
             rgba(2,4,2,0.97) 0%,
-            rgba(3,7,4,0.82) 34%,
-            rgba(3,7,4,0.32) 60%,
-            rgba(3,7,4,0.04) 100%
+            rgba(3,7,4,0.82) 32%,
+            rgba(3,7,4,0.38) 57%,
+            rgba(3,7,4,0.05) 100%
         );
 
     pointer-events: none;
@@ -579,25 +545,28 @@ button {
 
     z-index: 3;
 
+    width: 100%;
+
     min-height: 720px;
 
     display: grid;
 
     grid-template-columns:
-        minmax(390px, .88fr)
-        minmax(500px, 1.32fr);
+        minmax(0, .92fr)
+        minmax(0, 1.28fr);
 
     align-items: center;
 
-    gap: 0;
+    gap: 10px;
 }
 
 .hero-text {
     position: relative;
-
-    z-index: 10;
+    z-index: 8;
 
     max-width: 650px;
+
+    padding: 35px 0;
 }
 
 .hero-small-title {
@@ -625,15 +594,15 @@ button {
     font-size:
         clamp(52px, 6vw, 88px);
 
-    font-weight: 1000;
+    line-height: .94;
 
-    line-height: .93;
+    font-weight: 1000;
 
     letter-spacing: -3px;
 }
 
 .hero-text > p {
-    max-width: 570px;
+    max-width: 560px;
 
     margin-bottom: 31px;
 
@@ -663,13 +632,13 @@ button {
     align-items: center;
     justify-content: center;
 
-    gap: 9px;
+    gap: 10px;
 
     padding: 0 25px;
 
     border-radius: 8px;
 
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 900;
 
     text-transform: uppercase;
@@ -685,13 +654,11 @@ button {
 
     color: #111;
 
-    border:
-        1px solid var(--gold);
+    border: 1px solid var(--gold);
 }
 
 .primary-button:hover {
     background: var(--gold-light);
-
     transform: translateY(-2px);
 }
 
@@ -699,15 +666,14 @@ button {
     background:
         rgba(24,185,104,0.10);
 
-    color: #fff;
-
     border:
         1px solid rgba(255,255,255,0.30);
+
+    color: #fff;
 }
 
 .secondary-button:hover {
     background: var(--green);
-
     border-color: var(--green);
 
     transform: translateY(-2px);
@@ -724,7 +690,9 @@ button {
     z-index: 2;
 
     width: 100%;
-    height: 700px;
+    height: 720px;
+
+    min-height: 720px;
 
     display: flex;
     align-items: center;
@@ -736,23 +704,25 @@ button {
     background-repeat: no-repeat;
 
     /*
-       LARGE HERO ARTWORK
+       LARGE DESKTOP ARTWORK
     */
-    background-size: 128% auto;
+    background-size: 137% auto;
 
     background-position:
         center center;
 
     filter:
         drop-shadow(
-            0 30px 60px rgba(0,0,0,0.68)
+            0 35px 70px rgba(0,0,0,0.70)
         );
 
-    transform: scale(1.08);
+    transform: scale(1.04);
+
+    pointer-events: none;
 }
 
 
-/* Green glow */
+/* artwork glow */
 
 .hero-visual::before {
     content: "";
@@ -773,53 +743,38 @@ button {
     background:
         radial-gradient(
             circle,
-            rgba(24,185,104,0.24),
+            rgba(24,185,104,0.23),
             transparent 68%
         );
 
     z-index: -1;
-
-    pointer-events: none;
 }
-
-
-/* Gold glow */
 
 .hero-visual::after {
     content: "";
 
     position: absolute;
 
-    width: 440px;
-    height: 440px;
+    width: 430px;
+    height: 430px;
 
-    right: 0;
-    bottom: 0;
+    right: 2%;
+    bottom: 3%;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(245,184,46,0.19),
+            rgba(245,184,46,0.17),
             transparent 70%
         );
 
     z-index: -1;
-
-    pointer-events: none;
 }
-
-
-/* =========================================================
-   REMOVE OLD AFRICA TEXT
-   ========================================================= */
 
 .africa-shape {
     position: absolute;
-
-    width: 0;
-    height: 0;
 
     font-size: 0;
 
@@ -836,10 +791,10 @@ button {
 .sound-wave {
     position: absolute;
 
-    z-index: 6;
+    right: 3%;
+    bottom: 32px;
 
-    right: 4%;
-    bottom: 27px;
+    z-index: 5;
 
     display: flex;
     align-items: center;
@@ -854,7 +809,7 @@ button {
 
     width: 4px;
 
-    border-radius: 20px;
+    border-radius: 10px;
 
     background:
         linear-gradient(
@@ -929,12 +884,8 @@ button {
 
 
 /* =========================================================
-   AFRICAN COLOR STRIPE
+   HERO COLOR STRIPE
    ========================================================= */
-
-.hero .container {
-    position: relative;
-}
 
 .hero .container::after {
     content: "";
@@ -953,32 +904,28 @@ button {
         linear-gradient(
             90deg,
             var(--green),
-            var(--gold) 50%,
+            var(--gold),
             var(--red)
         );
 }
 
 
 /* =========================================================
-   GENERAL SECTIONS
+   SECTIONS
    ========================================================= */
 
 .section {
+    position: relative;
+
     padding: 90px 0;
 }
 
 .music-section {
-    background:
-        linear-gradient(
-            180deg,
-            #070a07,
-            #050805
-        );
+    background: #070a07;
 }
 
 .genres-section {
-    background:
-        #0b110c;
+    background: #0b110c;
 }
 
 .section-heading {
@@ -1002,7 +949,6 @@ button {
     font-weight: 900;
 
     letter-spacing: 2px;
-
     text-transform: uppercase;
 }
 
@@ -1039,9 +985,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        1.05fr
-        1.2fr
-        1fr;
+        1.1fr 1.2fr 1fr;
 
     gap: 18px;
 }
@@ -1055,24 +999,26 @@ button {
         linear-gradient(
             145deg,
             #172018,
-            #0a100b
+            #0b100c
         );
 
     border:
         1px solid var(--border);
 
-    border-radius: var(--radius);
+    border-radius:
+        var(--radius);
 
-    box-shadow: var(--shadow);
+    box-shadow:
+        var(--shadow);
 
     transition:
-        border-color .25s ease,
-        transform .25s ease;
+        border-color .2s ease,
+        transform .2s ease;
 }
 
 .music-panel:hover {
     border-color:
-        rgba(24,185,104,.35);
+        rgba(24,185,104,0.35);
 
     transform:
         translateY(-2px);
@@ -1107,10 +1053,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        30px
-        58px
-        minmax(0,1fr)
-        42px;
+        30px 58px minmax(0,1fr) 42px;
 
     align-items: center;
 
@@ -1188,7 +1131,6 @@ button {
     border: 0;
 
     background: var(--green);
-
     color: #fff;
 
     transition:
@@ -1207,7 +1149,6 @@ button {
 .play-button:hover,
 .card-play:hover {
     background: var(--gold);
-
     color: #111;
 
     transform: scale(1.08);
@@ -1256,38 +1197,37 @@ button {
 
     background:
         linear-gradient(
-            transparent 48%,
-            rgba(0,0,0,.60)
+            transparent 50%,
+            rgba(0,0,0,0.55)
         );
 }
 
 .new-label {
     position: absolute;
 
-    z-index: 2;
-
     top: 10px;
     left: 10px;
+
+    z-index: 2;
 
     padding: 4px 8px;
 
     background: var(--gold);
-
     color: #111;
-
-    border-radius: 4px;
 
     font-size: 9px;
     font-weight: 900;
+
+    border-radius: 4px;
 }
 
 .card-play {
     position: absolute;
 
-    z-index: 3;
-
     right: 12px;
     bottom: 12px;
+
+    z-index: 3;
 
     width: 44px;
     height: 44px;
@@ -1324,10 +1264,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        25px
-        45px
-        minmax(0,1fr)
-        38px;
+        25px 45px minmax(0,1fr) 38px;
 
     align-items: center;
 
@@ -1336,7 +1273,7 @@ button {
     padding: 10px 0;
 
     border-bottom:
-        1px solid rgba(255,255,255,.06);
+        1px solid rgba(255,255,255,0.06);
 }
 
 .chart-item:last-child {
@@ -1374,15 +1311,12 @@ button {
     min-height: 125px;
 
     display: flex;
-
     flex-direction: column;
 
     align-items: center;
     justify-content: center;
 
     gap: 13px;
-
-    padding: 10px;
 
     background:
         linear-gradient(
@@ -1406,19 +1340,16 @@ button {
 
 .genre-card i {
     color: var(--gold);
-
     font-size: 26px;
 }
 
 .genre-card span {
-    color: #fff;
-
     font-size: 10px;
     font-weight: 900;
 
-    letter-spacing: .5px;
-
     text-align: center;
+
+    letter-spacing: .5px;
 }
 
 .genre-card:hover {
@@ -1465,7 +1396,7 @@ button {
     top: -220px;
 
     background:
-        rgba(245,184,46,.22);
+        rgba(245,184,46,0.22);
 
     border-radius: 50%;
 }
@@ -1482,32 +1413,30 @@ button {
     bottom: -150px;
 
     background:
-        rgba(217,54,50,.20);
+        rgba(217,54,50,0.20);
 
     border-radius: 50%;
 }
 
 .artist-banner-inner {
     position: relative;
-
     z-index: 2;
 
     display: grid;
 
     grid-template-columns:
-        1.2fr
-        1fr;
-
-    align-items: center;
+        1.2fr 1fr;
 
     gap: 70px;
+
+    align-items: center;
 }
 
 .artist-banner h2 {
     margin-bottom: 18px;
 
     font-size:
-        clamp(35px,5vw,58px);
+        clamp(35px, 5vw, 58px);
 
     line-height: 1;
 }
@@ -1518,7 +1447,7 @@ button {
     margin-bottom: 25px;
 
     color:
-        rgba(255,255,255,.88);
+        rgba(255,255,255,0.88);
 }
 
 
@@ -1530,7 +1459,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        repeat(2,minmax(0,1fr));
+        repeat(2, minmax(0,1fr));
 
     gap: 14px;
 }
@@ -1544,10 +1473,10 @@ button {
     padding: 18px;
 
     background:
-        rgba(0,0,0,.22);
+        rgba(0,0,0,0.22);
 
     border:
-        1px solid rgba(255,255,255,.12);
+        1px solid rgba(255,255,255,0.12);
 
     border-radius: 10px;
 }
@@ -1570,7 +1499,7 @@ button {
 
 .benefit p {
     color:
-        rgba(255,255,255,.68);
+        rgba(255,255,255,0.68);
 
     font-size: 11px;
 }
@@ -1584,7 +1513,6 @@ button {
     min-height: 250px;
 
     display: flex;
-
     flex-direction: column;
 
     align-items: center;
@@ -1599,7 +1527,8 @@ button {
     border:
         1px solid var(--border);
 
-    border-radius: var(--radius);
+    border-radius:
+        var(--radius);
 }
 
 .empty-section > i {
@@ -1638,17 +1567,17 @@ button {
 
     text-align: center;
 
+    border:
+        1px solid rgba(24,185,104,0.40);
+
+    border-radius: 18px;
+
     background:
         linear-gradient(
             135deg,
             #172719,
             #0a130c
         );
-
-    border:
-        1px solid rgba(24,185,104,.40);
-
-    border-radius: 18px;
 }
 
 .promote-box::before {
@@ -1663,7 +1592,7 @@ button {
     top: -150px;
 
     background:
-        rgba(24,185,104,.17);
+        rgba(24,185,104,0.17);
 
     border-radius: 50%;
 }
@@ -1680,7 +1609,7 @@ button {
     bottom: -150px;
 
     background:
-        rgba(245,184,46,.14);
+        rgba(245,184,46,0.14);
 
     border-radius: 50%;
 }
@@ -1691,7 +1620,7 @@ button {
     margin-bottom: 16px;
 
     font-size:
-        clamp(35px,5vw,58px);
+        clamp(35px, 5vw, 58px);
 
     line-height: 1;
 }
@@ -1701,8 +1630,7 @@ button {
 
     max-width: 600px;
 
-    margin:
-        0 auto 25px;
+    margin: 0 auto 25px;
 
     color: var(--muted);
 }
@@ -1747,7 +1675,8 @@ button {
     border:
         1px solid var(--border);
 
-    border-radius: var(--radius);
+    border-radius:
+        var(--radius);
 }
 
 .contact-content p {
@@ -1764,25 +1693,25 @@ button {
 .music-player {
     position: fixed;
 
-    z-index: 2000;
-
     left: 20px;
     right: 20px;
     bottom: 20px;
 
+    z-index: 2000;
+
     background:
-        rgba(8,13,9,.97);
+        rgba(8,13,9,0.97);
 
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
 
     border:
-        1px solid rgba(255,255,255,.13);
+        1px solid rgba(255,255,255,0.13);
 
     border-radius: 12px;
 
     box-shadow:
-        0 20px 70px rgba(0,0,0,.60);
+        0 20px 70px rgba(0,0,0,0.60);
 
     transform:
         translateY(130%);
@@ -1792,17 +1721,15 @@ button {
 }
 
 .music-player.active {
-    transform: translateY(0);
+    transform:
+        translateY(0);
 }
 
 .player-inner {
     display: grid;
 
     grid-template-columns:
-        58px
-        minmax(0,1fr)
-        45px
-        minmax(160px,350px);
+        58px minmax(0,1fr) 45px minmax(160px,350px);
 
     align-items: center;
 
@@ -1852,16 +1779,7 @@ button {
     border-radius: 50%;
 
     background: var(--gold);
-
     color: #111;
-
-    transition: .2s ease;
-}
-
-.main-player-button:hover {
-    background: var(--gold-light);
-
-    transform: scale(1.05);
 }
 
 .player-progress {
@@ -1870,7 +1788,7 @@ button {
     overflow: hidden;
 
     background:
-        rgba(255,255,255,.12);
+        rgba(255,255,255,0.12);
 
     border-radius: 10px;
 
@@ -1879,7 +1797,6 @@ button {
 
 .player-progress > div {
     width: 0%;
-
     height: 100%;
 
     background:
@@ -1911,10 +1828,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        1.5fr
-        1fr
-        1fr
-        1.4fr;
+        1.5fr 1fr 1fr 1.4fr;
 
     gap: 50px;
 
@@ -1950,8 +1864,6 @@ button {
     color: var(--gold);
 
     font-size: 12px;
-    font-weight: 900;
-
     letter-spacing: 1.5px;
 
     text-transform: uppercase;
@@ -1962,7 +1874,9 @@ button {
 
     font-size: 13px;
 
-    transition: .2s ease;
+    transition:
+        color .2s ease,
+        padding .2s ease;
 }
 
 .footer-column a:hover {
@@ -1994,16 +1908,17 @@ button {
 
     background: #101610;
 
-    color: #fff;
-
     border:
         1px solid var(--border);
 
     border-right: 0;
 
-    border-radius: 7px 0 0 7px;
+    border-radius:
+        7px 0 0 7px;
 
     outline: none;
+
+    color: #fff;
 }
 
 .newsletter-form input:focus {
@@ -2017,16 +1932,10 @@ button {
     border: 0;
 
     background: var(--gold);
-
     color: #111;
 
-    border-radius: 0 7px 7px 0;
-
-    transition: .2s ease;
-}
-
-.newsletter-form button:hover {
-    background: var(--gold-light);
+    border-radius:
+        0 7px 7px 0;
 }
 
 
@@ -2050,14 +1959,17 @@ button {
     align-items: center;
     justify-content: center;
 
-    color: #fff;
-
     border:
         1px solid var(--border);
 
     border-radius: 50%;
 
-    transition: .2s ease;
+    color: #fff;
+
+    transition:
+        background .2s ease,
+        border-color .2s ease,
+        transform .2s ease;
 }
 
 .social-links a:hover {
@@ -2065,7 +1977,8 @@ button {
 
     border-color: var(--green);
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 }
 
 
@@ -2084,6 +1997,7 @@ button {
     min-height: 65px;
 
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -2113,21 +2027,7 @@ button {
     }
 
     .navigation a {
-        font-size: 9px;
-    }
-
-    .header-inner {
-        gap: 18px;
-    }
-
-    .hero-content {
-        grid-template-columns:
-            .85fr
-            1.15fr;
-    }
-
-    .hero-visual {
-        background-size: 125% auto;
+        font-size: 10px;
     }
 
     .music-panels {
@@ -2147,6 +2047,15 @@ button {
     .footer-grid {
         grid-template-columns:
             repeat(2,1fr);
+    }
+
+    .hero-content {
+        grid-template-columns:
+            .85fr 1.15fr;
+    }
+
+    .hero-visual {
+        background-size: 135% auto;
     }
 }
 
@@ -2175,17 +2084,10 @@ button {
         gap: 10px;
     }
 
-    .logo {
-        height: 54px;
-    }
-
     .logo img {
         width: 125px;
         height: 50px;
     }
-
-
-    /* MOBILE NAV */
 
     .navigation {
         position: absolute;
@@ -2207,7 +2109,7 @@ button {
             1px solid var(--border);
 
         box-shadow:
-            0 20px 40px rgba(0,0,0,.55);
+            0 20px 40px rgba(0,0,0,0.55);
     }
 
     .navigation.active {
@@ -2215,14 +2117,12 @@ button {
     }
 
     .navigation a {
-        width: 100%;
-
         padding: 16px 22px;
 
         font-size: 12px;
 
         border-bottom:
-            1px solid rgba(255,255,255,.05);
+            1px solid rgba(255,255,255,0.05);
     }
 
     .navigation a::after {
@@ -2230,7 +2130,7 @@ button {
     }
 
     .mobile-menu {
-        display: inline-flex;
+        display: block;
     }
 
     .header-actions {
@@ -2242,16 +2142,18 @@ button {
     }
 
 
-    /* MOBILE HERO */
+    /* =====================================================
+       MOBILE HERO
+       ===================================================== */
 
     .hero {
         min-height: auto;
 
         background:
             radial-gradient(
-                circle at 72% 56%,
-                rgba(24,185,104,.27),
-                transparent 38%
+                circle at 70% 58%,
+                rgba(24,185,104,0.25),
+                transparent 40%
             ),
             linear-gradient(
                 160deg,
@@ -2264,9 +2166,9 @@ button {
         background:
             linear-gradient(
                 180deg,
-                rgba(2,4,2,.94),
-                rgba(2,4,2,.55),
-                rgba(2,4,2,.15)
+                rgba(2,4,2,0.94),
+                rgba(2,4,2,0.52),
+                rgba(2,4,2,0.10)
             );
     }
 
@@ -2275,39 +2177,52 @@ button {
 
         grid-template-columns: 1fr;
 
+        gap: 0;
+
         padding:
             65px 0 15px;
     }
 
     .hero-text {
+        max-width: 100%;
+
+        padding: 0;
+
         z-index: 10;
     }
 
     .hero h1 {
         font-size:
-            clamp(48px,15vw,70px);
+            clamp(48px, 15vw, 70px);
 
         letter-spacing: -2px;
     }
 
     .hero-text > p {
-        max-width: 600px;
-
         font-size: 16px;
+        line-height: 1.65;
     }
+
+
+    /* =====================================================
+       LARGE MOBILE ARTWORK
+       ===================================================== */
 
     .hero-visual {
         width: 100%;
 
-        min-height: 500px;
-        height: 500px;
+        min-height: 530px;
+        height: 530px;
 
-        margin-top: -15px;
-
-        background-size: 145% auto;
-        background-position: center center;
+        margin-top: -10px;
 
         transform: scale(1.10);
+
+        background-size:
+            145% auto;
+
+        background-position:
+            center center;
     }
 
     .hero-visual::before {
@@ -2315,13 +2230,20 @@ button {
         height: 500px;
     }
 
+    .hero-visual::after {
+        width: 340px;
+        height: 340px;
+    }
+
     .sound-wave {
-        right: 5%;
-        bottom: 10px;
+        right: 4%;
+        bottom: 15px;
     }
 
 
-    /* SECTIONS */
+    /* =====================================================
+       SECTIONS
+       ===================================================== */
 
     .section {
         padding: 65px 0;
@@ -2329,6 +2251,9 @@ button {
 
     .section-heading {
         align-items: flex-start;
+        flex-direction: column;
+
+        margin-bottom: 25px;
     }
 
     .music-panels {
@@ -2344,9 +2269,6 @@ button {
             repeat(2,1fr);
     }
 
-
-    /* ARTIST */
-
     .artist-banner-inner {
         grid-template-columns: 1fr;
 
@@ -2359,13 +2281,13 @@ button {
     }
 
 
-    /* PLAYER */
+    /* =====================================================
+       PLAYER
+       ===================================================== */
 
     .player-inner {
         grid-template-columns:
-            50px
-            minmax(0,1fr)
-            42px;
+            50px minmax(0,1fr) 42px;
 
         padding: 10px;
     }
@@ -2388,21 +2310,22 @@ button {
     }
 
 
-    /* FOOTER */
+    /* =====================================================
+       FOOTER
+       ===================================================== */
 
     .footer-grid {
         grid-template-columns:
             1fr 1fr;
 
-        gap: 35px 25px;
+        gap:
+            35px 25px;
     }
 
     .footer-bottom-inner {
         flex-direction: column;
 
         justify-content: center;
-
-        min-height: auto;
 
         padding: 15px 0;
 
@@ -2412,7 +2335,7 @@ button {
 
 
 /* =========================================================
-   SMALL PHONES
+   SMALL PHONE
    ========================================================= */
 
 @media (max-width: 480px) {
@@ -2426,19 +2349,19 @@ button {
         min-height: 66px;
     }
 
-    .navigation {
-        top: 66px;
-    }
-
     .logo img {
-        width: 118px;
-        height: 48px;
+        width: 115px;
+        height: 46px;
     }
 
     .search-button,
     .mobile-menu {
-        width: 40px;
-        height: 40px;
+        width: 39px;
+        height: 39px;
+    }
+
+    .navigation {
+        top: 66px;
     }
 
 
@@ -2450,11 +2373,7 @@ button {
 
     .hero h1 {
         font-size:
-            clamp(43px,15vw,62px);
-    }
-
-    .hero-small-title {
-        font-size: 11px;
+            clamp(44px, 15vw, 62px);
     }
 
     .hero-text > p {
@@ -2463,30 +2382,52 @@ button {
 
     .hero-buttons {
         flex-direction: column;
+
+        width: 100%;
     }
 
     .hero-buttons a {
         width: 100%;
     }
 
+    /*
+       EXTRA LARGE ARTWORK
+    */
+
     .hero-visual {
-        min-height: 435px;
-        height: 435px;
+        min-height: 470px;
+        height: 470px;
 
-        margin-top: -8px;
+        margin-top: -5px;
 
-        background-size: 155% auto;
+        transform: scale(1.12);
 
-        transform: scale(1.10);
+        background-size:
+            158% auto;
+
+        background-position:
+            center center;
+    }
+
+    .hero-visual::before {
+        width: 450px;
+        height: 450px;
+    }
+
+    .sound-wave {
+        bottom: 5px;
     }
 
 
-    /* CARDS */
+    /* RELEASES */
 
     .release-grid {
         grid-template-columns:
-            repeat(2,minmax(0,1fr));
+            1fr 1fr;
     }
+
+
+    /* BENEFITS */
 
     .artist-benefits {
         grid-template-columns: 1fr;
@@ -2511,6 +2452,10 @@ button {
     .footer-grid {
         grid-template-columns: 1fr;
     }
+
+    .footer {
+        padding-top: 55px;
+    }
 }
 
 
@@ -2520,30 +2465,28 @@ button {
 
 @media (max-width: 360px) {
 
+    .logo img {
+        width: 105px;
+    }
+
     .hero h1 {
-        font-size: 42px;
+        font-size: 43px;
     }
 
     .hero-visual {
-        min-height: 390px;
-        height: 390px;
+        min-height: 420px;
+        height: 420px;
 
-        background-size: 165% auto;
+        background-size:
+            165% auto;
     }
 
-    .track {
-        grid-template-columns:
-            24px
-            48px
-            minmax(0,1fr)
-            36px;
-
+    .genre-grid {
         gap: 8px;
     }
 
-    .track-image {
-        width: 48px;
-        height: 48px;
+    .genre-card {
+        min-height: 110px;
     }
 }
 
@@ -2556,31 +2499,17 @@ button {
     outline:
         2px solid var(--gold);
 
-    outline-offset: 3px;
-}
-
-::selection {
-    background: var(--gold);
-    color: #111;
+    outline-offset:
+        3px;
 }
 
 
 /* =========================================================
-   REDUCE MOTION
+   TEXT SELECTION
    ========================================================= */
 
-@media (prefers-reduced-motion: reduce) {
-
-    html {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-    }
+::selection {
+    background: var(--gold);
+    color: #111;
 }
 ```
