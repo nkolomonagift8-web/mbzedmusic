@@ -1,18 +1,15 @@
 ```javascript
 /* =========================================================
    MBZEDMUSIC.COM
-   PROFESSIONAL MUSIC PLAYER
-   PLAY / PAUSE / NEXT / PREVIOUS
-   VOLUME / MUTE / PROGRESS / SHUFFLE / REPEAT
+   FULL MUSIC PLAYER — UPGRADED VERSION
    ========================================================= */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
     "use strict";
 
-
     /* =====================================================
-       AUDIO
+       AUDIO ENGINE
     ===================================================== */
 
     let audio = document.getElementById("audioPlayer");
@@ -24,97 +21,225 @@ document.addEventListener("DOMContentLoaded", function () {
         document.body.appendChild(audio);
     }
 
-
     /* =====================================================
        PLAYER ELEMENTS
     ===================================================== */
 
     const musicPlayer =
-        document.getElementById("musicPlayer");
+        document.getElementById("musicPlayer") ||
+        document.querySelector(".music-player");
 
     const playerCover =
-        document.getElementById("playerCover") ||
         document.querySelector(".player-cover");
 
     const playerTitle =
-        document.getElementById("playerTitle");
+        document.getElementById("playerTitle") ||
+        document.querySelector(".player-info h3");
 
     const playerArtist =
-        document.getElementById("playerArtist");
+        document.getElementById("playerArtist") ||
+        document.querySelector(".player-info p");
 
     const mainPlayerButton =
-        document.getElementById("mainPlayerButton");
-
-    const previousButton =
-        document.getElementById("previousButton");
-
-    const nextButton =
-        document.getElementById("nextButton");
+        document.getElementById("mainPlayerButton") ||
+        document.querySelector(".main-player-button");
 
     const playerProgress =
-        document.getElementById("playerProgress") ||
         document.querySelector(".player-progress");
 
     const progressBar =
-        document.getElementById("progressBar") ||
-        document.querySelector(".player-progress > div");
-
-    const currentTimeElement =
-        document.getElementById("currentTime");
-
-    const durationElement =
-        document.getElementById("duration");
-
-    const volumeButton =
-        document.getElementById("volumeButton");
-
-    const volumeSlider =
-        document.getElementById("volumeSlider");
-
-    const shuffleButton =
-        document.getElementById("shuffleButton");
-
-    const repeatButton =
-        document.getElementById("repeatButton");
-
+        playerProgress?.querySelector("div");
 
     /* =====================================================
-       MUSIC BUTTONS
+       ALL MUSIC BUTTONS
     ===================================================== */
 
-    const musicButtons =
-        Array.from(
-            document.querySelectorAll("[data-audio]")
-        );
-
-
-    /* =====================================================
-       PLAYER STATE
-    ===================================================== */
+    const musicButtons = Array.from(
+        document.querySelectorAll("[data-audio]")
+    );
 
     let currentButton = null;
-
-    let currentIndex = -1;
-
     let currentAudio = "";
-
-    let shuffleEnabled = false;
-
-    let repeatEnabled = false;
-
-    let lastVolume = 1;
-
+    let isShuffle = false;
+    let isRepeat = false;
 
     /* =====================================================
-       INITIAL VOLUME
+       CREATE EXTRA PLAYER CONTROLS
+    ===================================================== */
+
+    const playerInner =
+        musicPlayer?.querySelector(".player-inner");
+
+    if (playerInner) {
+
+        /* Previous button */
+
+        if (!document.getElementById("prevPlayerButton")) {
+
+            const previousButton =
+                document.createElement("button");
+
+            previousButton.type = "button";
+            previousButton.id = "prevPlayerButton";
+            previousButton.className = "player-control prev-player-button";
+            previousButton.setAttribute("aria-label", "Previous song");
+
+            previousButton.innerHTML =
+                '<i class="fa-solid fa-backward-step"></i>';
+
+            playerInner.insertBefore(
+                previousButton,
+                mainPlayerButton
+            );
+        }
+
+
+        /* Next button */
+
+        if (!document.getElementById("nextPlayerButton")) {
+
+            const nextButton =
+                document.createElement("button");
+
+            nextButton.type = "button";
+            nextButton.id = "nextPlayerButton";
+            nextButton.className = "player-control next-player-button";
+            nextButton.setAttribute("aria-label", "Next song");
+
+            nextButton.innerHTML =
+                '<i class="fa-solid fa-forward-step"></i>';
+
+            mainPlayerButton?.insertAdjacentElement(
+                "afterend",
+                nextButton
+            );
+        }
+
+
+        /* Shuffle button */
+
+        if (!document.getElementById("shufflePlayerButton")) {
+
+            const shuffleButton =
+                document.createElement("button");
+
+            shuffleButton.type = "button";
+            shuffleButton.id = "shufflePlayerButton";
+            shuffleButton.className = "player-control shuffle-player-button";
+            shuffleButton.setAttribute("aria-label", "Shuffle");
+
+            shuffleButton.innerHTML =
+                '<i class="fa-solid fa-shuffle"></i>';
+
+            playerInner.insertBefore(
+                shuffleButton,
+                mainPlayerButton
+            );
+        }
+
+
+        /* Repeat button */
+
+        if (!document.getElementById("repeatPlayerButton")) {
+
+            const repeatButton =
+                document.createElement("button");
+
+            repeatButton.type = "button";
+            repeatButton.id = "repeatPlayerButton";
+            repeatButton.className = "player-control repeat-player-button";
+            repeatButton.setAttribute("aria-label", "Repeat");
+
+            repeatButton.innerHTML =
+                '<i class="fa-solid fa-repeat"></i>';
+
+            playerInner.appendChild(
+                repeatButton
+            );
+        }
+
+
+        /* Volume */
+
+        if (!document.getElementById("playerVolume")) {
+
+            const volumeWrapper =
+                document.createElement("div");
+
+            volumeWrapper.className =
+                "player-volume-wrapper";
+
+            volumeWrapper.innerHTML = `
+                <i class="fa-solid fa-volume-high"></i>
+                <input
+                    type="range"
+                    id="playerVolume"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="1"
+                    aria-label="Volume">
+            `;
+
+            playerInner.appendChild(
+                volumeWrapper
+            );
+        }
+
+
+        /* Time display */
+
+        if (!document.getElementById("playerTime")) {
+
+            const timeDisplay =
+                document.createElement("div");
+
+            timeDisplay.id =
+                "playerTime";
+
+            timeDisplay.className =
+                "player-time";
+
+            timeDisplay.textContent =
+                "0:00 / 0:00";
+
+            playerInner.appendChild(
+                timeDisplay
+            );
+        }
+    }
+
+    /* =====================================================
+       EXTRA CONTROLS
+    ===================================================== */
+
+    const prevButton =
+        document.getElementById("prevPlayerButton");
+
+    const nextButton =
+        document.getElementById("nextPlayerButton");
+
+    const shuffleButton =
+        document.getElementById("shufflePlayerButton");
+
+    const repeatButton =
+        document.getElementById("repeatPlayerButton");
+
+    const volumeSlider =
+        document.getElementById("playerVolume");
+
+    const playerTime =
+        document.getElementById("playerTime");
+
+    /* =====================================================
+       DEFAULT VOLUME
     ===================================================== */
 
     audio.volume = 1;
 
     if (volumeSlider) {
-        volumeSlider.value = 1;
+        volumeSlider.value = "1";
     }
-
 
     /* =====================================================
        TIME FORMAT
@@ -133,21 +258,30 @@ document.addEventListener("DOMContentLoaded", function () {
             Math.floor(seconds / 60);
 
         const remainingSeconds =
-            Math.floor(seconds % 60);
+            Math.floor(seconds % 60)
+                .toString()
+                .padStart(2, "0");
 
-        return (
-            minutes +
-            ":" +
-            String(remainingSeconds).padStart(2, "0")
-        );
+        return `${minutes}:${remainingSeconds}`;
     }
 
+    /* =====================================================
+       UPDATE TIME
+    ===================================================== */
+
+    function updateTime() {
+
+        if (!playerTime) return;
+
+        playerTime.textContent =
+            `${formatTime(audio.currentTime)} / ${formatTime(audio.duration)}`;
+    }
 
     /* =====================================================
        PLAY BUTTON ICON
     ===================================================== */
 
-    function updateMainButton(isPlaying) {
+    function updatePlayButton(playing) {
 
         if (!mainPlayerButton) return;
 
@@ -156,84 +290,63 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!icon) return;
 
-        if (isPlaying) {
+        icon.classList.toggle(
+            "fa-play",
+            !playing
+        );
 
-            icon.classList.remove("fa-play");
+        icon.classList.toggle(
+            "fa-pause",
+            playing
+        );
 
-            icon.classList.add("fa-pause");
-
-            mainPlayerButton.setAttribute(
-                "aria-label",
-                "Pause music"
-            );
-
-        } else {
-
-            icon.classList.remove("fa-pause");
-
-            icon.classList.add("fa-play");
-
-            mainPlayerButton.setAttribute(
-                "aria-label",
-                "Play music"
-            );
-        }
+        mainPlayerButton.setAttribute(
+            "aria-label",
+            playing
+                ? "Pause music"
+                : "Play music"
+        );
     }
 
-
     /* =====================================================
-       UPDATE ALL SONG BUTTONS
+       ACTIVE TRACK
     ===================================================== */
 
-    function updateSongButtons() {
+    function updateActiveTrack() {
 
-        musicButtons.forEach(function (button) {
+        musicButtons.forEach(button => {
+
+            const card =
+                button.closest(
+                    ".track, .release-card, .chart-item"
+                );
+
+            if (!card) return;
+
+            card.classList.toggle(
+                "is-playing",
+                button === currentButton &&
+                !audio.paused
+            );
 
             const icon =
                 button.querySelector("i");
 
             if (!icon) return;
 
-            const isCurrent =
-                button === currentButton;
+            icon.classList.toggle(
+                "fa-play",
+                button !== currentButton ||
+                audio.paused
+            );
 
-            const isPlaying =
-                isCurrent &&
-                !audio.paused;
-
-            icon.classList.remove("fa-play");
-            icon.classList.remove("fa-pause");
-
-            if (isPlaying) {
-
-                icon.classList.add("fa-pause");
-
-                button.classList.add(
-                    "playing"
-                );
-
-                button.setAttribute(
-                    "aria-label",
-                    "Pause music"
-                );
-
-            } else {
-
-                icon.classList.add("fa-play");
-
-                button.classList.remove(
-                    "playing"
-                );
-
-                button.setAttribute(
-                    "aria-label",
-                    "Play music"
-                );
-            }
-
+            icon.classList.toggle(
+                "fa-pause",
+                button === currentButton &&
+                !audio.paused
+            );
         });
     }
-
 
     /* =====================================================
        SONG INFORMATION
@@ -247,16 +360,13 @@ document.addEventListener("DOMContentLoaded", function () {
             );
 
         let title =
-            button.getAttribute("data-title");
+            button.dataset.title || "";
 
         let artist =
-            button.getAttribute("data-artist");
+            button.dataset.artist || "";
 
         let cover =
-            button.getAttribute("data-cover");
-
-
-        /* TITLE */
+            button.dataset.cover || "";
 
         if (!title && card) {
 
@@ -264,15 +374,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 card.querySelector("h3");
 
             if (titleElement) {
-
                 title =
                     titleElement.textContent.trim();
-
             }
         }
-
-
-        /* ARTIST */
 
         if (!artist && card) {
 
@@ -282,15 +387,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
             if (artistElement) {
-
                 artist =
                     artistElement.textContent.trim();
-
             }
         }
-
-
-        /* COVER */
 
         if (!cover && card) {
 
@@ -301,11 +401,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (image) {
 
-                const style =
-                    getComputedStyle(image);
-
                 const background =
-                    style.backgroundImage;
+                    getComputedStyle(image)
+                        .backgroundImage;
 
                 if (
                     background &&
@@ -316,14 +414,11 @@ document.addEventListener("DOMContentLoaded", function () {
                         background
                             .replace(/^url\(["']?/, "")
                             .replace(/["']?\)$/, "");
-
                 }
             }
         }
 
-
         return {
-
             title:
                 title || "Now Playing",
 
@@ -332,13 +427,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             cover:
                 cover || ""
-
         };
     }
 
-
     /* =====================================================
-       SET PLAYER INFORMATION
+       SHOW SONG
     ===================================================== */
 
     function updatePlayerInfo(button) {
@@ -346,22 +439,15 @@ document.addEventListener("DOMContentLoaded", function () {
         const info =
             getSongInfo(button);
 
-
         if (playerTitle) {
-
             playerTitle.textContent =
                 info.title;
-
         }
-
 
         if (playerArtist) {
-
             playerArtist.textContent =
                 info.artist;
-
         }
-
 
         if (
             playerCover &&
@@ -370,218 +456,102 @@ document.addEventListener("DOMContentLoaded", function () {
 
             playerCover.style.backgroundImage =
                 `url("${info.cover}")`;
+        }
 
+        if (musicPlayer) {
+            musicPlayer.classList.add("active");
         }
     }
-
-
-    /* =====================================================
-       SHOW PLAYER
-    ===================================================== */
-
-    function showPlayer() {
-
-        if (!musicPlayer) return;
-
-        musicPlayer.classList.add(
-            "active"
-        );
-    }
-
-
-    /* =====================================================
-       RESET PROGRESS
-    ===================================================== */
-
-    function resetProgress() {
-
-        if (progressBar) {
-
-            progressBar.style.width =
-                "0%";
-
-        }
-
-        if (currentTimeElement) {
-
-            currentTimeElement.textContent =
-                "0:00";
-
-        }
-
-        if (durationElement) {
-
-            durationElement.textContent =
-                "0:00";
-
-        }
-    }
-
 
     /* =====================================================
        PLAY SONG
     ===================================================== */
 
-    function playSong(button) {
+    async function playSong(button) {
 
         if (!button) return;
 
-
         const audioURL =
-            button.getAttribute(
-                "data-audio"
-            );
-
+            button.getAttribute("data-audio");
 
         if (!audioURL) {
 
             console.warn(
-                "Mbzedmusic: No data-audio on this button.",
+                "Mbzedmusic: No data-audio on button.",
                 button
             );
 
             return;
         }
 
+        currentButton = button;
+        currentAudio = audioURL;
 
-        const newIndex =
-            musicButtons.indexOf(button);
+        updatePlayerInfo(button);
 
-
-        currentButton =
-            button;
-
-        currentIndex =
-            newIndex;
-
-        currentAudio =
-            audioURL;
-
-
-        /* PLAYER INFORMATION */
-
-        updatePlayerInfo(
-            button
-        );
-
-        showPlayer();
-
-
-        /* SAME SONG */
-
-        if (
-            audio.src ===
-                new URL(
-                    audioURL,
-                    window.location.href
-                ).href
-            &&
-            !audio.paused
-        ) {
-
-            return;
-        }
-
-
-        /* STOP CURRENT */
+        /* Stop old audio */
 
         audio.pause();
 
+        /* Load new audio */
 
-        /* LOAD NEW */
-
-        audio.src =
-            audioURL;
+        audio.src = audioURL;
 
         audio.load();
 
+        updateTime();
 
-        resetProgress();
+        try {
 
+            await audio.play();
 
-        /* PLAY */
+            updatePlayButton(true);
 
-        const playPromise =
-            audio.play();
+            updateActiveTrack();
 
+        } catch (error) {
 
-        if (
-            playPromise &&
-            typeof playPromise.then === "function"
-        ) {
+            console.error(
+                "MBZEDMUSIC PLAYBACK ERROR:",
+                error
+            );
 
-            playPromise
-                .then(function () {
+            console.error(
+                "Audio URL:",
+                audioURL
+            );
 
-                    updateMainButton(
-                        true
-                    );
-
-                    updateSongButtons();
-
-                })
-                .catch(function (error) {
-
-                    console.error(
-                        "MBZEDMUSIC PLAY ERROR:",
-                        error
-                    );
-
-                    console.error(
-                        "Audio URL:",
-                        audioURL
-                    );
-
-                    updateMainButton(
-                        false
-                    );
-
-                    updateSongButtons();
-
-                });
-
+            updatePlayButton(false);
+            updateActiveTrack();
         }
-
     }
 
-
     /* =====================================================
-       MUSIC BUTTON CLICKS
+       MUSIC BUTTONS
     ===================================================== */
 
-    musicButtons.forEach(function (button) {
+    musicButtons.forEach(button => {
 
         button.addEventListener(
             "click",
-            function (event) {
+            async event => {
 
                 event.preventDefault();
 
-
                 const url =
-                    button.getAttribute(
-                        "data-audio"
-                    );
-
-
-                /*
-                 * Buttons without data-audio
-                 * are simply not playable yet.
-                 */
+                    button.getAttribute("data-audio");
 
                 if (!url) {
 
-                    console.log(
-                        "Mbzedmusic: This song is coming soon."
+                    console.warn(
+                        "This song has no data-audio:",
+                        button
                     );
 
                     return;
                 }
 
-
-                /*
-                 * CURRENT SONG
-                 */
+                /* Same song */
 
                 if (
                     currentButton === button &&
@@ -590,48 +560,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     if (audio.paused) {
 
-                        audio.play()
-                            .then(function () {
+                        try {
 
-                                updateMainButton(
-                                    true
-                                );
+                            await audio.play();
 
-                                updateSongButtons();
+                            updatePlayButton(true);
 
-                            })
-                            .catch(function (error) {
+                        } catch (error) {
 
-                                console.error(
-                                    "Playback error:",
-                                    error
-                                );
-
-                            });
+                            console.error(
+                                "Playback error:",
+                                error
+                            );
+                        }
 
                     } else {
 
                         audio.pause();
-
                     }
+
+                    updateActiveTrack();
 
                     return;
                 }
 
+                /* New song */
 
-                /*
-                 * NEW SONG
-                 */
-
-                playSong(
-                    button
-                );
-
+                playSong(button);
             }
         );
-
     });
-
 
     /* =====================================================
        MAIN PLAY / PAUSE
@@ -641,44 +599,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
         mainPlayerButton.addEventListener(
             "click",
-            function (event) {
+            async event => {
 
                 event.preventDefault();
-
-
-                /*
-                 * NO SONG SELECTED
-                 */
 
                 if (!currentAudio) {
 
                     const firstSong =
                         musicButtons.find(
-                            function (button) {
-
-                                return button.hasAttribute(
+                            button =>
+                                button.hasAttribute(
                                     "data-audio"
-                                );
-
-                            }
+                                )
                         );
-
 
                     if (firstSong) {
-
-                        playSong(
-                            firstSong
-                        );
-
+                        playSong(firstSong);
                     }
 
                     return;
                 }
-
-
-                /*
-                 * PAUSE
-                 */
 
                 if (!audio.paused) {
 
@@ -687,35 +627,20 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
+                try {
 
-                /*
-                 * PLAY
-                 */
+                    await audio.play();
 
-                audio.play()
-                    .then(function () {
+                } catch (error) {
 
-                        updateMainButton(
-                            true
-                        );
-
-                        updateSongButtons();
-
-                    })
-                    .catch(function (error) {
-
-                        console.error(
-                            "Playback error:",
-                            error
-                        );
-
-                    });
-
+                    console.error(
+                        "Playback error:",
+                        error
+                    );
+                }
             }
         );
-
     }
-
 
     /* =====================================================
        PREVIOUS SONG
@@ -725,95 +650,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!musicButtons.length) return;
 
+        const playableButtons =
+            musicButtons.filter(
+                button =>
+                    button.hasAttribute("data-audio")
+            );
 
-        /*
-         * If song has played more than
-         * 3 seconds, restart it.
-         */
-
-        if (
-            audio.currentTime > 3
-        ) {
-
-            audio.currentTime =
-                0;
-
-            return;
-        }
-
+        if (!playableButtons.length) return;
 
         let index =
-            currentIndex;
-
+            playableButtons.indexOf(currentButton);
 
         if (index <= 0) {
-
             index =
-                musicButtons.length - 1;
-
+                playableButtons.length - 1;
         } else {
-
             index--;
-
         }
 
-
-        /*
-         * Find previous playable song
-         */
-
-        for (
-            let i = 0;
-            i < musicButtons.length;
-            i++
-        ) {
-
-            const button =
-                musicButtons[index];
-
-
-            if (
-                button &&
-                button.hasAttribute(
-                    "data-audio"
-                )
-            ) {
-
-                playSong(
-                    button
-                );
-
-                return;
-            }
-
-
-            index--;
-
-            if (index < 0) {
-
-                index =
-                    musicButtons.length - 1;
-
-            }
-
-        }
-
+        playSong(
+            playableButtons[index]
+        );
     }
 
+    if (prevButton) {
 
-    if (previousButton) {
-
-        previousButton.addEventListener(
+        prevButton.addEventListener(
             "click",
-            function () {
+            event => {
+
+                event.preventDefault();
 
                 playPrevious();
-
             }
         );
-
     }
-
 
     /* =====================================================
        NEXT SONG
@@ -821,144 +692,184 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function playNext() {
 
-        if (!musicButtons.length) return;
+        const playableButtons =
+            musicButtons.filter(
+                button =>
+                    button.hasAttribute("data-audio")
+            );
 
-
-        /*
-         * SHUFFLE
-         */
-
-        if (shuffleEnabled) {
-
-            const playableSongs =
-                musicButtons.filter(
-                    function (button) {
-
-                        return button.hasAttribute(
-                            "data-audio"
-                        );
-
-                    }
-                );
-
-
-            if (playableSongs.length) {
-
-                let randomButton;
-
-                if (
-                    playableSongs.length === 1
-                ) {
-
-                    randomButton =
-                        playableSongs[0];
-
-                } else {
-
-                    do {
-
-                        randomButton =
-                            playableSongs[
-                                Math.floor(
-                                    Math.random() *
-                                    playableSongs.length
-                                )
-                            ];
-
-                    } while (
-                        randomButton ===
-                        currentButton
-                    );
-
-                }
-
-
-                playSong(
-                    randomButton
-                );
-
-                return;
-            }
-
-        }
-
-
-        /*
-         * NORMAL NEXT
-         */
+        if (!playableButtons.length) return;
 
         let index =
-            currentIndex + 1;
+            playableButtons.indexOf(currentButton);
 
+        if (isShuffle) {
 
-        if (
-            index >=
-            musicButtons.length
-        ) {
-
-            index = 0;
-
-        }
-
-
-        /*
-         * Find next playable song
-         */
-
-        for (
-            let i = 0;
-            i < musicButtons.length;
-            i++
-        ) {
-
-            const button =
-                musicButtons[index];
-
-
-            if (
-                button &&
-                button.hasAttribute(
-                    "data-audio"
-                )
-            ) {
-
-                playSong(
-                    button
-                );
-
+            if (playableButtons.length === 1) {
+                playSong(playableButtons[0]);
                 return;
             }
 
+            let randomIndex;
+
+            do {
+
+                randomIndex =
+                    Math.floor(
+                        Math.random() *
+                        playableButtons.length
+                    );
+
+            } while (
+                randomIndex === index
+            );
+
+            index = randomIndex;
+
+        } else {
 
             index++;
 
             if (
                 index >=
-                musicButtons.length
+                playableButtons.length
             ) {
-
                 index = 0;
-
             }
-
         }
 
+        playSong(
+            playableButtons[index]
+        );
     }
-
 
     if (nextButton) {
 
         nextButton.addEventListener(
             "click",
-            function () {
+            event => {
+
+                event.preventDefault();
 
                 playNext();
-
             }
         );
-
     }
 
+    /* =====================================================
+       SHUFFLE
+    ===================================================== */
+
+    if (shuffleButton) {
+
+        shuffleButton.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                isShuffle =
+                    !isShuffle;
+
+                shuffleButton.classList.toggle(
+                    "active",
+                    isShuffle
+                );
+
+                shuffleButton.setAttribute(
+                    "aria-label",
+                    isShuffle
+                        ? "Shuffle on"
+                        : "Shuffle off"
+                );
+            }
+        );
+    }
+
+    /* =====================================================
+       REPEAT
+    ===================================================== */
+
+    if (repeatButton) {
+
+        repeatButton.addEventListener(
+            "click",
+            event => {
+
+                event.preventDefault();
+
+                isRepeat =
+                    !isRepeat;
+
+                repeatButton.classList.toggle(
+                    "active",
+                    isRepeat
+                );
+
+                repeatButton.setAttribute(
+                    "aria-label",
+                    isRepeat
+                        ? "Repeat on"
+                        : "Repeat off"
+                );
+            }
+        );
+    }
+
+    /* =====================================================
+       VOLUME
+    ===================================================== */
+
+    if (volumeSlider) {
+
+        volumeSlider.addEventListener(
+            "input",
+            () => {
+
+                audio.volume =
+                    parseFloat(
+                        volumeSlider.value
+                    );
+
+                const icon =
+                    volumeSlider
+                        .parentElement
+                        ?.querySelector("i");
+
+                if (icon) {
+
+                    icon.classList.remove(
+                        "fa-volume-high",
+                        "fa-volume-low",
+                        "fa-volume-off"
+                    );
+
+                    if (
+                        audio.volume === 0
+                    ) {
+
+                        icon.classList.add(
+                            "fa-volume-off"
+                        );
+
+                    } else if (
+                        audio.volume < 0.5
+                    ) {
+
+                        icon.classList.add(
+                            "fa-volume-low"
+                        );
+
+                    } else {
+
+                        icon.classList.add(
+                            "fa-volume-high"
+                        );
+                    }
+                }
+            }
+        );
+    }
 
     /* =====================================================
        AUDIO PLAY
@@ -966,19 +877,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
     audio.addEventListener(
         "play",
-        function () {
+        () => {
 
-            updateMainButton(
-                true
-            );
+            updatePlayButton(true);
 
-            updateSongButtons();
+            updateActiveTrack();
 
-            showPlayer();
+            if (musicPlayer) {
+                musicPlayer.classList.add("active");
+            }
 
+            if (playerCover) {
+                playerCover.classList.add(
+                    "playing"
+                );
+            }
         }
     );
-
 
     /* =====================================================
        AUDIO PAUSE
@@ -986,56 +901,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
     audio.addEventListener(
         "pause",
-        function () {
+        () => {
 
-            updateMainButton(
-                false
-            );
+            updatePlayButton(false);
 
-            updateSongButtons();
+            updateActiveTrack();
 
-        }
-    );
-
-
-    /* =====================================================
-       LOADED METADATA
-    ===================================================== */
-
-    audio.addEventListener(
-        "loadedmetadata",
-        function () {
-
-            if (durationElement) {
-
-                durationElement.textContent =
-                    formatTime(
-                        audio.duration
-                    );
-
+            if (playerCover) {
+                playerCover.classList.remove(
+                    "playing"
+                );
             }
-
         }
     );
 
-
     /* =====================================================
-       TIME UPDATE
+       AUDIO TIME UPDATE
     ===================================================== */
 
     audio.addEventListener(
         "timeupdate",
-        function () {
+        () => {
+
+            updateTime();
 
             if (
                 !audio.duration ||
                 !isFinite(audio.duration)
             ) {
-
                 return;
-
             }
-
 
             const percentage =
                 (
@@ -1043,71 +938,136 @@ document.addEventListener("DOMContentLoaded", function () {
                     audio.duration
                 ) * 100;
 
-
             if (progressBar) {
 
                 progressBar.style.width =
-                    percentage + "%";
-
+                    `${percentage}%`;
             }
-
-
-            if (currentTimeElement) {
-
-                currentTimeElement.textContent =
-                    formatTime(
-                        audio.currentTime
-                    );
-
-            }
-
-
-            if (durationElement) {
-
-                durationElement.textContent =
-                    formatTime(
-                        audio.duration
-                    );
-
-            }
-
         }
     );
 
+    /* =====================================================
+       LOADED METADATA
+    ===================================================== */
+
+    audio.addEventListener(
+        "loadedmetadata",
+        () => {
+
+            updateTime();
+
+            console.log(
+                "MBZEDMUSIC SONG LOADED:",
+                formatTime(audio.duration)
+            );
+        }
+    );
 
     /* =====================================================
-       PROGRESS BAR
+       AUDIO ERROR
+    ===================================================== */
+
+    audio.addEventListener(
+        "error",
+        () => {
+
+            console.error(
+                "================================"
+            );
+
+            console.error(
+                "MBZEDMUSIC AUDIO ERROR"
+            );
+
+            console.error(
+                "URL:",
+                audio.src
+            );
+
+            console.error(
+                "Audio error:",
+                audio.error
+            );
+
+            console.error(
+                "================================"
+            );
+
+            updatePlayButton(false);
+            updateActiveTrack();
+        }
+    );
+
+    /* =====================================================
+       SONG ENDED
+    ===================================================== */
+
+    audio.addEventListener(
+        "ended",
+        () => {
+
+            updatePlayButton(false);
+
+            updateActiveTrack();
+
+            if (progressBar) {
+                progressBar.style.width =
+                    "0%";
+            }
+
+            updateTime();
+
+            /* Repeat current song */
+
+            if (isRepeat) {
+
+                audio.currentTime = 0;
+
+                audio.play()
+                    .catch(error =>
+                        console.error(
+                            "Repeat playback error:",
+                            error
+                        )
+                    );
+
+                return;
+            }
+
+            /* Otherwise play next */
+
+            playNext();
+        }
+    );
+
+    /* =====================================================
+       PROGRESS BAR SEEK
     ===================================================== */
 
     if (playerProgress) {
 
         playerProgress.addEventListener(
             "click",
-            function (event) {
+            event => {
 
                 if (
                     !audio.duration ||
                     !isFinite(audio.duration)
                 ) {
-
                     return;
-
                 }
 
-
                 const rect =
-                    playerProgress.getBoundingClientRect();
+                    playerProgress
+                        .getBoundingClientRect();
 
-
-                const clickPosition =
+                const position =
                     event.clientX -
                     rect.left;
 
-
                 let percentage =
-                    clickPosition /
+                    position /
                     rect.width;
-
 
                 percentage =
                     Math.max(
@@ -1118,371 +1078,105 @@ document.addEventListener("DOMContentLoaded", function () {
                         )
                     );
 
-
                 audio.currentTime =
                     percentage *
                     audio.duration;
-
             }
         );
-
     }
 
-
     /* =====================================================
-       VOLUME SLIDER
+       KEYBOARD SHORTCUTS
     ===================================================== */
 
-    if (volumeSlider) {
-
-        volumeSlider.addEventListener(
-            "input",
-            function () {
-
-                let value =
-                    parseFloat(
-                        volumeSlider.value
-                    );
-
-
-                if (
-                    !isFinite(value)
-                ) {
-
-                    value = 1;
-
-                }
-
-
-                value =
-                    Math.max(
-                        0,
-                        Math.min(
-                            1,
-                            value
-                        )
-                    );
-
-
-                audio.volume =
-                    value;
-
-
-                if (
-                    value > 0
-                ) {
-
-                    lastVolume =
-                        value;
-
-                }
-
-
-                updateVolumeIcon();
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       VOLUME ICON
-    ===================================================== */
-
-    function updateVolumeIcon() {
-
-        if (!volumeButton) return;
-
-
-        const icon =
-            volumeButton.querySelector("i");
-
-        if (!icon) return;
-
-
-        icon.classList.remove(
-            "fa-volume-high"
-        );
-
-        icon.classList.remove(
-            "fa-volume-low"
-        );
-
-        icon.classList.remove(
-            "fa-volume-xmark"
-        );
-
-
-        if (
-            audio.volume === 0
-        ) {
-
-            icon.classList.add(
-                "fa-volume-xmark"
-            );
-
-            volumeButton.setAttribute(
-                "aria-label",
-                "Unmute"
-            );
-
-        } else if (
-            audio.volume < 0.5
-        ) {
-
-            icon.classList.add(
-                "fa-volume-low"
-            );
-
-            volumeButton.setAttribute(
-                "aria-label",
-                "Mute"
-            );
-
-        } else {
-
-            icon.classList.add(
-                "fa-volume-high"
-            );
-
-            volumeButton.setAttribute(
-                "aria-label",
-                "Mute"
-            );
-
-        }
-
-    }
-
-
-    /* =====================================================
-       MUTE BUTTON
-    ===================================================== */
-
-    if (volumeButton) {
-
-        volumeButton.addEventListener(
-            "click",
-            function () {
-
-                if (
-                    audio.volume > 0
-                ) {
-
-                    lastVolume =
-                        audio.volume;
-
-                    audio.volume =
-                        0;
-
-                } else {
-
-                    audio.volume =
-                        lastVolume ||
-                        1;
-
-                }
-
-
-                if (volumeSlider) {
-
-                    volumeSlider.value =
-                        audio.volume;
-
-                }
-
-
-                updateVolumeIcon();
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       SHUFFLE
-    ===================================================== */
-
-    if (shuffleButton) {
-
-        shuffleButton.addEventListener(
-            "click",
-            function () {
-
-                shuffleEnabled =
-                    !shuffleEnabled;
-
-
-                shuffleButton.classList.toggle(
-                    "active",
-                    shuffleEnabled
-                );
-
-
-                shuffleButton.setAttribute(
-                    "aria-label",
-                    shuffleEnabled
-                        ? "Shuffle on"
-                        : "Shuffle off"
-                );
-
-
-                console.log(
-                    "Shuffle:",
-                    shuffleEnabled
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       REPEAT
-    ===================================================== */
-
-    if (repeatButton) {
-
-        repeatButton.addEventListener(
-            "click",
-            function () {
-
-                repeatEnabled =
-                    !repeatEnabled;
-
-
-                repeatButton.classList.toggle(
-                    "active",
-                    repeatEnabled
-                );
-
-
-                repeatButton.setAttribute(
-                    "aria-label",
-                    repeatEnabled
-                        ? "Repeat on"
-                        : "Repeat off"
-                );
-
-
-                console.log(
-                    "Repeat:",
-                    repeatEnabled
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       SONG ENDED
-    ===================================================== */
-
-    audio.addEventListener(
-        "ended",
-        function () {
-
-            updateMainButton(
-                false
-            );
-
-            updateSongButtons();
-
-
-            if (progressBar) {
-
-                progressBar.style.width =
-                    "0%";
-
-            }
-
-
-            if (currentTimeElement) {
-
-                currentTimeElement.textContent =
-                    "0:00";
-
-            }
-
-
-            /*
-             * REPEAT CURRENT SONG
-             */
-
-            if (repeatEnabled) {
-
-                audio.currentTime =
-                    0;
-
-                audio.play()
-                    .catch(function (error) {
-
-                        console.error(
-                            "Repeat playback error:",
-                            error
-                        );
-
-                    });
-
+    document.addEventListener(
+        "keydown",
+        event => {
+
+            /* Don't interfere with inputs */
+
+            if (
+                event.target.tagName === "INPUT" ||
+                event.target.tagName === "TEXTAREA"
+            ) {
                 return;
             }
 
+            /* Space */
 
-            /*
-             * OTHERWISE PLAY NEXT
-             */
+            if (
+                event.code === "Space" &&
+                currentAudio
+            ) {
 
-            playNext();
+                event.preventDefault();
 
+                if (audio.paused) {
+                    audio.play();
+                } else {
+                    audio.pause();
+                }
+            }
+
+            /* Previous */
+
+            if (
+                event.code === "ArrowLeft" &&
+                event.ctrlKey
+            ) {
+
+                playPrevious();
+            }
+
+            /* Next */
+
+            if (
+                event.code === "ArrowRight" &&
+                event.ctrlKey
+            ) {
+
+                playNext();
+            }
+
+            /* Volume up */
+
+            if (
+                event.code === "ArrowUp" &&
+                event.ctrlKey
+            ) {
+
+                audio.volume =
+                    Math.min(
+                        1,
+                        audio.volume + 0.1
+                    );
+
+                if (volumeSlider) {
+                    volumeSlider.value =
+                        audio.volume;
+                }
+            }
+
+            /* Volume down */
+
+            if (
+                event.code === "ArrowDown" &&
+                event.ctrlKey
+            ) {
+
+                audio.volume =
+                    Math.max(
+                        0,
+                        audio.volume - 0.1
+                    );
+
+                if (volumeSlider) {
+                    volumeSlider.value =
+                        audio.volume;
+                }
+            }
         }
     );
-
-
-    /* =====================================================
-       AUDIO ERROR
-    ===================================================== */
-
-    audio.addEventListener(
-        "error",
-        function () {
-
-            console.error(
-                "================================="
-            );
-
-            console.error(
-                "MBZEDMUSIC AUDIO ERROR"
-            );
-
-            console.error(
-                "Audio URL:",
-                audio.src
-            );
-
-            console.error(
-                "Audio error:",
-                audio.error
-            );
-
-            console.error(
-                "================================="
-            );
-
-
-            updateMainButton(
-                false
-            );
-
-            updateSongButtons();
-
-        }
-    );
-
 
     /* =====================================================
        SEARCH
@@ -1508,7 +1202,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "closeSearch"
         );
 
-
     if (
         searchButton &&
         searchBox
@@ -1516,12 +1209,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
         searchButton.addEventListener(
             "click",
-            function () {
+            () => {
 
                 searchBox.classList.toggle(
                     "active"
                 );
-
 
                 if (
                     searchBox.classList.contains(
@@ -1531,14 +1223,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 ) {
 
                     searchInput.focus();
-
                 }
-
             }
         );
-
     }
-
 
     if (
         closeSearch &&
@@ -1547,17 +1235,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         closeSearch.addEventListener(
             "click",
-            function () {
+            () => {
 
                 searchBox.classList.remove(
                     "active"
                 );
-
             }
         );
-
     }
-
 
     /* =====================================================
        SEARCH FILTER
@@ -1567,53 +1252,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
         searchInput.addEventListener(
             "input",
-            function () {
+            () => {
 
                 const query =
                     searchInput.value
                         .trim()
                         .toLowerCase();
 
-
                 const items =
                     document.querySelectorAll(
                         ".track, .release-card, .chart-item"
                     );
 
+                items.forEach(item => {
 
-                items.forEach(
-                    function (item) {
+                    const text =
+                        item.textContent
+                            .toLowerCase();
 
-                        const text =
-                            item.textContent
-                                .toLowerCase();
-
-
-                        if (
-                            !query ||
-                            text.includes(
-                                query
-                            )
-                        ) {
-
-                            item.style.display =
-                                "";
-
-                        } else {
-
-                            item.style.display =
-                                "none";
-
-                        }
-
-                    }
-                );
-
+                    item.style.display =
+                        !query ||
+                        text.includes(query)
+                            ? ""
+                            : "none";
+                });
             }
         );
-
     }
-
 
     /* =====================================================
        MOBILE MENU
@@ -1629,7 +1294,6 @@ document.addEventListener("DOMContentLoaded", function () {
             "navigation"
         );
 
-
     if (
         mobileMenu &&
         navigation
@@ -1637,54 +1301,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
         mobileMenu.addEventListener(
             "click",
-            function () {
+            () => {
 
                 navigation.classList.toggle(
                     "active"
                 );
-
 
                 const icon =
                     mobileMenu.querySelector(
                         "i"
                     );
 
+                if (!icon) return;
 
-                if (icon) {
+                const open =
+                    navigation.classList.contains(
+                        "active"
+                    );
 
-                    if (
-                        navigation.classList.contains(
-                            "active"
-                        )
-                    ) {
+                icon.classList.toggle(
+                    "fa-bars",
+                    !open
+                );
 
-                        icon.classList.remove(
-                            "fa-bars"
-                        );
-
-                        icon.classList.add(
-                            "fa-xmark"
-                        );
-
-                    } else {
-
-                        icon.classList.remove(
-                            "fa-xmark"
-                        );
-
-                        icon.classList.add(
-                            "fa-bars"
-                        );
-
-                    }
-
-                }
-
+                icon.classList.toggle(
+                    "fa-xmark",
+                    open
+                );
             }
         );
-
     }
-
 
     /* =====================================================
        CLOSE MOBILE MENU AFTER LINK
@@ -1694,45 +1340,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
         navigation
             .querySelectorAll("a")
-            .forEach(
-                function (link) {
+            .forEach(link => {
 
-                    link.addEventListener(
-                        "click",
-                        function () {
+                link.addEventListener(
+                    "click",
+                    () => {
 
-                            navigation.classList.remove(
-                                "active"
+                        navigation.classList.remove(
+                            "active"
+                        );
+
+                        const icon =
+                            mobileMenu?.querySelector(
+                                "i"
                             );
 
-                            const icon =
-                                mobileMenu
-                                    ? mobileMenu.querySelector(
-                                        "i"
-                                    )
-                                    : null;
+                        if (icon) {
 
+                            icon.classList.remove(
+                                "fa-xmark"
+                            );
 
-                            if (icon) {
-
-                                icon.classList.remove(
-                                    "fa-xmark"
-                                );
-
-                                icon.classList.add(
-                                    "fa-bars"
-                                );
-
-                            }
-
+                            icon.classList.add(
+                                "fa-bars"
+                            );
                         }
-                    );
-
-                }
-            );
-
+                    }
+                );
+            });
     }
-
 
     /* =====================================================
        NEWSLETTER
@@ -1743,91 +1379,63 @@ document.addEventListener("DOMContentLoaded", function () {
             "newsletterForm"
         );
 
-
     if (newsletterForm) {
 
         newsletterForm.addEventListener(
             "submit",
-            function (event) {
+            event => {
 
                 event.preventDefault();
 
+                const emailInput =
+                    newsletterForm.querySelector(
+                        "input[type='email']"
+                    );
+
+                if (!emailInput) return;
+
+                if (!emailInput.value.trim()) {
+                    return;
+                }
+
                 alert(
-                    "Thank you for connecting with Mbzedmusic.com!"
+                    "Thank you for subscribing to Mbzedmusic!"
                 );
 
                 newsletterForm.reset();
-
             }
         );
-
     }
-
 
     /* =====================================================
        INITIAL PLAYER STATE
     ===================================================== */
 
-    updateVolumeIcon();
-
-    updateMainButton(false);
-
-    updateSongButtons();
-
-
-    /* =====================================================
-       DEBUG
-    ===================================================== */
+    updatePlayButton(false);
+    updateTime();
+    updateActiveTrack();
 
     console.log(
         "================================="
     );
 
     console.log(
-        "MBZEDMUSIC PROFESSIONAL PLAYER READY"
+        "MBZEDMUSIC FULL PLAYER READY"
     );
 
     console.log(
-        "Playable songs:",
+        "Songs with data-audio:",
         musicButtons.length
     );
 
     console.log(
-        "Audio element:",
-        audio
-    );
-
-    console.log(
         "Shuffle:",
-        shuffleEnabled
+        isShuffle
     );
 
     console.log(
         "Repeat:",
-        repeatEnabled
-    );
-
-    musicButtons.forEach(
-        function (button, index) {
-
-            if (
-                button.hasAttribute(
-                    "data-audio"
-                )
-            ) {
-
-                console.log(
-                    "Song",
-                    index + 1,
-                    ":",
-                    button.getAttribute(
-                        "data-audio"
-                    )
-                );
-
-            }
-
-        }
+        isRepeat
     );
 
     console.log(
