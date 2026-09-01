@@ -1,24 +1,24 @@
+```css
 /* =========================================================
    MBZEDMUSIC.COM
    AFRICAN MUSIC • OUR CULTURE • OUR SOUND
-   COMPLETE IMPROVED MAIN STYLESHEET
+   IMPROVED COMPLETE STYLE.CSS
    ========================================================= */
 
 :root {
-    --black: #030503;
+    --black: #030603;
     --black-2: #070b07;
     --black-3: #0d140e;
-    --panel: #111a12;
 
-    --green: #18b968;
+    --green: #18c76d;
     --green-dark: #08783f;
-    --green-light: #35dc83;
+    --green-light: #45e98d;
 
     --gold: #f5b82e;
-    --gold-light: #ffd967;
+    --gold-light: #ffdc70;
 
     --red: #d93632;
-    --red-light: #ef5147;
+    --red-light: #f05a50;
 
     --white: #ffffff;
     --text: #f7faf7;
@@ -48,25 +48,18 @@ html {
 }
 
 body {
-    min-width: 320px;
-
     background:
         radial-gradient(
-            circle at 8% 8%,
-            rgba(24,185,104,0.14),
-            transparent 25%
+            circle at 10% 10%,
+            rgba(24,199,109,0.12),
+            transparent 30%
         ),
         radial-gradient(
-            circle at 92% 18%,
+            circle at 90% 20%,
             rgba(245,184,46,0.08),
-            transparent 24%
+            transparent 28%
         ),
-        linear-gradient(
-            180deg,
-            #030503 0%,
-            #070b07 45%,
-            #050705 100%
-        );
+        var(--black);
 
     color: var(--text);
 
@@ -113,7 +106,7 @@ button {
         var(--container)
     );
 
-    margin-inline: auto;
+    margin: 0 auto;
 }
 
 
@@ -126,7 +119,7 @@ button {
         linear-gradient(
             90deg,
             #08783f 0%,
-            #18b968 34%,
+            #18b968 35%,
             #f5b82e 68%,
             #d93632 100%
         );
@@ -136,35 +129,35 @@ button {
     font-size: 13px;
 
     border-bottom:
-        1px solid rgba(255,255,255,0.15);
+        1px solid rgba(255,255,255,0.12);
 }
 
 .top-bar-inner {
     min-height: 42px;
 
     display: flex;
+
     align-items: center;
+
     justify-content: space-between;
 
     gap: 20px;
 }
 
 .welcome-text {
+    color: #fff;
     font-weight: 700;
 }
 
 .top-links {
     display: flex;
     align-items: center;
-
     gap: 14px;
-
     white-space: nowrap;
 }
 
 .top-links a {
-    font-weight: 700;
-    transition: color .2s ease;
+    transition: 0.2s ease;
 }
 
 .top-links a:hover {
@@ -178,19 +171,13 @@ button {
 
 .header {
     position: sticky;
-
     top: 0;
-
     z-index: 1000;
 
     background:
-        rgba(3,5,3,0.94);
+        rgba(3,6,3,0.96);
 
-    backdrop-filter:
-        blur(20px);
-
-    -webkit-backdrop-filter:
-        blur(20px);
+    backdrop-filter: blur(18px);
 
     border-bottom:
         1px solid var(--border);
@@ -213,10 +200,7 @@ button {
 .logo {
     display: flex;
     align-items: center;
-
     flex-shrink: 0;
-
-    line-height: 0;
 }
 
 .logo img {
@@ -235,13 +219,13 @@ button {
    ========================================================= */
 
 .navigation {
-    flex: 1;
-
     display: flex;
     align-items: center;
     justify-content: center;
 
     gap: 21px;
+
+    flex: 1;
 }
 
 .navigation a {
@@ -250,16 +234,16 @@ button {
     color: #dce4de;
 
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 800;
 
-    letter-spacing: .65px;
+    letter-spacing: 0.65px;
 
     padding: 31px 0;
 
     white-space: nowrap;
 
     transition:
-        color .2s ease;
+        color 0.2s ease;
 }
 
 .navigation a:hover,
@@ -274,6 +258,7 @@ button {
 
     left: 0;
     right: 0;
+
     bottom: 20px;
 
     height: 3px;
@@ -291,7 +276,7 @@ button {
     transform: scaleX(0);
 
     transition:
-        transform .2s ease;
+        transform 0.2s ease;
 }
 
 .navigation a:hover::after,
@@ -300,8 +285,8 @@ button {
 }
 
 .navigation i {
-    margin-left: 3px;
     font-size: 9px;
+    margin-left: 3px;
 }
 
 
@@ -312,7 +297,6 @@ button {
 .header-actions {
     display: flex;
     align-items: center;
-
     gap: 10px;
 
     flex-shrink: 0;
@@ -333,18 +317,13 @@ button {
 
     border-radius: 50%;
 
-    transition:
-        background .2s ease,
-        border-color .2s ease,
-        transform .2s ease;
+    transition: 0.2s ease;
 }
 
 .search-button:hover,
 .mobile-menu:hover {
     background: var(--green);
     border-color: var(--green);
-
-    transform: translateY(-2px);
 }
 
 .mobile-menu {
@@ -364,7 +343,6 @@ button {
     padding: 0 18px;
 
     background: var(--gold);
-
     color: #111;
 
     border-radius: 8px;
@@ -375,15 +353,13 @@ button {
     text-transform: uppercase;
 
     transition:
-        background .2s ease,
-        transform .2s ease;
+        transform 0.2s ease,
+        background 0.2s ease;
 }
 
 .upload-button:hover {
     background: var(--gold-light);
-
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 }
 
 
@@ -394,8 +370,7 @@ button {
 .search-box {
     display: none;
 
-    background:
-        #0a100b;
+    background: #0b110c;
 
     border-bottom:
         1px solid var(--border);
@@ -407,18 +382,15 @@ button {
 
 .search-inner {
     display: flex;
-
     align-items: center;
 
-    gap: 12px;
+    gap: 15px;
 
     padding: 15px 0;
 }
 
 .search-inner input {
     flex: 1;
-
-    min-width: 0;
 
     height: 50px;
 
@@ -431,23 +403,22 @@ button {
     border:
         1px solid var(--border);
 
-    border-radius: 9px;
+    border-radius: 8px;
 
     outline: none;
 }
 
 .search-inner input:focus {
-    border-color:
-        var(--green);
+    border-color: var(--green);
 }
 
 .search-inner button {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
 
     border: 0;
 
-    border-radius: 9px;
+    border-radius: 8px;
 
     background: var(--red);
 
@@ -472,43 +443,38 @@ button {
     background:
         radial-gradient(
             circle at 75% 42%,
-            rgba(24,185,104,0.34),
-            transparent 30%
+            rgba(24,199,109,0.34),
+            transparent 31%
         ),
         radial-gradient(
-            circle at 91% 78%,
-            rgba(245,184,46,0.20),
+            circle at 92% 75%,
+            rgba(245,184,46,0.22),
             transparent 27%
         ),
         linear-gradient(
             110deg,
             #020402 0%,
-            #061007 35%,
-            #0b1b10 67%,
-            #061007 100%
+            #071008 38%,
+            #0a1c10 68%,
+            #071008 100%
         );
 }
-
-
-/* =========================================================
-   HERO GLOW
-   ========================================================= */
 
 .hero::before {
     content: "";
 
     position: absolute;
 
-    width: 750px;
-    height: 750px;
+    width: 800px;
+    height: 800px;
 
-    left: -330px;
-    top: -300px;
+    left: -350px;
+    top: -330px;
 
     background:
         radial-gradient(
             circle,
-            rgba(24,185,104,0.30),
+            rgba(24,199,109,0.30),
             transparent 68%
         );
 
@@ -523,14 +489,14 @@ button {
     width: 700px;
     height: 700px;
 
-    right: -260px;
-    bottom: -350px;
+    right: -250px;
+    bottom: -330px;
 
     background:
         radial-gradient(
             circle,
             rgba(245,184,46,0.25),
-            rgba(217,54,50,0.09) 42%,
+            rgba(217,54,50,0.10) 42%,
             transparent 72%
         );
 
@@ -544,19 +510,18 @@ button {
 
 .hero-overlay {
     position: absolute;
-
     inset: 0;
-
-    z-index: 1;
 
     background:
         linear-gradient(
             90deg,
-            rgba(2,4,2,0.97) 0%,
-            rgba(3,7,4,0.78) 33%,
-            rgba(3,7,4,0.30) 62%,
-            rgba(3,7,4,0.04) 100%
+            rgba(2,4,2,0.96) 0%,
+            rgba(3,7,4,0.72) 35%,
+            rgba(3,7,4,0.18) 65%,
+            rgba(3,7,4,0.02) 100%
         );
+
+    z-index: 1;
 
     pointer-events: none;
 }
@@ -569,33 +534,37 @@ button {
 .hero-content {
     position: relative;
 
-    z-index: 5;
-
-    width: 100%;
-
-    min-height: 720px;
+    z-index: 3;
 
     display: grid;
 
     grid-template-columns:
-        minmax(0, .88fr)
-        minmax(0, 1.42fr);
+        minmax(400px, 0.9fr)
+        minmax(500px, 1.35fr);
 
     align-items: center;
 
     gap: 10px;
+
+    min-height: 720px;
 }
 
 .hero-text {
-    position: relative;
-
-    z-index: 10;
-
     max-width: 650px;
+
+    position: relative;
+    z-index: 5;
 }
 
 .hero-small-title {
     display: inline-block;
+
+    color: var(--gold);
+
+    font-size: 13px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
 
     margin-bottom: 18px;
 
@@ -603,41 +572,33 @@ button {
 
     border-left:
         4px solid var(--green);
-
-    color: var(--gold);
-
-    font-size: 13px;
-
-    font-weight: 900;
-
-    letter-spacing: 2px;
 }
 
 .hero h1 {
-    margin-bottom: 26px;
-
-    color: #fff;
-
     font-size:
         clamp(52px, 6vw, 88px);
 
-    line-height: .94;
+    line-height: 0.94;
 
     font-weight: 1000;
 
     letter-spacing: -3px;
+
+    color: #fff;
+
+    margin-bottom: 26px;
 }
 
 .hero-text > p {
     max-width: 560px;
-
-    margin-bottom: 32px;
 
     color: #d0d8d1;
 
     font-size: 18px;
 
     line-height: 1.7;
+
+    margin-bottom: 32px;
 }
 
 
@@ -674,14 +635,13 @@ button {
     text-transform: uppercase;
 
     transition:
-        transform .2s ease,
-        background .2s ease,
-        border-color .2s ease;
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
 }
 
 .primary-button {
     background: var(--gold);
-
     color: #111;
 
     border:
@@ -690,19 +650,17 @@ button {
 
 .primary-button:hover {
     background: var(--gold-light);
-
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 }
 
 .secondary-button {
     background:
-        rgba(24,185,104,0.10);
-
-    color: #fff;
+        rgba(24,199,109,0.10);
 
     border:
         1px solid rgba(255,255,255,0.30);
+
+    color: #fff;
 }
 
 .secondary-button:hover {
@@ -710,8 +668,7 @@ button {
 
     border-color: var(--green);
 
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 }
 
 
@@ -722,14 +679,11 @@ button {
 .hero-visual {
     position: relative;
 
-    z-index: 4;
-
-    width: 100%;
-
-    min-height: 680px;
-    height: 680px;
+    min-height: 700px;
+    height: 700px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -741,22 +695,17 @@ button {
     background-position:
         center center;
 
-    /*
-       LARGE AFRICAN ARTWORK
-    */
-
     background-size:
-        135% auto;
+        138% auto;
 
     filter:
         drop-shadow(
-            0 30px 60px rgba(0,0,0,0.65)
+            0 35px 65px rgba(0,0,0,0.70)
         );
 
-    transform:
-        scale(1.05);
+    transform: scale(1.04);
 
-    pointer-events: none;
+    z-index: 2;
 }
 
 .hero-visual::before {
@@ -772,11 +721,13 @@ button {
     background:
         radial-gradient(
             circle,
-            rgba(24,185,104,0.25),
+            rgba(24,199,109,0.26),
             transparent 68%
         );
 
     z-index: -1;
+
+    pointer-events: none;
 }
 
 .hero-visual::after {
@@ -784,11 +735,11 @@ button {
 
     position: absolute;
 
-    width: 430px;
-    height: 430px;
+    width: 460px;
+    height: 460px;
 
     right: 3%;
-    bottom: 4%;
+    bottom: 3%;
 
     border-radius: 50%;
 
@@ -800,18 +751,15 @@ button {
         );
 
     z-index: -1;
+
+    pointer-events: none;
 }
 
 
-/* =========================================================
-   REMOVE OLD AFRICA TEXT
-   ========================================================= */
+/* Remove old Africa text */
 
 .africa-shape {
     position: absolute;
-
-    width: 0;
-    height: 0;
 
     font-size: 0;
 
@@ -828,17 +776,18 @@ button {
 .sound-wave {
     position: absolute;
 
-    right: 4%;
-    bottom: 30px;
-
-    z-index: 8;
+    bottom: 28px;
+    right: 3%;
 
     display: flex;
+
     align-items: center;
 
     gap: 5px;
 
-    opacity: .95;
+    opacity: 0.95;
+
+    z-index: 5;
 }
 
 .sound-wave span {
@@ -911,7 +860,7 @@ button {
 
 @keyframes wave {
     from {
-        transform: scaleY(.55);
+        transform: scaleY(0.55);
     }
 
     to {
@@ -921,12 +870,8 @@ button {
 
 
 /* =========================================================
-   AFRICAN STRIPE
+   AFRICAN COLOR STRIPE
    ========================================================= */
-
-.hero .container {
-    position: relative;
-}
 
 .hero .container::after {
     content: "";
@@ -935,16 +880,17 @@ button {
 
     left: 0;
     right: 0;
+
     bottom: 0;
 
-    height: 4px;
+    height: 5px;
 
     background:
         linear-gradient(
             90deg,
-            var(--green),
-            var(--gold),
-            var(--red)
+            var(--green) 0%,
+            var(--gold) 50%,
+            var(--red) 100%
         );
 
     border-radius: 10px;
@@ -960,21 +906,11 @@ button {
 }
 
 .music-section {
-    background:
-        linear-gradient(
-            180deg,
-            #070a07,
-            #090d09
-        );
+    background: #070a07;
 }
 
 .genres-section {
-    background:
-        linear-gradient(
-            180deg,
-            #0b110c,
-            #091009
-        );
+    background: #0b110c;
 }
 
 .section-heading {
@@ -991,17 +927,16 @@ button {
 .section-label {
     display: block;
 
-    margin-bottom: 7px;
-
     color: var(--green-light);
 
     font-size: 11px;
-
     font-weight: 900;
 
     letter-spacing: 2px;
 
     text-transform: uppercase;
+
+    margin-bottom: 7px;
 }
 
 .section-heading h2 {
@@ -1019,7 +954,6 @@ button {
     color: var(--gold);
 
     font-size: 13px;
-
     font-weight: 800;
 
     white-space: nowrap;
@@ -1044,10 +978,6 @@ button {
 }
 
 .music-panel {
-    min-width: 0;
-
-    padding: 22px;
-
     background:
         linear-gradient(
             145deg,
@@ -1058,20 +988,24 @@ button {
     border:
         1px solid var(--border);
 
-    border-radius:
-        var(--radius);
+    border-radius: var(--radius);
 
-    box-shadow:
-        var(--shadow);
+    padding: 22px;
+
+    box-shadow: var(--shadow);
+
+    min-width: 0;
 
     transition:
-        border-color .2s ease,
-        transform .2s ease;
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .music-panel:hover {
     border-color:
-        rgba(24,185,104,0.35);
+        rgba(24,199,109,0.35);
+
+    transform: translateY(-2px);
 }
 
 .panel-heading {
@@ -1084,15 +1018,13 @@ button {
 }
 
 .panel-heading h2 {
-    color: #fff;
-
     font-size: 18px;
+    color: #fff;
 }
 
 .panel-heading i {
-    margin-right: 8px;
-
     color: var(--gold);
+    margin-right: 8px;
 }
 
 
@@ -1104,7 +1036,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        30px 58px minmax(0,1fr) 42px;
+        30px 58px 1fr 42px;
 
     align-items: center;
 
@@ -1124,7 +1056,6 @@ button {
     color: #778278;
 
     font-size: 13px;
-
     font-weight: 900;
 
     text-align: center;
@@ -1132,17 +1063,13 @@ button {
 
 .track-image,
 .mini-cover {
-    background:
-        #1b241c;
+    background-size: cover;
 
-    background-size:
-        cover;
+    background-position: center;
 
-    background-position:
-        center;
+    background-color: #1b241c;
 
-    border-radius:
-        8px;
+    border-radius: 8px;
 }
 
 .track-image {
@@ -1156,11 +1083,11 @@ button {
 
 .track-info h3,
 .chart-item h3 {
-    margin-bottom: 3px;
-
     color: #fff;
 
     font-size: 14px;
+
+    margin-bottom: 3px;
 
     white-space: nowrap;
 
@@ -1195,9 +1122,7 @@ button {
 
     color: #fff;
 
-    transition:
-        background .2s ease,
-        transform .2s ease;
+    transition: 0.2s ease;
 }
 
 .play-button {
@@ -1213,8 +1138,7 @@ button {
 
     color: #111;
 
-    transform:
-        scale(1.08);
+    transform: scale(1.08);
 }
 
 
@@ -1226,7 +1150,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        repeat(2, minmax(0,1fr));
+        repeat(2, 1fr);
 
     gap: 14px;
 }
@@ -1240,18 +1164,16 @@ button {
 
     aspect-ratio: 1 / 1;
 
-    margin-bottom: 11px;
-
-    background:
-        #182018;
+    background: #182018;
 
     background-size: cover;
-
     background-position: center;
 
     border-radius: 10px;
 
     overflow: hidden;
+
+    margin-bottom: 11px;
 }
 
 .release-image::after {
@@ -1264,7 +1186,7 @@ button {
     background:
         linear-gradient(
             transparent 50%,
-            rgba(0,0,0,.55)
+            rgba(0,0,0,0.55)
         );
 }
 
@@ -1283,7 +1205,6 @@ button {
     color: #111;
 
     font-size: 9px;
-
     font-weight: 900;
 
     border-radius: 4px;
@@ -1336,7 +1257,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        25px 45px minmax(0,1fr) 38px;
+        25px 45px 1fr 38px;
 
     align-items: center;
 
@@ -1374,7 +1295,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        repeat(8, minmax(0,1fr));
+        repeat(8, 1fr);
 
     gap: 12px;
 }
@@ -1405,21 +1326,16 @@ button {
 
     color: #fff;
 
-    transition:
-        transform .25s ease,
-        border-color .25s ease,
-        background .25s ease;
+    transition: 0.25s ease;
 }
 
 .genre-card i {
-    color: var(--gold);
-
     font-size: 26px;
+    color: var(--gold);
 }
 
 .genre-card span {
     font-size: 10px;
-
     font-weight: 900;
 
     text-align: center;
@@ -1428,11 +1344,9 @@ button {
 }
 
 .genre-card:hover {
-    transform:
-        translateY(-6px);
+    transform: translateY(-6px);
 
-    border-color:
-        var(--green);
+    border-color: var(--green);
 
     background:
         linear-gradient(
@@ -1448,10 +1362,6 @@ button {
    ========================================================= */
 
 .artist-banner {
-    position: relative;
-
-    overflow: hidden;
-
     background:
         linear-gradient(
             110deg,
@@ -1459,6 +1369,10 @@ button {
             #0b5b31 45%,
             #5d4310 100%
         );
+
+    position: relative;
+
+    overflow: hidden;
 }
 
 .artist-banner::before {
@@ -1473,7 +1387,7 @@ button {
     top: -220px;
 
     background:
-        rgba(245,184,46,.22);
+        rgba(245,184,46,0.22);
 
     border-radius: 50%;
 }
@@ -1490,7 +1404,7 @@ button {
     bottom: -150px;
 
     background:
-        rgba(217,54,50,.20);
+        rgba(217,54,50,0.20);
 
     border-radius: 50%;
 }
@@ -1511,21 +1425,21 @@ button {
 }
 
 .artist-banner h2 {
-    margin-bottom: 18px;
-
     font-size:
-        clamp(35px,5vw,58px);
+        clamp(35px, 5vw, 58px);
 
     line-height: 1;
+
+    margin-bottom: 18px;
 }
 
 .artist-banner-text p {
     max-width: 650px;
 
-    margin-bottom: 25px;
-
     color:
-        rgba(255,255,255,.88);
+        rgba(255,255,255,0.88);
+
+    margin-bottom: 25px;
 }
 
 
@@ -1537,7 +1451,7 @@ button {
     display: grid;
 
     grid-template-columns:
-        repeat(2,minmax(0,1fr));
+        repeat(2, 1fr);
 
     gap: 14px;
 }
@@ -1552,33 +1466,32 @@ button {
     padding: 18px;
 
     background:
-        rgba(0,0,0,.22);
+        rgba(0,0,0,0.22);
 
     border:
-        1px solid rgba(255,255,255,.12);
+        1px solid rgba(255,255,255,0.12);
 
     border-radius: 10px;
 }
 
 .benefit > i {
-    width: 25px;
-
-    padding-top: 3px;
-
     color: var(--gold);
 
     font-size: 21px;
+
+    width: 25px;
+
+    padding-top: 3px;
 }
 
 .benefit h3 {
-    margin-bottom: 3px;
-
     font-size: 12px;
+    margin-bottom: 3px;
 }
 
 .benefit p {
     color:
-        rgba(255,255,255,.68);
+        rgba(255,255,255,0.68);
 
     font-size: 11px;
 }
@@ -1598,9 +1511,9 @@ button {
     align-items: center;
     justify-content: center;
 
-    padding: 40px;
-
     text-align: center;
+
+    padding: 40px;
 
     background: #101710;
 
@@ -1611,17 +1524,17 @@ button {
 }
 
 .empty-section > i {
-    margin-bottom: 15px;
+    font-size: 42px;
 
     color: var(--gold);
 
-    font-size: 42px;
+    margin-bottom: 15px;
 }
 
 .empty-section h3 {
-    margin-bottom: 7px;
-
     font-size: 20px;
+
+    margin-bottom: 7px;
 }
 
 .empty-section p {
@@ -1642,9 +1555,9 @@ button {
 
     overflow: hidden;
 
-    padding: 80px 30px;
-
     text-align: center;
+
+    padding: 80px 30px;
 
     border-radius: 18px;
 
@@ -1656,7 +1569,7 @@ button {
         );
 
     border:
-        1px solid rgba(24,185,104,.40);
+        1px solid rgba(24,199,109,0.40);
 }
 
 .promote-box::before {
@@ -1671,7 +1584,7 @@ button {
     top: -150px;
 
     background:
-        rgba(24,185,104,.17);
+        rgba(24,199,109,0.17);
 
     border-radius: 50%;
 }
@@ -1688,7 +1601,7 @@ button {
     bottom: -150px;
 
     background:
-        rgba(245,184,46,.14);
+        rgba(245,184,46,0.14);
 
     border-radius: 50%;
 }
@@ -1696,23 +1609,23 @@ button {
 .promote-box h2 {
     position: relative;
 
-    margin-bottom: 16px;
-
     font-size:
-        clamp(35px,5vw,58px);
+        clamp(35px, 5vw, 58px);
 
     line-height: 1;
+
+    margin-bottom: 16px;
 }
 
 .promote-box p {
     position: relative;
 
-    max-width: 600px;
+    color: var(--muted);
 
     margin:
         0 auto 25px;
 
-    color: var(--muted);
+    max-width: 600px;
 }
 
 
@@ -1729,13 +1642,13 @@ button {
 }
 
 .about-content p {
-    margin-bottom: 20px;
-
     color: #b8c3ba;
 
     font-size: 17px;
 
     line-height: 1.9;
+
+    margin-bottom: 20px;
 }
 
 
@@ -1759,9 +1672,9 @@ button {
 }
 
 .contact-content p {
-    margin-bottom: 20px;
-
     color: var(--muted);
+
+    margin-bottom: 20px;
 }
 
 
@@ -1779,39 +1692,34 @@ button {
     z-index: 2000;
 
     background:
-        rgba(8,13,9,.97);
+        rgba(8,13,9,0.97);
 
-    backdrop-filter:
-        blur(18px);
-
-    -webkit-backdrop-filter:
-        blur(18px);
+    backdrop-filter: blur(18px);
 
     border:
-        1px solid rgba(255,255,255,.13);
+        1px solid rgba(255,255,255,0.13);
 
     border-radius: 12px;
 
     box-shadow:
-        0 20px 70px rgba(0,0,0,.60);
+        0 20px 70px rgba(0,0,0,0.60);
 
     transform:
         translateY(130%);
 
     transition:
-        transform .3s ease;
+        transform 0.3s ease;
 }
 
 .music-player.active {
-    transform:
-        translateY(0);
+    transform: translateY(0);
 }
 
 .player-inner {
     display: grid;
 
     grid-template-columns:
-        58px minmax(0,1fr) 45px minmax(160px,350px);
+        58px 1fr 45px minmax(160px,350px);
 
     align-items: center;
 
@@ -1872,12 +1780,12 @@ button {
 .player-progress {
     height: 5px;
 
-    overflow: hidden;
-
     background:
-        rgba(255,255,255,.12);
+        rgba(255,255,255,0.12);
 
     border-radius: 10px;
+
+    overflow: hidden;
 
     cursor: pointer;
 }
@@ -1895,7 +1803,7 @@ button {
         );
 
     transition:
-        width .1s linear;
+        width 0.1s linear;
 }
 
 
@@ -1904,12 +1812,12 @@ button {
    ========================================================= */
 
 .footer {
-    padding-top: 70px;
-
     background: #040604;
 
     border-top:
         1px solid var(--border);
+
+    padding-top: 70px;
 }
 
 .footer-grid {
@@ -1932,11 +1840,11 @@ button {
 
 .footer-brand p,
 .footer-column p {
-    margin-bottom: 8px;
-
     color: #8f9b91;
 
     font-size: 13px;
+
+    margin-bottom: 8px;
 }
 
 .footer-column {
@@ -1948,13 +1856,13 @@ button {
 }
 
 .footer-column h3 {
-    margin-bottom: 9px;
-
     color: var(--gold);
 
     font-size: 12px;
 
     letter-spacing: 1.5px;
+
+    margin-bottom: 9px;
 
     text-transform: uppercase;
 }
@@ -1964,15 +1872,13 @@ button {
 
     font-size: 13px;
 
-    transition:
-        color .2s ease,
-        padding .2s ease;
+    transition: 0.2s ease;
 }
 
 .footer-column a:hover {
-    padding-left: 4px;
-
     color: var(--green-light);
+
+    padding-left: 4px;
 }
 
 
@@ -1983,9 +1889,9 @@ button {
 .newsletter-form {
     display: flex;
 
-    max-width: 340px;
-
     margin-top: 10px;
+
+    max-width: 340px;
 }
 
 .newsletter-form input {
@@ -1999,8 +1905,6 @@ button {
 
     background: #101610;
 
-    color: #fff;
-
     border:
         1px solid var(--border);
 
@@ -2009,6 +1913,8 @@ button {
     border-radius: 7px 0 0 7px;
 
     outline: none;
+
+    color: #fff;
 }
 
 .newsletter-form input:focus {
@@ -2057,10 +1963,7 @@ button {
 
     color: #fff;
 
-    transition:
-        background .2s ease,
-        border-color .2s ease,
-        transform .2s ease;
+    transition: 0.2s ease;
 }
 
 .social-links a:hover {
@@ -2068,8 +1971,7 @@ button {
 
     border-color: var(--green);
 
-    transform:
-        translateY(-2px);
+    transform: translateY(-2px);
 }
 
 
@@ -2078,10 +1980,10 @@ button {
    ========================================================= */
 
 .footer-bottom {
-    background: #020302;
-
     border-top:
         1px solid var(--border);
+
+    background: #020302;
 }
 
 .footer-bottom-inner {
@@ -2111,14 +2013,10 @@ button {
    LARGE TABLET
    ========================================================= */
 
-@media (max-width: 1100px) {
-
-    .header-inner {
-        gap: 18px;
-    }
+@media (max-width: 1150px) {
 
     .navigation {
-        gap: 12px;
+        gap: 13px;
     }
 
     .navigation a {
@@ -2126,28 +2024,26 @@ button {
     }
 
     .music-panels {
-        grid-template-columns:
-            1fr 1fr;
+        grid-template-columns: 1fr 1fr;
     }
 
     .music-panel:last-child {
-        grid-column:
-            1 / -1;
+        grid-column: 1 / -1;
     }
 
     .genre-grid {
         grid-template-columns:
-            repeat(4,1fr);
+            repeat(4, 1fr);
     }
 
     .footer-grid {
         grid-template-columns:
-            repeat(2,1fr);
+            repeat(2, 1fr);
     }
 
     .hero-content {
         grid-template-columns:
-            .82fr 1.18fr;
+            0.85fr 1.15fr;
     }
 
     .hero-visual {
@@ -2158,7 +2054,7 @@ button {
 
 
 /* =========================================================
-   TABLET / MOBILE
+   TABLET / MOBILE NAV
    ========================================================= */
 
 @media (max-width: 800px) {
@@ -2186,13 +2082,11 @@ button {
         height: 50px;
     }
 
-
-    /* MOBILE NAV */
-
     .navigation {
         position: absolute;
 
         top: 70px;
+
         left: 0;
         right: 0;
 
@@ -2210,7 +2104,7 @@ button {
             1px solid var(--border);
 
         box-shadow:
-            0 20px 40px rgba(0,0,0,.55);
+            0 20px 40px rgba(0,0,0,0.55);
     }
 
     .navigation.active {
@@ -2223,7 +2117,7 @@ button {
         font-size: 12px;
 
         border-bottom:
-            1px solid rgba(255,255,255,.05);
+            1px solid rgba(255,255,255,0.05);
     }
 
     .navigation a::after {
@@ -2243,16 +2137,18 @@ button {
     }
 
 
-    /* MOBILE HERO */
+    /* =====================================================
+       MOBILE HERO
+       ===================================================== */
 
     .hero {
         min-height: auto;
 
         background:
             radial-gradient(
-                circle at 72% 56%,
-                rgba(24,185,104,.28),
-                transparent 38%
+                circle at 70% 55%,
+                rgba(24,199,109,0.28),
+                transparent 40%
             ),
             linear-gradient(
                 160deg,
@@ -2265,9 +2161,9 @@ button {
         background:
             linear-gradient(
                 180deg,
-                rgba(2,4,2,.94),
-                rgba(2,4,2,.55),
-                rgba(2,4,2,.16)
+                rgba(2,4,2,0.94),
+                rgba(2,4,2,0.48),
+                rgba(2,4,2,0.10)
             );
     }
 
@@ -2279,43 +2175,39 @@ button {
         gap: 0;
 
         padding:
-            70px 0 20px;
+            70px 0 15px;
     }
 
     .hero-text {
+        position: relative;
+
         z-index: 10;
     }
 
     .hero h1 {
         font-size:
-            clamp(48px,15vw,70px);
+            clamp(48px, 15vw, 70px);
 
-        letter-spacing:
-            -2px;
+        letter-spacing: -2px;
     }
 
     .hero-text > p {
         font-size: 16px;
     }
 
-    /*
-       BIGGER MOBILE AFRICAN ARTWORK
-    */
-
     .hero-visual {
-        min-height: 510px;
-        height: 510px;
+        min-height: 500px;
 
-        margin-top: -10px;
+        height: 500px;
 
-        background-size:
-            150% auto;
+        margin-top: -15px;
+
+        transform: scale(1.12);
+
+        background-size: 150% auto;
 
         background-position:
             center center;
-
-        transform:
-            scale(1.08);
     }
 
     .hero-visual::before {
@@ -2324,12 +2216,14 @@ button {
     }
 
     .sound-wave {
-        right: 5%;
         bottom: 10px;
+        right: 5%;
     }
 
 
-    /* SECTIONS */
+    /* =====================================================
+       SECTIONS
+       ===================================================== */
 
     .section {
         padding: 65px 0;
@@ -2345,11 +2239,8 @@ button {
 
     .genre-grid {
         grid-template-columns:
-            repeat(2,1fr);
+            repeat(2, 1fr);
     }
-
-
-    /* ARTIST */
 
     .artist-banner-inner {
         grid-template-columns: 1fr;
@@ -2363,11 +2254,13 @@ button {
     }
 
 
-    /* PLAYER */
+    /* =====================================================
+       PLAYER
+       ===================================================== */
 
     .player-inner {
         grid-template-columns:
-            50px minmax(0,1fr) 42px;
+            50px 1fr 42px;
 
         padding: 10px;
     }
@@ -2382,6 +2275,7 @@ button {
 
         left: 0;
         right: 0;
+
         bottom: 0;
 
         height: 3px;
@@ -2389,12 +2283,16 @@ button {
         border-radius: 0;
     }
 
+
+    /* =====================================================
+       FOOTER
+       ===================================================== */
+
     .footer-grid {
         grid-template-columns:
             1fr 1fr;
 
-        gap:
-            35px 25px;
+        gap: 35px 25px;
     }
 
     .footer-bottom-inner {
@@ -2415,18 +2313,13 @@ button {
 
 @media (max-width: 480px) {
 
-    .container {
-        width:
-            calc(100% - 24px);
-    }
-
     .hero-content {
         padding-top: 55px;
     }
 
     .hero h1 {
         font-size:
-            clamp(44px,15vw,62px);
+            clamp(44px, 15vw, 62px);
     }
 
     .hero-buttons {
@@ -2437,22 +2330,14 @@ button {
         width: 100%;
     }
 
-
-    /*
-       VERY LARGE MOBILE ARTWORK
-    */
-
     .hero-visual {
         min-height: 440px;
+
         height: 440px;
 
-        margin-top: 0;
+        transform: scale(1.12);
 
-        background-size:
-            165% auto;
-
-        transform:
-            scale(1.08);
+        background-size: 160% auto;
     }
 
     .release-grid {
@@ -2481,19 +2366,22 @@ button {
 
 
 /* =========================================================
-   EXTRA SMALL PHONES
+   VERY SMALL PHONES
    ========================================================= */
 
 @media (max-width: 360px) {
+
+    .container {
+        width:
+            calc(100% - 20px);
+    }
 
     .logo img {
         width: 112px;
     }
 
-    .search-button,
-    .mobile-menu {
-        width: 38px;
-        height: 38px;
+    .hero-content {
+        padding-top: 45px;
     }
 
     .hero h1 {
@@ -2501,23 +2389,22 @@ button {
     }
 
     .hero-visual {
-        min-height: 400px;
-        height: 400px;
+        min-height: 390px;
+        height: 390px;
 
-        background-size:
-            175% auto;
+        background-size: 170% auto;
     }
 
     .track {
         grid-template-columns:
-            24px 50px minmax(0,1fr) 38px;
+            24px 48px 1fr 36px;
 
         gap: 8px;
     }
 
     .track-image {
-        width: 50px;
-        height: 50px;
+        width: 48px;
+        height: 48px;
     }
 }
 
@@ -2536,13 +2423,11 @@ button {
 
 
 /* =========================================================
-   TEXT SELECTION
+   SELECTION
    ========================================================= */
 
 ::selection {
-    background:
-        var(--gold);
-
-    color:
-        #111;
+    background: var(--gold);
+    color: #111;
 }
+```
