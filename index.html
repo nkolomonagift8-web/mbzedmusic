@@ -33,7 +33,7 @@
 
         <div class="top-message">
             <span class="pulse"></span>
-            Welcome to Mbzedmusic.com — Where African Music Meets The World.
+            <span>Welcome to Mbzedmusic.com — Where African Music Meets The World.</span>
         </div>
 
         <div class="top-links">
@@ -59,28 +59,28 @@
         </a>
 
         <nav class="desktop-nav">
-
             <a href="index.html" class="active">HOME</a>
             <a href="#music">MUSIC</a>
             <a href="#artists">ARTISTS</a>
             <a href="#charts">CHARTS</a>
             <a href="#genres">GENRES</a>
             <a href="#about">ABOUT</a>
-
         </nav>
 
         <div class="nav-right">
 
-            <button class="icon-button" id="searchButton">
+            <button class="icon-button" id="searchButton" aria-label="Search">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
 
             <a href="upload.html" class="upload-button">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
-                UPLOAD
+                <span>UPLOAD</span>
             </a>
 
-            <button class="icon-button mobile-menu-button" id="menuButton">
+            <button class="icon-button mobile-menu-button"
+                    id="menuButton"
+                    aria-label="Open menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
@@ -89,7 +89,7 @@
     </div>
 
 
-    <!-- SEARCH -->
+    <!-- SEARCH PANEL -->
 
     <div class="search-panel" id="searchPanel">
 
@@ -99,9 +99,10 @@
                 type="search"
                 id="searchInput"
                 placeholder="Search artists, songs, albums..."
+                autocomplete="off"
             >
 
-            <button id="closeSearch">
+            <button id="closeSearch" aria-label="Close search">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
@@ -120,9 +121,9 @@
 
     <div class="mobile-menu-top">
 
-        <img src="logo.jpeg" alt="Mbzedmusic">
+        <img src="logo.jpeg" alt="Mbzedmusic.com">
 
-        <button id="closeMenu">
+        <button id="closeMenu" aria-label="Close menu">
             <i class="fa-solid fa-xmark"></i>
         </button>
 
@@ -149,13 +150,13 @@
 
 <section class="hero">
 
-    <div class="hero-bg"></div>
+    <div class="hero-background"></div>
+    <div class="hero-gradient"></div>
+    <div class="hero-grid-lines"></div>
 
-    <div class="hero-noise"></div>
+    <div class="container hero-container">
 
-    <div class="container hero-grid">
-
-        <!-- LEFT -->
+        <!-- HERO COPY -->
 
         <div class="hero-copy">
 
@@ -183,7 +184,7 @@
 
                 <div class="featured-mini-cover">
                     <img src="mb-levels-cover.jpg.jpeg"
-                         alt="MB LEVELS">
+                         alt="MB LEVELS cover">
                 </div>
 
                 <div class="featured-details">
@@ -199,14 +200,16 @@
 
                 </div>
 
-                <button class="hero-play" id="heroPlay">
-
+                <button class="hero-play"
+                        id="heroPlay"
+                        aria-label="Play MB LEVELS">
                     <i class="fa-solid fa-play"></i>
-
                 </button>
 
             </div>
 
+
+            <!-- HERO BUTTONS -->
 
             <div class="hero-actions">
 
@@ -224,10 +227,12 @@
         </div>
 
 
-        <!-- RIGHT ARTWORK -->
+        <!-- HERO ARTWORK -->
 
         <div class="hero-visual">
 
+            <div class="visual-ring ring-one"></div>
+            <div class="visual-ring ring-two"></div>
             <div class="visual-glow"></div>
 
             <div class="artwork-wrapper">
@@ -236,16 +241,14 @@
 
                 <img
                     src="hero-artwork.png.png"
-                    alt="Featured African music artwork"
+                    alt="Mbzedmusic African music artwork"
                     class="hero-artwork"
                 >
 
                 <div class="artwork-label">
 
                     <span>NOW PLAYING</span>
-
                     <strong>MB LEVELS</strong>
-
                     <small>MBZEDMUSIC.COM</small>
 
                 </div>
@@ -287,7 +290,7 @@
 
 
 <!-- =====================================================
-     QUICK CATEGORIES
+     QUICK CARDS
 ===================================================== -->
 
 <section class="quick-section">
@@ -295,6 +298,7 @@
     <div class="container quick-grid">
 
         <a href="#music" class="quick-card">
+
             <div class="quick-icon">
                 <i class="fa-solid fa-fire"></i>
             </div>
@@ -305,10 +309,12 @@
             </div>
 
             <i class="fa-solid fa-arrow-right arrow"></i>
+
         </a>
 
 
         <a href="#charts" class="quick-card">
+
             <div class="quick-icon">
                 <i class="fa-solid fa-ranking-star"></i>
             </div>
@@ -319,10 +325,12 @@
             </div>
 
             <i class="fa-solid fa-arrow-right arrow"></i>
+
         </a>
 
 
         <a href="#artists" class="quick-card">
+
             <div class="quick-icon">
                 <i class="fa-solid fa-microphone-lines"></i>
             </div>
@@ -333,6 +341,7 @@
             </div>
 
             <i class="fa-solid fa-arrow-right arrow"></i>
+
         </a>
 
     </div>
@@ -341,7 +350,7 @@
 
 
 <!-- =====================================================
-     MUSIC
+     MUSIC SECTION
 ===================================================== -->
 
 <section class="music-section" id="music">
@@ -384,7 +393,6 @@
 
                 <div class="tracks">
 
-
                     <div class="track active-track">
 
                         <span class="track-number">01</span>
@@ -395,19 +403,13 @@
                         </div>
 
                         <div class="track-info">
-
                             <strong>MB LEVELS</strong>
-
-                            <span>
-                                Mr. Kings ft. Bravo Uja Lapa
-                            </span>
-
+                            <span>Mr. Kings ft. Bravo Uja Lapa</span>
                         </div>
 
-                        <button class="track-play">
-
+                        <button class="track-play"
+                                aria-label="Play MB LEVELS">
                             <i class="fa-solid fa-play"></i>
-
                         </button>
 
                     </div>
@@ -422,14 +424,11 @@
                         </div>
 
                         <div class="track-info">
-
                             <strong>Champion</strong>
-
                             <span>Yo Maps</span>
-
                         </div>
 
-                        <button class="track-play">
+                        <button class="track-play" aria-label="Play Champion">
                             <i class="fa-solid fa-play"></i>
                         </button>
 
@@ -445,14 +444,11 @@
                         </div>
 
                         <div class="track-info">
-
                             <strong>Kuli Wanga</strong>
-
                             <span>Jae Cash</span>
-
                         </div>
 
-                        <button class="track-play">
+                        <button class="track-play" aria-label="Play Kuli Wanga">
                             <i class="fa-solid fa-play"></i>
                         </button>
 
@@ -468,14 +464,11 @@
                         </div>
 
                         <div class="track-info">
-
                             <strong>Number One</strong>
-
                             <span>Macky 2</span>
-
                         </div>
 
-                        <button class="track-play">
+                        <button class="track-play" aria-label="Play Number One">
                             <i class="fa-solid fa-play"></i>
                         </button>
 
@@ -491,14 +484,11 @@
                         </div>
 
                         <div class="track-info">
-
                             <strong>Ndi Slapede</strong>
-
                             <span>Slapdee</span>
-
                         </div>
 
-                        <button class="track-play">
+                        <button class="track-play" aria-label="Play Ndi Slapede">
                             <i class="fa-solid fa-play"></i>
                         </button>
 
@@ -521,10 +511,10 @@
 
                     <div class="release-overlay"></div>
 
-                    <button class="big-play" id="releasePlay">
-
+                    <button class="big-play"
+                            id="releasePlay"
+                            aria-label="Play MB LEVELS">
                         <i class="fa-solid fa-play"></i>
-
                     </button>
 
                     <div class="release-tag">
@@ -594,20 +584,15 @@
                     <img src="mb-levels-cover.jpg.jpeg"
                          alt="MB LEVELS">
 
-                    <button class="card-play">
+                    <button class="card-play" aria-label="Play MB LEVELS">
                         <i class="fa-solid fa-play"></i>
                     </button>
 
                 </div>
 
                 <div class="card-details">
-
                     <span>MB LEVELS</span>
-
-                    <strong>
-                        Mr. Kings ft. Bravo Uja Lapa
-                    </strong>
-
+                    <strong>Mr. Kings ft. Bravo Uja Lapa</strong>
                 </div>
 
             </article>
@@ -616,19 +601,18 @@
             <article class="release-card">
 
                 <div class="card-image placeholder-card">
+
                     <i class="fa-solid fa-music"></i>
 
-                    <button class="card-play">
+                    <button class="card-play" aria-label="Play">
                         <i class="fa-solid fa-play"></i>
                     </button>
+
                 </div>
 
                 <div class="card-details">
-
                     <span>NEVER GIVE UP</span>
-
                     <strong>Kav Jr</strong>
-
                 </div>
 
             </article>
@@ -637,19 +621,18 @@
             <article class="release-card">
 
                 <div class="card-image placeholder-card">
+
                     <i class="fa-solid fa-music"></i>
 
-                    <button class="card-play">
+                    <button class="card-play" aria-label="Play">
                         <i class="fa-solid fa-play"></i>
                     </button>
+
                 </div>
 
                 <div class="card-details">
-
                     <span>BETTER DAYS</span>
-
                     <strong>Blood Kid</strong>
-
                 </div>
 
             </article>
@@ -658,19 +641,18 @@
             <article class="release-card">
 
                 <div class="card-image placeholder-card">
+
                     <i class="fa-solid fa-music"></i>
 
-                    <button class="card-play">
+                    <button class="card-play" aria-label="Play">
                         <i class="fa-solid fa-play"></i>
                     </button>
+
                 </div>
 
                 <div class="card-details">
-
                     <span>MY TIME</span>
-
                     <strong>T-Sean</strong>
-
                 </div>
 
             </article>
@@ -726,7 +708,7 @@
                     2
                 </span>
 
-                <button class="chart-play">
+                <button class="chart-play" aria-label="Play Champion">
                     <i class="fa-solid fa-play"></i>
                 </button>
 
@@ -751,7 +733,7 @@
                     1
                 </span>
 
-                <button class="chart-play">
+                <button class="chart-play" aria-label="Play Kuli Wanga">
                     <i class="fa-solid fa-play"></i>
                 </button>
 
@@ -776,7 +758,7 @@
                     1
                 </span>
 
-                <button class="chart-play">
+                <button class="chart-play" aria-label="Play Number One">
                     <i class="fa-solid fa-play"></i>
                 </button>
 
@@ -796,11 +778,9 @@
                     <span>Kav Jr</span>
                 </div>
 
-                <span class="movement new">
-                    NEW
-                </span>
+                <span class="movement new">NEW</span>
 
-                <button class="chart-play">
+                <button class="chart-play" aria-label="Play Never Give Up">
                     <i class="fa-solid fa-play"></i>
                 </button>
 
@@ -820,11 +800,9 @@
                     <span>Slapdee</span>
                 </div>
 
-                <span class="movement same">
-                    —
-                </span>
+                <span class="movement same">—</span>
 
-                <button class="chart-play">
+                <button class="chart-play" aria-label="Play Ndi Ine">
                     <i class="fa-solid fa-play"></i>
                 </button>
 
@@ -1011,23 +989,23 @@
 
             <div class="socials">
 
-                <a href="#">
+                <a href="#" aria-label="Facebook">
                     <i class="fa-brands fa-facebook-f"></i>
                 </a>
 
-                <a href="#">
+                <a href="#" aria-label="Instagram">
                     <i class="fa-brands fa-instagram"></i>
                 </a>
 
-                <a href="#">
+                <a href="#" aria-label="X">
                     <i class="fa-brands fa-x-twitter"></i>
                 </a>
 
-                <a href="#">
+                <a href="#" aria-label="YouTube">
                     <i class="fa-brands fa-youtube"></i>
                 </a>
 
-                <a href="#">
+                <a href="#" aria-label="TikTok">
                     <i class="fa-brands fa-tiktok"></i>
                 </a>
 
@@ -1075,11 +1053,9 @@
 
     <div class="footer-bottom">
 
-        <div class="container">
+        <div class="container footer-bottom-inner">
 
-            <span>
-                © 2026 Mbzedmusic.com
-            </span>
+            <span>© 2026 Mbzedmusic.com</span>
 
             <span>
                 AFRICAN MUSIC • OUR CULTURE • OUR SOUND
@@ -1101,13 +1077,11 @@
     <div class="player-song">
 
         <div class="player-cover">
-
             <img src="mb-levels-cover.jpg.jpeg"
                  alt="MB LEVELS">
-
         </div>
 
-        <div>
+        <div class="player-song-info">
 
             <span>NOW PLAYING</span>
 
@@ -1122,24 +1096,19 @@
 
     <div class="player-main">
 
-        <button id="mainPlay">
-
+        <button id="mainPlay" aria-label="Play or pause">
             <i class="fa-solid fa-play"></i>
-
         </button>
 
         <div class="player-progress">
 
             <div class="progress-track" id="progressTrack">
-
                 <div class="progress-fill" id="progressFill"></div>
-
             </div>
 
             <div class="player-time">
 
                 <span id="currentTime">0:00</span>
-
                 <span id="duration">0:00</span>
 
             </div>
@@ -1160,6 +1129,7 @@
             max="1"
             step="0.01"
             value="1"
+            aria-label="Volume"
         >
 
     </div>
@@ -1167,11 +1137,20 @@
 </div>
 
 
+<!-- =====================================================
+     AUDIO
+===================================================== -->
+
 <audio
     id="audio"
+    preload="metadata"
     src="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
 </audio>
 
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
 <script>
 
@@ -1189,13 +1168,14 @@ const currentTime = document.getElementById("currentTime");
 const duration = document.getElementById("duration");
 
 const volume = document.getElementById("volume");
-
 const player = document.getElementById("musicPlayer");
 
 
 function formatTime(time) {
 
-    if (!isFinite(time)) return "0:00";
+    if (!isFinite(time)) {
+        return "0:00";
+    }
 
     const minutes = Math.floor(time / 60);
 
@@ -1204,19 +1184,18 @@ function formatTime(time) {
         .padStart(2, "0");
 
     return `${minutes}:${seconds}`;
-
 }
 
 
 function playMusic() {
 
-    audio.play();
-
-    player.classList.add("visible");
-
-    mainPlay.innerHTML =
-        '<i class="fa-solid fa-pause"></i>';
-
+    audio.play()
+        .then(() => {
+            player.classList.add("visible");
+        })
+        .catch(() => {
+            console.log("Audio could not start.");
+        });
 }
 
 
@@ -1224,75 +1203,64 @@ function pauseMusic() {
 
     audio.pause();
 
-    mainPlay.innerHTML =
-        '<i class="fa-solid fa-play"></i>';
-
 }
 
 
 function toggleMusic() {
 
     if (audio.paused) {
-
         playMusic();
-
     } else {
-
         pauseMusic();
-
     }
 
 }
 
 
 mainPlay.addEventListener("click", toggleMusic);
-
 heroPlay.addEventListener("click", toggleMusic);
-
 releasePlay.addEventListener("click", toggleMusic);
-
 releaseListen.addEventListener("click", toggleMusic);
 
 
 document.querySelectorAll(".track-play").forEach(button => {
 
-    button.addEventListener("click", () => {
-
-        playMusic();
-
-    });
+    button.addEventListener("click", playMusic);
 
 });
 
 
 document.querySelectorAll(".card-play").forEach(button => {
 
-    button.addEventListener("click", () => {
+    button.addEventListener("click", playMusic);
 
-        playMusic();
+});
 
-    });
+
+document.querySelectorAll(".chart-play").forEach(button => {
+
+    button.addEventListener("click", playMusic);
 
 });
 
 
 audio.addEventListener("loadedmetadata", () => {
 
-    duration.textContent =
-        formatTime(audio.duration);
+    duration.textContent = formatTime(audio.duration);
 
 });
 
 
 audio.addEventListener("timeupdate", () => {
 
-    if (!audio.duration) return;
+    if (!audio.duration) {
+        return;
+    }
 
     const percent =
         (audio.currentTime / audio.duration) * 100;
 
-    progressFill.style.width =
-        percent + "%";
+    progressFill.style.width = percent + "%";
 
     currentTime.textContent =
         formatTime(audio.currentTime);
@@ -1325,10 +1293,16 @@ audio.addEventListener("ended", () => {
 
     progressFill.style.width = "0%";
 
+    currentTime.textContent = "0:00";
+
 });
 
 
-progressTrack.addEventListener("click", (event) => {
+progressTrack.addEventListener("click", event => {
+
+    if (!audio.duration) {
+        return;
+    }
 
     const rect =
         progressTrack.getBoundingClientRect();
@@ -1337,19 +1311,21 @@ progressTrack.addEventListener("click", (event) => {
         (event.clientX - rect.left) / rect.width;
 
     audio.currentTime =
-        percent * audio.duration;
+        Math.max(0, Math.min(1, percent)) * audio.duration;
 
 });
 
 
 volume.addEventListener("input", () => {
 
-    audio.volume = volume.value;
+    audio.volume = Number(volume.value);
 
 });
 
 
-/* SEARCH */
+/* =====================================================
+   SEARCH
+===================================================== */
 
 const searchButton =
     document.getElementById("searchButton");
@@ -1369,9 +1345,7 @@ searchButton.addEventListener("click", () => {
     searchPanel.classList.toggle("open");
 
     if (searchPanel.classList.contains("open")) {
-
         searchInput.focus();
-
     }
 
 });
@@ -1384,7 +1358,9 @@ closeSearch.addEventListener("click", () => {
 });
 
 
-/* MOBILE MENU */
+/* =====================================================
+   MOBILE MENU
+===================================================== */
 
 const menuButton =
     document.getElementById("menuButton");
@@ -1399,6 +1375,7 @@ const mobileMenu =
 menuButton.addEventListener("click", () => {
 
     mobileMenu.classList.add("open");
+    document.body.classList.add("menu-open");
 
 });
 
@@ -1406,6 +1383,7 @@ menuButton.addEventListener("click", () => {
 closeMenu.addEventListener("click", () => {
 
     mobileMenu.classList.remove("open");
+    document.body.classList.remove("menu-open");
 
 });
 
@@ -1415,8 +1393,28 @@ document.querySelectorAll(".mobile-menu a").forEach(link => {
     link.addEventListener("click", () => {
 
         mobileMenu.classList.remove("open");
+        document.body.classList.remove("menu-open");
 
     });
+
+});
+
+
+/* =====================================================
+   ESCAPE KEY
+===================================================== */
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+
+        searchPanel.classList.remove("open");
+
+        mobileMenu.classList.remove("open");
+
+        document.body.classList.remove("menu-open");
+
+    }
 
 });
 
