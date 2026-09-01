@@ -1,14 +1,14 @@
-```css
 /* =========================================================
    MBZEDMUSIC.COM
    AFRICAN MUSIC • OUR CULTURE • OUR SOUND
-   COMPLETE IMPROVED STYLE.CSS
+   COMPLETE IMPROVED MAIN STYLESHEET
    ========================================================= */
 
 :root {
-    --black: #050705;
-    --black-2: #080d09;
-    --black-3: #101710;
+    --black: #030503;
+    --black-2: #070b07;
+    --black-3: #0d140e;
+    --panel: #111a12;
 
     --green: #18b968;
     --green-dark: #08783f;
@@ -18,6 +18,7 @@
     --gold-light: #ffd967;
 
     --red: #d93632;
+    --red-light: #ef5147;
 
     --white: #ffffff;
     --text: #f7faf7;
@@ -28,7 +29,7 @@
     --container: 1240px;
     --radius: 16px;
 
-    --shadow: 0 20px 60px rgba(0,0,0,0.42);
+    --shadow: 0 20px 60px rgba(0,0,0,0.45);
 }
 
 
@@ -44,7 +45,6 @@
 
 html {
     scroll-behavior: smooth;
-    background: var(--black);
 }
 
 body {
@@ -52,16 +52,21 @@ body {
 
     background:
         radial-gradient(
-            circle at 10% 8%,
-            rgba(24,185,104,0.10),
-            transparent 28%
+            circle at 8% 8%,
+            rgba(24,185,104,0.14),
+            transparent 25%
         ),
         radial-gradient(
-            circle at 90% 18%,
-            rgba(245,184,46,0.06),
+            circle at 92% 18%,
+            rgba(245,184,46,0.08),
             transparent 24%
         ),
-        var(--black);
+        linear-gradient(
+            180deg,
+            #030503 0%,
+            #070b07 45%,
+            #050705 100%
+        );
 
     color: var(--text);
 
@@ -117,9 +122,6 @@ button {
    ========================================================= */
 
 .top-bar {
-    position: relative;
-    z-index: 1100;
-
     background:
         linear-gradient(
             90deg,
@@ -134,7 +136,7 @@ button {
     font-size: 13px;
 
     border-bottom:
-        1px solid rgba(255,255,255,0.14);
+        1px solid rgba(255,255,255,0.15);
 }
 
 .top-bar-inner {
@@ -154,12 +156,14 @@ button {
 .top-links {
     display: flex;
     align-items: center;
-    gap: 13px;
+
+    gap: 14px;
 
     white-space: nowrap;
 }
 
 .top-links a {
+    font-weight: 700;
     transition: color .2s ease;
 }
 
@@ -174,15 +178,19 @@ button {
 
 .header {
     position: sticky;
+
     top: 0;
 
     z-index: 1000;
 
     background:
-        rgba(5,7,5,0.94);
+        rgba(3,5,3,0.94);
 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
 
     border-bottom:
         1px solid var(--border);
@@ -194,7 +202,7 @@ button {
     display: flex;
     align-items: center;
 
-    gap: 26px;
+    gap: 28px;
 }
 
 
@@ -207,10 +215,12 @@ button {
     align-items: center;
 
     flex-shrink: 0;
+
+    line-height: 0;
 }
 
 .logo img {
-    width: 145px;
+    width: 150px;
     height: 58px;
 
     object-fit: contain;
@@ -225,25 +235,22 @@ button {
    ========================================================= */
 
 .navigation {
+    flex: 1;
+
     display: flex;
     align-items: center;
     justify-content: center;
 
     gap: 21px;
-
-    flex: 1;
 }
 
 .navigation a {
     position: relative;
 
-    display: inline-flex;
-    align-items: center;
-
     color: #dce4de;
 
     font-size: 12px;
-    font-weight: 800;
+    font-weight: 900;
 
     letter-spacing: .65px;
 
@@ -251,7 +258,8 @@ button {
 
     white-space: nowrap;
 
-    transition: color .2s ease;
+    transition:
+        color .2s ease;
 }
 
 .navigation a:hover,
@@ -270,8 +278,6 @@ button {
 
     height: 3px;
 
-    border-radius: 10px;
-
     background:
         linear-gradient(
             90deg,
@@ -280,9 +286,12 @@ button {
             var(--red)
         );
 
+    border-radius: 10px;
+
     transform: scaleX(0);
 
-    transition: transform .2s ease;
+    transition:
+        transform .2s ease;
 }
 
 .navigation a:hover::after,
@@ -291,7 +300,7 @@ button {
 }
 
 .navigation i {
-    margin-left: 4px;
+    margin-left: 3px;
     font-size: 9px;
 }
 
@@ -303,7 +312,8 @@ button {
 .header-actions {
     display: flex;
     align-items: center;
-    gap: 9px;
+
+    gap: 10px;
 
     flex-shrink: 0;
 }
@@ -313,7 +323,8 @@ button {
     width: 42px;
     height: 42px;
 
-    border: 1px solid var(--border);
+    border:
+        1px solid var(--border);
 
     background:
         rgba(255,255,255,0.05);
@@ -332,7 +343,8 @@ button {
 .mobile-menu:hover {
     background: var(--green);
     border-color: var(--green);
-    transform: translateY(-1px);
+
+    transform: translateY(-2px);
 }
 
 .mobile-menu {
@@ -340,17 +352,19 @@ button {
 }
 
 .upload-button {
-    min-height: 42px;
-
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
 
     gap: 8px;
 
+    min-height: 42px;
+
     padding: 0 18px;
 
     background: var(--gold);
+
     color: #111;
 
     border-radius: 8px;
@@ -361,13 +375,15 @@ button {
     text-transform: uppercase;
 
     transition:
-        transform .2s ease,
-        background .2s ease;
+        background .2s ease,
+        transform .2s ease;
 }
 
 .upload-button:hover {
     background: var(--gold-light);
-    transform: translateY(-2px);
+
+    transform:
+        translateY(-2px);
 }
 
 
@@ -378,7 +394,8 @@ button {
 .search-box {
     display: none;
 
-    background: #0c120c;
+    background:
+        #0a100b;
 
     border-bottom:
         1px solid var(--border);
@@ -390,9 +407,10 @@ button {
 
 .search-inner {
     display: flex;
+
     align-items: center;
 
-    gap: 14px;
+    gap: 12px;
 
     padding: 15px 0;
 }
@@ -400,32 +418,39 @@ button {
 .search-inner input {
     flex: 1;
 
+    min-width: 0;
+
     height: 50px;
 
     padding: 0 18px;
 
-    background: #060906;
+    background: #050805;
 
     color: #fff;
 
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
 
     outline: none;
 }
 
 .search-inner input:focus {
-    border-color: var(--green);
+    border-color:
+        var(--green);
 }
 
 .search-inner button {
-    width: 48px;
-    height: 48px;
+    width: 50px;
+    height: 50px;
 
     border: 0;
-    border-radius: 8px;
+
+    border-radius: 9px;
 
     background: var(--red);
+
     color: #fff;
 }
 
@@ -446,21 +471,21 @@ button {
 
     background:
         radial-gradient(
-            circle at 75% 44%,
-            rgba(24,185,104,0.28),
-            transparent 29%
+            circle at 75% 42%,
+            rgba(24,185,104,0.34),
+            transparent 30%
         ),
         radial-gradient(
-            circle at 90% 80%,
-            rgba(245,184,46,0.18),
-            transparent 25%
+            circle at 91% 78%,
+            rgba(245,184,46,0.20),
+            transparent 27%
         ),
         linear-gradient(
             110deg,
             #020402 0%,
-            #061008 38%,
-            #0a1b10 68%,
-            #071008 100%
+            #061007 35%,
+            #0b1b10 67%,
+            #061007 100%
         );
 }
 
@@ -474,16 +499,16 @@ button {
 
     position: absolute;
 
-    width: 720px;
-    height: 720px;
+    width: 750px;
+    height: 750px;
 
-    left: -340px;
-    top: -290px;
+    left: -330px;
+    top: -300px;
 
     background:
         radial-gradient(
             circle,
-            rgba(24,185,104,0.26),
+            rgba(24,185,104,0.30),
             transparent 68%
         );
 
@@ -499,13 +524,13 @@ button {
     height: 700px;
 
     right: -260px;
-    bottom: -340px;
+    bottom: -350px;
 
     background:
         radial-gradient(
             circle,
-            rgba(245,184,46,0.22),
-            rgba(217,54,50,0.07) 42%,
+            rgba(245,184,46,0.25),
+            rgba(217,54,50,0.09) 42%,
             transparent 72%
         );
 
@@ -519,6 +544,7 @@ button {
 
 .hero-overlay {
     position: absolute;
+
     inset: 0;
 
     z-index: 1;
@@ -527,9 +553,9 @@ button {
         linear-gradient(
             90deg,
             rgba(2,4,2,0.97) 0%,
-            rgba(3,7,4,0.82) 32%,
-            rgba(3,7,4,0.38) 57%,
-            rgba(3,7,4,0.05) 100%
+            rgba(3,7,4,0.78) 33%,
+            rgba(3,7,4,0.30) 62%,
+            rgba(3,7,4,0.04) 100%
         );
 
     pointer-events: none;
@@ -543,7 +569,7 @@ button {
 .hero-content {
     position: relative;
 
-    z-index: 3;
+    z-index: 5;
 
     width: 100%;
 
@@ -552,8 +578,8 @@ button {
     display: grid;
 
     grid-template-columns:
-        minmax(0, .92fr)
-        minmax(0, 1.28fr);
+        minmax(0, .88fr)
+        minmax(0, 1.42fr);
 
     align-items: center;
 
@@ -562,17 +588,17 @@ button {
 
 .hero-text {
     position: relative;
-    z-index: 8;
+
+    z-index: 10;
 
     max-width: 650px;
-
-    padding: 35px 0;
 }
 
 .hero-small-title {
     display: inline-block;
 
     margin-bottom: 18px;
+
     padding-left: 14px;
 
     border-left:
@@ -581,13 +607,14 @@ button {
     color: var(--gold);
 
     font-size: 13px;
+
     font-weight: 900;
 
     letter-spacing: 2px;
 }
 
 .hero h1 {
-    margin-bottom: 25px;
+    margin-bottom: 26px;
 
     color: #fff;
 
@@ -604,11 +631,12 @@ button {
 .hero-text > p {
     max-width: 560px;
 
-    margin-bottom: 31px;
+    margin-bottom: 32px;
 
     color: #d0d8d1;
 
     font-size: 18px;
+
     line-height: 1.7;
 }
 
@@ -619,6 +647,7 @@ button {
 
 .hero-buttons {
     display: flex;
+
     flex-wrap: wrap;
 
     gap: 12px;
@@ -626,13 +655,14 @@ button {
 
 .primary-button,
 .secondary-button {
-    min-height: 52px;
-
     display: inline-flex;
+
     align-items: center;
     justify-content: center;
 
     gap: 10px;
+
+    min-height: 52px;
 
     padding: 0 25px;
 
@@ -654,29 +684,34 @@ button {
 
     color: #111;
 
-    border: 1px solid var(--gold);
+    border:
+        1px solid var(--gold);
 }
 
 .primary-button:hover {
     background: var(--gold-light);
-    transform: translateY(-2px);
+
+    transform:
+        translateY(-2px);
 }
 
 .secondary-button {
     background:
         rgba(24,185,104,0.10);
 
+    color: #fff;
+
     border:
         1px solid rgba(255,255,255,0.30);
-
-    color: #fff;
 }
 
 .secondary-button:hover {
     background: var(--green);
+
     border-color: var(--green);
 
-    transform: translateY(-2px);
+    transform:
+        translateY(-2px);
 }
 
 
@@ -687,12 +722,12 @@ button {
 .hero-visual {
     position: relative;
 
-    z-index: 2;
+    z-index: 4;
 
     width: 100%;
-    height: 720px;
 
-    min-height: 720px;
+    min-height: 680px;
+    height: 680px;
 
     display: flex;
     align-items: center;
@@ -703,26 +738,26 @@ button {
 
     background-repeat: no-repeat;
 
-    /*
-       LARGE DESKTOP ARTWORK
-    */
-    background-size: 137% auto;
-
     background-position:
         center center;
 
+    /*
+       LARGE AFRICAN ARTWORK
+    */
+
+    background-size:
+        135% auto;
+
     filter:
         drop-shadow(
-            0 35px 70px rgba(0,0,0,0.70)
+            0 30px 60px rgba(0,0,0,0.65)
         );
 
-    transform: scale(1.04);
+    transform:
+        scale(1.05);
 
     pointer-events: none;
 }
-
-
-/* artwork glow */
 
 .hero-visual::before {
     content: "";
@@ -732,18 +767,12 @@ button {
     width: 650px;
     height: 650px;
 
-    left: 50%;
-    top: 50%;
-
-    transform:
-        translate(-50%, -50%);
-
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(24,185,104,0.23),
+            rgba(24,185,104,0.25),
             transparent 68%
         );
 
@@ -758,23 +787,31 @@ button {
     width: 430px;
     height: 430px;
 
-    right: 2%;
-    bottom: 3%;
+    right: 3%;
+    bottom: 4%;
 
     border-radius: 50%;
 
     background:
         radial-gradient(
             circle,
-            rgba(245,184,46,0.17),
+            rgba(245,184,46,0.20),
             transparent 70%
         );
 
     z-index: -1;
 }
 
+
+/* =========================================================
+   REMOVE OLD AFRICA TEXT
+   ========================================================= */
+
 .africa-shape {
     position: absolute;
+
+    width: 0;
+    height: 0;
 
     font-size: 0;
 
@@ -791,10 +828,10 @@ button {
 .sound-wave {
     position: absolute;
 
-    right: 3%;
-    bottom: 32px;
+    right: 4%;
+    bottom: 30px;
 
-    z-index: 5;
+    z-index: 8;
 
     display: flex;
     align-items: center;
@@ -884,8 +921,12 @@ button {
 
 
 /* =========================================================
-   HERO COLOR STRIPE
+   AFRICAN STRIPE
    ========================================================= */
+
+.hero .container {
+    position: relative;
+}
 
 .hero .container::after {
     content: "";
@@ -898,8 +939,6 @@ button {
 
     height: 4px;
 
-    border-radius: 10px;
-
     background:
         linear-gradient(
             90deg,
@@ -907,6 +946,8 @@ button {
             var(--gold),
             var(--red)
         );
+
+    border-radius: 10px;
 }
 
 
@@ -915,21 +956,30 @@ button {
    ========================================================= */
 
 .section {
-    position: relative;
-
     padding: 90px 0;
 }
 
 .music-section {
-    background: #070a07;
+    background:
+        linear-gradient(
+            180deg,
+            #070a07,
+            #090d09
+        );
 }
 
 .genres-section {
-    background: #0b110c;
+    background:
+        linear-gradient(
+            180deg,
+            #0b110c,
+            #091009
+        );
 }
 
 .section-heading {
     display: flex;
+
     align-items: flex-end;
     justify-content: space-between;
 
@@ -946,9 +996,11 @@ button {
     color: var(--green-light);
 
     font-size: 11px;
+
     font-weight: 900;
 
     letter-spacing: 2px;
+
     text-transform: uppercase;
 }
 
@@ -967,6 +1019,7 @@ button {
     color: var(--gold);
 
     font-size: 13px;
+
     font-weight: 800;
 
     white-space: nowrap;
@@ -1019,13 +1072,11 @@ button {
 .music-panel:hover {
     border-color:
         rgba(24,185,104,0.35);
-
-    transform:
-        translateY(-2px);
 }
 
 .panel-heading {
     padding-bottom: 18px;
+
     margin-bottom: 10px;
 
     border-bottom:
@@ -1073,6 +1124,7 @@ button {
     color: #778278;
 
     font-size: 13px;
+
     font-weight: 900;
 
     text-align: center;
@@ -1080,12 +1132,17 @@ button {
 
 .track-image,
 .mini-cover {
-    background-color: #1b241c;
+    background:
+        #1b241c;
 
-    background-size: cover;
-    background-position: center;
+    background-size:
+        cover;
 
-    border-radius: 8px;
+    background-position:
+        center;
+
+    border-radius:
+        8px;
 }
 
 .track-image {
@@ -1106,7 +1163,9 @@ button {
     font-size: 14px;
 
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
 }
 
@@ -1117,7 +1176,9 @@ button {
     font-size: 11px;
 
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
 }
 
@@ -1131,11 +1192,11 @@ button {
     border: 0;
 
     background: var(--green);
+
     color: #fff;
 
     transition:
         background .2s ease,
-        color .2s ease,
         transform .2s ease;
 }
 
@@ -1149,9 +1210,11 @@ button {
 .play-button:hover,
 .card-play:hover {
     background: var(--gold);
+
     color: #111;
 
-    transform: scale(1.08);
+    transform:
+        scale(1.08);
 }
 
 
@@ -1179,26 +1242,29 @@ button {
 
     margin-bottom: 11px;
 
-    overflow: hidden;
-
-    background: #182018;
+    background:
+        #182018;
 
     background-size: cover;
+
     background-position: center;
 
     border-radius: 10px;
+
+    overflow: hidden;
 }
 
 .release-image::after {
     content: "";
 
     position: absolute;
+
     inset: 0;
 
     background:
         linear-gradient(
             transparent 50%,
-            rgba(0,0,0,0.55)
+            rgba(0,0,0,.55)
         );
 }
 
@@ -1213,9 +1279,11 @@ button {
     padding: 4px 8px;
 
     background: var(--gold);
+
     color: #111;
 
     font-size: 9px;
+
     font-weight: 900;
 
     border-radius: 4px;
@@ -1241,7 +1309,9 @@ button {
     font-size: 14px;
 
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
 }
 
@@ -1251,7 +1321,9 @@ button {
     font-size: 11px;
 
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
 }
 
@@ -1311,6 +1383,7 @@ button {
     min-height: 125px;
 
     display: flex;
+
     flex-direction: column;
 
     align-items: center;
@@ -1340,11 +1413,13 @@ button {
 
 .genre-card i {
     color: var(--gold);
+
     font-size: 26px;
 }
 
 .genre-card span {
     font-size: 10px;
+
     font-weight: 900;
 
     text-align: center;
@@ -1353,9 +1428,11 @@ button {
 }
 
 .genre-card:hover {
-    transform: translateY(-6px);
+    transform:
+        translateY(-6px);
 
-    border-color: var(--green);
+    border-color:
+        var(--green);
 
     background:
         linear-gradient(
@@ -1396,7 +1473,7 @@ button {
     top: -220px;
 
     background:
-        rgba(245,184,46,0.22);
+        rgba(245,184,46,.22);
 
     border-radius: 50%;
 }
@@ -1413,13 +1490,14 @@ button {
     bottom: -150px;
 
     background:
-        rgba(217,54,50,0.20);
+        rgba(217,54,50,.20);
 
     border-radius: 50%;
 }
 
 .artist-banner-inner {
     position: relative;
+
     z-index: 2;
 
     display: grid;
@@ -1436,7 +1514,7 @@ button {
     margin-bottom: 18px;
 
     font-size:
-        clamp(35px, 5vw, 58px);
+        clamp(35px,5vw,58px);
 
     line-height: 1;
 }
@@ -1447,7 +1525,7 @@ button {
     margin-bottom: 25px;
 
     color:
-        rgba(255,255,255,0.88);
+        rgba(255,255,255,.88);
 }
 
 
@@ -1459,13 +1537,14 @@ button {
     display: grid;
 
     grid-template-columns:
-        repeat(2, minmax(0,1fr));
+        repeat(2,minmax(0,1fr));
 
     gap: 14px;
 }
 
 .benefit {
     display: flex;
+
     align-items: flex-start;
 
     gap: 13px;
@@ -1473,10 +1552,10 @@ button {
     padding: 18px;
 
     background:
-        rgba(0,0,0,0.22);
+        rgba(0,0,0,.22);
 
     border:
-        1px solid rgba(255,255,255,0.12);
+        1px solid rgba(255,255,255,.12);
 
     border-radius: 10px;
 }
@@ -1499,7 +1578,7 @@ button {
 
 .benefit p {
     color:
-        rgba(255,255,255,0.68);
+        rgba(255,255,255,.68);
 
     font-size: 11px;
 }
@@ -1513,6 +1592,7 @@ button {
     min-height: 250px;
 
     display: flex;
+
     flex-direction: column;
 
     align-items: center;
@@ -1527,8 +1607,7 @@ button {
     border:
         1px solid var(--border);
 
-    border-radius:
-        var(--radius);
+    border-radius: var(--radius);
 }
 
 .empty-section > i {
@@ -1567,9 +1646,6 @@ button {
 
     text-align: center;
 
-    border:
-        1px solid rgba(24,185,104,0.40);
-
     border-radius: 18px;
 
     background:
@@ -1578,6 +1654,9 @@ button {
             #172719,
             #0a130c
         );
+
+    border:
+        1px solid rgba(24,185,104,.40);
 }
 
 .promote-box::before {
@@ -1592,7 +1671,7 @@ button {
     top: -150px;
 
     background:
-        rgba(24,185,104,0.17);
+        rgba(24,185,104,.17);
 
     border-radius: 50%;
 }
@@ -1609,7 +1688,7 @@ button {
     bottom: -150px;
 
     background:
-        rgba(245,184,46,0.14);
+        rgba(245,184,46,.14);
 
     border-radius: 50%;
 }
@@ -1620,7 +1699,7 @@ button {
     margin-bottom: 16px;
 
     font-size:
-        clamp(35px, 5vw, 58px);
+        clamp(35px,5vw,58px);
 
     line-height: 1;
 }
@@ -1630,7 +1709,8 @@ button {
 
     max-width: 600px;
 
-    margin: 0 auto 25px;
+    margin:
+        0 auto 25px;
 
     color: var(--muted);
 }
@@ -1675,8 +1755,7 @@ button {
     border:
         1px solid var(--border);
 
-    border-radius:
-        var(--radius);
+    border-radius: var(--radius);
 }
 
 .contact-content p {
@@ -1700,18 +1779,21 @@ button {
     z-index: 2000;
 
     background:
-        rgba(8,13,9,0.97);
+        rgba(8,13,9,.97);
 
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
 
     border:
-        1px solid rgba(255,255,255,0.13);
+        1px solid rgba(255,255,255,.13);
 
     border-radius: 12px;
 
     box-shadow:
-        0 20px 70px rgba(0,0,0,0.60);
+        0 20px 70px rgba(0,0,0,.60);
 
     transform:
         translateY(130%);
@@ -1756,7 +1838,9 @@ button {
     font-size: 14px;
 
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
 }
 
@@ -1766,7 +1850,9 @@ button {
     font-size: 11px;
 
     white-space: nowrap;
+
     overflow: hidden;
+
     text-overflow: ellipsis;
 }
 
@@ -1779,6 +1865,7 @@ button {
     border-radius: 50%;
 
     background: var(--gold);
+
     color: #111;
 }
 
@@ -1788,7 +1875,7 @@ button {
     overflow: hidden;
 
     background:
-        rgba(255,255,255,0.12);
+        rgba(255,255,255,.12);
 
     border-radius: 10px;
 
@@ -1797,6 +1884,7 @@ button {
 
 .player-progress > div {
     width: 0%;
+
     height: 100%;
 
     background:
@@ -1853,6 +1941,7 @@ button {
 
 .footer-column {
     display: flex;
+
     flex-direction: column;
 
     gap: 9px;
@@ -1864,6 +1953,7 @@ button {
     color: var(--gold);
 
     font-size: 12px;
+
     letter-spacing: 1.5px;
 
     text-transform: uppercase;
@@ -1900,6 +1990,7 @@ button {
 
 .newsletter-form input {
     min-width: 0;
+
     flex: 1;
 
     height: 44px;
@@ -1908,17 +1999,16 @@ button {
 
     background: #101610;
 
+    color: #fff;
+
     border:
         1px solid var(--border);
 
     border-right: 0;
 
-    border-radius:
-        7px 0 0 7px;
+    border-radius: 7px 0 0 7px;
 
     outline: none;
-
-    color: #fff;
 }
 
 .newsletter-form input:focus {
@@ -1932,10 +2022,10 @@ button {
     border: 0;
 
     background: var(--gold);
+
     color: #111;
 
-    border-radius:
-        0 7px 7px 0;
+    border-radius: 0 7px 7px 0;
 }
 
 
@@ -1956,6 +2046,7 @@ button {
     height: 36px;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
@@ -2020,10 +2111,14 @@ button {
    LARGE TABLET
    ========================================================= */
 
-@media (max-width: 1150px) {
+@media (max-width: 1100px) {
+
+    .header-inner {
+        gap: 18px;
+    }
 
     .navigation {
-        gap: 13px;
+        gap: 12px;
     }
 
     .navigation a {
@@ -2036,7 +2131,8 @@ button {
     }
 
     .music-panel:last-child {
-        grid-column: 1 / -1;
+        grid-column:
+            1 / -1;
     }
 
     .genre-grid {
@@ -2051,11 +2147,12 @@ button {
 
     .hero-content {
         grid-template-columns:
-            .85fr 1.15fr;
+            .82fr 1.18fr;
     }
 
     .hero-visual {
-        background-size: 135% auto;
+        background-size:
+            135% auto;
     }
 }
 
@@ -2089,6 +2186,9 @@ button {
         height: 50px;
     }
 
+
+    /* MOBILE NAV */
+
     .navigation {
         position: absolute;
 
@@ -2099,6 +2199,7 @@ button {
         display: none;
 
         flex-direction: column;
+
         align-items: stretch;
 
         gap: 0;
@@ -2109,7 +2210,7 @@ button {
             1px solid var(--border);
 
         box-shadow:
-            0 20px 40px rgba(0,0,0,0.55);
+            0 20px 40px rgba(0,0,0,.55);
     }
 
     .navigation.active {
@@ -2122,7 +2223,7 @@ button {
         font-size: 12px;
 
         border-bottom:
-            1px solid rgba(255,255,255,0.05);
+            1px solid rgba(255,255,255,.05);
     }
 
     .navigation a::after {
@@ -2142,18 +2243,16 @@ button {
     }
 
 
-    /* =====================================================
-       MOBILE HERO
-       ===================================================== */
+    /* MOBILE HERO */
 
     .hero {
         min-height: auto;
 
         background:
             radial-gradient(
-                circle at 70% 58%,
-                rgba(24,185,104,0.25),
-                transparent 40%
+                circle at 72% 56%,
+                rgba(24,185,104,.28),
+                transparent 38%
             ),
             linear-gradient(
                 160deg,
@@ -2166,9 +2265,9 @@ button {
         background:
             linear-gradient(
                 180deg,
-                rgba(2,4,2,0.94),
-                rgba(2,4,2,0.52),
-                rgba(2,4,2,0.10)
+                rgba(2,4,2,.94),
+                rgba(2,4,2,.55),
+                rgba(2,4,2,.16)
             );
     }
 
@@ -2180,49 +2279,43 @@ button {
         gap: 0;
 
         padding:
-            65px 0 15px;
+            70px 0 20px;
     }
 
     .hero-text {
-        max-width: 100%;
-
-        padding: 0;
-
         z-index: 10;
     }
 
     .hero h1 {
         font-size:
-            clamp(48px, 15vw, 70px);
+            clamp(48px,15vw,70px);
 
-        letter-spacing: -2px;
+        letter-spacing:
+            -2px;
     }
 
     .hero-text > p {
         font-size: 16px;
-        line-height: 1.65;
     }
 
-
-    /* =====================================================
-       LARGE MOBILE ARTWORK
-       ===================================================== */
+    /*
+       BIGGER MOBILE AFRICAN ARTWORK
+    */
 
     .hero-visual {
-        width: 100%;
-
-        min-height: 530px;
-        height: 530px;
+        min-height: 510px;
+        height: 510px;
 
         margin-top: -10px;
 
-        transform: scale(1.10);
-
         background-size:
-            145% auto;
+            150% auto;
 
         background-position:
             center center;
+
+        transform:
+            scale(1.08);
     }
 
     .hero-visual::before {
@@ -2230,30 +2323,16 @@ button {
         height: 500px;
     }
 
-    .hero-visual::after {
-        width: 340px;
-        height: 340px;
-    }
-
     .sound-wave {
-        right: 4%;
-        bottom: 15px;
+        right: 5%;
+        bottom: 10px;
     }
 
 
-    /* =====================================================
-       SECTIONS
-       ===================================================== */
+    /* SECTIONS */
 
     .section {
         padding: 65px 0;
-    }
-
-    .section-heading {
-        align-items: flex-start;
-        flex-direction: column;
-
-        margin-bottom: 25px;
     }
 
     .music-panels {
@@ -2269,6 +2348,9 @@ button {
             repeat(2,1fr);
     }
 
+
+    /* ARTIST */
+
     .artist-banner-inner {
         grid-template-columns: 1fr;
 
@@ -2281,9 +2363,7 @@ button {
     }
 
 
-    /* =====================================================
-       PLAYER
-       ===================================================== */
+    /* PLAYER */
 
     .player-inner {
         grid-template-columns:
@@ -2308,11 +2388,6 @@ button {
 
         border-radius: 0;
     }
-
-
-    /* =====================================================
-       FOOTER
-       ===================================================== */
 
     .footer-grid {
         grid-template-columns:
@@ -2345,96 +2420,53 @@ button {
             calc(100% - 24px);
     }
 
-    .header-inner {
-        min-height: 66px;
-    }
-
-    .logo img {
-        width: 115px;
-        height: 46px;
-    }
-
-    .search-button,
-    .mobile-menu {
-        width: 39px;
-        height: 39px;
-    }
-
-    .navigation {
-        top: 66px;
-    }
-
-
-    /* HERO */
-
     .hero-content {
-        padding-top: 52px;
+        padding-top: 55px;
     }
 
     .hero h1 {
         font-size:
-            clamp(44px, 15vw, 62px);
-    }
-
-    .hero-text > p {
-        font-size: 15px;
+            clamp(44px,15vw,62px);
     }
 
     .hero-buttons {
         flex-direction: column;
-
-        width: 100%;
     }
 
     .hero-buttons a {
         width: 100%;
     }
 
+
     /*
-       EXTRA LARGE ARTWORK
+       VERY LARGE MOBILE ARTWORK
     */
 
     .hero-visual {
-        min-height: 470px;
-        height: 470px;
+        min-height: 440px;
+        height: 440px;
 
-        margin-top: -5px;
-
-        transform: scale(1.12);
+        margin-top: 0;
 
         background-size:
-            158% auto;
+            165% auto;
 
-        background-position:
-            center center;
+        transform:
+            scale(1.08);
     }
-
-    .hero-visual::before {
-        width: 450px;
-        height: 450px;
-    }
-
-    .sound-wave {
-        bottom: 5px;
-    }
-
-
-    /* RELEASES */
 
     .release-grid {
         grid-template-columns:
             1fr 1fr;
     }
 
-
-    /* BENEFITS */
-
     .artist-benefits {
         grid-template-columns: 1fr;
     }
 
-
-    /* PLAYER */
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
 
     .music-player {
         left: 8px;
@@ -2445,28 +2477,23 @@ button {
     .player-info p {
         max-width: 170px;
     }
-
-
-    /* FOOTER */
-
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .footer {
-        padding-top: 55px;
-    }
 }
 
 
 /* =========================================================
-   VERY SMALL PHONES
+   EXTRA SMALL PHONES
    ========================================================= */
 
 @media (max-width: 360px) {
 
     .logo img {
-        width: 105px;
+        width: 112px;
+    }
+
+    .search-button,
+    .mobile-menu {
+        width: 38px;
+        height: 38px;
     }
 
     .hero h1 {
@@ -2474,19 +2501,23 @@ button {
     }
 
     .hero-visual {
-        min-height: 420px;
-        height: 420px;
+        min-height: 400px;
+        height: 400px;
 
         background-size:
-            165% auto;
+            175% auto;
     }
 
-    .genre-grid {
+    .track {
+        grid-template-columns:
+            24px 50px minmax(0,1fr) 38px;
+
         gap: 8px;
     }
 
-    .genre-card {
-        min-height: 110px;
+    .track-image {
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -2509,7 +2540,9 @@ button {
    ========================================================= */
 
 ::selection {
-    background: var(--gold);
-    color: #111;
+    background:
+        var(--gold);
+
+    color:
+        #111;
 }
-```
