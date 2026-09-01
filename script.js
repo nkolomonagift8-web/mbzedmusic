@@ -26,13 +26,17 @@ let currentTrack = -1;
 
 let isPlaying = false;
 
+let playerInitialized = false;
+
 const audio = new Audio();
 
 audio.preload = "metadata";
 
+audio.volume = 1;
+
 
 /* =========================================================
-   START
+   START WEBSITE
    ========================================================= */
 
 function startMbzedMusic() {
@@ -47,9 +51,14 @@ function startMbzedMusic() {
     setupUploadButtons();
 
     if (mbzedSupabase) {
+
         loadSongsFromSupabase();
+
     } else {
-        console.warn("MBZEDMUSIC: Supabase unavailable.");
+
+        console.warn(
+            "MBZEDMUSIC: Supabase unavailable."
+        );
     }
 }
 
@@ -96,7 +105,7 @@ function loadSupabase() {
 
 
 /* =========================================================
-   CONNECT
+   CONNECT SUPABASE
    ========================================================= */
 
 function connectSupabase() {
@@ -133,38 +142,326 @@ function connectSupabase() {
 
 function setupMusicPlayer() {
 
+    if (playerInitialized) {
+        return;
+    }
+
+    playerInitialized = true;
+
+
     const player =
-        document.getElementById("musicPlayer");
+        document.getElementById(
+            "musicPlayer"
+        );
+
 
     const mainButton =
         document.getElementById(
             "mainPlayerButton"
         );
 
+
     const titleElement =
         document.getElementById(
             "playerTitle"
         );
+
 
     const artistElement =
         document.getElementById(
             "playerArtist"
         );
 
+
     const coverElement =
         document.querySelector(
             ".player-cover"
         );
+
 
     const progressContainer =
         document.querySelector(
             ".player-progress"
         );
 
+
     const progressBar =
         progressContainer
             ? progressContainer.querySelector("div")
             : null;
+
+
+    /*
+     * Time elements.
+     *
+     * We support several possible IDs so
+     * your current HTML does not need to change.
+     */
+
+    const currentTimeElement =
+        document.getElementById(
+            "playerCurrentTime"
+        ) ||
+        document.getElementById(
+            "currentTime"
+        );
+
+
+    const durationElement =
+        document.getElementById(
+            "playerDuration"
+        ) ||
+        document.getElementById(
+            "duration"
+        );
+
+
+    /*
+     * Previous / next buttons.
+     */
+
+    const previousButton =
+        document.getElementById(
+            "previousPlayerButton"
+        ) ||
+        document.getElementById(
+            "prevPlayerButton"
+        ) ||
+        document.querySelector(
+            "[data-player-action='previous']"
+        );
+
+
+    const nextButton =
+        document.getElementById(
+            "nextPlayerButton"
+        ) ||
+        document.querySelector(
+            "[data-player-action='next']"
+        );
+
+
+    /*
+     * Volume controls.
+     */
+
+    const volumeControl =
+        document.getElementById(
+            "playerVolume"
+        ) ||
+        document.getElementById(
+            "volumeControl"
+        ) ||
+        document.querySelector(
+            ".player-volume input[type='range']"
+        );
+
+
+    const muteButton =
+        document.getElementById(
+            "mutePlayerButton"
+        ) ||
+        document.getElementById(
+            "playerMuteButton"
+        ) ||
+        document.querySelector(
+            "[data-player-action='mute']"
+        );
+
+
+    /* =====================================================
+       FORMAT TIME
+       ===================================================== */
+
+    function formatTime(seconds) {
+
+        if (
+            !Number.isFinite(seconds) ||
+            seconds < 0
+        ) {
+
+            return "0:00";
+        }
+
+
+        const minutes =
+            Math.floor(
+                seconds / 60
+            );
+
+
+        const remainingSeconds =
+            Math.floor(
+                seconds % 60
+            );
+
+
+        return (
+            minutes +
+            ":" +
+            String(
+                remainingSeconds
+            ).padStart(2, "0")
+        );
+    }
+
+
+    /* =====================================================
+       UPDATE TIME
+       ===================================================== */
+
+    function updateTimeDisplay() {
+
+        if (currentTimeElement) {
+
+            currentTimeElement.textContent =
+                formatTime(
+                    audio.currentTime
+                );
+        }
+
+
+        if (durationElement) {
+
+            durationElement.textContent =
+                formatTime(
+                    audio.duration
+                );
+        }
+    }
+
+
+    /* =====================================================
+       UPDATE PLAY BUTTON
+       ===================================================== */
+
+    function updatePlayButton() {
+
+        if (!mainButton) {
+            return;
+        }
+
+
+        const icon =
+            mainButton.querySelector("i");
+
+
+        if (!icon) {
+            return;
+        }
+
+
+        if (isPlaying) {
+
+            icon.classList.remove(
+                "fa-play"
+            );
+
+            icon.classList.add(
+                "fa-pause"
+            );
+
+            mainButton.setAttribute(
+                "aria-label",
+                "Pause music"
+            );
+
+            mainButton.setAttribute(
+                "title",
+                "Pause"
+            );
+
+        } else {
+
+            icon.classList.remove(
+                "fa-pause"
+            );
+
+            icon.classList.add(
+                "fa-play"
+            );
+
+            mainButton.setAttribute(
+                "aria-label",
+                "Play music"
+            );
+
+            mainButton.setAttribute(
+                "title",
+                "Play"
+            );
+        }
+    }
+
+
+    /* =====================================================
+       UPDATE MUTE BUTTON
+       ===================================================== */
+
+    function updateMuteButton() {
+
+        if (!muteButton) {
+            return;
+        }
+
+
+        const icon =
+            muteButton.querySelector("i");
+
+
+        if (!icon) {
+            return;
+        }
+
+
+        if (
+            audio.muted ||
+            audio.volume === 0
+        ) {
+
+            icon.classList.remove(
+                "fa-volume-high"
+            );
+
+            icon.classList.remove(
+                "fa-volume-low"
+            );
+
+            icon.classList.add(
+                "fa-volume-xmark"
+            );
+
+        } else if (
+            audio.volume < 0.5
+        ) {
+
+            icon.classList.remove(
+                "fa-volume-high"
+            );
+
+            icon.classList.remove(
+                "fa-volume-xmark"
+            );
+
+            icon.classList.add(
+                "fa-volume-low"
+            );
+
+        } else {
+
+            icon.classList.remove(
+                "fa-volume-low"
+            );
+
+            icon.classList.remove(
+                "fa-volume-xmark"
+            );
+
+            icon.classList.add(
+                "fa-volume-high"
+            );
+        }
+    }
 
 
     /* =====================================================
@@ -186,20 +483,27 @@ function setupMusicPlayer() {
                 return false;
             }
 
+
             const track =
                 musicTracks[index];
+
 
             currentTrack =
                 index;
 
+
             audio.pause();
+
 
             isPlaying = false;
 
+
             updatePlayButton();
+
 
             audio.src =
                 track.audio;
+
 
             if (titleElement) {
 
@@ -208,12 +512,14 @@ function setupMusicPlayer() {
                     "Unknown Song";
             }
 
+
             if (artistElement) {
 
                 artistElement.textContent =
                     track.artist ||
                     "Unknown Artist";
             }
+
 
             if (
                 coverElement &&
@@ -230,18 +536,41 @@ function setupMusicPlayer() {
                     "center";
             }
 
+
             if (progressBar) {
 
                 progressBar.style.width =
                     "0%";
             }
 
+
+            if (currentTimeElement) {
+
+                currentTimeElement.textContent =
+                    "0:00";
+            }
+
+
+            if (durationElement) {
+
+                durationElement.textContent =
+                    "0:00";
+            }
+
+
             audio.load();
+
 
             if (player) {
 
-                player.classList.add("active");
+                player.classList.add(
+                    "active"
+                );
             }
+
+
+            updateNowPlaying();
+
 
             return true;
         };
@@ -263,6 +592,7 @@ function setupMusicPlayer() {
                 return;
             }
 
+
             if (
                 currentTrack < 0 ||
                 !musicTracks[currentTrack]
@@ -275,6 +605,7 @@ function setupMusicPlayer() {
                 );
             }
 
+
             try {
 
                 await audio.play();
@@ -282,6 +613,7 @@ function setupMusicPlayer() {
                 isPlaying = true;
 
                 updatePlayButton();
+
 
                 if (player) {
 
@@ -348,7 +680,9 @@ function setupMusicPlayer() {
                 return;
             }
 
+
             currentTrack++;
+
 
             if (
                 currentTrack >=
@@ -358,9 +692,11 @@ function setupMusicPlayer() {
                 currentTrack = 0;
             }
 
+
             window.loadMbzedTrack(
                 currentTrack
             );
+
 
             window.playMbzedMusic();
         };
@@ -377,7 +713,9 @@ function setupMusicPlayer() {
                 return;
             }
 
+
             currentTrack--;
+
 
             if (currentTrack < 0) {
 
@@ -385,9 +723,11 @@ function setupMusicPlayer() {
                     musicTracks.length - 1;
             }
 
+
             window.loadMbzedTrack(
                 currentTrack
             );
+
 
             window.playMbzedMusic();
         };
@@ -412,6 +752,42 @@ function setupMusicPlayer() {
 
 
     /* =====================================================
+       PREVIOUS BUTTON
+       ===================================================== */
+
+    if (previousButton) {
+
+        previousButton.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+                window.previousMbzedTrack();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       NEXT BUTTON
+       ===================================================== */
+
+    if (nextButton) {
+
+        nextButton.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+                window.nextMbzedTrack();
+            }
+        );
+    }
+
+
+    /* =====================================================
        PROGRESS
        ===================================================== */
 
@@ -423,8 +799,12 @@ function setupMusicPlayer() {
                 !audio.duration ||
                 !progressBar
             ) {
+
+                updateTimeDisplay();
+
                 return;
             }
+
 
             const percentage =
                 (
@@ -432,14 +812,37 @@ function setupMusicPlayer() {
                     audio.duration
                 ) * 100;
 
+
             progressBar.style.width =
-                percentage + "%";
+                Math.min(
+                    100,
+                    Math.max(
+                        0,
+                        percentage
+                    )
+                ) + "%";
+
+
+            updateTimeDisplay();
         }
     );
 
 
     /* =====================================================
-       CLICK PROGRESS
+       METADATA LOADED
+       ===================================================== */
+
+    audio.addEventListener(
+        "loadedmetadata",
+        function() {
+
+            updateTimeDisplay();
+        }
+    );
+
+
+    /* =====================================================
+       PROGRESS CLICK
        ===================================================== */
 
     if (progressContainer) {
@@ -452,17 +855,27 @@ function setupMusicPlayer() {
                     return;
                 }
 
+
                 const rect =
                     progressContainer
                         .getBoundingClientRect();
+
 
                 const position =
                     event.clientX -
                     rect.left;
 
+
                 const percentage =
-                    position /
-                    rect.width;
+                    Math.min(
+                        1,
+                        Math.max(
+                            0,
+                            position /
+                            rect.width
+                        )
+                    );
+
 
                 audio.currentTime =
                     percentage *
@@ -470,6 +883,181 @@ function setupMusicPlayer() {
             }
         );
     }
+
+
+    /* =====================================================
+       PROGRESS KEYBOARD CONTROL
+       ===================================================== */
+
+    if (progressContainer) {
+
+        progressContainer.setAttribute(
+            "tabindex",
+            "0"
+        );
+
+
+        progressContainer.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (
+                    event.key !== "ArrowLeft" &&
+                    event.key !== "ArrowRight"
+                ) {
+
+                    return;
+                }
+
+
+                event.preventDefault();
+
+
+                const jump =
+                    5;
+
+
+                if (
+                    event.key ===
+                    "ArrowRight"
+                ) {
+
+                    audio.currentTime =
+                        Math.min(
+                            audio.duration || 0,
+                            audio.currentTime +
+                            jump
+                        );
+
+                } else {
+
+                    audio.currentTime =
+                        Math.max(
+                            0,
+                            audio.currentTime -
+                            jump
+                        );
+                }
+            }
+        );
+    }
+
+
+    /* =====================================================
+       VOLUME CONTROL
+       ===================================================== */
+
+    if (volumeControl) {
+
+        volumeControl.min =
+            "0";
+
+        volumeControl.max =
+            "1";
+
+        volumeControl.step =
+            "0.01";
+
+
+        if (
+            !volumeControl.value ||
+            Number(
+                volumeControl.value
+            ) > 1
+        ) {
+
+            volumeControl.value =
+                audio.volume;
+        }
+
+
+        volumeControl.addEventListener(
+            "input",
+            function() {
+
+                const value =
+                    Number(
+                        volumeControl.value
+                    );
+
+
+                audio.volume =
+                    Math.min(
+                        1,
+                        Math.max(
+                            0,
+                            value
+                        )
+                    );
+
+
+                if (
+                    audio.volume >
+                    0
+                ) {
+
+                    audio.muted =
+                        false;
+                }
+
+
+                updateMuteButton();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       MUTE
+       ===================================================== */
+
+    if (muteButton) {
+
+        muteButton.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+
+                audio.muted =
+                    !audio.muted;
+
+
+                updateMuteButton();
+            }
+        );
+    }
+
+
+    /* =====================================================
+       AUDIO PLAY EVENT
+       ===================================================== */
+
+    audio.addEventListener(
+        "play",
+        function() {
+
+            isPlaying = true;
+
+            updatePlayButton();
+        }
+    );
+
+
+    /* =====================================================
+       AUDIO PAUSE EVENT
+       ===================================================== */
+
+    audio.addEventListener(
+        "pause",
+        function() {
+
+            isPlaying = false;
+
+            updatePlayButton();
+        }
+    );
 
 
     /* =====================================================
@@ -484,14 +1072,23 @@ function setupMusicPlayer() {
 
             updatePlayButton();
 
+
             if (progressBar) {
 
                 progressBar.style.width =
                     "0%";
             }
 
+
+            if (currentTimeElement) {
+
+                currentTimeElement.textContent =
+                    "0:00";
+            }
+
+
             /*
-             * Automatically play next song
+             * Automatically play next song.
              */
 
             if (musicTracks.length > 1) {
@@ -515,6 +1112,7 @@ function setupMusicPlayer() {
                 audio.error
             );
 
+
             isPlaying = false;
 
             updatePlayButton();
@@ -523,50 +1121,71 @@ function setupMusicPlayer() {
 
 
     /* =====================================================
-       UPDATE BUTTON
+       UPDATE NOW PLAYING
        ===================================================== */
 
-    function updatePlayButton() {
+    function updateNowPlaying() {
 
-        if (!mainButton) {
+        const track =
+            musicTracks[currentTrack];
+
+
+        if (!track) {
             return;
         }
 
-        const icon =
-            mainButton.querySelector("i");
 
-        if (!icon) {
-            return;
-        }
+        document
+            .querySelectorAll(
+                ".now-playing-title"
+            )
+            .forEach(
+                element => {
 
-        if (isPlaying) {
-
-            icon.classList.remove(
-                "fa-play"
+                    element.textContent =
+                        track.title ||
+                        "Unknown Song";
+                }
             );
 
-            icon.classList.add(
-                "fa-pause"
-            );
 
-        } else {
+        document
+            .querySelectorAll(
+                ".now-playing-artist"
+            )
+            .forEach(
+                element => {
 
-            icon.classList.remove(
-                "fa-pause"
+                    element.textContent =
+                        track.artist ||
+                        "Unknown Artist";
+                }
             );
-
-            icon.classList.add(
-                "fa-play"
-            );
-        }
     }
 
+
+    /* =====================================================
+       PUBLIC PLAYER FUNCTIONS
+       ===================================================== */
 
     window.updateMbzedPlayButton =
         updatePlayButton;
 
 
+    window.updateMbzedMuteButton =
+        updateMuteButton;
+
+
+    /*
+     * Attach buttons already on the page.
+     */
+
     attachPlayButtons();
+
+
+    console.log(
+        "MBZEDMUSIC: Music player ready."
+    );
 }
 
 
@@ -581,6 +1200,7 @@ function attachPlayButtons() {
             ".play-button, .card-play"
         );
 
+
     buttons.forEach(
         function(button) {
 
@@ -588,8 +1208,10 @@ function attachPlayButtons() {
                 button.dataset.mbzedReady ===
                 "true"
             ) {
+
                 return;
             }
+
 
             button.dataset.mbzedReady =
                 "true";
@@ -603,16 +1225,20 @@ function attachPlayButtons() {
 
                     event.stopPropagation();
 
+
                     const title =
                         button.dataset.title ||
                         "Unknown Song";
+
 
                     const artist =
                         button.dataset.artist ||
                         "Unknown Artist";
 
+
                     const audioUrl =
                         button.dataset.audio;
+
 
                     const cover =
                         button.dataset.cover ||
@@ -658,6 +1284,7 @@ function attachPlayButtons() {
                                 cover
                         });
 
+
                         index =
                             musicTracks.length - 1;
                     }
@@ -666,6 +1293,7 @@ function attachPlayButtons() {
                     window.loadMbzedTrack(
                         index
                     );
+
 
                     window.playMbzedMusic();
                 }
@@ -676,7 +1304,7 @@ function attachPlayButtons() {
 
 
 /* =========================================================
-   LOAD SONGS
+   LOAD SONGS FROM SUPABASE
    ========================================================= */
 
 async function loadSongsFromSupabase() {
@@ -684,6 +1312,7 @@ async function loadSongsFromSupabase() {
     if (!mbzedSupabase) {
         return;
     }
+
 
     console.log(
         "MBZEDMUSIC: Loading songs..."
@@ -722,7 +1351,10 @@ async function loadSongsFromSupabase() {
         }
 
 
-        if (!data || !data.length) {
+        if (
+            !data ||
+            !data.length
+        ) {
 
             console.log(
                 "MBZEDMUSIC: No songs found."
@@ -804,10 +1436,16 @@ async function loadSongsFromSupabase() {
 
         currentTrack = 0;
 
-        window.loadMbzedTrack(
-            currentTrack
-        );
 
+        if (
+            typeof window.loadMbzedTrack ===
+            "function"
+        ) {
+
+            window.loadMbzedTrack(
+                currentTrack
+            );
+        }
 
     } catch (error) {
 
@@ -832,14 +1470,22 @@ function renderTrendingSongs(songs) {
             ".music-panel:first-child .track-list"
         );
 
+
     if (!container) {
         return;
     }
 
+
     const tracks =
         songs
-            .filter(song => song.audio_url)
-            .slice(0, 10);
+            .filter(
+                song =>
+                    song.audio_url
+            )
+            .slice(
+                0,
+                10
+            );
 
 
     if (!tracks.length) {
@@ -867,7 +1513,10 @@ function renderTrendingSongs(songs) {
    SONG HTML
    ========================================================= */
 
-function createSongHTML(song, number) {
+function createSongHTML(
+    song,
+    number
+) {
 
     const title =
         escapeHtml(
@@ -875,11 +1524,13 @@ function createSongHTML(song, number) {
             "Untitled"
         );
 
+
     const artist =
         escapeHtml(
             song.artist_name ||
             "Unknown Artist"
         );
+
 
     const genre =
         escapeHtml(
@@ -887,9 +1538,11 @@ function createSongHTML(song, number) {
             ""
         );
 
+
     const cover =
         song.cover_url ||
         "mb-levels-cover.jpg.jpeg";
+
 
     const audioUrl =
         song.audio_url ||
@@ -927,11 +1580,13 @@ function createSongHTML(song, number) {
                 type="button"
 
                 data-title="${escapeAttribute(
-                    song.title || "Untitled"
+                    song.title ||
+                    "Untitled"
                 )}"
 
                 data-artist="${escapeAttribute(
-                    song.artist_name || "Unknown Artist"
+                    song.artist_name ||
+                    "Unknown Artist"
                 )}"
 
                 data-audio="${escapeAttribute(
@@ -948,6 +1603,7 @@ function createSongHTML(song, number) {
             </button>
 
         </div>
+
     `;
 }
 
@@ -963,6 +1619,7 @@ function renderNewReleases(songs) {
             ".release-grid"
         );
 
+
     if (!container) {
         return;
     }
@@ -970,8 +1627,14 @@ function renderNewReleases(songs) {
 
     const releases =
         songs
-            .filter(song => song.audio_url)
-            .slice(0, 8);
+            .filter(
+                song =>
+                    song.audio_url
+            )
+            .slice(
+                0,
+                8
+            );
 
 
     if (!releases.length) {
@@ -990,11 +1653,13 @@ function renderNewReleases(songs) {
                             "Untitled"
                         );
 
+
                     const artist =
                         escapeHtml(
                             song.artist_name ||
                             "Unknown Artist"
                         );
+
 
                     const cover =
                         song.cover_url ||
@@ -1024,15 +1689,18 @@ function renderNewReleases(songs) {
                                     type="button"
 
                                     data-title="${escapeAttribute(
-                                        song.title || "Untitled"
+                                        song.title ||
+                                        "Untitled"
                                     )}"
 
                                     data-artist="${escapeAttribute(
-                                        song.artist_name || "Unknown Artist"
+                                        song.artist_name ||
+                                        "Unknown Artist"
                                     )}"
 
                                     data-audio="${escapeAttribute(
-                                        song.audio_url || ""
+                                        song.audio_url ||
+                                        ""
                                     )}"
 
                                     data-cover="${escapeAttribute(
@@ -1077,6 +1745,7 @@ function renderChartSongs(songs) {
             ".chart-list"
         );
 
+
     if (!container) {
         return;
     }
@@ -1084,8 +1753,14 @@ function renderChartSongs(songs) {
 
     const chartSongs =
         songs
-            .filter(song => song.audio_url)
-            .slice(0, 10);
+            .filter(
+                song =>
+                    song.audio_url
+            )
+            .slice(
+                0,
+                10
+            );
 
 
     if (!chartSongs.length) {
@@ -1104,11 +1779,13 @@ function renderChartSongs(songs) {
                             "Untitled"
                         );
 
+
                     const artist =
                         escapeHtml(
                             song.artist_name ||
                             "Unknown Artist"
                         );
+
 
                     const cover =
                         song.cover_url ||
@@ -1150,15 +1827,18 @@ function renderChartSongs(songs) {
                                 type="button"
 
                                 data-title="${escapeAttribute(
-                                    song.title || "Untitled"
+                                    song.title ||
+                                    "Untitled"
                                 )}"
 
                                 data-artist="${escapeAttribute(
-                                    song.artist_name || "Unknown Artist"
+                                    song.artist_name ||
+                                    "Unknown Artist"
                                 )}"
 
                                 data-audio="${escapeAttribute(
-                                    song.audio_url || ""
+                                    song.audio_url ||
+                                    ""
                                 )}"
 
                                 data-cover="${escapeAttribute(
@@ -1193,6 +1873,7 @@ function showNoSongsMessage() {
             ".track-list"
         );
 
+
     if (trackList) {
 
         trackList.innerHTML = `
@@ -1210,6 +1891,7 @@ function showNoSongsMessage() {
                 </p>
 
             </div>
+
         `;
     }
 
@@ -1218,6 +1900,7 @@ function showNoSongsMessage() {
         document.querySelector(
             ".release-grid"
         );
+
 
     if (releaseGrid) {
 
@@ -1236,6 +1919,7 @@ function showNoSongsMessage() {
                 </p>
 
             </div>
+
         `;
     }
 
@@ -1244,6 +1928,7 @@ function showNoSongsMessage() {
         document.querySelector(
             ".chart-list"
         );
+
 
     if (chartList) {
 
@@ -1262,6 +1947,7 @@ function showNoSongsMessage() {
                 </p>
 
             </div>
+
         `;
     }
 }
@@ -1278,15 +1964,18 @@ function setupSearch() {
             "searchButton"
         );
 
+
     const box =
         document.getElementById(
             "searchBox"
         );
 
+
     const close =
         document.getElementById(
             "closeSearch"
         );
+
 
     const input =
         document.getElementById(
@@ -1303,6 +1992,7 @@ function setupSearch() {
                 box.classList.add(
                     "active"
                 );
+
 
                 if (input) {
 
@@ -1327,8 +2017,11 @@ function setupSearch() {
                     "active"
                 );
 
+
                 if (input) {
-                    input.value = "";
+
+                    input.value =
+                        "";
                 }
             }
         );
@@ -1345,8 +2038,10 @@ function setupSearch() {
                     event.key !==
                     "Enter"
                 ) {
+
                     return;
                 }
+
 
                 const query =
                     input.value
@@ -1370,7 +2065,9 @@ function setupSearch() {
                                     ""
                                 )
                                     .toLowerCase()
-                                    .includes(query)
+                                    .includes(
+                                        query
+                                    )
 
                                 ||
 
@@ -1379,7 +2076,9 @@ function setupSearch() {
                                     ""
                                 )
                                     .toLowerCase()
-                                    .includes(query)
+                                    .includes(
+                                        query
+                                    )
 
                                 ||
 
@@ -1388,7 +2087,9 @@ function setupSearch() {
                                     ""
                                 )
                                     .toLowerCase()
-                                    .includes(query)
+                                    .includes(
+                                        query
+                                    )
                             );
                         }
                     );
@@ -1415,6 +2116,7 @@ function setupSearch() {
                     index
                 );
 
+
                 window.playMbzedMusic();
             }
         );
@@ -1433,13 +2135,18 @@ function setupMobileMenu() {
             "mobileMenu"
         );
 
+
     const navigation =
         document.getElementById(
             "navigation"
         );
 
 
-    if (!menu || !navigation) {
+    if (
+        !menu ||
+        !navigation
+    ) {
+
         return;
     }
 
@@ -1454,7 +2161,9 @@ function setupMobileMenu() {
 
 
             const icon =
-                menu.querySelector("i");
+                menu.querySelector(
+                    "i"
+                );
 
 
             if (!icon) {
@@ -1472,6 +2181,7 @@ function setupMobileMenu() {
                 "fa-bars",
                 !open
             );
+
 
             icon.classList.toggle(
                 "fa-xmark",
@@ -1511,6 +2221,7 @@ function setupNewsletter() {
             "newsletterForm"
         );
 
+
     if (!form) {
         return;
     }
@@ -1522,10 +2233,12 @@ function setupNewsletter() {
 
             event.preventDefault();
 
+
             const input =
                 form.querySelector(
                     "input[type='email']"
                 );
+
 
             if (!input) {
                 return;
@@ -1546,7 +2259,8 @@ function setupNewsletter() {
             );
 
 
-            input.value = "";
+            input.value =
+                "";
         }
     );
 }
@@ -1563,6 +2277,7 @@ function setupBackToTop() {
             ".footer-bottom a"
         );
 
+
     if (!link) {
         return;
     }
@@ -1574,11 +2289,13 @@ function setupBackToTop() {
 
             event.preventDefault();
 
+
             window.scrollTo({
 
                 top: 0,
 
                 behavior: "smooth"
+
             });
         }
     );
@@ -1601,7 +2318,9 @@ function setupUploadButtons() {
         button => {
 
             const href =
-                button.getAttribute("href");
+                button.getAttribute(
+                    "href"
+                );
 
 
             if (
@@ -1626,6 +2345,7 @@ function setupUploadButtons() {
 
                             event.preventDefault();
 
+
                             window.location.href =
                                 "upload.html";
                         }
@@ -1643,7 +2363,9 @@ function setupUploadButtons() {
 
 function escapeHtml(value) {
 
-    return String(value ?? "")
+    return String(
+        value ?? ""
+    )
         .replace(
             /&/g,
             "&amp;"
@@ -1698,6 +2420,10 @@ if (
     loadSupabase();
 }
 
+
+/* =========================================================
+   READY
+   ========================================================= */
 
 console.log(
     "MBZEDMUSIC.COM JavaScript loaded successfully."
