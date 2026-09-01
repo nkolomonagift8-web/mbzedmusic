@@ -1,226 +1,101 @@
 ```javascript
-/* =========================================================
-   MBZEDMUSIC.COM
-   MUSIC PLAYER + SEARCH + MOBILE MENU
-   CLEAN WORKING VERSION
-   ========================================================= */
-
 document.addEventListener("DOMContentLoaded", function () {
 
-    console.log("MBZEDMUSIC: JavaScript loaded");
+    console.log("MBZEDMUSIC PLAYER STARTING...");
 
-    /* =====================================================
-       AUDIO ELEMENT
-    ===================================================== */
+    /* =========================================
+       AUDIO
+    ========================================= */
 
-    let audio = document.getElementById("audioPlayer");
+    const audio = new Audio();
 
-    if (!audio) {
-        audio = document.createElement("audio");
-        audio.id = "audioPlayer";
-        audio.preload = "metadata";
-        audio.style.display = "none";
-        document.body.appendChild(audio);
-    }
+    audio.preload = "auto";
+
+    let currentButton = null;
+    let currentSong = "";
 
 
-    /* =====================================================
+    /* =========================================
        PLAYER ELEMENTS
-    ===================================================== */
+    ========================================= */
 
-    const musicPlayer = document.getElementById("musicPlayer");
+    const player =
+        document.getElementById("musicPlayer");
 
-    const playerTitle = document.getElementById("playerTitle");
+    const title =
+        document.getElementById("playerTitle");
 
-    const playerArtist = document.getElementById("playerArtist");
+    const artist =
+        document.getElementById("playerArtist");
 
-    const playerCover = document.querySelector(".player-cover");
+    const cover =
+        document.querySelector(".player-cover");
 
-    const mainPlayerButton =
+    const mainButton =
         document.getElementById("mainPlayerButton");
 
-    const playerProgress =
+    const progress =
         document.querySelector(".player-progress");
 
     const progressFill =
         document.querySelector(".player-progress > div");
 
 
-    /* =====================================================
-       ALL MUSIC BUTTONS
-    ===================================================== */
+    /* =========================================
+       GET ALL SONG BUTTONS
+    ========================================= */
 
-    const musicButtons =
-        document.querySelectorAll("[data-audio]");
+    const buttons =
+        document.querySelectorAll(
+            "button[data-audio]"
+        );
 
     console.log(
-        "MBZEDMUSIC: Songs found:",
-        musicButtons.length
+        "MBZEDMUSIC SONG BUTTONS:",
+        buttons.length
     );
 
 
-    let currentButton = null;
-    let currentAudio = "";
+    /* =========================================
+       BUTTON ICON
+    ========================================= */
 
+    function setButtonIcon(playing) {
 
-    /* =====================================================
-       UPDATE MAIN PLAYER ICON
-    ===================================================== */
-
-    function updateMainButton(isPlaying) {
-
-        if (!mainPlayerButton) {
-            return;
-        }
+        if (!mainButton) return;
 
         const icon =
-            mainPlayerButton.querySelector("i");
+            mainButton.querySelector("i");
 
-        if (!icon) {
-            return;
-        }
+        if (!icon) return;
 
-        if (isPlaying) {
+        if (playing) {
 
             icon.classList.remove("fa-play");
             icon.classList.add("fa-pause");
-
-            mainPlayerButton.setAttribute(
-                "aria-label",
-                "Pause music"
-            );
 
         } else {
 
             icon.classList.remove("fa-pause");
             icon.classList.add("fa-play");
 
-            mainPlayerButton.setAttribute(
-                "aria-label",
-                "Play music"
-            );
         }
     }
 
 
-    /* =====================================================
-       GET SONG INFORMATION
-    ===================================================== */
-
-    function getSongInfo(button) {
-
-        const card =
-            button.closest(
-                ".track, .release-card, .chart-item"
-            );
-
-        let title =
-            button.getAttribute("data-title");
-
-        let artist =
-            button.getAttribute("data-artist");
-
-        let cover =
-            button.getAttribute("data-cover");
-
-
-        /* TITLE */
-
-        if (!title && card) {
-
-            const titleElement =
-                card.querySelector("h3");
-
-            if (titleElement) {
-                title =
-                    titleElement.textContent.trim();
-            }
-        }
-
-
-        /* ARTIST */
-
-        if (!artist && card) {
-
-            const artistElement =
-                card.querySelector("p");
-
-            if (artistElement) {
-                artist =
-                    artistElement.textContent.trim();
-            }
-        }
-
-
-        /* COVER */
-
-        if (!cover && card) {
-
-            const image =
-                card.querySelector(
-                    ".track-image, .release-image, .mini-cover"
-                );
-
-            if (image) {
-
-                const background =
-                    getComputedStyle(image)
-                        .backgroundImage;
-
-                if (
-                    background &&
-                    background !== "none"
-                ) {
-
-                    cover =
-                        background
-                            .replace(/^url\(["']?/, "")
-                            .replace(/["']?\)$/, "");
-                }
-            }
-        }
-
-
-        return {
-            title: title || "Now Playing",
-            artist: artist || "Mbzedmusic",
-            cover: cover || ""
-        };
-    }
-
-
-    /* =====================================================
-       SHOW PLAYER
-    ===================================================== */
-
-    function showPlayer() {
-
-        if (musicPlayer) {
-            musicPlayer.classList.add("active");
-        }
-    }
-
-
-    /* =====================================================
+    /* =========================================
        PLAY SONG
-    ===================================================== */
+    ========================================= */
 
-    function playSong(button) {
+    function startSong(button) {
 
-        if (!button) {
-            return;
-        }
-
-
-        const audioURL =
+        const url =
             button.getAttribute("data-audio");
 
+        if (!url) {
 
-        if (!audioURL) {
-
-            console.warn(
-                "MBZEDMUSIC: Button has no data-audio",
-                button
+            console.error(
+                "NO AUDIO URL FOUND"
             );
 
             return;
@@ -228,117 +103,117 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         console.log(
-            "MBZEDMUSIC: Loading song:",
-            audioURL
+            "LOADING AUDIO:",
+            url
         );
 
 
-        const info =
-            getSongInfo(button);
-
-
         currentButton = button;
+        currentSong = url;
 
-        currentAudio = audioURL;
+
+        /* SONG INFO */
+
+        const songTitle =
+            button.getAttribute("data-title") ||
+            "Now Playing";
+
+        const songArtist =
+            button.getAttribute("data-artist") ||
+            "Mbzedmusic";
+
+        const songCover =
+            button.getAttribute("data-cover");
 
 
-        /* PLAYER TITLE */
+        /* UPDATE PLAYER */
 
-        if (playerTitle) {
-            playerTitle.textContent =
-                info.title;
+        if (title) {
+            title.textContent =
+                songTitle;
         }
 
-
-        /* PLAYER ARTIST */
-
-        if (playerArtist) {
-            playerArtist.textContent =
-                info.artist;
+        if (artist) {
+            artist.textContent =
+                songArtist;
         }
-
-
-        /* PLAYER COVER */
 
         if (
-            playerCover &&
-            info.cover
+            cover &&
+            songCover
         ) {
 
-            playerCover.style.backgroundImage =
-                'url("' + info.cover + '")';
+            cover.style.backgroundImage =
+                'url("' + songCover + '")';
+
         }
 
 
-        /* SHOW PLAYER */
+        if (player) {
+            player.classList.add("active");
+        }
 
-        showPlayer();
 
-
-        /* STOP CURRENT AUDIO */
+        /* STOP OLD SONG */
 
         audio.pause();
 
 
-        /*
-         IMPORTANT:
-         Set src directly.
-         Do NOT remove src first.
-        */
+        /* LOAD NEW SONG */
 
-        audio.src = audioURL;
+        audio.src = url;
 
         audio.load();
 
 
-        /* RESET PROGRESS */
-
-        if (progressFill) {
-            progressFill.style.width = "0%";
-        }
-
-
         /* PLAY */
 
-        const playPromise =
-            audio.play();
+        audio.play()
+            .then(function () {
 
+                console.log(
+                    "=============================="
+                );
 
-        if (playPromise !== undefined) {
+                console.log(
+                    "MBZEDMUSIC MUSIC PLAYING"
+                );
 
-            playPromise
-                .then(function () {
+                console.log(
+                    audio.src
+                );
 
-                    console.log(
-                        "MBZEDMUSIC: PLAYING"
-                    );
+                console.log(
+                    "=============================="
+                );
 
-                    updateMainButton(true);
+                setButtonIcon(true);
 
-                })
-                .catch(function (error) {
+            })
+            .catch(function (error) {
 
-                    console.error(
-                        "MBZEDMUSIC: PLAY FAILED",
-                        error
-                    );
+                console.error(
+                    "MBZEDMUSIC PLAY ERROR:",
+                    error
+                );
 
-                    console.error(
-                        "Audio URL:",
-                        audioURL
-                    );
+                console.error(
+                    "AUDIO URL:",
+                    url
+                );
 
-                    updateMainButton(false);
-                });
-        }
+                setButtonIcon(false);
+
+            });
+
     }
 
 
-    /* =====================================================
-       MUSIC BUTTONS
-    ===================================================== */
+    /* =========================================
+       SONG BUTTONS
+    ========================================= */
 
-    musicButtons.forEach(function (button) {
+    buttons.forEach(function (button) {
 
         button.addEventListener(
             "click",
@@ -346,26 +221,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 event.preventDefault();
 
-
                 const url =
-                    button.getAttribute("data-audio");
-
-
-                if (!url) {
-
-                    console.warn(
-                        "MBZEDMUSIC: No data-audio on button"
+                    button.getAttribute(
+                        "data-audio"
                     );
-
-                    return;
-                }
 
 
                 /* SAME SONG */
 
                 if (
                     currentButton === button &&
-                    currentAudio === url
+                    currentSong === url
                 ) {
 
                     if (audio.paused) {
@@ -373,13 +239,13 @@ document.addEventListener("DOMContentLoaded", function () {
                         audio.play()
                             .then(function () {
 
-                                updateMainButton(true);
+                                setButtonIcon(true);
 
                             })
                             .catch(function (error) {
 
                                 console.error(
-                                    "MBZEDMUSIC: Resume failed",
+                                    "RESUME ERROR:",
                                     error
                                 );
 
@@ -397,7 +263,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 /* NEW SONG */
 
-                playSong(button);
+                startSong(button);
 
             }
         );
@@ -405,30 +271,27 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    /* =====================================================
+    /* =========================================
        MAIN PLAYER BUTTON
-    ===================================================== */
+    ========================================= */
 
-    if (mainPlayerButton) {
+    if (mainButton) {
 
-        mainPlayerButton.addEventListener(
+        mainButton.addEventListener(
             "click",
             function (event) {
 
                 event.preventDefault();
 
 
-                /* NO SONG LOADED */
+                /* NO SONG YET */
 
-                if (!currentAudio) {
+                if (!currentSong) {
 
-                    const firstSong =
-                        document.querySelector(
-                            "[data-audio]"
-                        );
+                    if (buttons.length > 0) {
 
-                    if (firstSong) {
-                        playSong(firstSong);
+                        startSong(buttons[0]);
+
                     }
 
                     return;
@@ -450,13 +313,13 @@ document.addEventListener("DOMContentLoaded", function () {
                 audio.play()
                     .then(function () {
 
-                        updateMainButton(true);
+                        setButtonIcon(true);
 
                     })
                     .catch(function (error) {
 
                         console.error(
-                            "MBZEDMUSIC: Play failed",
+                            "PLAY ERROR:",
                             error
                         );
 
@@ -464,50 +327,86 @@ document.addEventListener("DOMContentLoaded", function () {
 
             }
         );
+
     }
 
 
-    /* =====================================================
+    /* =========================================
        AUDIO PLAY
-    ===================================================== */
+    ========================================= */
 
     audio.addEventListener(
         "play",
         function () {
 
             console.log(
-                "MBZEDMUSIC: Audio PLAY event"
+                "AUDIO PLAYING"
             );
 
-            updateMainButton(true);
-
-            showPlayer();
+            setButtonIcon(true);
 
         }
     );
 
 
-    /* =====================================================
+    /* =========================================
        AUDIO PAUSE
-    ===================================================== */
+    ========================================= */
 
     audio.addEventListener(
         "pause",
         function () {
 
             console.log(
-                "MBZEDMUSIC: Audio PAUSE event"
+                "AUDIO PAUSED"
             );
 
-            updateMainButton(false);
+            setButtonIcon(false);
 
         }
     );
 
 
-    /* =====================================================
-       AUDIO TIME UPDATE
-    ===================================================== */
+    /* =========================================
+       AUDIO LOADED
+    ========================================= */
+
+    audio.addEventListener(
+        "loadedmetadata",
+        function () {
+
+            console.log(
+                "AUDIO METADATA LOADED"
+            );
+
+            console.log(
+                "DURATION:",
+                audio.duration
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       CAN PLAY
+    ========================================= */
+
+    audio.addEventListener(
+        "canplay",
+        function () {
+
+            console.log(
+                "AUDIO CAN PLAY"
+            );
+
+        }
+    );
+
+
+    /* =========================================
+       PROGRESS
+    ========================================= */
 
     audio.addEventListener(
         "timeupdate",
@@ -539,148 +438,13 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
 
-    /* =====================================================
-       AUDIO LOADED
-    ===================================================== */
+    /* =========================================
+       PROGRESS CLICK
+    ========================================= */
 
-    audio.addEventListener(
-        "loadedmetadata",
-        function () {
+    if (progress) {
 
-            console.log(
-                "MBZEDMUSIC: Song loaded"
-            );
-
-            console.log(
-                "Duration:",
-                audio.duration
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       AUDIO CAN PLAY
-    ===================================================== */
-
-    audio.addEventListener(
-        "canplay",
-        function () {
-
-            console.log(
-                "MBZEDMUSIC: Audio ready to play"
-            );
-
-        }
-    );
-
-
-    /* =====================================================
-       AUDIO ERROR
-    ===================================================== */
-
-    audio.addEventListener(
-        "error",
-        function () {
-
-            console.error(
-                "================================"
-            );
-
-            console.error(
-                "MBZEDMUSIC AUDIO ERROR"
-            );
-
-            console.error(
-                "Audio URL:",
-                audio.src
-            );
-
-            console.error(
-                "Audio error:",
-                audio.error
-            );
-
-            console.error(
-                "================================"
-            );
-
-            updateMainButton(false);
-
-        }
-    );
-
-
-    /* =====================================================
-       SONG ENDED
-    ===================================================== */
-
-    audio.addEventListener(
-        "ended",
-        function () {
-
-            console.log(
-                "MBZEDMUSIC: Song ended"
-            );
-
-
-            updateMainButton(false);
-
-
-            if (progressFill) {
-                progressFill.style.width = "0%";
-            }
-
-
-            if (!currentButton) {
-                return;
-            }
-
-
-            const buttons =
-                Array.from(musicButtons);
-
-
-            const currentIndex =
-                buttons.indexOf(currentButton);
-
-
-            /* FIND NEXT SONG */
-
-            for (
-                let i = currentIndex + 1;
-                i < buttons.length;
-                i++
-            ) {
-
-                const nextButton =
-                    buttons[i];
-
-
-                if (
-                    nextButton.hasAttribute(
-                        "data-audio"
-                    )
-                ) {
-
-                    playSong(nextButton);
-
-                    return;
-                }
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       PROGRESS BAR CLICK
-    ===================================================== */
-
-    if (playerProgress) {
-
-        playerProgress.addEventListener(
+        progress.addEventListener(
             "click",
             function (event) {
 
@@ -693,16 +457,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 const rect =
-                    playerProgress.getBoundingClientRect();
-
-
-                const position =
-                    event.clientX -
-                    rect.left;
+                    progress.getBoundingClientRect();
 
 
                 const percentage =
-                    position /
+                    (
+                        event.clientX -
+                        rect.left
+                    ) /
                     rect.width;
 
 
@@ -716,9 +478,63 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =====================================================
+    /* =========================================
+       AUDIO ERROR
+    ========================================= */
+
+    audio.addEventListener(
+        "error",
+        function () {
+
+            console.error(
+                "================================"
+            );
+
+            console.error(
+                "MBZEDMUSIC AUDIO FAILED"
+            );
+
+            console.error(
+                "SOURCE:",
+                audio.src
+            );
+
+            console.error(
+                "ERROR:",
+                audio.error
+            );
+
+            console.error(
+                "================================"
+            );
+
+            setButtonIcon(false);
+
+        }
+    );
+
+
+    /* =========================================
+       SONG ENDED
+    ========================================= */
+
+    audio.addEventListener(
+        "ended",
+        function () {
+
+            setButtonIcon(false);
+
+            if (progressFill) {
+                progressFill.style.width = "0%";
+            }
+
+        }
+    );
+
+
+    /* =========================================
        SEARCH
-    ===================================================== */
+    ========================================= */
 
     const searchButton =
         document.getElementById(
@@ -754,12 +570,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     "active"
                 );
 
-
                 if (
+                    searchInput &&
                     searchBox.classList.contains(
                         "active"
-                    ) &&
-                    searchInput
+                    )
                 ) {
 
                     searchInput.focus();
@@ -791,9 +606,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =====================================================
+    /* =========================================
        SEARCH FILTER
-    ===================================================== */
+    ========================================= */
 
     if (searchInput) {
 
@@ -803,8 +618,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 const query =
                     searchInput.value
-                        .trim()
-                        .toLowerCase();
+                        .toLowerCase()
+                        .trim();
 
 
                 const items =
@@ -813,31 +628,22 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
-                items.forEach(
-                    function (item) {
+                items.forEach(function (item) {
 
-                        const text =
-                            item.textContent
-                                .toLowerCase();
+                    const text =
+                        item.textContent
+                            .toLowerCase();
 
 
-                        if (
+                    item.style.display =
+                        (
                             !query ||
                             text.includes(query)
-                        ) {
+                        )
+                            ? ""
+                            : "none";
 
-                            item.style.display =
-                                "";
-
-                        } else {
-
-                            item.style.display =
-                                "none";
-
-                        }
-
-                    }
-                );
+                });
 
             }
         );
@@ -845,9 +651,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* =====================================================
+    /* =========================================
        MOBILE MENU
-    ===================================================== */
+    ========================================= */
 
     const mobileMenu =
         document.getElementById(
@@ -873,140 +679,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     "active"
                 );
 
-
-                const icon =
-                    mobileMenu.querySelector(
-                        "i"
-                    );
-
-
-                if (icon) {
-
-                    if (
-                        navigation.classList.contains(
-                            "active"
-                        )
-                    ) {
-
-                        icon.classList.remove(
-                            "fa-bars"
-                        );
-
-                        icon.classList.add(
-                            "fa-xmark"
-                        );
-
-                    } else {
-
-                        icon.classList.remove(
-                            "fa-xmark"
-                        );
-
-                        icon.classList.add(
-                            "fa-bars"
-                        );
-
-                    }
-
-                }
-
             }
         );
 
     }
 
-
-    /* =====================================================
-       CLOSE MOBILE MENU AFTER CLICK
-    ===================================================== */
-
-    if (navigation) {
-
-        navigation
-            .querySelectorAll("a")
-            .forEach(function (link) {
-
-                link.addEventListener(
-                    "click",
-                    function () {
-
-                        navigation.classList.remove(
-                            "active"
-                        );
-
-                    }
-                );
-
-            });
-
-    }
-
-
-    /* =====================================================
-       NEWSLETTER
-    ===================================================== */
-
-    const newsletterForm =
-        document.getElementById(
-            "newsletterForm"
-        );
-
-
-    if (newsletterForm) {
-
-        newsletterForm.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
-
-                alert(
-                    "Thank you for subscribing to Mbzedmusic!"
-                );
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       FINAL DEBUG
-    ===================================================== */
-
-    console.log(
-        "================================"
-    );
 
     console.log(
         "MBZEDMUSIC PLAYER READY"
-    );
-
-    console.log(
-        "Audio element:",
-        audio
-    );
-
-    console.log(
-        "Music buttons:",
-        musicButtons.length
-    );
-
-
-    musicButtons.forEach(
-        function (button, index) {
-
-            console.log(
-                "Song " + (index + 1) + ":",
-                button.getAttribute("data-audio")
-            );
-
-        }
-    );
-
-
-    console.log(
-        "================================"
     );
 
 });
