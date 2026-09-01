@@ -1,15 +1,16 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Download Music | Mbzedmusic.com</title>
+    <title>Mbzedmusic.com | African Music • Our Culture • Our Sound</title>
 
     <meta name="description"
-          content="Download African music from Mbzedmusic.com. Discover and support African artists.">
+          content="Mbzedmusic.com — Discover, promote and connect with African music.">
 
-    <link rel="stylesheet" href="download.css">
+    <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,167 +24,476 @@
 
 <body>
 
-<!-- BACKGROUND EFFECTS -->
-<div class="background">
-    <div class="glow glow-one"></div>
-    <div class="glow glow-two"></div>
-    <div class="background-lines"></div>
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="container topbar-inner">
+
+        <div class="top-message">
+            <span class="pulse"></span>
+            <span>Welcome to Mbzedmusic.com — Where African Music Meets The World.</span>
+        </div>
+
+        <div class="top-links">
+            <a href="upload.html">Upload Your Music</a>
+            <a href="#">Artist Sign Up</a>
+            <a href="#">Login</a>
+        </div>
+
+    </div>
 </div>
 
 
 <!-- HEADER -->
 <header class="header">
 
-    <div class="container header-inner">
+    <div class="container nav">
 
         <a href="index.html" class="logo">
             <img src="logo.jpeg" alt="Mbzedmusic.com">
         </a>
 
-        <a href="index.html" class="home-button">
-            <i class="fa-solid fa-house"></i>
-            BACK HOME
-        </a>
+        <nav class="desktop-nav">
+            <a href="index.html" class="active">HOME</a>
+            <a href="#music">MUSIC</a>
+            <a href="#artists">ARTISTS</a>
+            <a href="#charts">CHARTS</a>
+            <a href="#videos">VIDEOS</a>
+            <a href="#news">NEWS</a>
+            <a href="#promote">PROMOTE</a>
+            <a href="#about">ABOUT US</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
+
+        <div class="nav-right">
+
+            <button class="icon-button" id="searchButton" aria-label="Search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+            <a href="upload.html" class="upload-button">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                UPLOAD MUSIC
+            </a>
+
+            <button class="icon-button mobile-menu-button"
+                    id="mobileMenuButton"
+                    aria-label="Open menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+    <div class="search-panel" id="searchPanel">
+
+        <div class="container search-inner">
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search music, artists..."
+                aria-label="Search music and artists"
+            >
+
+            <button id="searchSubmit" aria-label="Submit search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
 
     </div>
 
 </header>
 
 
-<!-- MAIN -->
-<main>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
 
-    <section class="download-page">
+    <div class="mobile-menu-top">
 
-        <div class="container">
+        <img src="logo.jpeg" alt="Mbzedmusic.com">
 
-            <div class="download-card">
+        <button id="mobileMenuClose" aria-label="Close menu">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
 
-                <!-- LEFT SIDE -->
-                <div class="download-art">
+    </div>
 
-                    <div class="art-glow"></div>
+    <a href="index.html">HOME</a>
+    <a href="#music">MUSIC</a>
+    <a href="#artists">ARTISTS</a>
+    <a href="#charts">CHARTS</a>
+    <a href="#videos">VIDEOS</a>
+    <a href="#news">NEWS</a>
+    <a href="#promote">PROMOTE</a>
+    <a href="#about">ABOUT US</a>
+    <a href="#contact">CONTACT</a>
+
+    <a href="upload.html" class="mobile-upload">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        UPLOAD YOUR MUSIC
+    </a>
+
+</div>
+
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="hero-bg"></div>
+    <div class="hero-noise"></div>
+
+    <div class="container hero-grid">
+
+        <div class="hero-copy">
+
+            <div class="hero-kicker">
+                <span></span>
+                AFRICAN MUSIC PLATFORM
+            </div>
+
+            <h1>
+                <strong>DISCOVER.</strong>
+                <em>PROMOTE.</em>
+                <strong>CONNECT.</strong>
+            </h1>
+
+            <p class="hero-description">
+                The home for African music. Discover new artists,
+                promote your sound and connect with fans worldwide.
+            </p>
+
+            <div class="featured-song">
+
+                <div class="featured-mini-cover">
+                    <img src="mb-levels-cover.jpg.jpeg" alt="MB LEVELS">
+                </div>
+
+                <div class="featured-details">
+                    <span>FEATURED RELEASE</span>
+                    <strong>MB LEVELS</strong>
+                    <small>
+                        Mr. Kings ft. Bravo Uja Lapa, Shax Morefire,
+                        Trykash & Wayayo
+                    </small>
+                </div>
+
+                <a href="download.html"
+                   class="hero-play"
+                   aria-label="Download MB LEVELS">
+                    <i class="fa-solid fa-play"></i>
+                </a>
+
+            </div>
+
+            <div class="hero-actions">
+
+                <a href="#music" class="primary-button">
+                    <i class="fa-solid fa-music"></i>
+                    EXPLORE MUSIC
+                </a>
+
+                <a href="upload.html" class="secondary-button">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    UPLOAD YOUR MUSIC
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="visual-glow"></div>
+
+            <div class="artwork-wrapper">
+
+                <div class="artwork-shadow"></div>
+
+                <img
+                    src="hero-artwork.png.png"
+                    alt="African music artwork"
+                    class="hero-artwork"
+                >
+
+                <div class="artwork-label">
+
+                    <span>MBZEDMUSIC.COM</span>
+                    <strong>AFRICAN MUSIC</strong>
+                    <small>OUR CULTURE • OUR SOUND</small>
+
+                </div>
+
+            </div>
+
+            <div class="floating-card card-top">
+                <i class="fa-solid fa-headphones"></i>
+                <div>
+                    <span>LISTEN NOW</span>
+                    <strong>New African Sounds</strong>
+                </div>
+            </div>
+
+            <div class="floating-card card-bottom">
+                <i class="fa-solid fa-chart-line"></i>
+                <div>
+                    <span>MBZED CHARTS</span>
+                    <strong>Top African Music</strong>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- QUICK LINKS -->
+<section class="quick-section">
+
+    <div class="container quick-grid">
+
+        <a href="#music" class="quick-card">
+
+            <div class="quick-icon">
+                <i class="fa-solid fa-music"></i>
+            </div>
+
+            <div>
+                <span>LISTEN</span>
+                <strong>Explore Music</strong>
+            </div>
+
+            <i class="fa-solid fa-arrow-right arrow"></i>
+
+        </a>
+
+
+        <a href="#charts" class="quick-card">
+
+            <div class="quick-icon">
+                <i class="fa-solid fa-ranking-star"></i>
+            </div>
+
+            <div>
+                <span>DISCOVER</span>
+                <strong>Top Charts</strong>
+            </div>
+
+            <i class="fa-solid fa-arrow-right arrow"></i>
+
+        </a>
+
+
+        <a href="upload.html" class="quick-card">
+
+            <div class="quick-icon">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+            </div>
+
+            <div>
+                <span>ARTISTS</span>
+                <strong>Upload Your Music</strong>
+            </div>
+
+            <i class="fa-solid fa-arrow-right arrow"></i>
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- MUSIC -->
+<section class="music-section" id="music">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div>
+                <span>LISTEN NOW</span>
+                <h2>Trending African Sounds</h2>
+            </div>
+
+            <a href="#music">
+                VIEW ALL MUSIC
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <div class="music-layout">
+
+            <div class="trending-panel">
+
+                <div class="panel-heading">
+
+                    <div>
+                        <small>MBZEDMUSIC.COM</small>
+                        <h3>Trending Now</h3>
+                    </div>
+
+                    <i class="fa-solid fa-fire"></i>
+
+                </div>
+
+
+                <div class="tracks">
+
+                    <div class="track active-track">
+
+                        <span class="track-number">01</span>
+
+                        <div class="track-cover">
+                            <img src="mb-levels-cover.jpg.jpeg" alt="MB LEVELS">
+                        </div>
+
+                        <div class="track-info">
+                            <strong>MB LEVELS</strong>
+                            <span>Mr. Kings ft. Bravo Uja Lapa & More</span>
+                        </div>
+
+                        <a href="download.html"
+                           class="track-play"
+                           aria-label="Download MB LEVELS">
+                            <i class="fa-solid fa-play"></i>
+                        </a>
+
+                    </div>
+
+
+                    <div class="track">
+
+                        <span class="track-number">02</span>
+
+                        <div class="track-cover placeholder">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+
+                        <div class="track-info">
+                            <strong>Champion</strong>
+                            <span>Yo Maps</span>
+                        </div>
+
+                        <button class="track-play" aria-label="Play Champion">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+
+                    </div>
+
+
+                    <div class="track">
+
+                        <span class="track-number">03</span>
+
+                        <div class="track-cover placeholder">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+
+                        <div class="track-info">
+                            <strong>Kuli Wanga</strong>
+                            <span>Jae Cash</span>
+                        </div>
+
+                        <button class="track-play" aria-label="Play Kuli Wanga">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+
+                    </div>
+
+
+                    <div class="track">
+
+                        <span class="track-number">04</span>
+
+                        <div class="track-cover placeholder">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+
+                        <div class="track-info">
+                            <strong>Number One</strong>
+                            <span>Macky 2</span>
+                        </div>
+
+                        <button class="track-play" aria-label="Play Number One">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+
+                    </div>
+
+
+                    <div class="track">
+
+                        <span class="track-number">05</span>
+
+                        <div class="track-cover placeholder">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+
+                        <div class="track-info">
+                            <strong>Ndi Slapede</strong>
+                            <span>Slapdee</span>
+                        </div>
+
+                        <button class="track-play" aria-label="Play Ndi Slapede">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="featured-release">
+
+                <div class="release-image">
 
                     <img
                         src="mb-levels-cover.jpg.jpeg"
                         alt="MB LEVELS"
-                        class="cover"
                     >
 
-                    <div class="art-label">
-                        <span>MBZEDMUSIC.COM</span>
-                        <strong>AFRICAN MUSIC</strong>
-                    </div>
+                    <div class="release-overlay"></div>
 
-                </div>
-
-
-                <!-- RIGHT SIDE -->
-                <div class="download-content">
-
-                    <span class="small-heading">
-                        <i class="fa-solid fa-circle-check"></i>
-                        DOWNLOAD MUSIC
+                    <span class="release-tag">
+                        FEATURED RELEASE
                     </span>
 
-                    <h1>
-                        MB LEVELS
-                    </h1>
-
-                    <h2>
-                        Mr. Kings ft. Bravo Uja Lapa,
-                        Shax Morefire, Trykash & Wayayo
-                    </h2>
-
-                    <p class="description">
-                        Download and enjoy this African sound from
-                        Mbzedmusic.com. Support the artists and
-                        discover more music from Zambia and Africa.
-                    </p>
-
-
-                    <!-- SONG INFO -->
-                    <div class="song-info">
-
-                        <div>
-                            <span>ARTIST</span>
-                            <strong>Mr. Kings</strong>
-                        </div>
-
-                        <div>
-                            <span>GENRE</span>
-                            <strong>African Music</strong>
-                        </div>
-
-                        <div>
-                            <span>YEAR</span>
-                            <strong>2026</strong>
-                        </div>
-
-                    </div>
-
-
-                    <!-- DOWNLOAD BUTTON -->
                     <a
-                        href="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3"
-                        class="download-button"
-                        download
+                        href="download.html"
+                        class="big-play"
+                        aria-label="Download MB LEVELS"
                     >
                         <i class="fa-solid fa-download"></i>
-
-                        <span>
-                            DOWNLOAD MP3
-                            <small>Download full song</small>
-                        </span>
-
-                        <i class="fa-solid fa-arrow-right"></i>
                     </a>
 
+                </div>
 
-                    <!-- NOTICE -->
-                    <div class="download-notice">
+                <div class="release-text">
 
-                        <i class="fa-solid fa-shield-halved"></i>
+                    <span>MBZEDMUSIC.COM</span>
 
-                        <div>
-                            <strong>Support African Music</strong>
+                    <h3>MB LEVELS</h3>
 
-                            <p>
-                                Please support the artist by sharing
-                                the music and visiting Mbzedmusic.com
-                                for more African sounds.
-                            </p>
-                        </div>
+                    <p>
+                        Mr. Kings ft. Bravo Uja Lapa,
+                        Shax Morefire, Trykash & Wayayo
+                    </p>
 
-                    </div>
-
-
-                    <!-- SOCIAL -->
-                    <div class="share-area">
-
-                        <span>SHARE THIS SONG</span>
-
-                        <div class="share-buttons">
-
-                            <a href="#" aria-label="Facebook">
-                                <i class="fa-brands fa-facebook-f"></i>
-                            </a>
-
-                            <a href="#" aria-label="X">
-                                <i class="fa-brands fa-x-twitter"></i>
-                            </a>
-
-                            <a href="#" aria-label="WhatsApp">
-                                <i class="fa-brands fa-whatsapp"></i>
-                            </a>
-
-                            <a href="#" aria-label="TikTok">
-                                <i class="fa-brands fa-tiktok"></i>
-                            </a>
-
-                        </div>
-
-                    </div>
+                    <a href="download.html"
+                       class="listen-button">
+                        DOWNLOAD / LISTEN
+                    </a>
 
                 </div>
 
@@ -191,92 +501,398 @@
 
         </div>
 
-    </section>
+    </div>
+
+</section>
 
 
-    <!-- MORE MUSIC -->
-    <section class="more-section">
+<!-- NEW RELEASES -->
+<section class="releases-section">
 
-        <div class="container">
+    <div class="container">
 
-            <div class="section-heading">
+        <div class="section-head">
 
-                <span>MBZEDMUSIC.COM</span>
+            <div>
+                <span>FRESH MUSIC</span>
+                <h2>New Releases</h2>
+            </div>
 
-                <h2>
-                    Discover More African Music
-                </h2>
+            <a href="#music">
+                VIEW ALL
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
 
-                <p>
-                    Explore new releases, trending songs and
-                    artists from Zambia and across Africa.
-                </p>
+        </div>
+
+
+        <div class="release-grid">
+
+            <article class="release-card">
+
+                <div class="card-image">
+                    <div class="placeholder-card">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                </div>
+
+                <div class="card-details">
+                    <span>NEW RELEASE</span>
+                    <strong>Never Give Up</strong>
+                    <span>Kav Jr</span>
+                </div>
+
+            </article>
+
+
+            <article class="release-card">
+
+                <div class="card-image">
+                    <div class="placeholder-card">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                </div>
+
+                <div class="card-details">
+                    <span>NEW RELEASE</span>
+                    <strong>Better Days</strong>
+                    <span>Blood Kid</span>
+                </div>
+
+            </article>
+
+
+            <article class="release-card">
+
+                <div class="card-image">
+                    <div class="placeholder-card">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                </div>
+
+                <div class="card-details">
+                    <span>NEW RELEASE</span>
+                    <strong>My Time</strong>
+                    <span>T-Sean</span>
+                </div>
+
+            </article>
+
+
+            <article class="release-card">
+
+                <div class="card-image">
+                    <div class="placeholder-card">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                </div>
+
+                <div class="card-details">
+                    <span>NEW RELEASE</span>
+                    <strong>Tuli Bwino</strong>
+                    <span>Chile One Zambia</span>
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CHARTS -->
+<section class="charts-section" id="charts">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div>
+                <span>TOP MUSIC</span>
+                <h2>Mbzed Top Charts</h2>
+            </div>
+
+            <a href="#charts">
+                VIEW CHART
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <div class="chart-box">
+
+            <div class="chart-row">
+
+                <span class="rank">01</span>
+
+                <div class="chart-cover">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+
+                <div class="chart-song">
+                    <strong>Champion</strong>
+                    <span>Yo Maps</span>
+                </div>
+
+                <span class="movement up">▲ 2</span>
+
+                <button class="chart-play">
+                    <i class="fa-solid fa-play"></i>
+                </button>
 
             </div>
 
 
-            <div class="more-grid">
+            <div class="chart-row">
 
-                <a href="index.html#music" class="more-card">
+                <span class="rank">02</span>
 
-                    <div class="more-icon">
-                        <i class="fa-solid fa-music"></i>
-                    </div>
+                <div class="chart-cover">
+                    <i class="fa-solid fa-music"></i>
+                </div>
 
-                    <div>
-                        <strong>Explore Music</strong>
-                        <span>Listen to more songs</span>
-                    </div>
+                <div class="chart-song">
+                    <strong>Kuli Wanga</strong>
+                    <span>Jae Cash</span>
+                </div>
 
-                    <i class="fa-solid fa-arrow-right"></i>
+                <span class="movement same">—</span>
 
-                </a>
+                <button class="chart-play">
+                    <i class="fa-solid fa-play"></i>
+                </button>
 
-
-                <a href="index.html#artists" class="more-card">
-
-                    <div class="more-icon">
-                        <i class="fa-solid fa-microphone-lines"></i>
-                    </div>
-
-                    <div>
-                        <strong>Discover Artists</strong>
-                        <span>Find African artists</span>
-                    </div>
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </a>
+            </div>
 
 
-                <a href="upload.html" class="more-card">
+            <div class="chart-row">
 
-                    <div class="more-icon">
-                        <i class="fa-solid fa-cloud-arrow-up"></i>
-                    </div>
+                <span class="rank">03</span>
 
-                    <div>
-                        <strong>Upload Music</strong>
-                        <span>Share your sound</span>
-                    </div>
+                <div class="chart-cover">
+                    <i class="fa-solid fa-music"></i>
+                </div>
 
-                    <i class="fa-solid fa-arrow-right"></i>
+                <div class="chart-song">
+                    <strong>Number One</strong>
+                    <span>Macky 2</span>
+                </div>
 
-                </a>
+                <span class="movement up">▲ 1</span>
+
+                <button class="chart-play">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+
+            </div>
+
+
+            <div class="chart-row">
+
+                <span class="rank">04</span>
+
+                <div class="chart-cover">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+
+                <div class="chart-song">
+                    <strong>Never Give Up</strong>
+                    <span>Kav Jr</span>
+                </div>
+
+                <span class="movement new">NEW</span>
+
+                <button class="chart-play">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+
+            </div>
+
+
+            <div class="chart-row">
+
+                <span class="rank">05</span>
+
+                <div class="chart-cover">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+
+                <div class="chart-song">
+                    <strong>Ndi Ine</strong>
+                    <span>Slapdee</span>
+                </div>
+
+                <span class="movement down">▼ 1</span>
+
+                <button class="chart-play">
+                    <i class="fa-solid fa-play"></i>
+                </button>
 
             </div>
 
         </div>
 
-    </section>
+    </div>
 
-</main>
+</section>
+
+
+<!-- GENRES -->
+<section class="genres-section">
+
+    <div class="container">
+
+        <div class="center-heading">
+
+            <span>EXPLORE</span>
+
+            <h2>Find Your Sound</h2>
+
+            <p>
+                Explore African music by genre and discover
+                sounds from Zambia and across the continent.
+            </p>
+
+        </div>
+
+
+        <div class="genres-grid">
+
+            <a href="#" class="genre">
+                <i class="fa-solid fa-drum"></i>
+                <strong>AFROBEAT</strong>
+            </a>
+
+            <a href="#" class="genre">
+                <i class="fa-solid fa-microphone-lines"></i>
+                <strong>HIP HOP</strong>
+            </a>
+
+            <a href="#" class="genre">
+                <i class="fa-solid fa-flag"></i>
+                <strong>ZAMBIAN MUSIC</strong>
+            </a>
+
+            <a href="#" class="genre">
+                <i class="fa-solid fa-compact-disc"></i>
+                <strong>DANCEHALL</strong>
+            </a>
+
+            <a href="#" class="genre">
+                <i class="fa-solid fa-church"></i>
+                <strong>GOSPEL</strong>
+            </a>
+
+            <a href="#" class="genre">
+                <i class="fa-solid fa-heart"></i>
+                <strong>R&amp;B</strong>
+            </a>
+
+            <a href="#" class="genre">
+                <i class="fa-solid fa-record-vinyl"></i>
+                <strong>AMAPIANO</strong>
+            </a>
+
+            <a href="#" class="genre">
+                <i class="fa-solid fa-plus"></i>
+                <strong>MORE</strong>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ARTIST CTA -->
+<section class="artist-section" id="artists">
+
+    <div class="container artist-inner">
+
+        <div class="artist-copy">
+
+            <span>FOR AFRICAN ARTISTS</span>
+
+            <h2>
+                YOUR MUSIC
+                <strong>DESERVES TO BE HEARD.</strong>
+            </h2>
+
+            <p>
+                Upload your music to Mbzedmusic.com and connect
+                with listeners across Zambia, Africa and the world.
+                Share your sound and grow your audience.
+            </p>
+
+            <a href="upload.html" class="primary-button">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                UPLOAD YOUR MUSIC
+            </a>
+
+        </div>
+
+
+        <div class="artist-symbol">
+
+            <div class="symbol-circle">
+                <i class="fa-solid fa-microphone-lines"></i>
+            </div>
+
+            <span>YOUR SOUND</span>
+            <strong>MATTERS</strong>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section class="about-section" id="about">
+
+    <div class="container about-inner">
+
+        <div class="about-title">
+
+            <span>ABOUT MBZEDMUSIC.COM</span>
+
+            <h2>
+                AFRICAN MUSIC.
+                <strong>ONE HOME.</strong>
+            </h2>
+
+        </div>
+
+        <div class="about-text">
+
+            <p>
+                Mbzedmusic.com is a home for African music,
+                connecting artists, listeners and music lovers
+                through one platform.
+            </p>
+
+            <p>
+                Discover new sounds, support African artists,
+                explore music from Zambia and across Africa,
+                and share the culture that moves us.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
 
 
 <!-- FOOTER -->
-<footer>
+<footer id="contact">
 
-    <div class="container footer-inner">
+    <div class="container footer-grid">
 
         <div class="footer-brand">
 
@@ -286,16 +902,59 @@
                 African music. Our culture. Our sound.
             </p>
 
+            <div class="socials">
+
+                <a href="#" aria-label="Facebook">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+
+                <a href="#" aria-label="X">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+
+                <a href="#" aria-label="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+
+                <a href="#" aria-label="TikTok">
+                    <i class="fa-brands fa-tiktok"></i>
+                </a>
+
+            </div>
+
         </div>
 
 
-        <div class="footer-links">
+        <div class="footer-column">
+
+            <h4>EXPLORE</h4>
 
             <a href="index.html">Home</a>
-            <a href="index.html#music">Music</a>
-            <a href="index.html#artists">Artists</a>
-            <a href="index.html#charts">Charts</a>
+            <a href="#music">Music</a>
+            <a href="#artists">Artists</a>
+            <a href="#charts">Charts</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>ARTISTS</h4>
+
             <a href="upload.html">Upload Music</a>
+            <a href="#artists">Artist Sign Up</a>
+            <a href="#promote">Promote Music</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>MBZEDMUSIC</h4>
+
+            <a href="#about">About Us</a>
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
 
         </div>
 
@@ -320,5 +979,74 @@
 
 </footer>
 
+
+<!-- MUSIC PLAYER -->
+<div class="music-player" id="musicPlayer">
+
+    <div class="player-song">
+
+        <div class="player-cover">
+            <img src="mb-levels-cover.jpg.jpeg" alt="MB LEVELS">
+        </div>
+
+        <div class="player-song-text">
+            <span>NOW PLAYING</span>
+            <strong>MB LEVELS</strong>
+            <small>Mr. Kings ft. Bravo Uja Lapa &amp; More</small>
+        </div>
+
+    </div>
+
+
+    <div class="player-main">
+
+        <button id="playerPlay" aria-label="Play">
+            <i class="fa-solid fa-play"></i>
+        </button>
+
+        <div class="player-progress">
+
+            <div class="progress-track" id="progressTrack">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="player-time">
+                <span id="currentTime">0:00</span>
+                <span id="duration">0:00</span>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="player-volume">
+
+        <i class="fa-solid fa-volume-high"></i>
+
+        <input
+            type="range"
+            id="volumeControl"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1"
+            aria-label="Volume"
+        >
+
+    </div>
+
+</div>
+
+
+<audio id="audioPlayer"
+       src="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3"
+       preload="metadata">
+</audio>
+
+
+<script src="script.js"></script>
+
 </body>
 </html>
+```
