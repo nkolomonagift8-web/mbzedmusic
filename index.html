@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,146 +12,405 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <!-- Font Awesome -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
 
-<!-- TOP BAR -->
+<!-- ================= TOP BAR ================= -->
 <div class="top-bar">
-    <div class="container top-content">
-        <div>
+    <div class="container top-bar-inner">
+
+        <div class="welcome">
+            <i class="fa-solid fa-music"></i>
             Welcome to Mbzedmusic.com — Where African Music Meets The World.
         </div>
 
         <div class="top-links">
             <a href="upload.html">Upload Your Music</a>
-            <span>|</span>
             <a href="#">Artist Sign Up</a>
-            <span>|</span>
             <a href="#">Login</a>
         </div>
+
     </div>
 </div>
 
 
-<!-- NAVIGATION -->
-<header class="header">
+<!-- ================= NAVIGATION ================= -->
+<header class="main-header">
+
     <div class="container nav-container">
 
-        <a href="index.html" class="logo-link">
-            <img src="logo.jpeg"
-                 alt="Mbzedmusic.com"
-                 class="logo">
+        <a href="index.html" class="logo">
+            <img src="logo.jpeg" alt="Mbzedmusic Logo">
         </a>
 
-        <nav class="navigation" id="navigation">
-
+        <nav class="desktop-nav">
             <a href="index.html" class="active">HOME</a>
 
             <a href="#music">
-                MUSIC
-                <i class="fa-solid fa-chevron-down"></i>
+                MUSIC <i class="fa-solid fa-chevron-down"></i>
             </a>
 
             <a href="#artists">ARTISTS</a>
             <a href="#charts">CHARTS</a>
+            <a href="#videos">VIDEOS</a>
             <a href="#news">NEWS</a>
-            <a href="#genres">GENRES</a>
+            <a href="#promote">PROMOTE</a>
             <a href="#about">ABOUT US</a>
             <a href="#contact">CONTACT</a>
-
         </nav>
 
         <div class="nav-actions">
 
-            <button class="search-button" id="searchButton" type="button">
+            <button class="search-btn" id="searchBtn" aria-label="Search">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
 
-            <a href="upload.html" class="upload-button">
+            <a href="upload.html" class="nav-upload">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
                 UPLOAD MUSIC
             </a>
 
-            <button class="mobile-menu" id="mobileMenu" type="button">
+            <button class="menu-btn" id="menuBtn" aria-label="Open menu">
                 <i class="fa-solid fa-bars"></i>
             </button>
 
         </div>
 
     </div>
+
+    <!-- Search -->
+    <div class="search-box" id="searchBox">
+        <div class="container">
+            <input
+                type="search"
+                id="siteSearch"
+                placeholder="Search music, artists, songs..."
+                autocomplete="off">
+            <button id="closeSearch">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
 </header>
 
 
-<!-- SEARCH -->
-<div class="search-box" id="searchBox">
-    <div class="container">
+<!-- ================= MOBILE MENU ================= -->
+<div class="mobile-menu" id="mobileMenu">
 
-        <input
-            type="text"
-            id="searchInput"
-            placeholder="Search artists, songs, albums..."
-        >
-
-        <button id="closeSearch" type="button">
+    <div class="mobile-menu-header">
+        <img src="logo.jpeg" alt="Mbzedmusic">
+        <button id="closeMenu">
             <i class="fa-solid fa-xmark"></i>
         </button>
-
     </div>
+
+    <a href="index.html">HOME</a>
+    <a href="#music">MUSIC</a>
+    <a href="#artists">ARTISTS</a>
+    <a href="#charts">CHARTS</a>
+    <a href="#videos">VIDEOS</a>
+    <a href="#news">NEWS</a>
+    <a href="#promote">PROMOTE</a>
+    <a href="#about">ABOUT US</a>
+    <a href="#contact">CONTACT</a>
+
+    <a href="upload.html" class="mobile-upload">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        UPLOAD YOUR MUSIC
+    </a>
+
 </div>
 
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 <section class="hero">
+
+    <div class="hero-background"></div>
 
     <div class="hero-overlay"></div>
 
-    <div class="container hero-content">
+    <div class="container hero-container">
 
-        <div class="hero-text">
+        <!-- HERO TEXT -->
+        <div class="hero-content">
 
-            <p class="small-title">
-                WELCOME TO MBZEDMUSIC.COM
-            </p>
+            <div class="hero-tag">
+                <span></span>
+                AFRICAN MUSIC • OUR CULTURE • OUR SOUND
+            </div>
 
             <h1>
                 DISCOVER.
-                <br>
                 <span>PROMOTE.</span>
-                <br>
-                <strong>CONNECT.</strong>
+                CONNECT.
             </h1>
 
-            <p class="hero-description">
+            <p>
                 The home for African music. Discover new artists,
                 promote your sound and connect with fans worldwide.
             </p>
 
             <div class="hero-buttons">
 
-                <a href="#music" class="primary-button">
-                    <i class="fa-solid fa-play"></i>
+                <a href="#music" class="btn btn-primary">
+                    <i class="fa-solid fa-headphones"></i>
                     EXPLORE MUSIC
                 </a>
 
-                <a href="upload.html" class="secondary-button">
-                    <i class="fa-solid fa-upload"></i>
+                <a href="upload.html" class="btn btn-outline">
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
                     UPLOAD YOUR MUSIC
                 </a>
 
             </div>
 
-        </div>
+            <div class="hero-stats">
 
-        <div class="hero-visual">
+                <div>
+                    <strong>10K+</strong>
+                    <span>SONGS</span>
+                </div>
 
-            <div class="africa-shape">
-                AFRICA
+                <div>
+                    <strong>1K+</strong>
+                    <span>ARTISTS</span>
+                </div>
+
+                <div>
+                    <strong>50K+</strong>
+                    <span>LISTENERS</span>
+                </div>
+
             </div>
 
-            <div class="sound-wave"></div>
+        </div>
+
+
+        <!-- LARGE HERO ARTWORK -->
+        <div class="hero-artwork">
+
+            <div class="artwork-glow"></div>
+
+            <div class="artwork-frame">
+
+                <img
+                    src="hero-artwork.png.png"
+                    alt="Mbzedmusic featured African music artwork">
+
+                <div class="artwork-badge">
+                    <i class="fa-solid fa-fire"></i>
+                    FEATURED
+                </div>
+
+            </div>
+
+            <div class="floating-note note-one">
+                <i class="fa-solid fa-music"></i>
+            </div>
+
+            <div class="floating-note note-two">
+                <i class="fa-solid fa-headphones"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="hero-bottom-fade"></div>
+
+</section>
+
+
+<!-- ================= MUSIC SECTION ================= -->
+<main>
+
+<section class="music-section" id="music">
+
+    <div class="container">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-label">LISTEN NOW</span>
+                <h2>Featured Music</h2>
+            </div>
+
+            <a href="#" class="view-all">
+                VIEW ALL
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+
+        <div class="music-grid">
+
+            <!-- TRENDING -->
+            <div class="music-panel">
+
+                <div class="panel-title">
+                    <div>
+                        <span class="small-label">HOT RIGHT NOW</span>
+                        <h3>Trending Now</h3>
+                    </div>
+
+                    <i class="fa-solid fa-fire"></i>
+                </div>
+
+
+                <div class="track-list">
+
+                    <div class="track">
+                        <span class="track-number">01</span>
+
+                        <div class="track-icon">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+
+                        <div class="track-info">
+                            <strong>Champion</strong>
+                            <span>Yo Maps</span>
+                        </div>
+
+                        <button class="play-track">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+
+
+                    <div class="track">
+                        <span class="track-number">02</span>
+
+                        <div class="track-icon">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+
+                        <div class="track-info">
+                            <strong>Kuli Wanga</strong>
+                            <span>Jae Cash</span>
+                        </div>
+
+                        <button class="play-track">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+
+
+                    <div class="track">
+                        <span class="track-number">03</span>
+
+                        <div class="track-icon">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+
+                        <div class="track-info">
+                            <strong>Number One</strong>
+                            <span>Macky 2</span>
+                        </div>
+
+                        <button class="play-track">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+
+
+                    <div class="track">
+                        <span class="track-number">04</span>
+
+                        <div class="track-icon">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+
+                        <div class="track-info">
+                            <strong>Ndi Slapede</strong>
+                            <span>Slapdee</span>
+                        </div>
+
+                        <button class="play-track">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- NEW RELEASES -->
+            <div class="music-panel">
+
+                <div class="panel-title">
+                    <div>
+                        <span class="small-label">JUST DROPPED</span>
+                        <h3>New Releases</h3>
+                    </div>
+
+                    <i class="fa-solid fa-compact-disc"></i>
+                </div>
+
+
+                <div class="release-grid">
+
+                    <article class="release-card">
+
+                        <div class="release-image">
+                            <img src="mb-levels-cover.jpg.jpeg"
+                                 alt="MB Levels cover">
+
+                            <button class="release-play">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                        </div>
+
+                        <strong>MB LEVELS</strong>
+                        <span>Mr. Kings ft. Bravo Uja Lapa</span>
+
+                    </article>
+
+
+                    <article class="release-card">
+
+                        <div class="release-image placeholder">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+
+                        <strong>Never Give Up</strong>
+                        <span>Kav Jr</span>
+
+                    </article>
+
+
+                    <article class="release-card">
+
+                        <div class="release-image placeholder">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+
+                        <strong>Better Days</strong>
+                        <span>Blood Kid</span>
+
+                    </article>
+
+
+                    <article class="release-card">
+
+                        <div class="release-image placeholder">
+                            <i class="fa-solid fa-music"></i>
+                        </div>
+
+                        <strong>My Time</strong>
+                        <span>T-Sean</span>
+
+                    </article>
+
+                </div>
+
+            </div>
 
         </div>
 
@@ -159,554 +419,241 @@
 </section>
 
 
-<!-- MAIN -->
-<main class="container main-content">
+<!-- ================= CHARTS ================= -->
+<section class="charts-section" id="charts">
 
-<!-- MUSIC -->
-<section class="music-grid" id="music">
+    <div class="container">
 
-    <!-- TRENDING -->
-    <div class="music-panel">
+        <div class="section-heading">
 
-        <div class="panel-header">
-            <h2>
-                <span class="orange">
-                    <i class="fa-solid fa-fire"></i>
-                </span>
-                TRENDING NOW
-            </h2>
+            <div>
+                <span class="section-label">THE NUMBERS</span>
+                <h2>Top 10 Chart</h2>
+            </div>
 
-            <a href="#music">
-                VIEW ALL
-                <i class="fa-solid fa-angle-right"></i>
+            <a href="#" class="view-all">
+                FULL CHART
+                <i class="fa-solid fa-arrow-right"></i>
             </a>
-        </div>
-
-        <div class="track-list">
-
-            <div class="track">
-                <span class="track-number">1</span>
-
-                <div class="track-image"
-                     style="background-image:url('mb-levels-cover.jpg.jpeg');">
-                </div>
-
-                <div class="track-info">
-                    <h3>MB Levels</h3>
-                    <p>Mr. Kings ft. Bravo Uja, Lapa, Shax Morefire, Trykash & Wayayo</p>
-                </div>
-
-                <button class="play-button"
-                        data-title="MB Levels"
-                        data-artist="Mr. Kings"
-                        data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
-                    <i class="fa-solid fa-play"></i>
-                </button>
-            </div>
-
-
-            <div class="track">
-                <span class="track-number">2</span>
-
-                <div class="track-image image-two"></div>
-
-                <div class="track-info">
-                    <h3>Kuli Wanga</h3>
-                    <p>Jae Cash</p>
-                </div>
-
-                <button class="play-button">
-                    <i class="fa-solid fa-play"></i>
-                </button>
-            </div>
-
-
-            <div class="track">
-                <span class="track-number">3</span>
-
-                <div class="track-image image-three"></div>
-
-                <div class="track-info">
-                    <h3>Number One</h3>
-                    <p>Macky 2</p>
-                </div>
-
-                <button class="play-button">
-                    <i class="fa-solid fa-play"></i>
-                </button>
-            </div>
-
-
-            <div class="track">
-                <span class="track-number">4</span>
-
-                <div class="track-image image-four"></div>
-
-                <div class="track-info">
-                    <h3>Ndi Slapede</h3>
-                    <p>Slapdee</p>
-                </div>
-
-                <button class="play-button">
-                    <i class="fa-solid fa-play"></i>
-                </button>
-            </div>
 
         </div>
-    </div>
 
-
-    <!-- NEW RELEASES -->
-    <div class="music-panel releases">
-
-        <div class="panel-header">
-            <h2>
-                <span class="orange">
-                    <i class="fa-solid fa-music"></i>
-                </span>
-                NEW RELEASES
-            </h2>
-
-            <a href="#music">
-                VIEW ALL
-                <i class="fa-solid fa-angle-right"></i>
-            </a>
-        </div>
-
-        <div class="release-grid">
-
-            <div class="release-card">
-                <div class="release-image"
-                     style="background-image:url('mb-levels-cover.jpg.jpeg');">
-
-                    <span class="new-label">NEW</span>
-
-                    <button class="card-play"
-                            data-title="MB Levels"
-                            data-artist="Mr. Kings"
-                            data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-
-                </div>
-
-                <h3>MB Levels</h3>
-                <p>Mr. Kings</p>
-            </div>
-
-
-            <div class="release-card">
-                <div class="release-image image-six">
-                    <span class="new-label">NEW</span>
-                    <button class="card-play">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-                </div>
-
-                <h3>Better Days</h3>
-                <p>Blood Kid</p>
-            </div>
-
-
-            <div class="release-card">
-                <div class="release-image image-seven">
-                    <span class="new-label">NEW</span>
-                    <button class="card-play">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-                </div>
-
-                <h3>My Time</h3>
-                <p>T-Sean</p>
-            </div>
-
-
-            <div class="release-card">
-                <div class="release-image image-eight">
-                    <span class="new-label">NEW</span>
-                    <button class="card-play">
-                        <i class="fa-solid fa-play"></i>
-                    </button>
-                </div>
-
-                <h3>Tuli Bwino</h3>
-                <p>Chile One Zambia</p>
-            </div>
-
-        </div>
-    </div>
-
-
-    <!-- CHART -->
-    <div class="music-panel" id="charts">
-
-        <div class="panel-header">
-            <h2>
-                <span class="orange">
-                    <i class="fa-solid fa-trophy"></i>
-                </span>
-                TOP 10 CHART
-            </h2>
-
-            <a href="#charts">
-                VIEW ALL
-                <i class="fa-solid fa-angle-right"></i>
-            </a>
-        </div>
 
         <div class="chart-list">
 
-            <div class="chart-item">
-
-                <span>1</span>
-
-                <div class="mini-cover"
-                     style="background-image:url('mb-levels-cover.jpg.jpeg');">
+            <div class="chart-row">
+                <span class="chart-position">01</span>
+                <div class="chart-cover">
+                    <i class="fa-solid fa-music"></i>
                 </div>
-
-                <div>
-                    <h3>MB Levels</h3>
-                    <p>Mr. Kings</p>
+                <div class="chart-info">
+                    <strong>Champion</strong>
+                    <span>Yo Maps</span>
                 </div>
-
-                <button class="play-button"
-                        data-title="MB Levels"
-                        data-artist="Mr. Kings"
-                        data-audio="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
-                    <i class="fa-solid fa-play"></i>
-                </button>
-
-            </div>
-
-
-            <div class="chart-item">
-                <span>2</span>
-                <div class="mini-cover image-two"></div>
-
-                <div>
-                    <h3>Kuli Wanga</h3>
-                    <p>Jae Cash</p>
-                </div>
-
-                <button class="play-button">
+                <span class="chart-movement up">
+                    <i class="fa-solid fa-arrow-up"></i> 2
+                </span>
+                <button class="chart-play">
                     <i class="fa-solid fa-play"></i>
                 </button>
             </div>
 
 
-            <div class="chart-item">
-                <span>3</span>
-                <div class="mini-cover image-three"></div>
-
-                <div>
-                    <h3>Number One</h3>
-                    <p>Macky 2</p>
+            <div class="chart-row">
+                <span class="chart-position">02</span>
+                <div class="chart-cover">
+                    <i class="fa-solid fa-music"></i>
                 </div>
-
-                <button class="play-button">
+                <div class="chart-info">
+                    <strong>Kuli Wanga</strong>
+                    <span>Jae Cash</span>
+                </div>
+                <span class="chart-movement up">
+                    <i class="fa-solid fa-arrow-up"></i> 1
+                </span>
+                <button class="chart-play">
                     <i class="fa-solid fa-play"></i>
                 </button>
             </div>
 
 
-            <div class="chart-item">
-                <span>4</span>
-                <div class="mini-cover image-four"></div>
-
-                <div>
-                    <h3>Never Give Up</h3>
-                    <p>Kav Jr</p>
+            <div class="chart-row">
+                <span class="chart-position">03</span>
+                <div class="chart-cover">
+                    <i class="fa-solid fa-music"></i>
                 </div>
-
-                <button class="play-button">
+                <div class="chart-info">
+                    <strong>Number One</strong>
+                    <span>Macky 2</span>
+                </div>
+                <span class="chart-movement down">
+                    <i class="fa-solid fa-arrow-down"></i> 1
+                </span>
+                <button class="chart-play">
                     <i class="fa-solid fa-play"></i>
                 </button>
             </div>
 
 
-            <div class="chart-item">
-                <span>5</span>
-                <div class="mini-cover image-six"></div>
-
-                <div>
-                    <h3>Ndi Ine</h3>
-                    <p>Slapdee</p>
+            <div class="chart-row">
+                <span class="chart-position">04</span>
+                <div class="chart-cover">
+                    <i class="fa-solid fa-music"></i>
                 </div>
+                <div class="chart-info">
+                    <strong>Never Give Up</strong>
+                    <span>Kav Jr</span>
+                </div>
+                <span class="chart-movement new">NEW</span>
+                <button class="chart-play">
+                    <i class="fa-solid fa-play"></i>
+                </button>
+            </div>
 
-                <button class="play-button">
+
+            <div class="chart-row">
+                <span class="chart-position">05</span>
+                <div class="chart-cover">
+                    <i class="fa-solid fa-music"></i>
+                </div>
+                <div class="chart-info">
+                    <strong>Ndi Ine</strong>
+                    <span>Slapdee</span>
+                </div>
+                <span class="chart-movement same">—</span>
+                <button class="chart-play">
                     <i class="fa-solid fa-play"></i>
                 </button>
             </div>
 
         </div>
-    </div>
-
-</section>
-
-
-<!-- GENRES -->
-<section class="genres-section" id="genres">
-
-    <div class="section-heading">
-        <h2>BROWSE BY GENRE</h2>
-
-        <a href="#genres">
-            VIEW ALL
-            <i class="fa-solid fa-angle-right"></i>
-        </a>
-    </div>
-
-    <div class="genre-grid">
-
-        <a href="#" class="genre afrobeats">
-            <i class="fa-solid fa-drum"></i>
-            <span>AFROBEAT</span>
-        </a>
-
-        <a href="#" class="genre hiphop">
-            <i class="fa-solid fa-microphone"></i>
-            <span>HIP HOP</span>
-        </a>
-
-        <a href="#" class="genre zambian">
-            <i class="fa-solid fa-drum"></i>
-            <span>ZAMBIAN MUSIC</span>
-        </a>
-
-        <a href="#" class="genre dancehall">
-            <i class="fa-solid fa-tree"></i>
-            <span>DANCEHALL</span>
-        </a>
-
-        <a href="#" class="genre gospel">
-            <i class="fa-solid fa-cross"></i>
-            <span>GOSPEL</span>
-        </a>
-
-        <a href="#" class="genre rnb">
-            <i class="fa-solid fa-heart"></i>
-            <span>R&B</span>
-        </a>
-
-        <a href="#" class="genre amapiano">
-            <i class="fa-solid fa-keyboard"></i>
-            <span>AMAPIANO</span>
-        </a>
-
-        <a href="#" class="genre more">
-            <i class="fa-solid fa-ellipsis"></i>
-            <span>MORE</span>
-        </a>
 
     </div>
 
 </section>
 
 
-<!-- ARTIST BANNER -->
-<section class="artist-banner" id="artists">
+<!-- ================= GENRES ================= -->
+<section class="genres-section">
 
-    <div class="artist-pattern"></div>
+    <div class="container">
 
-    <div class="artist-content">
+        <div class="section-heading centered">
 
-        <div class="artist-icon">
+            <div>
+                <span class="section-label">EXPLORE</span>
+                <h2>Browse by Genre</h2>
+            </div>
+
+        </div>
+
+
+        <div class="genre-grid">
+
+            <a href="#" class="genre-card">
+                <i class="fa-solid fa-drum"></i>
+                <span>AFROBEAT</span>
+            </a>
+
+            <a href="#" class="genre-card">
+                <i class="fa-solid fa-microphone"></i>
+                <span>HIP HOP</span>
+            </a>
+
+            <a href="#" class="genre-card">
+                <i class="fa-solid fa-flag"></i>
+                <span>ZAMBIAN MUSIC</span>
+            </a>
+
+            <a href="#" class="genre-card">
+                <i class="fa-solid fa-bolt"></i>
+                <span>DANCEHALL</span>
+            </a>
+
+            <a href="#" class="genre-card">
+                <i class="fa-solid fa-cross"></i>
+                <span>GOSPEL</span>
+            </a>
+
+            <a href="#" class="genre-card">
+                <i class="fa-solid fa-heart"></i>
+                <span>R&B</span>
+            </a>
+
+            <a href="#" class="genre-card">
+                <i class="fa-solid fa-wave-square"></i>
+                <span>AMAPIANO</span>
+            </a>
+
+            <a href="#" class="genre-card">
+                <i class="fa-solid fa-ellipsis"></i>
+                <span>MORE</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= ARTIST CTA ================= -->
+<section class="artist-cta" id="artists">
+
+    <div class="container artist-cta-inner">
+
+        <div class="artist-content">
+
+            <span class="section-label">FOR ARTISTS</span>
+
+            <h2>ARE YOU AN ARTIST?</h2>
+
+            <p>
+                Share your music with the world. Upload your songs,
+                build your audience and connect with new fans through
+                Mbzedmusic.com.
+            </p>
+
+            <div class="artist-benefits">
+
+                <div>
+                    <i class="fa-solid fa-cloud-arrow-up"></i>
+                    <strong>EASY UPLOAD</strong>
+                    <span>Fast & simple process</span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-users"></i>
+                    <strong>REACH FANS</strong>
+                    <span>Grow your audience</span>
+                </div>
+
+                <div>
+                    <i class="fa-solid fa-chart-line"></i>
+                    <strong>GET DISCOVERED</strong>
+                    <span>Promote your sound</span>
+                </div>
+
+            </div>
+
+            <a href="upload.html" class="btn btn-primary">
+                UPLOAD YOUR MUSIC
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+
+        </div>
+
+        <div class="artist-visual">
             <i class="fa-solid fa-microphone-lines"></i>
         </div>
 
-        <div>
-            <h2>
-                ARE YOU
-                <span>AN ARTIST?</span>
-            </h2>
-
-            <p>
-                Get your music heard by thousands of fans.
-                Upload your songs, grow your fanbase and take
-                your music to the next level.
-            </p>
-        </div>
-
-        <a href="upload.html" class="artist-upload">
-            <i class="fa-solid fa-upload"></i>
-            UPLOAD YOUR MUSIC NOW
-        </a>
-
-    </div>
-
-
-    <div class="artist-benefits">
-
-        <div>
-            <i class="fa-solid fa-thumbs-up"></i>
-            EASY UPLOAD
-            <small>Fast & simple process</small>
-        </div>
-
-        <div>
-            <i class="fa-solid fa-bullhorn"></i>
-            GET PROMOTED
-            <small>Reach new audiences</small>
-        </div>
-
-        <div>
-            <i class="fa-solid fa-chart-column"></i>
-            REAL STATISTICS
-            <small>Track your growth</small>
-        </div>
-
-        <div>
-            <i class="fa-solid fa-shield"></i>
-            YOUR MUSIC
-            <small>You own your sound</small>
-        </div>
-
     </div>
 
 </section>
 
 
-<!-- NEWS -->
-<section class="news-section" id="news">
-
-    <div class="news-column">
-
-        <div class="section-heading">
-            <h2>LATEST MUSIC NEWS</h2>
-
-            <a href="#news">
-                VIEW ALL
-                <i class="fa-solid fa-angle-right"></i>
-            </a>
-        </div>
-
-
-        <div class="news-grid">
-
-            <article class="news-card">
-
-                <div class="news-image"
-                     style="background-image:url('mb-levels-cover.jpg.jpeg');">
-                </div>
-
-                <div class="news-content">
-                    <h3>
-                        Welcome to Mbzedmusic.com
-                    </h3>
-
-                    <p>
-                        2026 • News
-                    </p>
-                </div>
-
-            </article>
-
-
-            <article class="news-card">
-
-                <div class="news-image news-two"></div>
-
-                <div class="news-content">
-                    <h3>
-                        Discover new African music
-                    </h3>
-
-                    <p>
-                        2026 • Music
-                    </p>
-                </div>
-
-            </article>
-
-
-            <article class="news-card">
-
-                <div class="news-image news-three"></div>
-
-                <div class="news-content">
-                    <h3>
-                        Supporting African artists
-                    </h3>
-
-                    <p>
-                        2026 • Feature
-                    </p>
-                </div>
-
-            </article>
-
-
-            <article class="news-card">
-
-                <div class="news-image news-four"></div>
-
-                <div class="news-content">
-                    <h3>
-                        Top upcoming artists to watch
-                    </h3>
-
-                    <p>
-                        2026 • Feature
-                    </p>
-                </div>
-
-            </article>
-
-        </div>
-
-    </div>
-
-
-    <!-- SOCIAL -->
-    <aside class="social-panel" id="contact">
-
-        <h2>FOLLOW US</h2>
-
-        <a href="#">
-            <i class="fa-brands fa-facebook"></i>
-            Facebook
-            <span>@mbzedmusic</span>
-        </a>
-
-        <a href="#">
-            <i class="fa-brands fa-instagram"></i>
-            Instagram
-            <span>@mbzedmusic</span>
-        </a>
-
-        <a href="#">
-            <i class="fa-brands fa-x-twitter"></i>
-            Twitter (X)
-            <span>@mbzedmusic</span>
-        </a>
-
-        <a href="#">
-            <i class="fa-brands fa-youtube"></i>
-            YouTube
-            <span>Mbzedmusic TV</span>
-        </a>
-
-    </aside>
-
-</section>
-
-</main>
-
-
-<!-- ABOUT -->
-<section class="container" id="about" style="padding:50px 20px;">
-    <h2>ABOUT MBZEDMUSIC</h2>
-
-    <p>
-        Mbzedmusic.com is a music promotion platform dedicated
-        to discovering, promoting and connecting African artists
-        with the world.
-    </p>
-</section>
-
-
-<!-- FOOTER -->
-<footer class="footer">
+<!-- ================= FOOTER ================= -->
+<footer id="contact">
 
     <div class="container footer-grid">
 
@@ -715,62 +662,56 @@
             <img src="logo.jpeg" alt="Mbzedmusic">
 
             <p>
-                Mbzedmusic.com is a music promotion platform
-                dedicated to discovering, promoting and connecting
-                African artists with the world.
+                African music. Our culture. Our sound.
+                Discover, promote and connect with music from Africa.
             </p>
+
+            <div class="social-links">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
 
         </div>
 
 
         <div class="footer-column">
 
-            <h3>QUICK LINKS</h3>
+            <h4>EXPLORE</h4>
 
-            <a href="index.html">Home</a>
             <a href="#music">Music</a>
             <a href="#artists">Artists</a>
             <a href="#charts">Charts</a>
-            <a href="#news">News</a>
+            <a href="#videos">Videos</a>
 
         </div>
 
 
         <div class="footer-column">
 
-            <h3>SUPPORT</h3>
+            <h4>COMPANY</h4>
 
-            <a href="#">Help Center</a>
-            <a href="#">Terms of Use</a>
+            <a href="#about">About Us</a>
+            <a href="#promote">Promote</a>
             <a href="#">Privacy Policy</a>
-            <a href="#">Copyright Policy</a>
-            <a href="#">FAQ</a>
+            <a href="#">Terms & Conditions</a>
 
         </div>
 
 
-        <div class="footer-newsletter">
+        <div class="footer-column">
 
-            <h3>NEWSLETTER</h3>
+            <h4>CONTACT</h4>
 
-            <p>
-                Subscribe to get the latest updates,
-                new music and news.
-            </p>
+            <a href="mailto:info@mbzedmusic.com">
+                info@mbzedmusic.com
+            </a>
 
-            <form id="newsletterForm">
-
-                <input
-                    type="email"
-                    placeholder="Enter your email"
-                    required
-                >
-
-                <button type="submit">
-                    SUBSCRIBE
-                </button>
-
-            </form>
+            <a href="upload.html">
+                Upload Music
+            </a>
 
         </div>
 
@@ -779,36 +720,36 @@
 
     <div class="footer-bottom">
 
-        <p>
-            © 2026 Mbzedmusic.com. All Rights Reserved.
-        </p>
+        <div class="container">
 
-        <p>
-            <i class="fa-solid fa-headphones"></i>
-            Built for Artists. Loved by Fans.
-        </p>
+            <span>
+                © 2026 Mbzedmusic.com. All Rights Reserved.
+            </span>
 
-        <a href="#">
-            Back to Top ↑
-        </a>
+            <span>
+                Made for African Music ❤️
+            </span>
+
+        </div>
 
     </div>
 
 </footer>
 
 
-<!-- MUSIC PLAYER -->
-<div class="music-player" id="musicPlayer">
+<!-- ================= AUDIO PLAYER ================= -->
+<div class="audio-player" id="audioPlayer">
 
     <div class="player-info">
 
-        <div class="player-cover"
-             style="background-image:url('mb-levels-cover.jpg.jpeg');">
+        <div class="player-cover">
+            <img src="mb-levels-cover.jpg.jpeg"
+                 alt="MB Levels">
         </div>
 
         <div>
-            <strong id="playerTitle">MB Levels</strong>
-            <small id="playerArtist">Mr. Kings</small>
+            <strong>MB LEVELS</strong>
+            <span>Mr. Kings ft. Bravo Uja Lapa</span>
         </div>
 
     </div>
@@ -816,35 +757,49 @@
 
     <div class="player-controls">
 
-        <button type="button">
-            <i class="fa-solid fa-backward"></i>
-        </button>
-
-        <button class="main-player-button"
-                id="mainPlayerButton"
-                type="button">
+        <button id="playerPlay">
             <i class="fa-solid fa-play"></i>
         </button>
 
-        <button type="button">
-            <i class="fa-solid fa-forward"></i>
-        </button>
+        <div class="progress-area">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+
+            <div class="time">
+                <span id="currentTime">0:00</span>
+                <span id="duration">0:00</span>
+            </div>
+        </div>
 
     </div>
 
 
-    <div class="player-progress">
-        <div></div>
+    <div class="player-volume">
+
+        <i class="fa-solid fa-volume-high"></i>
+
+        <input
+            type="range"
+            id="volume"
+            min="0"
+            max="1"
+            step="0.01"
+            value="1">
+
     </div>
 
 </div>
 
 
-<!-- AUDIO -->
-<audio id="audioPlayer"></audio>
+<audio
+    id="audio"
+    src="MB-LEVELS-Mr.-Kings-ft-Bravo-Uja-Lapa-Shax-Morefire-Trykash-Wayayo-Prod.-by-Dj-Widdah.mp3">
+</audio>
 
 
 <script src="script.js"></script>
 
 </body>
 </html>
+```
